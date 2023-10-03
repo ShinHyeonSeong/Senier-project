@@ -76,7 +76,7 @@ public class ProjectSerivce {
             return 1;
         }
 
-        else if (decision) {
+        else if (!decision) {
             projectRequestRepository.deleteByAllId(sendUUID, recvUUID, projectId);
             return 1;
         }
@@ -224,18 +224,15 @@ public class ProjectSerivce {
     }
 
     public List<ProjectDto> findAllProjectList(){
-        List<ProjectRoleEntity> projectRoleEntityList = projectRoleRepository.findAll();
+        List<ProjectEntity> projectEntityList = projectRepository.findAll();
         List<ProjectDto> projectDtoList = new ArrayList<>();
-
-        for (ProjectRoleEntity projectRoleEntity : projectRoleEntityList) {
-
-            ProjectDto projectDto = new ProjectDto();
-            projectDto.insertEntity(projectRoleEntity.getProjectIdInRole());
+        ProjectDto projectDto = new ProjectDto();
+        for (ProjectEntity projectEntity : projectEntityList) {
+            projectDto.insertEntity(projectEntity);
             projectDtoList.add(projectDto);
-
         }
 
-        if(projectDtoList.isEmpty()){
+        if (projectDtoList.isEmpty()) {
             return null;
         }
 

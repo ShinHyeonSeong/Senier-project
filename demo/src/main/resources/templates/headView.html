@@ -1,101 +1,86 @@
 <!DOCTYPE html>
-<html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-    <title>Border Project Manager</title>
-	<link rel="stylesheet" href="/css/goalDetail.css">
-	<link rel="stylesheet" href="/css/sidebar.css">
-	<script src="../js/goalDetail.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/goalDetail.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/sideNavbar.css">
+    <title>BPM</title>
 </head>
 
 <body>
-<div class="sidebar">
-	<ul>
-		<li><a href="/project/projectAllList">나가기</a></li>
-		<li><a href="/project/main">홈</a></li>
-		<li class="active"><a href="/project/goals">목표</a></li>
-		<li><a href="/project/works">작업</a></li>
-		<li><a href="/project/documentEntity">문서</a></li>
-		<li><a href="/project/calender">달력</a></li>
-		<li><a href="/recvMessageList">메세지</a></li>
-		<li><a href="/user/search">멤버 초대</a></li>
-	</ul>
+<header>
+    <nav>
+        <div class="nav-left">
+            <a th:href="@{/project/projectManagerList}"><button id="exitButton">나가기</button></a>
+        </div>
+        <div class="nav-center">
+            <h1 id="projectName" th:text="${currentProject.getTitle()}"></h1>
+        </div>
+        <div class="nav-right">
+            <p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
+        </div>
+    </nav>
+</header>
+<aside class="sidebar">
+    <ul>
+        <div class="menu">
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a th:href="@{/project/goals}">작업</a></li>
+                <li><a href="#">수신함</a></li>
+            </ul>
+        </div>
+    </ul>
+    <ul>
+        <div class="user-list">
+            <h2>프로젝트 멤버</h2>
+            <ul th:each="member : ${joinUsers}">
+                <li th:text="${member.getName()}"></li>
+            </ul>
+        </div>
+        <div>
+            <button id="inviteButton">Invite Members</button>
+        </div>
+    </ul>
+</aside>
+<div class="main-text">작업</div>
+
+<div class="main">
+    <div class="main-nav">
+        <ul>
+            <li><a href="#">목표</a></li>
+            <li><a href="#">할 일</a></li>
+            <li><a href="#">문서</a></li>
+            <li><a href="#">일정</a></li>
+        </ul>
+    </div>
 </div>
 
-<div class="top-bar">
-	<a href="/project/goals" class="back-button">
-		< </a>
-	<h1 th:text="'상위 목표 : ' + ${headDto.title}"></h1>
-</div>
-
-<div class="page-container">
-  <div class="content-container">
-    <div class="left-section">
-      <div class="content">
-        <h4 class="content-title">설명</h4>
-        <p class="content-detail" th:text="${headDto.discription}"></p>
-      </div>
-
-      <div class="content">
-        <h4 class="content-title">연결된 목표</h4>
-        <div class="linked-object">
-          <div class="object-header">
-            <div>하위 목표</div>
-              <a href="/project/detail/create" th:if="${auth == 1}"><button class="object-edit-btn">하위 목표 추가</button></a>
-          </div>
-          <div class="horizon-divider-semi"></div>
-          <div class="object" th:if="${connectDetailList != null}" th:each="detail : ${connectDetailList}">
-            <a th:href="@{/project/goal/detailView/{id}(id=${detail.detailId})}">
-              <div class="object-list" th:text="${detail.title}"></div>
-            </a>
-          </div>
-        </div>
-      </div>
+<div class="container">
+    <div class="left-pane">
+        <h1 class="post-title" th:text="${currentProject.getTitle()}"></h1>
+        <p class="post-content" th:text="${currentProject.getSubtitle()}">
+        </p>
     </div>
-
-    <div class="vertical-divider"></div>
-
-    <div class="right-section">
-        <!-- 이것도 div로 묶어야 데이터를 잘 넘길 수 있을 거 같.. ㄱ -->
-        <!-- 이걸 div로 해가지고 상위 목표와 연결 해야되는데 일단 내가 못함 미안 -->
-        <div>
-            <h4 class="content-title">시작일자</h4>
-            <p class="content-detail" th:text="${#dates.format(headDto.startDay, 'yyyy-MM-dd')}" ></p>
-            <div class="horizon-divider"></div>
+    <div class="right-pane">
+        <div class="date-info">
+            <p th:text="'시작기한 : ' + ${#dates.format(currentProject.getStartDay(), 'yyyy-MM-dd')}"></p>
+            <p th:text="'마감기한 : ' + ${#dates.format(currentProject.getEndDay(), 'yyyy-MM-dd')}"></p>
         </div>
-
-        <div>
-            <h4 class="content-title">마감기간</h4>
-            <p class="content-detail" th:text="${#dates.format(headDto.endDay, 'yyyy-MM-dd')}" ></p>
-            <div class="horizon-divider"></div>
+        <div class="buttons">
+            <button class="edit-button" th:if="${auth == 1}">목표 수정</button>
+            <button class="delete-button" th:if="${auth == 1}">목표 삭제</button>
         </div>
-
-        <div>
-            <h4 class="content-title">상태</h4>
-            <p class="content-detail" th:if="${headDto.completion == 1}">완료</p>
-            <p class="content-detail" th:if="${headDto.completion == 0}">진행중</p>
-            <div class="horizon-divider"></div>
+        <div class="related-tasks">
+            <h2>Related Tasks</h2>
+            <ul class="task-list" th:each="work : ${workDtoList}">
+                <li><a href="#" th:text="${work.getTitle()}"></a></li>
+            </ul>
         </div>
-
-        <div>
-            <a th:href="@{/project/head/completion/change/{id}(id=${headDto.headId})}">
-                <button class="edit-btn" th:if="${auth == 1 && headDto.completion == 0}">완료로 표시</button>
-            </a>
-            <a th:href="@{/project/head/completion/change/{id}(id=${headDto.headId})}">
-                <button class="edit-btn" th:if="${auth == 1 && headDto.completion == 1}">진행중으로 표시</button>
-            </a>
-            <a th:href="@{/project/goal/head/edit/{id}(id=${headDto.headId})}">
-                <button class="edit-btn" th:if="${auth == 1}" >목표 수정</button>
-            </a>
-            <a th:href="@{/project/goal/head/delete/{id}(id=${headDto.headId})}">
-                <button class="delete-btn" th:if="${auth == 1}" >목표 삭제</button>
-            </a>
-        </div>
-
     </div>
-  </div>
 </div>
 </body>
 

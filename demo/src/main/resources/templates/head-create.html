@@ -14,10 +14,10 @@
       alert(message);
     }
     function createHead_check() {
-      var title = documentEntity.getElementById("title");
-      var discription = documentEntity.getElementById("discription");
-      var startDay = documentEntity.getElementById("startDay");
-      var endDay = documentEntity.getElementById("endDay");
+      var title = document.getElementById("title");
+      var discription = document.getElementById("discription");
+      var startDay = document.getElementById("startDay");
+      var endDay = document.getElementById("endDay");
       /*yyyy--mm-dd 정규식*/
       var regDate = new RegExp("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$");
 
@@ -48,7 +48,7 @@
       }
 
 
-      documentEntity.createHead_form.submit();
+      document.createHead_form.submit();
     }
   </script>
 </head>

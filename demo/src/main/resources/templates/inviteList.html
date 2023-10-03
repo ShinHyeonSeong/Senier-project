@@ -20,7 +20,7 @@
 	<script src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js'></script>
 	<script src="/js/login.js"></script>
 	<script>
-		const loremIpsum = documentEntity.getElementById("lorem-ipsum")
+		const loremIpsum = document.getElementById("lorem-ipsum")
 		fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
 				.then(response => response.text())
 				.then(result => loremIpsum.innerHTML = result)
@@ -75,18 +75,18 @@
 			<tbody>
 			<tr th:each="requests : ${requestList}">
 				<td th:text="${requests.sendUUID.getName()}"></td>
-				<td th:text="${requests.prjoectIdToRequest.getTitle()}"></td>
+				<td th:text="${requests.getProjoectIdToRequest().getTitle()}"></td>
 				<td>
 					<div class="btn-wrap">
 						<a th:href="@{/requestResponse/{sendUser}/{recvUser}/{project}/{acceptable}(
             sendUser=${requests.sendUUID.getUuid()}, recvUser=${requests.recvUUID.getUuid()},
-            project=${requests.prjoectIdToRequest.getProjectId()}, acceptable=${true}
+            project=${requests.getProjoectIdToRequest().getProjectId()}, acceptable=${true}
             )}">
 							<button class="accept-btn">수락</button>
 						</a>
 						<a th:href="@{/requestResponse/{sendUser}/{recvUser}/{project}/{acceptable}(
             sendUser=${requests.sendUUID.getUuid()}, recvUser=${requests.recvUUID.getUuid()},
-            project=${requests.prjoectIdToRequest.getProjectId()}, acceptable=${false}
+            project=${requests.getProjoectIdToRequest().getProjectId()}, acceptable=${false}
             )}">
 							<button class="refuse-btn">거절</button>
 						</a>
