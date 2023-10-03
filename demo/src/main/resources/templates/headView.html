@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+    <title>Border Project Manager</title>
+	<link rel="stylesheet" href="/css/goalDetail.css">
+	<link rel="stylesheet" href="/css/sidebar.css">
+	<script src="../js/goalDetail.js"></script>
+</head>
+
+<body>
+<div class="sidebar">
+	<ul>
+		<li><a href="/project/projectAllList">나가기</a></li>
+		<li><a href="/project/main">홈</a></li>
+		<li class="active"><a href="/project/goals">목표</a></li>
+		<li><a href="/project/works">작업</a></li>
+		<li><a href="/project/documentEntity">문서</a></li>
+		<li><a href="/project/calender">달력</a></li>
+		<li><a href="/recvMessageList">메세지</a></li>
+		<li><a href="/user/search">멤버 초대</a></li>
+	</ul>
+</div>
+
+<div class="top-bar">
+	<a href="/project/goals" class="back-button">
+		< </a>
+	<h1 th:text="'상위 목표 : ' + ${headDto.title}"></h1>
+</div>
+
+<div class="page-container">
+  <div class="content-container">
+    <div class="left-section">
+      <div class="content">
+        <h4 class="content-title">설명</h4>
+        <p class="content-detail" th:text="${headDto.discription}"></p>
+      </div>
+
+      <div class="content">
+        <h4 class="content-title">연결된 목표</h4>
+        <div class="linked-object">
+          <div class="object-header">
+            <div>하위 목표</div>
+              <a href="/project/detail/create" th:if="${auth == 1}"><button class="object-edit-btn">하위 목표 추가</button></a>
+          </div>
+          <div class="horizon-divider-semi"></div>
+          <div class="object" th:if="${connectDetailList != null}" th:each="detail : ${connectDetailList}">
+            <a th:href="@{/project/goal/detailView/{id}(id=${detail.detailId})}">
+              <div class="object-list" th:text="${detail.title}"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vertical-divider"></div>
+
+    <div class="right-section">
+        <!-- 이것도 div로 묶어야 데이터를 잘 넘길 수 있을 거 같.. ㄱ -->
+        <!-- 이걸 div로 해가지고 상위 목표와 연결 해야되는데 일단 내가 못함 미안 -->
+        <div>
+            <h4 class="content-title">시작일자</h4>
+            <p class="content-detail" th:text="${#dates.format(headDto.startDay, 'yyyy-MM-dd')}" ></p>
+            <div class="horizon-divider"></div>
+        </div>
+
+        <div>
+            <h4 class="content-title">마감기간</h4>
+            <p class="content-detail" th:text="${#dates.format(headDto.endDay, 'yyyy-MM-dd')}" ></p>
+            <div class="horizon-divider"></div>
+        </div>
+
+        <div>
+            <h4 class="content-title">상태</h4>
+            <p class="content-detail" th:if="${headDto.completion == 1}">완료</p>
+            <p class="content-detail" th:if="${headDto.completion == 0}">진행중</p>
+            <div class="horizon-divider"></div>
+        </div>
+
+        <div>
+            <a th:href="@{/project/head/completion/change/{id}(id=${headDto.headId})}">
+                <button class="edit-btn" th:if="${auth == 1 && headDto.completion == 0}">완료로 표시</button>
+            </a>
+            <a th:href="@{/project/head/completion/change/{id}(id=${headDto.headId})}">
+                <button class="edit-btn" th:if="${auth == 1 && headDto.completion == 1}">진행중으로 표시</button>
+            </a>
+            <a th:href="@{/project/goal/head/edit/{id}(id=${headDto.headId})}">
+                <button class="edit-btn" th:if="${auth == 1}" >목표 수정</button>
+            </a>
+            <a th:href="@{/project/goal/head/delete/{id}(id=${headDto.headId})}">
+                <button class="delete-btn" th:if="${auth == 1}" >목표 삭제</button>
+            </a>
+        </div>
+
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

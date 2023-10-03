@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/documentEntityList.css">
+    <script src="/js/documentEntityList.js"></script>
+    <title>Border Project Manager</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="headerLeft">
+                <a href="/project/main" class="back-button"> < </a>
+                <h1>문서 목록</h1>
+            </div>
+        </div>
+        <div class="documentEntity-list">
+            <section class="my-documentEntity-section">
+                <div class="documentEntity">
+                    <div class="documentEntity-classification">
+                        내 문서
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="job-name">문서</th>
+                                <th>작성자</th>
+                                <th>작성일자</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="documentEntity : ${UserDocumentList}" >
+                            <td ><a th:href="@{/documentEntity/write(id=${documentEntity.documentId})}" th:text="${documentEntity.title}">문서명</a></td>
+                            <td th:text="${documentEntity.userName}">작성자명</td>
+                            <td th:text="${documentEntity.dateDocument}">일자</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="all-documentEntity-section">
+                <div class="documentEntity">
+                    <div class="documentEntity-classification">
+                        현재 프로젝트 전체 문서
+                    </div>
+                    <div class="object-linked-documentEntity" th:each="documentEntityList : ${projectDocumentList}">
+                        <div class="linked-object" th:text="${documentEntityList.workName}">연결된 목표명</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="job-name">문서</th>
+                                    <th>작성자</th>
+                                    <th>작성일자</th>
+                                </tr>
+                            </thead>
+                            <tbody th:each="documentEntity : ${documentEntityList.documentDtoList}">
+                                <tr>
+                                    <td><a th:href="@{/documentEntity/write(id=${documentEntity.documentId})}" th:text="${documentEntity.title}">문서명</a></td>
+                                    <td th:text="${documentEntity.userName}">작성자명</td>
+                                    <td th:text="${documentEntity.dateDocument}">일자</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</body>
+
+</html>

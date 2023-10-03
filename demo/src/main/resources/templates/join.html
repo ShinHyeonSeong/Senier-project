@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Border Project Manager</title>
+	<link rel="stylesheet" href="/css/join.css">
+<body>
+<script th:inline="javascript">
+	/* 타임리프 변수를 해당 표현식으로 사용해야함. 뒤의 ''는 기본값을 의미 */
+	var message = /*[[${message}]]*/ '';
+	if (message !== null) {
+		alert(message);
+	}
+
+	var email = document.getElementById("email");
+	var username = document.getElementById("username");
+	var password = document.getElementById("password");
+
+	//2~15 자리 이내의 한글과 영어만
+	var regName = /^[가-힣a-zA-Z]{2,15}$/;
+	//4 ~ 12 자리 이내의 영어와 숫자 조합의
+	var regPassword = /^[a-zA-Z0-9]{4,12}$/;
+	var regMail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+
+	function checkAll() {
+		var email = document.getElementById("email");
+		var username = document.getElementById("username");
+		var password = document.getElementById("password");
+
+		//2~15 자리 이내의 한글과 영어만
+		var regName = /^[가-힣a-zA-Z]{2,15}$/;
+		//4 ~ 12 자리 이내의 영어와 숫자 조합의
+		var regPassword = /^[a-zA-Z0-9]{4,12}$/;
+		var regMail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+
+		//메일주소 확인
+		if (email.value.length == 0) {
+			alert("메일주소를 입력하세요.")
+			email.focus();
+			return false;
+		}
+		if (!regMail.test(email.value)) {
+			alert("잘못된 이메일 형식입니다.")
+			email.focus();
+			return false;
+		}
+		;
+
+		//이름 확인 = 한글과 영어만 가능하도록
+		if (username.value == "") {
+			alert("이름을 입력하세요.")
+			username.focus();
+			return false;
+		}
+		if (!regName.test(username.value)) {
+			alert("최소 2글자 이상, 한글과 영어만 입력하세요.")
+			username.focus();
+			return false;
+		}
+		;
+
+		//비밀번호 확인
+		if (password.value == "") {
+			alert("비밀번호를 입력하세요.")
+			password.focus();
+			return false;
+		}
+		//비밀번호 영어 대소문자 확인
+		if (!regPassword.test(password.value)) {
+			alert("4~12자 영문 대소문자, 숫자만 입력하세요.")
+			password.focus();
+			return false;
+		}
+
+		document.joinForm.submit();
+	}
+</script>
+<form name="joinForm" action="/user/dosave" method="post">
+	<div class="page-container">
+		<div class="join-form-container shadow">
+			<h1>Join</h1>
+			<div class="join-input-container">
+				<div class="join-input-wrap">
+					<input placeholder="이메일 형식을 맞추시오." type="text" id="email" name="email">
+				</div>
+				<div class="join-input-wrap">
+					<input placeholder=" 비밀번호를 4 ~ 12 자리 이내의 영어와 숫자 조합의 이내로 적으시오" type="password" name="password"
+						   id="password">
+				</div>
+				
+				<div class="join-input-wrap">
+					<input placeholder="닉네임을 4 ~ 8자 이내로 적으시오." type="text" id="username" name="username">
+				</div>
+			</div>
+			<div class="join-btn-wrap">
+				<button class="join-btn" type="button" onclick="checkAll()">Join</button>
+				<button class="join-btn" type="button"><a href="/index"
+														  style="color: #fff; text-decoration: none">Back</a></button>
+			</div>
+		</div>
+	</div>
+</form>
+</body>
+
+</html>

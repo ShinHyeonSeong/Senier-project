@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Border Project Manager</title>
+	<link rel="stylesheet" href="/css/projectCreate.css">
+	<script src="/js/projectCreate.js"></script>
+</head>
+
+<body>
+<div class="card">
+	<div class="container">
+		<a href="/project/create"><button class="next-btn">NEW</button></a>
+	</div>
+</div>
+
+<br>
+<div class="home-title">
+	<span>Block Project Manager</span>
+</div>
+</body>
+
+<script>
+	function submitForm() {
+		// Get form data
+		var projectTitle = documentEntity.getElementById("project-title").value;
+		var projectDescription = documentEntity.getElementById("project-description").value;
+		var projectScope = documentEntity.getElementById("project-scope").value;
+		
+		// Submit form data to another page
+		window.location.href = "submit.html?title=" + encodeURIComponent(projectTitle) + "&description=" + encodeURIComponent(projectDescription) + "&scope=" + encodeURIComponent(projectScope);
+	}
+</script>
+
+
+</html>
