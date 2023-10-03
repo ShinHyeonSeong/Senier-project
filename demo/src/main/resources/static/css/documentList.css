@@ -1,0 +1,143 @@
+body {
+	background-color: #222;
+	color: #fff;
+	font-size: 18px;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+.container {
+	width: 70%;
+	margin: 0 auto;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 5rem 0;
+}
+
+.headerLeft {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.back-button {
+	background-color: #333;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+	padding: 10px 15px;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 16px;
+	margin-right: 2rem;
+	transition: 0.5s;
+}
+
+.back-button:hover {
+	background-color: #444;
+}
+
+.create-document-btn {
+	font-size: 18px;
+	background-color: #333;
+	width: 150px;
+	height: 60px;
+	color: #fff;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.5s;
+	margin-left: auto;
+}
+
+.create-document-btn:hover {
+	background-color: #444;
+	color: #fff;
+}
+
+.document-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.document {
+  margin-bottom: 7rem;
+}
+
+.document-classification {
+  font-size: 32px;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  padding-left: 25px;
+}
+
+.object-linked-document {
+  margin-bottom: 3rem;
+}
+
+.linked-object {
+  font-size: 16px;
+  margin-bottom: 1.5rem;
+  color: #777;
+  padding: 20px 0 0 25px;
+}
+
+table {
+	border-top: 1px #333 solid;
+	border-bottom: 1px #333 solid;;
+	font-size: .9em;
+	width: 100%;
+	border-collapse: collapse;
+	overflow: hidden;
+}
+  
+th {
+	text-align: left;
+}
+	
+thead {
+	font-weight: bold;
+	color: #fff;
+}
+	
+td, th {
+	padding: 1em 25px;
+	vertical-align: middle;
+}
+	
+td {
+	border-top: 1px #333 solid;
+	transition: 0.5s;
+}
+
+td:hover {
+	background-color: #555;
+}
+
+td a {
+	display:block; 
+	width:100%; 
+	height:100%;
+  color: #fff;
+}
+
+.job-name {
+	width: 30rem;
+}
+
+.job-pic {
+	width: 8rem;
+}
+
+.job-deadline {
+	width: 15rem;
+}

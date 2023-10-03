@@ -1,0 +1,175 @@
+a {
+    text-decoration: none !important;
+}
+
+image {
+    object-fit: cover;
+}
+
+body {
+    background-color: #222;
+}
+
+.container {
+    width: 80%;
+}
+
+.board {
+    max-width: 1280px;
+    margin: 40px auto;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 40px;
+    text-decoration: none;
+}
+
+.top-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1280px;
+    margin: 40px auto 20px auto;
+    align-items: center;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-height: 50px;
+}
+
+.project-select{
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-right: 4rem;
+    transition: all 0.5s;
+}
+
+.project-select:hover {
+    color: grey;
+}
+
+.head-img img {
+    width: 20px;
+    height: 20px;
+    margin-left: 0.5rem;
+    margin-bottom: 0.2rem;
+}
+
+#trend-button:focus {
+    outline: none;
+}
+
+#write-button {
+    width: 10rem;
+    height: 38px;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 1px 16px;
+    background-color: white;
+    color: black;
+    border: 1.5px solid #333;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: all 0.4s;
+}
+
+#write-button:focus {
+    outline: none;
+}
+
+#write-button:hover {
+    background-color: #444;
+    color: white;
+}
+
+table {
+    border-bottom: 1px #333 solid;;
+    font-size: .9em;
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+th {
+    text-align: left;
+    padding: 1em 1.5em;
+    vertical-align: middle;
+}
+
+thead {
+    font-weight: bold;
+    color: #fff;
+}
+
+td {
+    padding: 1.25em 1.5em;
+    vertical-align: middle;
+    color: #fff;
+    border-top: 1px #333 solid;
+    transition: 0.5s;
+}
+
+td:nth-child(3) {
+    color: rgb(160, 60, 60);
+}
+
+td a {
+    display:block;
+    width:100%;
+    height:100%
+}
+
+.job-name {
+    width: 20rem;
+}
+
+.btn-wrap {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-wrap a {
+    width: fit-content;
+}
+
+.accept-btn {
+    padding: 0.5rem 1.5rem;
+    margin-left: auto;
+    margin-right: 1rem;
+    border: 1.5px solid #333;
+    border-radius: 30px;
+    transition: all 0.4s;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(80, 150, 220);
+}
+
+.accept-btn:hover {
+    background-color: rgb(50, 100, 145);
+}
+
+.refuse-btn {
+    padding: 0.5rem 1.5rem;
+    margin-right: 1rem;
+    border: 1.5px solid #333;
+    border-radius: 30px;
+    transition: all 0.4s;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(220, 80, 80);
+}
+
+.refuse-btn:hover {
+    background-color: rgb(150, 60, 60);
+}
+

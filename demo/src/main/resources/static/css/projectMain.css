@@ -1,0 +1,216 @@
+/* Reset some default styles */
+body,
+h1,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.user-list {
+    margin-top: 10rem;
+    padding: 10px;
+    color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.user-list h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.user-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-list li {
+    margin-bottom: 5px;
+}
+
+#inviteButton {
+    background-color: #5161CE;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+#inviteButton:hover {
+    background-color: #4755B5;
+}
+
+#inviteButton:hover {
+    background-color: #4755B5;
+}
+
+main {
+    margin-left: 15%;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
+.project-name {
+    margin: 2%;
+    color: #5161CE;
+    font-size: 60px;
+    text-align: center;
+}
+
+.centered-top {
+    display: flex;
+}
+
+
+.div-h {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.div-content {
+    font-size: 18px;
+}
+
+
+.sub-name {
+    width: 20%;
+    margin-top: 3%;
+    margin-bottom: 1%;
+    color: #5161CE;
+    font-size: 25px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.board {
+    max-width: 1280px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 40px;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.post {
+    text-decoration: none;
+    margin: auto;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    position: relative;
+    top: 0;
+    width: 500px;
+    height: 230px;
+}
+
+.post-detail {
+    border-radius: 10px;
+    background-color: #5161CE;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.post:hover {
+    top: -10px;
+    transition: 0.3s ease-in;
+}
+
+.post:not(:hover) {
+    transition: 0.3s ease-out;
+}
+
+.post-detail h1 {
+    margin-top: 5%;
+    margin-left: 5%;
+    font-size: 25px;
+    color: #fff;
+}
+
+.post-user-child {
+    flex: 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.post-user-div {
+    font-size: 17px;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+}
+
+.post-button {
+    background-color: #5161CE;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+.post-user-child1 {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.post-user-list1 {
+    text-align: center;
+    flex: 1;
+    width: 30%;
+    box-sizing: border-box;
+}
+
+.post-user-list2 {
+    text-align: center;
+    flex: 1;
+    width: 30%;
+    box-sizing: border-box;
+}
+
+.post-user-list3 {
+    text-align: center;
+    flex: 1;
+    width: 30%;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 1280px) {
+    .board {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 920px) {
+    .board {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .board {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .board {
+        grid-template-columns: 1fr 1fr;
+    }
+}

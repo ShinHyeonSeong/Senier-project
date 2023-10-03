@@ -1,0 +1,165 @@
+/* Global styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #222;
+    color: #fff;
+}
+
+a {
+    text-decoration-line: none;
+    color: white;
+}
+
+/* Style container */
+.container {
+    display: flex;
+}
+
+.centered-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.project-name {
+    margin: 2%;
+    font-size: 60px;
+    text-align: center;
+}
+
+.centered-top {
+    display: flex;
+
+}
+
+.team-members,
+.project-intro,
+.my-work,
+.goals {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.div-h {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.div-content {
+    font-size: 18px;
+}
+
+.project-intro {
+    min-width: 450px;
+    flex: 1;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+
+}
+
+.team-members {
+    min-width: 500px;
+    flex: 1;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.member {
+    margin: none;
+}
+
+.member-email {
+    color: #888;
+    font-size: 0.75rem;
+    margin-top: -1rem;
+}
+
+.my-work {
+    min-width: 1050px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.goals {
+    min-width: 800px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.goals hr{
+    background: #ffffff;
+    height: 1px;
+    border: 0;
+}
+.work {
+    margin-bottom: 100px;
+}
+
+.work-classification {
+    font-size: 25px;
+    font-weight: bolder;
+    padding: 0.5rem 1.5rem;
+}
+
+
+table {
+    border-top: 1px #333 solid;
+    border-bottom: 1px #333 solid;
+    font-size: .9em;
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+th {
+    padding: 1em 1.5em;
+    vertical-align: middle;
+    font-size: 20px;
+    text-align: left;
+}
+
+thead {
+    font-weight: bold;
+    color: #fff;
+}
+
+td {
+    font-size: 17px;
+    padding: 1em 1.5em;
+    vertical-align: middle;
+    border-top: 1px #333 solid;
+    transition: 0.5s;
+}
+
+td:hover {
+    background-color: #555;
+}
+
+td a {
+    display: block;
+    width: 100%;
+    height: 100%
+}
+
+.job-name {
+    width: 40rem;
+    column-span: 2;
+}
+.job-deadline{
+    width: 80rem;
+    column-span: 2;
+}

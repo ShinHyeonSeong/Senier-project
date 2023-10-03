@@ -1,0 +1,168 @@
+/* Global styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #222;
+    color: #fff;
+}
+
+a {
+    text-decoration-line: none;
+    color: white;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+    border-bottom: solid 0.8px #333;
+    position: fixed;
+    top: 0;
+    left: 200px;
+    background-color: #222;
+}
+
+.top-bar h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 4rem;
+}
+
+.top-bar a {
+    margin-left: auto;
+}
+
+nav {
+    margin-top: 120px;
+    margin-left: 33%;
+    margin-bottom: 50px;
+    background-color: #222;
+    padding: 10px;
+    width: 50%;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    font-size: 20px;
+}
+
+.nav-item {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.nav-item.active {
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border-bottom: 1px solid #555;
+    background-color: #333;
+}
+
+.container {
+    max-width: 60%;
+    margin-left: 25%;
+    background-color: #333;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    font-size: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+input[type="text"],
+textarea {
+    margin: 1%;
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    resize: vertical;
+    background-color: #444;
+    color: #fff;
+}
+
+input[type="submit"] {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+    background-color: #666;
+}
+
+select {
+    /* Reset Select */
+    appearance: none;
+    outline: 0;
+    border: 1px solid #444;
+    box-shadow: none;
+    border-radius: 5px;
+    /* Personalize */
+    flex: 1;
+    padding: 0 1em;
+    color: #fff;
+    background-color: var(--darkgray);
+    background-image: none;
+    cursor: pointer;
+}
+
+:root {
+    --background-gradient: linear-gradient(30deg, #f39c12 30%, #f1c40f);
+    --gray: #222;
+    --darkgray: #222;
+}
+
+/* Remove IE arrow */
+select::-ms-expand {
+    display: none;
+}
+
+/* Custom Select wrapper */
+.select {
+    position: relative;
+    display: flex;
+    height: 3em;
+    border-radius: .25em;
+    overflow: hidden;
+}
+
+/* Arrow */
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em;
+    background-color: #444;
+    transition: .25s all ease;
+    pointer-events: none;
+}
