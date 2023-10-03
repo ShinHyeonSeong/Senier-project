@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Border Project Manager</title>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css'>
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css'>
+	<link rel="stylesheet" href="../css/nav.css">
+	<link rel="stylesheet" href="../css/account.css">
+	
+	<script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+	<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>
+	<script src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js'></script>
+	<script src="../js/nav.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-custom navbar-mainbg">
+	<a class="navbar-brand navbar-logo" href="#"><img class="navbar-logo-image" src="../img/logo.png">BPM</a>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link" th:text="${user.name}">님</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/project/projectAllList">프로젝트 리스트</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/user/logout">로그아웃</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<div class="page-container">
+	<div class="inner-container">
+		<div class="top-wrap">
+			<h1>내 정보</h1>
+			<div class="toolbar-wrap">
+				<a href="/user/account">
+					<button class="toolbar-btn account-btn">계정</button>
+				</a>
+				<a href="/user/accountUpdate">
+					<button class="toolbar-btn account-update-btn">내 정보 수정</button>
+				</a>
+				<a href="/user/passwordChange">
+					<button class="toolbar-btn password-change-btn">비밀번호 변경</button>
+				</a>
+			</div>
+		</div>
+		
+		<div class="profile-wrap">
+			<img src="/img/profile.png" alt="">
+			<div class="profile-detail">
+				<div class="profile-username" th:text="${user.name}"></div>
+				<div class="profile-email" th:text="${user.email}"></div>
+			</div>
+			<a href="/user/logout" class="logout-btn-a">
+				<button class="logout-btn">로그아웃</button>
+			</a>
+		</div>
+		
+		<div class="withdraw-wrap">
+			<div class="withdraw-discription">
+				<h1>계정 탈퇴</h1>
+				<div class="withdraw-detail">해당 계정의 모든 정보를 삭제합니다.</div>
+			</div>
+			<a href="/user/delete" class="withdraw-btn-a">
+				<button class="withdraw-btn">탈퇴</button>
+			</a>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/workCreate.css">
+  <script src="/js/documentList.js"></script>
+  <title>Border Project Manager</title>
+</head>
+
+<body>
+<div class="container">
+  <div class="header">
+    <a href="/project/works" class="back-button"> < </a>
+    <h1>작업 수정</h1>
+  </div>
+  <form action="/project/work/edit" method="post" name="editWork_form">
+    <div class="create-goal">
+      <div class="label-detail">
+        <label class="label" for="create-goal-input1">작업 이름</label>
+      </div>
+      <div class="input-detail">
+        <input name="title" class="input-box" id="create-goal-input1" type="text" th:value="${workDto.title}">
+      </div>
+    </div>
+
+    <div class="create-goal">
+      <div class="label-detail">
+        <label class="label" for="create-goal-input2">작업 설명</label>
+      </div>
+      <div class="input-detail">
+                    <textarea name="discription" class="detail-input-box"
+                              id="create-goal-input2" cols="20" rows="10" th:text="${workDto.discription}"></textarea>
+      </div>
+    </div>
+
+    <div class="create-goal">
+      <div class="label-detail">
+        <label class="label" for="create-goal-input3">작업 시작일</label>
+      </div>
+      <div class="input-detail">
+        <input name="startDay" class="input-box" id="create-goal-input3" type="text"
+               th:value="${#dates.format(workDto.startDay, 'yyyy-MM-dd')}">
+      </div>
+    </div>
+
+    <div class="create-goal">
+      <div class="label-detail">
+        <label class="label" for="create-goal-input4">작업 마감일</label>
+      </div>
+      <div class="input-detail">
+        <input name="deadline" class="input-box" id="create-goal-input4" type="text"
+               th:value="${#dates.format(workDto.endDay, 'yyyy-MM-dd')}">
+      </div>
+    </div>
+
+    <div class="create-goal">
+      <div class="label-detail">
+        <label class="label" for="create-goal-input5">작업 담당자</label>
+      </div>
+      <div class="search-input-detail">
+        <ul id="create-goal-input5">
+          <li th:each="userDto : ${userDtoList}" th:switch="${userWorkDtoList}">
+            <input type="checkbox" th:each="userWork : ${userWorkDtoList}"
+                   th:id="${userDto.name}" th:name="chargeUsers" th:value="${userDto.uuid}"
+                   th:checked="${userDto.uuid == userWork.userIdToUserWork.uuid}">
+            <label th:for="${userDto.name}" th:text="${userDto.name}" class="user-label"></label>
+            <div class="check"></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="create-goal">
+      <div class="label-detail">
+        <label class="label" for="create-goal-input6">연결 목표</label>
+      </div>
+      <div class="input-detail">
+        <div class="select">
+          <select class="select-connection-goal" id="create-goal-input6" name="connectDetail" th:if="${detailDtoList != null}">
+            <option th:each="detail : ${detailDtoList}"
+                    th:text="${detail.title}"
+                    th:value="${detail.detailId}"
+                    th:if="${detail.detailId} == ${workDto.detailIdToWork.detailId}"
+                    th:selected="true">
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <input th:name="workId" th:value="${workDto.workId}" type="hidden">
+
+    <div class="horizon-divider"></div>
+    <div class="footer">
+      <button class="footer-btn" type="button" onclick="editWork_check()">생성</button>
+      <button class="footer-btn" type="reset">초기화</button>
+    </div>
+  </form>
+</div>
+
+</body>
+<script th:inline="javascript">
+  const message = /*[[${message}]]*/ '';
+  if (message !== null) {
+    alert(message);
+  }
+  function editWork_check() {
+    var title = document.getElementById("create-goal-input1");
+    var discription = document.getElementById("create-goal-input2");
+    var startDay = document.getElementById("create-goal-input3");
+    var endDay = document.getElementById("create-goal-input4");
+    /*yyyy--mm-dd 정규식*/
+    var regDate = new RegExp("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$");
+
+    if (title.value == "") {
+      alert("목표 제목을 입력해주십시오.");
+      title.focus();
+      return false;
+    }
+
+    if (startDay.value == "") {
+      alert("시작기한을 입력해주십시오.");
+      startDay.focus();
+      return false;
+    } else if (!regDate.test(startDay.value)) {
+      alert("연-월-일 형식으로 입력해주십시오.")
+      startDay.focus();
+      return false;
+    }
+
+    if (endDay.value == "") {
+      alert("마감기한을 입력해주십시오.");
+      endDay.focus();
+      return false;
+    } else if (!regDate.test(endDay.value)) {
+      alert("연-월-일 형식으로 입력해주십시오.")
+      endDay.focus();
+      return false;
+    }
+
+
+    document.editWork_form.submit();
+  }
+</script>
+</html>

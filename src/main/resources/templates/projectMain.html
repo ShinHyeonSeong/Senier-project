@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Border Project Manager</title>
+	<link rel="stylesheet" href="/css/projectMain.css">
+	<link rel="stylesheet" href="/css/sidebar.css">
+</head>
+<!-- 프로젝트 생성후 메인창 -->
+
+<body>
+<div class="container">
+	<div class="sidebar">
+		<ul>
+			<li><a href="/project/projectAllList">나가기</a></li>
+			<li class="active"><a href="/project/main">홈</a></li>
+			<li><a href="/project/goals">목표</a></li>
+			<li><a href="/project/works">작업</a></li>
+			<li><a href="/project/document">문서</a></li>
+			<li><a href="/project/calender">달력</a></li>
+			<li><a href="/recvMessageList">메세지</a></li>
+			<li><a href="/user/search">멤버 초대</a></li>
+		</ul>
+	</div>
+	<div class="centered-content">
+		<div class="project-name" th:text="${projectDto.title}"> Project 1</div>
+		<div class="centered-top">
+			<div class="project-intro">
+				<p class="div-h">Project Introduction</p>
+				<p class="div-content" th:text="${projectDto.subtitle}"></p>
+			</div>
+			<div class="team-members">
+				<div class="div-h">Team Members</div>
+				<div class="member" th:each="member : ${joinUsers}">
+					<div style="display: flex; flex-direction: row">
+						<p>User : </p>
+						<div style="font-size: 20px; margin: 15px;" th:text="${member.name}"></div>
+					</div>
+					<div class="member-role" th:text="${member.email}"></div>
+					<hr>
+				</div>
+			
+			</div>
+		</div>
+		<div class="goals">
+			<div class="div-h">목표</div>
+			<table>
+				<thead>
+				<tr>
+					<th class="job-deadline">이름</th>
+					<th class="job-deadline">설명</th>
+					<th class="job-deadline">마감기한</th>
+					<th class="job-name">상태</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="headDto : ${headDtoList}">
+					<td class="job-deadline" th:text="${headDto.title}"></td>
+					<td class="job-deadline" th:text="${headDto.discription}"></td>
+					<td class="job-name" th:text="${#dates.format(headDto.endDay, 'yyyy-MM-dd')}"></td>
+					<td class="job-name" style="color: rgb(80, 150, 220);" th:if="${headDto.completion == 1}">완료</td>
+					<td class="job-name" style="color: rgb(220, 80, 80);;" th:if="${headDto.completion == 0}">진행중</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="my-work">
+			<div class="div-h">내 작업</div>
+			<table>
+				<thead>
+				<tr>
+					<th class="job-deadline">이름</th>
+					<th class="job-deadline">설명</th>
+					<th class="job-deadline">마감기한</th>
+					<th class="job-name">상태</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="workDto : ${userWorkDtoList}">
+					<td class="job-deadline" th:text="${workDto.title}"></td>
+					<td class="job-deadline" th:text="${workDto.discription}"></td>
+					<td class="job-name" th:text="${#dates.format(workDto.endDay, 'yyyy-MM-dd')}"></td>
+					<td class="job-name" style="color: rgb(80, 150, 220);;" th:if="${workDto.completion == 1}">완료</td>
+					<td class="job-name" style="color: rgb(220, 80, 80);;" th:if="${workDto.completion == 0}">진행중</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<a th:href="@{/project/delete/{id}(id=${projectDto.projectId})}">
+			<button class="delete-btn" th:if="${auth == 1}" >프로젝트 삭제</button>
+		</a>
+	</div>
+</div>
+</body>
+
+</html>

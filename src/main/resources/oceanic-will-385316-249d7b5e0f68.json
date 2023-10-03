@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "oceanic-will-385316",
+  "private_key_id": "249d7b5e0f6833750118a1dc99e063e81fcb3167",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC4Hvj0OgsUnPP2\n+Xdk9WWgTdnndqfmCeMAFwg05PCD3Y4fmqtKeks9nn5Hg0L41n61GiM3W3Z7h7Vo\nb/njTuCUG05hLJLKcHThffQjj2w6zCIxT9mdi4+zTV2jwlZjGjrQrgUwBJyYGThg\nBQ86N0lZB2Gqa/HpkOXvEZw1AAyCIMfYa/IdSgNws7Q1Lgsr0YJxN4CJU9s3aILX\nMpG1Blh1kE/jcqRFb7BSXLuYy+Essx23oqE4Wjd7f7U5vPDcqPlMyc9nn+FWK2OR\ni2KKa6v/TPy71sqI2s3akhhENV+7GZIvsDgEyba2oVT0vuBoqf0+v1P60tC1hBN+\nxundJemZAgMBAAECggEAKiDwHtW/Hk7RZbPsFT4vLDBUCSm1viWJ+sXKW2v8+ncx\n41pdEjQMTkObKlrG8rAFmwOphiuX3ykMoaJpf5DXQxxCYWq1BbwYilXrDE3vWj7G\nHhlitjEuRr0PjX5UjOV+CqyexD9x4z12EEZoFw56anQNbVS4rBQ7AGo7n0btFcLt\n/0tPFRq1KJzCQ3b/0UwiuLUN9KWB4TWDx03CwVCke2hOiOInoP0jj9cGxH2UNLo4\nRJEOuLIBoyN6WwuhelQZTrZDSvlduzG7f3DSxZKr+OY2QoQIDQGTH34MndV0LW4G\nRJJs495DTiOOqRYpPqaeU3Qx127FtL8AsbvL6VLHvwKBgQDgSvTcgrGh4XnJMDGm\ncQifDo3DpjVOWc0pQbIKzW6lVo/TxNapgfCmzqkyJFdsPfZjDm9KKjue74z5MrUc\n+dNIp+iyhaM36rUiOkS/lt4ooJ+0JAtwmW+ZeOyGQi0xS4kByxjszy2oZprkKi7z\n16Sgk5wKV+CjqFN23jCdChznCwKBgQDSJjfjASy2n2uU/ay5IKLEP8fZhYyr33PP\n1+bwiyi8jWrTdKF8KCWdQQsCzQalzco5dx1qOyJJR6aI3xdjYjkdIUWQKhzQIQeR\nKDh4y1u0mFnMwBQrfaRF/WX1gRrH6cUH4qDy0uF+EPJ+4a4x+8x82ytBT9R+ixub\nI1Tg5ysIawKBgQCUJe6GmGzsGBpxITwqTA79wIcy693Z2scAsTwAlqC25O4rWqDP\nZdym0WpAjHCSNntAApDP1AV9fY0ILM4kTX+ZRg8Vm9+rV4Q9D2/JfMVQ4IecXRKR\nVUe5f337UEq5fMMKRDQ6dr4ZtWwpuRM6TP2YcudmjZT7hHtc0HYbxEpC8QKBgQCp\nio3iBYuWVm2MCVC1FqBaZf6M/lKsQx2DHHNDs3GNFSaPLHQv34/hG52Ph+uKDsnM\nrM29a7HQnw67NAkBdDgRyUr+8QrH2y3orSNKSP5WZ+di6cAcCkRi9vmwJJV/nZkJ\nMIya+wlTFMcfGGHaD4Q9YvC1w3rzELWX5txOihHMuwKBgQDbTwr+T3mqGOZqd6ne\nEFtosM40N2Q0XpPyST0VcdiZR9lyCkk1Mh2rqqfhb1ZaUPnMrbIxOzPVAKrhyXbe\n6yjshFYbu3BFt2+vS36CadT/UnDn3hoqQ+Tl2JP65kPWuPlhnnus9nu+PWVLnhlL\nZ7i/cY7x4/UaBwV4BTDnqwe7cQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "bpm-storage-service@oceanic-will-385316.iam.gserviceaccount.com",
+  "client_id": "116568013797964951933",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bpm-storage-service%40oceanic-will-385316.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

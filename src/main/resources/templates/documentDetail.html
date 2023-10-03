@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Border Project Manager</title>
+	<link rel="stylesheet" type="text/css" href="/css/documentDetail.css">
+</head>
+<!-- document가 게시되어 있는 화면 -->
+<body>
+<div class="page-container">
+	<div class="floating-bar">
+		<button class="side-btn">뒤로</button>
+		<div class="up-down">
+			<button class="side-btn">up</button>
+			<button class="side-btn">down</button>
+		</div>
+	</div>
+	
+	<div class="content-container">
+		
+		<div class="document-section">
+			<h1 class="document-title" th:text="${document.title}">Title</h1>
+			<div class="document-detail">
+				<div class="detail" th:text="${document.userName}">작성자명</div>
+				<div class="detail" th:text="${document.dateDocument}">2023 01 01</div>
+			</div>
+			<div class="horizon-divider"></div>
+			<div class="document-content">
+				<th:block th:each="block : ${blockList}">
+					<div class="move_block">
+						<div th:id="${block.category}"
+							 th:if="${block.category == 'blockImage'}"
+							 th:content="${block.content}"
+							 class ="block"><img class = "block_image" th:src="${block.content}" ondragstart="return false"></div>
+
+						<div th:id="${block.category}"
+							 th:if="${block.category == 'blockVideo'}"
+							 th:content="${block.content}"
+							 class ="block"><video class = "block_video" th:src="${block.content}" controls ondragstart="return false"></video></div>
+
+						<div th:id="${block.category}"
+							 th:if="${block.category != 'blockImage' and block.category != 'blockVideo'}"
+							 class ="block"
+							 placeholder="빈 블럭"
+							 th:utext="${block.content}"
+							 spellcheck="false"
+							 controls ondragstart="return false">block content</div>
+					</div>
+				</th:block>
+			</div>
+			<div class="horizon-divider"></div>
+		</div>
+	
+	</div>
+</div>
+</body>
+
+</html>

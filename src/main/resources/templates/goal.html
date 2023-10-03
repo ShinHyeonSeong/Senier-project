@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Border Project Manager</title>
+	<link rel="stylesheet" type="text/css" href="/css/work.css">
+	<link rel="stylesheet" href="/css/sidebar.css">
+	<script src="/js/goal.js"></script>
+</head>
+<!-- 목표창 제목과 하단 세부사항들을 구분짓는 hr 태그들을 통일필요-->
+<body>
+<!-- Side menu bar -->
+<div class="sidebar">
+	<ul>
+		<li><a href="/project/projectAllList">나가기</a></li>
+		<li><a href="/project/main">홈</a></li>
+		<li class="active"><a href="/project/goals">목표</a></li>
+		<li><a href="/project/works">작업</a></li>
+		<li><a href="/project/document">문서</a></li>
+		<li><a href="/project/calender">달력</a></li>
+		<li><a href="/recvMessageList">메세지</a></li>
+		<li><a href="/user/search">멤버 초대</a></li>
+	</ul>
+</div>
+<div class="top-bar">
+	<h1>목표</h1>
+	<div>
+		<a href="/project/head/create">
+			<button th:if="${auth == 1}" class="add-high-goal-btn">상위 목표 추가</button>
+		</a>
+		<a href="/project/detail/create">
+			<button th:if="${auth == 1}" class="add-goal-btn">하위 목표 추가</button>
+		</a>
+	</div>
+</div>
+
+<div class="content-container">
+	<div class="content">
+		<div class="work">
+			<!--			<h4 class="work-classification">목표</h4>-->
+			<table>
+				<thead>
+				<tr>
+					<th class="job-name">상위 목표</th>
+					<th>하위 목표</th>
+					<th class="job-deadline">마감 기한</th>
+					<th>상태</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="headDto : ${headDtoList}">
+					<td><a th:href="@{/project/goal/headView/{id}(id=${headDto.headId})}"
+						   th:text="${headDto.title}"></a></td>
+					<td><a th:each="detailDto : ${detailDtoList}"
+						   th:if="${headDto.headId} == ${detailDto.headIdToDetail.headId}"
+						   th:href="@{/project/goal/detailView/{id}(id=${detailDto.detailId})}"
+					th:text = "${detailDto.title}"/></td>
+					<td th:text="${#dates.format(headDto.endDay, 'yyyy-MM-dd')}"></td>
+					<td style="color: rgb(80, 150, 220);" th:if="${headDto.completion == 1}">완료</td>
+					<td style="color: rgb(220, 80, 80);" th:if="${headDto.completion == 0}">진행중</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+<!--
+
+<div class="column" style="justify-self: center;">
+	<h3>하위 목표</h3>
+	<div class="sortable">
+		<a th:each="detailDto : ${detailDtoList}"
+		   th:if="${headDto.headId} == ${detailDto.headIdToDetail.headId}"
+		   th:href="@{/project/goal/detailView/{id}(id=${detailDto.detailId})}">
+			<div class="user-story">
+				<div class="inline-content">
+					<h3 th:text="${detailDto.title}"/>
+					<p class="status" style="color: rgb(80, 150, 220)"
+					   th:if="${detailDto.getCompletion() ==1 }">완료 </p>
+					<p class="status" style="color: rgb(220, 80, 80);"
+					   th:if="${detailDto.getCompletion() ==0 }">진행중 </p>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>-->

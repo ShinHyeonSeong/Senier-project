@@ -1,0 +1,231 @@
+body {
+    background-color: #222;
+    color: #fff;
+    font-size: 18px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.back-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 2rem;
+    transition: 0.5s;
+}
+
+.back-button:hover {
+    background-color: #444;
+}
+
+.create-goal {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 1px;
+    margin-bottom: 2rem;
+}
+
+.label-detail {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex: 0 0 auto;
+    margin-bottom: 10px;
+}
+
+.label {
+    font-size: 16px;
+    line-height: 18px;
+    align-items: center;
+    display: flex;
+    font-weight: 500;
+}
+
+.essential {
+    padding-left: 5px;
+    color: rgb(160, 60, 60);
+}
+
+.input-detail {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 1px;
+}
+
+.input-box {
+    height: 36px;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    background-color: #222;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #444;
+    border-radius: 5px;
+    padding: 0 12px;
+    color: #fff;
+}
+
+.input-box:focus {
+    border: 0.5px solid #fff;
+    outline: none;
+}
+
+.detail-input-box {
+    font-family: "Noto Sans KR", sans-serif;
+    height: 42px;
+    padding-bottom: 6px;
+    padding-top: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    background-color: #222;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #444;
+    border-radius: 5px;
+    padding: 12px 12px;
+    color: #fff;
+    resize: none;
+}
+
+.detail-input-box:focus {
+    border: 0.5px solid #fff;
+    outline: none;
+}
+
+.search-input-detail {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: row;
+    min-width: 1px;
+}
+
+.search-input-box {
+    width: 80%;
+    height: 36px;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    background-color: #222;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #444;
+    border-radius: 5px;
+    padding: 0 12px;
+    color: #fff;
+}
+
+.search-input-box:focus {
+    border: 0.5px solid #fff;
+    outline: none;
+}
+
+.button-form {
+    width: 15%;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    margin-left: auto;
+    color: #fff;
+}
+
+.button-form:hover {
+    background-color: #555;
+}
+
+.horizon-divider {
+    background-color: #333;
+    height: 1px;
+    margin: 35px 0 25px 0;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.footer-btn {
+    width: 15%;
+    height: 38px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    margin-left: 15px;
+    color: #fff;
+}
+
+.footer-btn:hover {
+    background-color: #555;
+}
+
+/* codepen */
+:root {
+    --background-gradient: linear-gradient(30deg, #f39c12 30%, #f1c40f);
+    --gray: #222;
+    --darkgray: #222;
+}
+
+select {
+    /* Reset Select */
+    appearance: none;
+    outline: 0;
+    border: 1px solid #444;
+    box-shadow: none;
+    border-radius: 5px;
+    /* Personalize */
+    flex: 1;
+    padding: 0 1em;
+    color: #fff;
+    background-color: var(--darkgray);
+    background-image: none;
+    cursor: pointer;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+    display: none;
+}
+/* Custom Select wrapper */
+.select {
+    position: relative;
+    display: flex;
+    height: 3em;
+    border-radius: .25em;
+    overflow: hidden;
+}
+/* Arrow */
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em;
+    background-color: #444;
+    transition: .25s all ease;
+    pointer-events: none;
+}
