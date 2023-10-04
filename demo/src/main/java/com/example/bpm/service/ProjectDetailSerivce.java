@@ -95,7 +95,7 @@ public class ProjectDetailSerivce {
     public WorkDto createWork(String title, String discription, String startDate, String deadline, HeadDto connectHead, ProjectDto projectDto) {
 
         WorkDto workDto = new WorkDto();
-        
+
         workDto.setTitle(title);
         workDto.setDiscription(discription);
         workDto.setStartDay(dateManager.formatter(startDate));
@@ -188,6 +188,15 @@ public class ProjectDetailSerivce {
         WorkEntity workEntity = workRepository.findById(id).get();
         WorkDto workDto = new WorkDto();
         workDto.insertEntity(workEntity);
+        return workDto;
+    }
+
+    public WorkDto findWorkByDocument(DocumentDto documentDto){
+        WorkDocumentEntity workDocumentEntity= workDocumentRepository.findByDocumentIdToWorkDocument_DocumentId(documentDto.getDocumentId());
+        WorkEntity workEntity = workDocumentEntity.getWorkIdToWorkDocument();
+        WorkDto workDto = new WorkDto();
+        workDto.insertEntity(workEntity);
+
         return workDto;
     }
 
@@ -340,7 +349,7 @@ public class ProjectDetailSerivce {
     }
 
     /* Log LogDto */
-    
+
     public List<LogDto> findLogListByDocument(DocumentDto documentDto) {
         List<LogEntity> logEntityEntityList = logRepository.findAllByDocumentId(documentDto.getDocumentId());
         List<LogDto> logDtoList = new ArrayList<>();
@@ -439,7 +448,7 @@ public class ProjectDetailSerivce {
         for (WorkEntity workEntity: workEntityList) {
             deleteWork(workEntity);
         }
-        
+
         headRepository.deleteById(headEntity.getHeadId());
     }
 
@@ -483,17 +492,17 @@ public class ProjectDetailSerivce {
 
     @Transactional
     public void deleteUserWork(WorkEntity workEntity) {
-            userWorkRepository.deleteAllByWorkIdToUserWork_WorkId(workEntity.getWorkId());
+        userWorkRepository.deleteAllByWorkIdToUserWork_WorkId(workEntity.getWorkId());
     }
 
     @Transactional
     public void deleteWorkDocument(WorkEntity workEntity) {
-            workDocumentRepository.deleteAllByWorkIdToWorkDocument_WorkId(workEntity.getWorkId());
+        workDocumentRepository.deleteAllByWorkIdToWorkDocument_WorkId(workEntity.getWorkId());
     }
 
     @Transactional
     public void deleteWorkComment(WorkEntity workEntity) {
-            workCommentRepository.deleteAllByWorkIdToComment_WorkId(workEntity.getWorkId());
+        workCommentRepository.deleteAllByWorkIdToComment_WorkId(workEntity.getWorkId());
     }
 
     @Transactional

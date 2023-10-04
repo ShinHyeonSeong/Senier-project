@@ -334,8 +334,22 @@ public class DocumentService {
         return documentDtoList;
     }
 
+    public List<DocumentDto> findDocumentListByProjectId(Long id){
+        List<DocumentDto> documentDtoList = new ArrayList<>();
+        List<WorkEntity> workEntityList = workRepository.findAllByProjectIdToWork_ProjectId(id);
+
+        for (WorkEntity workEntity: workEntityList) {
+            for (DocumentDto documentDto: findDocumentByWorkId(workEntity.getWorkId())) {
+                documentDtoList.add(documentDto);
+            }
+        }
+
+        return documentDtoList;
+    }
+
     /* ProjectDocument ProjectDocumentDto */
-    public List<ProjectDocumentListDto> findDocumentListByProjectId(Long id){
+
+    public List<ProjectDocumentListDto> findProjectDocumentListByProjectId(Long id){
         List<ProjectDocumentListDto> projectDocumentList = new ArrayList<>();
         List<WorkEntity> workEntityList = workRepository.findAllByProjectIdToWork_ProjectId(id);
 

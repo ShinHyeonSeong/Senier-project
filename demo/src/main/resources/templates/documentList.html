@@ -1,77 +1,153 @@
 <!DOCTYPE html>
+<html lang="en">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/documentEntityList.css">
-    <script src="/js/documentEntityList.js"></script>
-    <title>Border Project Manager</title>
+    <link rel="stylesheet" href="/css/document.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css"
+          integrity="sha512-6c4nX2tn5KbzeBJo9Ywpa0Gkt+mzCzJBrE1RB6fmpcsoN+b/w/euwIMuQKNyUoU/nToKN3a8SgNOtPrbW12fug=="
+          crossorigin="anonymous" />
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Your Project Management Tool</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="headerLeft">
-                <a href="/project/main" class="back-button"> < </a>
-                <h1>문서 목록</h1>
+<header>
+    <nav>
+        <div class="nav-left">
+            <a th:href="@{/project/projectManagerList}"><button id="exitButton">나가기</button></a>
+        </div>
+        <div class="nav-center">
+            <h1 id="projectName" th:text="${currentProject.getTitle()}"></h1>
+        </div>
+        <div class="nav-right">
+            <p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
+        </div>
+    </nav>
+</header>
+<aside class="sidebar">
+    <ul>
+        <div class="menu">
+            <ul>
+                <li><a th:href="@{/project/main}">홈</a></li>
+                <li><a th:href="@{/project/goals}">작업</a></li>
+                <li><a href="#">수신함</a></li>
+            </ul>
+        </div>
+    </ul>
+    <ul>
+        <div class="user-list">
+            <h2>프로젝트 멤버</h2>
+            <ul th:each="member : ${joinUsers}">
+                <li th:text="${member.getName()}"></li>
+            </ul>
+        </div>
+        <div>
+            <button id="inviteButton">Invite Members</button>
+        </div>
+    </ul>
+</aside>
+<div class="main-text">작업</div>
+
+<div class="main">
+    <div class="main-nav">
+        <ul>
+            <li><a href="/project/goals">목표</a></li>
+            <li><a href="/project/works">작업</a></li>
+            <li><a href="/project/document">문서</a></li>
+            <li><a href="#">일정</a></li>
+        </ul>
+    </div>
+</div>
+<section class="main-content-section">
+    <main class="main">
+
+        <div class="document-list">
+            <div class="document-list-header">
+                <h1 class="document-list-title">문서</h1>
+
+                <div class="document-list-header-right">
+                    <div id="document-list-select">
+                        <div id="select-box">
+                            <input type="checkbox" id="options-view-button">
+                            <div id="select-button" class="brd">
+                                <div id="selected-value">
+                                    <span>모든 문서</span>
+                                </div>
+                                <div id="chevrons">
+                                    <i class="fas fa-chevron-up"></i>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            <div id="options">
+                                <!-- 옵션 -->
+                                <div class="option">
+                                    <input class="s-c top" type="radio" name="platform" value="users">
+                                    <input class="s-c bottom" type="radio" name="platform" value="users">
+                                    <i class="fa fa-users"></i>
+                                    <span class="label">모든 문서</span>
+                                    <span class="opt-val">모든 문서</span>
+                                </div>
+                                <div class="option">
+                                    <input class="s-c top" type="radio" name="platform" value="user">
+                                    <input class="s-c bottom" type="radio" name="platform" value="user">
+                                    <i class="fa fa-user"></i>
+                                    <span class="label">내 문서</span>
+                                    <span class="opt-val">내 문서</span>
+                                </div>
+                                <div id="option-bg"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="document-create-btn"> 문서 추가 </button>
+                </div>
+            </div>
+
+            <div class="horizon-divider"></div>
+
+            <div class="document-list-content">
+                <ul id="accord1" class="accordian">
+                    <!-- 문서 항목 1 -->
+                    <li  th:each="documentList : ${documentList}">
+                        <header th:text="documentList.documentDto.title">
+                            문서명
+                            <button class="document-view-btn">보기</button>
+                        </header>
+                        <section>
+                            <div class="document-detail">
+                                <div class="document-detail-info">
+                                    <div class="detail-item">
+                                        <h4>상위 목표</h4> <a href="" th:text="documentList.headDto.title">상위목표명</a>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>연결된 작업</h4> <a href="" th:text="documentList.workDto.title">작업명</a>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>작성자</h4> <a href="" th:text="documentList.documentDto.userName">작성자명</a>
+                                    </div>
+                                    <div class="detail-item">
+                                        <h4>작성일자</h4> <a href="" th:text="documentList.documentDto.dateDocument">2023.01.01</a>
+                                    </div>
+                                </div>
+                                <div class="document-detail-btn">
+                                    <button class="document-edit-btn">편집</button>
+                                    <button class="document-delete-btn">삭제</button>
+                                </div>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+
             </div>
         </div>
-        <div class="documentEntity-list">
-            <section class="my-documentEntity-section">
-                <div class="documentEntity">
-                    <div class="documentEntity-classification">
-                        내 문서
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="job-name">문서</th>
-                                <th>작성자</th>
-                                <th>작성일자</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="documentEntity : ${UserDocumentList}" >
-                            <td ><a th:href="@{/documentEntity/write(id=${documentEntity.documentId})}" th:text="${documentEntity.title}">문서명</a></td>
-                            <td th:text="${documentEntity.userName}">작성자명</td>
-                            <td th:text="${documentEntity.dateDocument}">일자</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+    </main>
 
-            <section class="all-documentEntity-section">
-                <div class="documentEntity">
-                    <div class="documentEntity-classification">
-                        현재 프로젝트 전체 문서
-                    </div>
-                    <div class="object-linked-documentEntity" th:each="documentEntityList : ${projectDocumentList}">
-                        <div class="linked-object" th:text="${documentEntityList.workName}">연결된 목표명</div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th class="job-name">문서</th>
-                                    <th>작성자</th>
-                                    <th>작성일자</th>
-                                </tr>
-                            </thead>
-                            <tbody th:each="documentEntity : ${documentEntityList.documentDtoList}">
-                                <tr>
-                                    <td><a th:href="@{/documentEntity/write(id=${documentEntity.documentId})}" th:text="${documentEntity.title}">문서명</a></td>
-                                    <td th:text="${documentEntity.userName}">작성자명</td>
-                                    <td th:text="${documentEntity.dateDocument}">일자</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-
+</section>
+<script src="/js/document.js"></script>
 </body>
 
 </html>

@@ -1,9 +1,9 @@
 package com.example.bpm.controller;
 
-import com.example.bpm.dto.document.BlockDto;
-import com.example.bpm.dto.document.DocumentDto;
-import com.example.bpm.dto.document.LogDto;
+import com.example.bpm.dto.document.*;
+import com.example.bpm.dto.project.HeadDto;
 import com.example.bpm.dto.project.ProjectDto;
+import com.example.bpm.dto.project.WorkDto;
 import com.example.bpm.dto.project.relation.ProjectDocumentListDto;
 import com.example.bpm.dto.user.UserDto;
 import com.example.bpm.service.DocumentService;
@@ -11,19 +11,28 @@ import com.example.bpm.service.DocumentService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.example.bpm.service.ProjectDetailSerivce;
+import com.example.bpm.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Controller
 public class DocumentController {
 
     // 서비스 AutoWired
     @Autowired
     private DocumentService documentService;
+    @Autowired
+    private ProjectDetailSerivce projectDetailSerivce;
+    @Autowired
+    private UserService userService;
     @Autowired
     private HttpSession session;
 
@@ -32,6 +41,11 @@ public class DocumentController {
     public UserDto getSessionUser() {
         UserDto currentUser = (UserDto) session.getAttribute("userInfo");
         return currentUser;
+    }
+
+    public ProjectDto getSessionProject() {
+        ProjectDto currentProject = (ProjectDto) session.getAttribute("currentProject");
+        return currentProject;
     }
 
     public Long getSessionAuth() {
@@ -55,25 +69,40 @@ public class DocumentController {
         String userUuid = sessionUser.getUuid();
         Long projectId = projectDto.getProjectId();
 
-        List<DocumentDto> documentDtoList = documentService.findDocumentListByUserAndProject(userUuid, projectId);
+        List<DocumentInfoDto> documentInfoDtoList = new ArrayList<>();
+        List<DocumentDto> documentDtoList = documentService.findDocumentListByProjectId(projectId);
 
-        List<ProjectDocumentListDto> projectDocumentList = documentService.findDocumentListByProjectId(projectId);
+        for (DocumentDto documentDto: documentDtoList) {
+            DocumentInfoDto documentInfoDto = new DocumentInfoDto();
+            documentInfoDto.setDocumentDto(documentDto);
 
-        // 유저가 권한을 가지는 문서들
-        model.addAttribute("UserDocumentList", documentDtoList);
+            WorkDto workDto = projectDetailSerivce.findWorkByDocument(documentDto);
 
-        // 현재 프로젝트 문서들
-        model.addAttribute("projectDocumentList", projectDocumentList);
+            documentInfoDto.setWorkDto(workDto);
+
+            HeadDto headDto = new HeadDto();
+            headDto.insertEntity(workDto.getHeadIdToWork());
+
+            documentInfoDto.setHeadDto(headDto);
+
+            documentInfoDtoList.add(documentInfoDto);
+        }
+        List<UserDto> userDtoList = userService.findUserListByProjectId(getSessionProject().getProjectId());
+        model.addAttribute("joinUsers", userDtoList);
+        model.addAttribute("sessionUser", sessionUser);
+        model.addAttribute("currentProject", getSessionProject());
+        model.addAttribute("auth", getSessionAuth());
+        model.addAttribute("documentList", documentInfoDtoList);
 
 
         return "documentList";
     }
 
     // 문서 새로 만들기 Document Add [Post]
-    /// 새로운 문서를 만드는 작업
-    @PostMapping("document/addDocument")
-    public String postAddingDocument(long workId , HttpSession session){
-
+    /// 새로운 문서를 만드는 작업<input th:hidden="true" th:name="workId" th:value="${workDto.getWorkId()}"/>
+    @RequestMapping("document/addDocument")
+    public String postAddingDocument(@RequestParam("workId")Long workId , HttpSession session){
+        log.info("문서 추가" + workId);
         UserDto sessionUser = (UserDto) session.getAttribute("userInfo");
 
         String userUuid = sessionUser.getUuid();
@@ -137,6 +166,29 @@ public class DocumentController {
         model.addAttribute("blockList", blockDtoList);
 
         return "documentDetail";
+    }
+
+    @GetMapping("document/work/view")
+    public String getWorkDocumentView(long id, Model model, HttpSession session) {
+
+        UserDto sessionUser = (UserDto) session.getAttribute("userInfo");
+        String userUuid = sessionUser.getUuid();
+
+        List<DocumentDto>  documentDtoList = documentService.findDocumentByWorkId(id);
+
+        List<DocumentListDto> documentListDtoList = new ArrayList<>();
+
+        for (DocumentDto documentDto : documentDtoList) {
+            DocumentListDto documentListDto = new DocumentListDto();
+            documentListDto.setDocumentDto(documentDto);
+            documentListDto.setBlockDtoList(documentService.findBlockListByDocumentId(documentDto.getDocumentId()));
+
+            documentListDtoList.add(documentListDto);
+        }
+
+        model.addAttribute("document", documentListDtoList);
+
+        return "documentView";
     }
 
 

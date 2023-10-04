@@ -6,6 +6,7 @@ import com.example.bpm.dto.project.HeadDto;
 import com.example.bpm.dto.project.ProjectDto;
 import com.example.bpm.dto.project.WorkDto;
 import com.example.bpm.dto.project.relation.WorkCommentDto;
+import com.example.bpm.dto.project.relation.WorkDocumentDto;
 import com.example.bpm.dto.user.UserDto;
 import com.example.bpm.dto.user.relation.UserWorkDto;
 import com.example.bpm.service.*;
@@ -382,6 +383,7 @@ public class ProjectDetailController {
         List<UserWorkDto> userWorkDtoList = projectDetailSerivce.findUserWorkListByWorkId(id);
         List<DocumentDto> documentDtoList = documentService.findDocumentByWorkId(id);
         List<WorkCommentDto> commentDtoList = projectDetailSerivce.findWorkCommentListByWork(workDto);
+        List<WorkDocumentDto> workDocumentDtoList = projectDetailSerivce.findWorkDocumentListByWork(workDto);
         if (commentDtoList.isEmpty()) {
             int i = 0;
             model.addAttribute("listNum", i);
@@ -392,9 +394,15 @@ public class ProjectDetailController {
             model.addAttribute("CommentList", commentDtoList);
         }
         Long auth = getSessionAuth();
+
+        List<UserDto> userDtoList = userService.findUserListByProjectId(getSessionProject().getProjectId());
+        model.addAttribute("joinUsers", userDtoList);
+        model.addAttribute("sessionUser", getSessionUser());
+        model.addAttribute("currentProject", getSessionProject());
         model.addAttribute("auth", auth);
         model.addAttribute("workDto", workDto);
         model.addAttribute("userWorkDtoList", userWorkDtoList);
+        model.addAttribute("workDocumentDtoList", workDocumentDtoList);
         model.addAttribute("DocumentList", documentDtoList);
         return "workDetail";
     }
