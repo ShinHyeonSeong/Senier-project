@@ -1,12 +1,17 @@
 body {
-    background-color: #222;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     font-size: 18px;
     font-family: "Noto Sans KR", sans-serif;
 }
 
 a {
     text-decoration: none !important;
+}
+
+h1 {
+    color: #5161CE;
+    font-size: 48px;
 }
 
 .container {
@@ -20,10 +25,11 @@ a {
     margin: 1rem 0;
 }
 
+
 .back-button {
-    background-color: #333;
-    color: #fff;
-    border: none;
+    background-color: #fff;
+    color: #5161CE;
+    border: 1px solid #5161CE;
     cursor: pointer;
     display: inline-block;
     padding: 10px 15px;
@@ -35,7 +41,8 @@ a {
 }
 
 .back-button:hover {
-    background-color: #444;
+    background-color: #5161CE;
+    color: #fff;
 }
 
 .create-goal {
@@ -80,17 +87,17 @@ a {
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
-    background-color: #222;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #444;
-    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border: 2px solid #5161CE;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
     padding: 0 12px;
-    color: #fff;
 }
 
 .input-box:focus {
-    border: 0.5px solid #fff;
+    border: 2px solid #5161CE;
     outline: none;
 }
 
@@ -102,18 +109,18 @@ a {
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
-    background-color: #222;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #444;
-    border-radius: 5px;
+    background-color: #fff;
+    border: 2px solid #5161CE;
+    border-radius: 4px;
     padding: 12px 12px;
-    color: #fff;
+    color: #000;
     resize: none;
 }
 
 .detail-input-box:focus {
-    border: 0.5px solid #fff;
+    border: 2px solid #5161CE;
+    border-radius: 4px;
+    background-color: #fff;
     outline: none;
 }
 
@@ -132,17 +139,17 @@ a {
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
-    background-color: #222;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #444;
-    border-radius: 5px;
-    padding: 0 12px;
-    color: #fff;
+    background-color: #fff;
+    border: 2px solid #5161CE;
+    border-radius: 4px;
+    padding: 12px 12px;
+    color: #000;
 }
 
 .search-input-box:focus {
-    border: 0.5px solid #fff;
+    background-color: #fff;
+    border: 2px solid #5161CE;
+    border-radius: 4px;
     outline: none;
 }
 
@@ -150,9 +157,9 @@ a {
     width: 15%;
     border: none;
     border-radius: 5px;
-    background-color: #444;
+    background-color: rgb(233, 233, 233);
     margin-left: auto;
-    color: #fff;
+    color: #000;
 }
 
 .button-form:hover {
@@ -175,49 +182,44 @@ a {
     height: 38px;
     border: none;
     border-radius: 5px;
-    background-color: #444;
+    background-color: #949DD7;
     margin-left: 15px;
     color: #fff;
 }
 
 .footer-btn:hover {
-    background-color: #555;
+    background-color: #5161CE;
 }
 
-/* codepen */
-:root {
-    --background-gradient: linear-gradient(30deg, #f39c12 30%, #f1c40f);
-    --gray: #222;
-    --darkgray: #222;
-}
 
 select {
-    /* Reset Select */
-    appearance: none;
-    outline: 0;
-    border: 1px solid #444;
+    outline: none;
     box-shadow: none;
-    border-radius: 5px;
-    /* Personalize */
     flex: 1;
     padding: 0 1em;
-    color: #fff;
-    background-color: var(--darkgray);
-    background-image: none;
+    background-color: #fff;
+    border: 2px solid #5161CE;
+    border-radius: 4px;
     cursor: pointer;
 }
+
 /* Remove IE arrow */
 select::-ms-expand {
     display: none;
 }
-/* Custom Select wrapper */
+
 .select {
     position: relative;
     display: flex;
     height: 3em;
-    border-radius: .25em;
+    background-color: #fff;
+    border: 2px solid #5161CE;
+    border-radius: 4px;
     overflow: hidden;
+    cursor: pointer;
+
 }
+
 /* Arrow */
 .select::after {
     content: '\25BC';
@@ -225,7 +227,19 @@ select::-ms-expand {
     top: 0;
     right: 0;
     padding: 1em;
-    background-color: #444;
+    background-color: rgb(233, 233, 233);
     transition: .25s all ease;
     pointer-events: none;
+}
+
+.horizon-divider {
+    background-color: #5161CE;
+    height: 0.2px;
+    margin: 10px 0 30px 0;
+}
+
+.search-input-detail >ul,li {
+    list-style: none;
+    font-size: 15px;
+    font-weight: 500;
 }

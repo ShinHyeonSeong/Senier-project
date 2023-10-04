@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static java.rmi.server.LogStream.log;
+
 @Controller
 @Slf4j
 @ToString
@@ -128,11 +130,11 @@ public class ProjectDetailController {
                              @RequestParam(value = "discription") String discription,
                              Model model) {
         ProjectDto currentProject = getSessionProject();
-        log.info("목표 생성 컨트롤러 작동, ");
+        ProjectDetailController.log.info("목표 생성 컨트롤러 작동, ");
         String message = exceptionService.headErrorCheck(currentProject, title, startDay, deadline);
-        log.info("head 생성 예외 처리 검사");
+        ProjectDetailController.log.info("head 생성 예외 처리 검사");
         if (message != null) {
-            log.info("예외 처리 결과 : " + message);
+            ProjectDetailController.log.info("예외 처리 결과 : " + message);
             model.addAttribute("message", message);
             return "head-create";
         }
@@ -317,94 +319,85 @@ public class ProjectDetailController {
 //
 //
 //    *//* - - - - 작업 관련 메서드- - - -*//*
-//    // work 목록 진입 매핑
-//    @GetMapping("/project/works")
-//    public String works(Model model) {
-//        UserDto currentUser = getSessionUser();
-//        ProjectDto currentProject = getSessionProject();
-//        List<WorkDto> sessionUserWorkDtoList = projectDetailSerivce.findWorkListByUser(currentUser);
-//        List<WorkDto> userWorkDtoList = new ArrayList<>();
-//        log.info("현재 진입 프로젝트 : " + currentProject.getProjectId());
-//
-//        for (WorkDto workDto : sessionUserWorkDtoList) {
-//            log.info("session user workDto list에서 현재 프로젝트 id와 같은 dto 리스트에 삽입 " + currentProject.getProjectId());
-//            if (workDto.getProjectIdToWork().getProjectId() == currentProject.getProjectId()) {
-//                log.info("리스트 삽입 : " + workDto.getWorkId() + ".");
-//                log.info("해당 dto의 projectId : " + workDto.getProjectIdToWork().getProjectId() + ".");
-//                userWorkDtoList.add(workDto);
-//            }
-//        }
-//        List<WorkDto> projectWorkDtoList = projectDetailSerivce.findWorkListByProject(currentProject);
-//        Long auth = getSessionAuth();
-//        if (projectWorkDtoList != null) {
-//            model.addAttribute("projectWorkDtoList", projectWorkDtoList);
-//        }
-//        model.addAttribute("userWorkDtoList", userWorkDtoList);
-//        model.addAttribute("auth", auth);
-//        return "work";
-//    }
-//
-//    // work 생성창 진입 메서드
-//    @GetMapping("/project/work/create")
-//    public String goCreateWork(Model model, @RequestParam(value = "message", required = false) String message) {
-//        ProjectDto currentProject = getSessionProject();
-//        List<UserDto> userDtoList = userService.findUserListByProjectId(currentProject.getProjectId());
-//        List<DetailDto> detailDtoList = projectDetailSerivce.findDetailListByProject(currentProject);
-//        if (message != null) {
-//            model.addAttribute("message", message);
-//        }
-//        model.addAttribute("userDtoList", userDtoList);
-//        model.addAttribute("detailDtoList", detailDtoList);
-//        return "workCreate";
-//    }
-//
-//    // work 생성 메서드
-//    @PostMapping("/project/work/createWork")
-//    public String createWork(@RequestParam("title") String title,
-//                             @RequestParam("discription") String discription,
-//                             @RequestParam("startDay") String startDay,
-//                             @RequestParam("deadline") String deadline,
-//                             @RequestParam("connectDetail") Long detailId,
-//                             @RequestParam("chargeUsers") List<String> chargeUsers,
-//                             RedirectAttributes rttr) {
-//        ProjectDto currentProject = getSessionProject();
-//        String message = exceptionService.workEditErrorCheck(startDay, deadline, detailId);
-//        if (message != null) {
-//            log.info("예외 처리 결과 : " + message);
-//            rttr.addFlashAttribute("message", message);
-//            return "redirect:/project/work/create";
-//        }
-//        DetailDto connectDetail = projectDetailSerivce.findDetailById(detailId);
-//        WorkDto createWorkDto = projectDetailSerivce.createWork(title, discription, startDay, deadline,
-//                connectDetail, currentProject);
-//        log.info("작업 생성 메서드 완료, id = " + createWorkDto.getWorkId());
-//        projectDetailSerivce.addUserWork(createWorkDto, chargeUsers);
-//        return "redirect:/project/works";
-//    }
-//
-//    // work 상세창 진입 메서드
-//    @RequestMapping("/project/work/detail/{id}")
-//    public String goWorkDetail(@PathVariable("id") Long id, Model model) {
-//        WorkDto workDto = projectDetailSerivce.findWork(id);
-//        List<UserWorkDto> userWorkDtoList = projectDetailSerivce.findUserWorkListByWorkId(id);
-//        List<DocumentDto> documentDtoList = documentService.findDocumentByWorkId(id);
-//        List<WorkCommentDto> commentDtoList = projectDetailSerivce.findByComment(id);
-//        if (commentDtoList.isEmpty()) {
-//            int i = 0;
-//            model.addAttribute("listNum", i);
-//            model.addAttribute("CommentList", commentDtoList);
-//        } else {
-//            int i = commentDtoList.size();
-//            model.addAttribute("listNum", i);
-//            model.addAttribute("CommentList", commentDtoList);
-//        }
-//        Long auth = getSessionAuth();
-//        model.addAttribute("auth", auth);
-//        model.addAttribute("workDto", workDto);
-//        model.addAttribute("userWorkDtoList", userWorkDtoList);
-//        model.addAttribute("DocumentList", documentDtoList);
-//        return "workDetail";
-//    }
+    // work 목록 진입 매핑
+    @GetMapping("/project/works")
+    public String works(Model model) {
+        UserDto sessionUser = getSessionUser();
+        ProjectDto currentProject = getSessionProject();
+        Long auth = getSessionAuth();
+        List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByProject(currentProject);
+        List<UserDto> userDtoList = userService.findUserListByProjectId(currentProject.getProjectId());
+        model.addAttribute("sessionUser", sessionUser);
+        model.addAttribute("currentProject", currentProject);
+        model.addAttribute("auth", auth);
+        model.addAttribute("workDtoList", workDtoList);
+        model.addAttribute("joinUsers", userDtoList);
+        return "work";
+    }
+
+    // work 생성창 진입 메서드
+    @GetMapping("/project/work/create")
+    public String goCreateWork(Model model, @RequestParam(value = "message", required = false) String message) {
+        ProjectDto currentProject = getSessionProject();
+        List<UserDto> userDtoList = userService.findUserListByProjectId(currentProject.getProjectId());
+        List<HeadDto> headDtoList = projectDetailSerivce.findHeadListByProject(currentProject);
+        if (message != null) {
+            model.addAttribute("message", message);
+        }
+        model.addAttribute("userDtoList", userDtoList);
+        model.addAttribute("headDtoList", headDtoList);
+        return "workCreate";
+    }
+
+    // work 생성 메서드
+    @PostMapping("/project/work/createWork")
+    public String createWork(@RequestParam("title") String title,
+                             @RequestParam("discription") String discription,
+                             @RequestParam("startDay") String startDay,
+                             @RequestParam("deadline") String deadline,
+                             @RequestParam("headId") Long detailId,
+                             @RequestParam("chargeUsers") List<String> chargeUsers,
+                             RedirectAttributes rttr) {
+        ProjectDto currentProject = getSessionProject();
+        String message = exceptionService.workEditErrorCheck(startDay, deadline, detailId);
+        log("메서드 진입성공");
+        if (message != null) {
+            log("생성 실패 if문 걸림");
+            rttr.addFlashAttribute("message", message);
+            return "redirect:/project/work/create";
+
+        }
+        HeadDto connnectHead = projectDetailSerivce.findHeadById(detailId);
+        WorkDto createWorkDto = projectDetailSerivce.createWork(title, discription, startDay, deadline,
+                connnectHead, currentProject);
+        ProjectDetailController.log.info("작업 생성 메서드 완료, id = " + createWorkDto.getWorkId());
+        projectDetailSerivce.addUserWork(createWorkDto, chargeUsers);
+        return "redirect:/project/works";
+    }
+
+    // work 상세창 진입 메서드
+    @RequestMapping("/project/work/detail/{id}")
+    public String goWorkDetail(@PathVariable("id") Long id, Model model) {
+        WorkDto workDto = projectDetailSerivce.findWork(id);
+        List<UserWorkDto> userWorkDtoList = projectDetailSerivce.findUserWorkListByWorkId(id);
+        List<DocumentDto> documentDtoList = documentService.findDocumentByWorkId(id);
+        List<WorkCommentDto> commentDtoList = projectDetailSerivce.findWorkCommentListByWork(workDto);
+        if (commentDtoList.isEmpty()) {
+            int i = 0;
+            model.addAttribute("listNum", i);
+            model.addAttribute("CommentList", commentDtoList);
+        } else {
+            int i = commentDtoList.size();
+            model.addAttribute("listNum", i);
+            model.addAttribute("CommentList", commentDtoList);
+        }
+        Long auth = getSessionAuth();
+        model.addAttribute("auth", auth);
+        model.addAttribute("workDto", workDto);
+        model.addAttribute("userWorkDtoList", userWorkDtoList);
+        model.addAttribute("DocumentList", documentDtoList);
+        return "workDetail";
+    }
 //    *//* - - - - 작업 관련 메서드 끝 - - - -*//*
 //
 //    *//* - - - - 삭제 메서드 - - - - *//*

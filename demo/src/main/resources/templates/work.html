@@ -1,85 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
-	<title>Border Project Manager</title>
-	<link rel="stylesheet" href="/css/work.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/goal.css">
 	<link rel="stylesheet" href="/css/sidebar.css">
-	<script src="/js/work.js"></script>
+	<link rel="stylesheet" href="/css/sideNavbar.css">
+	<title>BPM</title>
 </head>
 
 <body>
-<div class="sidebar">
+<header>
+	<nav>
+		<div class="nav-left">
+			<a th:href="@{/project/projectManagerList}">
+				<button id="exitButton">나가기</button>
+			</a>
+		</div>
+		<div class="nav-center">
+			<h1 id="projectName" th:text="${currentProject.getTitle()}"></h1>
+		</div>
+		<div class="nav-right">
+			<p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
+		</div>
+	</nav>
+</header>
+<aside class="sidebar">
 	<ul>
-		<li><a href="/project/projectAllList">나가기</a></li>
-		<li><a href="/project/main">홈</a></li>
-		<li><a href="/project/goals">목표</a></li>
-		<li class="active"><a href="/project/works">작업</a></li>
-		<li><a href="/project/documentEntity">문서</a></li>
-		<li><a href="/project/calender">달력</a></li>
-		<li><a href="/recvMessageList">메세지</a></li>
-		<li><a href="/user/search">멤버 초대</a></li>
+		<div class="menu">
+			<ul>
+				<li><a th:href="@{/project/main}">홈</a></li>
+				<li><a th:href="@{/project/goals}">작업</a></li>
+				<li><a href="#">수신함</a></li>
+			</ul>
+		</div>
 	</ul>
+	<ul>
+		<div class="user-list">
+			<h2>프로젝트 멤버</h2>
+			<ul th:each="member : ${joinUsers}">
+				<li th:text="${member.getName()}"></li>
+			</ul>
+		</div>
+		<div>
+			<button id="inviteButton">Invite Members</button>
+		</div>
+	</ul>
+</aside>
+<div class="main-text">작업</div>
+
+<div class="main">
+	<div class="main-nav">
+		<ul>
+			<li><a href="/project/goals">목표</a></li>
+			<li><a href="/project/works">작업</a></li>
+			<li><a href="/project/document">문서</a></li>
+			<li><a href="#">일정</a></li>
+		</ul>
+	</div>
 </div>
 
-<div class="top-bar">
-	<h1>작업</h1>
-	<a href="/project/work/create">
-		<button class="add-work-btn" th:if="${auth == 1}">작업 추가</button>
-	</a>
-</div>
-
-<div class="content-container">
-	<div class="content">
-		<div class="work">
-			<h4 class="work-classification">내 작업</h4>
-			<table>
-				<thead>
-				<tr>
-					<th class="job-name">작업명</th>
-					<!--          <th class="job-pic">담당자</th>-->
-					<th class="job-deadline">마감기한</th>
-					<th>상태</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr th:each="userWork : ${userWorkDtoList}">
-					<td><a th:href="@{/project/work/detail/{id}(id=${userWork.getWorkId()})}"
-						   th:text="${userWork.title}"></a></td>
-					<!--          <td th:text="">담당자명</td>-->
-					<td th:text="${#dates.format(userWork.endDay, 'yyyy-MM-dd')}"></td>
-					<td style="color: rgb(80, 150, 220);" th:if="${userWork.completion == 1}">완료</td>
-					<td style="color: rgb(220, 80, 80);" th:if="${userWork.completion == 0}">진행중</td>
-				</tr>
-				</tbody>
-			</table>
-		</div>
-		
-		<div class="work">
-			<h4 class="work-classification">전체 작업</h4>
-			<table>
-				<thead>
-				<tr>
-					<th class="job-name">작업명</th>
-					<th class="job-deadline">마감기한</th>
-					<th>상태</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr th:each="projectWork : ${projectWorkDtoList}">
-					<td><a th:href="@{/project/work/detail/{id}(id=${projectWork.workId})}"
-						   th:text="${projectWork.title}"></a></td>
-					<td th:text="${#dates.format(projectWork.endDay, 'yyyy-MM-dd')}"></td>
-					<td style="color: rgb(80, 150, 220);" th:if="${projectWork.completion == 1}">완료</td>
-					<td style="color: rgb(220, 80, 80);"
-						th:if="${projectWork.completion == 0}">진행중
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</div>
+<div class="content">
+	<div class="work">
+		<table>
+			<div class="table-head-list">
+				<h2 class="table-h2">작업 리스트</h2>
+				<div class="button-section">
+					<a th:href="@{/project/work/create}">
+						<button th:if="${auth == 1}" class="createbutton">새로 만들기</button>
+					</a>
+				</div>
+			</div>
+			<tbody>
+			<tr th:each="work : ${workDtoList}">
+				<td class="table-name"><a th:href="@{/project/work/detail/{id}(id=${work.getWorkId()})}"
+										  th:text="${work.getTitle()}"></a></td>
+				<td th:text="${#dates.format(work.getEndDay(), 'yyyy-MM-dd')}"></td>
+				<td th:if="${work.getCompletion() == 1}">완료</td>
+				<td th:if="${work.getCompletion() == 0}">진행중</td>
+			</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 </body>

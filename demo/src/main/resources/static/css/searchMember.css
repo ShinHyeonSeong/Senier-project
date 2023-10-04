@@ -1,12 +1,17 @@
-body {
+inviteMemberbody {
     font-family: Arial, sans-serif;
     background-color: #fff;
     color: white;
 }
 
 h1 {
-    color: #007BFF;
+    color: #5161CE;
     font-size: 48px;
+}
+
+h2 {
+    color: #5161CE;
+    font-size: 25px;
 }
 
 .head-container {
@@ -19,8 +24,8 @@ h1 {
 
 .back-button {
     background-color: #fff;
-    color: #007BFF;
-    border: 1px solid #007BFF;
+    color: #5161CE;
+    border: 1px solid #5161CE;
     cursor: pointer;
     display: inline-block;
     padding: 10px 15px;
@@ -32,7 +37,7 @@ h1 {
 }
 
 .back-button:hover {
-    background-color: #007BFF;
+    background-color: #5161CE;
     color: #fff;
 }
 
@@ -42,7 +47,7 @@ select {
     width: 100%;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 2px solid #007BFF;
+    border: 2px solid #5161CE;
     border-radius: 4px;
     background-color: #fff;
     color: #000;
@@ -50,7 +55,7 @@ select {
 
 input[type="submit"],
 button {
-    background-color: #007BFF;
+    background-color: #5161CE;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -116,7 +121,7 @@ input:focus {
 }
 
 .horizon-divider {
-    background-color: #007BFF;
+    background-color: #5161CE;
     height: 0.2px;
     margin: 10px 0 30px 0;
 }

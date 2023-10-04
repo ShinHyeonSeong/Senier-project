@@ -29,7 +29,7 @@
 	<ul>
 		<div class="menu">
 			<ul>
-				<li><a href="#">홈</a></li>
+				<li><a th:href="@{/project/main}">홈</a></li>
 				<li><a th:href="@{/project/goals}">작업</a></li>
 				<li><a href="#">수신함</a></li>
 			</ul>
@@ -52,9 +52,9 @@
 <div class="main">
 	<div class="main-nav">
 		<ul>
-			<li><a href="#">목표</a></li>
-			<li><a href="#">할 일</a></li>
-			<li><a href="#">문서</a></li>
+			<li><a href="/project/goals">목표</a></li>
+			<li><a href="/project/works">작업</a></li>
+			<li><a href="/project/document">문서</a></li>
 			<li><a href="#">일정</a></li>
 		</ul>
 	</div>
@@ -69,16 +69,9 @@
 					<a th:href="@{/project/head/create}"><button th:if="${auth == 1}" class="createbutton">새로 만들기</button></a>
 				</div>
 			</div>
-			<thead>
-			<tr>
-				<th class="table-name">목표 이름</th>
-				<th>마감 기한</th>
-				<th>상태</th>
-			</tr>
-			</thead>
 			<tbody>
 			<tr th:each="head : ${headDtoList}">
-				<td><a th:href="@{/project/goal/headView/{id}(id=${head.getHeadId()})}" th:text="${head.getTitle()}"></a></td>
+				<td class="table-name"><a th:href="@{/project/goal/headView/{id}(id=${head.getHeadId()})}" th:text="${head.getTitle()}"></a></td>
 				<td th:text="${#dates.format(head.getEndDay(), 'yyyy-MM-dd')}"></td>
 				<td th:if="${head.getCompletion() == 1}">완료</td>
 				<td th:if="${head.getCompletion() == 0}">진행중</td>

@@ -83,13 +83,20 @@ td {
     vertical-align: middle;
     border-top: 1px #d4d4d4 solid;
     border-bottom: 1px #d4d4d4 solid;
-    font-size: 12px;
+    font-size: 15px;
+    font-weight: bold;
     transition: 0.5s;
+    color: #5161CE;
     text-align: center;
 }
 
+td > a {
+    text-decoration: none;
+    color: #5161CE;
+}
+
 td:hover {
-    background-color: #a2cfff;
+    background-color: #c9c9c9;
 }
 
 td a {

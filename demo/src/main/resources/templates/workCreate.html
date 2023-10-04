@@ -3,138 +3,137 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/workCreate.css">
-  <script src="/js/documentEntityList.js"></script>
-  <title>Border Project Manager</title>
-
-  <script th:inline="javascript">
-    const message = /*[[${message}]]*/ '';
-    if (message !== null) {
-      alert(message);
-    }
-    function createWork_check() {
-      var title = documentEntity.getElementById("create-goal-input1");
-      var discription = documentEntity.getElementById("create-goal-input2");
-      var startDay = documentEntity.getElementById("create-goal-input3");
-      var endDay = documentEntity.getElementById("create-goal-input4");
-      /*yyyy--mm-dd 정규식*/
-      var regDate = new RegExp("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$");
-
-      if (title.value == "") {
-        alert("목표 제목을 입력해주십시오.");
-        title.focus();
-        return false;
-      }
-
-      if (startDay.value == "") {
-        alert("시작기한을 입력해주십시오.");
-        startDay.focus();
-        return false;
-      } else if (!regDate.test(startDay.value)) {
-        alert("연-월-일 형식으로 입력해주십시오.")
-        startDay.focus();
-        return false;
-      }
-
-      if (endDay.value == "") {
-        alert("마감기한을 입력해주십시오.");
-        endDay.focus();
-        return false;
-      } else if (!regDate.test(endDay.value)) {
-        alert("연-월-일 형식으로 입력해주십시오.")
-        endDay.focus();
-        return false;
-      }
-
-
-      documentEntity.createWork_form.submit();
-    }
-  </script>
+	<title>Border Project Manager</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/goal-create.css">
+	<script src="../js/documentEntityList.js"></script>
+	
+	<script th:inline="javascript">
+		const message = /*[[${message}]]*/ '';
+		if (message !== null) {
+			alert(message);
+		}
+		
+		function createDetail_check() {
+			var title = document.getElementById("title");
+			var discription = document.getElementById("discription");
+			var startDay = document.getElementById("startDay");
+			var endDay = document.getElementById("endDay");
+			/*yyyy--mm-dd 정규식*/
+			var regDate = new RegExp("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$");
+			
+			if (title.value == "") {
+				alert("목표 제목을 입력해주십시오.");
+				title.focus();
+				return false;
+			}
+			;
+			
+			if (startDay.value == "") {
+				alert("시작기한을 입력해주십시오.");
+				startDay.focus();
+				return false;
+			} else if (!regDate.test(startDay.value)) {
+				alert("연-월-일 형식으로 입력해주십시오.")
+				startDay.focus();
+				return false;
+			}
+			
+			if (deadline.value == "") {
+				alert("마감기한을 입력해주십시오.");
+				deadline.focus();
+				return false;
+			} else if (!regDate.test(deadline.value)) {
+				alert("연-월-일 형식으로 입력해주십시오.")
+				deadline.focus();
+				return false;
+			}
+			
+			
+			document.createDetail_form.submit();
+		}
+	</script>
 </head>
 
 <body>
 <div class="container">
-  <div class="header">
-    <a href="javascript:history.back(-1)" class="back-button"> < </a>
-    <h1>작업 생성</h1>
-  </div>
-  <form action="/project/work/createWork" method="post" name="createWork_form">
-    <div class="create-goal">
-      <div class="label-detail">
-        <label class="label" for="create-goal-input1">작업 이름</label>
-      </div>
-      <div class="input-detail">
-        <input name="title" class="input-box" id="create-goal-input1" type="text" placeholder="작업 이름 입력">
-      </div>
-    </div>
-
-    <div class="create-goal">
-      <div class="label-detail">
-        <label class="label" for="create-goal-input2">작업 설명</label>
-      </div>
-      <div class="input-detail">
-                    <textarea name="discription" class="detail-input-box"
-                              id="create-goal-input2" cols="20" rows="10" placeholder="설명"></textarea>
-      </div>
-    </div>
-
-    <div class="create-goal">
-      <div class="label-detail">
-        <label class="label" for="create-goal-input3">작업 시작일</label>
-      </div>
-      <div class="input-detail">
-        <input name="startDay" class="input-box" id="create-goal-input3" type="text" placeholder="마감일 입력 (0000-00-00)">
-      </div>
-    </div>
-
-    <div class="create-goal">
-      <div class="label-detail">
-        <label class="label" for="create-goal-input4">작업 마감일</label>
-      </div>
-      <div class="input-detail">
-        <input name="deadline" class="input-box" id="create-goal-input4" type="text" placeholder="마감일 입력 (0000-00-00)">
-      </div>
-    </div>
-
-    <div class="create-goal">
-      <div class="label-detail">
-        <label class="label" for="create-goal-input5">작업 담당자</label>
-      </div>
-      <div class="search-input-detail">
-        <ul id="create-goal-input5">
-          <li th:each="userDto : ${userDtoList}" th:object="${userDtoList}">
-            <input type="checkbox" th:id="${userDto.name}" th:name="chargeUsers" th:value="${userDto.uuid}">
-            <label th:for="${userDto.name}" th:text="${userDto.name}" class="user-label"></label>
-            <div class="check"></div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="create-goal">
-      <div class="label-detail">
-        <label class="label" for="create-goal-input6">연결 목표</label>
-      </div>
-      <div class="input-detail">
-        <div class="select">
-          <select class="select-connection-goal" id="create-goal-input6" name="connectDetail" th:if="${detailDtoList != null}">
-            <option th:each="detail : ${detailDtoList}"
-                    th:text="${detail.title}"
-                    th:value="${detail.detailId}"></option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="horizon-divider"></div>
-    <div class="footer">
-      <button class="footer-btn" type="button" onclick="createWork_check()">생성</button>
-      <button class="footer-btn" type="reset">초기화</button>
-    </div>
-  </form>
+	<div class="header">
+		<a href="javascript:history.back(-1)" class="back-button"> < </a>
+		<h1>작업 생성</h1>
+	</div>
+	<form name="createDetail_form" action="/project/work/createWork" method="post">
+		<div class="create-goal">
+			<div class="label-detail">
+				<label class="label" for="title">작업 이름</label>
+				<div class="essential">*</div>
+			</div>
+			<div class="input-detail">
+				<input name="title" class="input-box" id="title" type="text" placeholder="작업 이름 입력">
+			</div>
+		</div>
+		
+		<div class="create-goal">
+			<div class="label-detail">
+				<label class="label" for="discription">작업 설명</label>
+			</div>
+			<div class="input-detail">
+                <textarea name="discription" class="detail-input-box"
+						  id="discription" cols="20" rows="10" placeholder="설명"></textarea>
+			</div>
+		</div>
+		
+		<div class="create-goal">
+			<div class="label-detail">
+				<label class="label" for="startDay">시작 일자</label>
+			</div>
+			<div class="input-detail">
+				<input name="startDay" class="input-box" id="startDay" type="text" placeholder="0000-00-00 (연 월 일)">
+			</div>
+		</div>
+		
+		<div class="create-goal">
+			<div class="label-detail">
+				<label class="label" for="deadline">마감 일자</label>
+			</div>
+			<div class="input-detail">
+				<input name="deadline" class="input-box" id="deadline" type="text" placeholder="0000-00-00(연 월 일)">
+			</div>
+		</div>
+		<div class="create-goal">
+			<div class="label-detail">
+				<label class="label" for="create-goal-input5">작업 담당자</label>
+			</div>
+			<div class="search-input-detail">
+				<ul id="create-goal-input5">
+					<li th:each="userDto : ${userDtoList}" th:object="${userDtoList}">
+						<input type="checkbox" th:id="${userDto.name}" th:name="chargeUsers" th:value="${userDto.uuid}">
+						<label th:for="${userDto.name}" th:text="${userDto.name}" class="user-label"></label>
+						<div class="check"></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="create-goal">
+			<div class="label-detail">
+				<label class="label" for="headId">연결할 목표</label>
+			</div>
+			<div class="select">
+				<select style="border: none;" id="headId" name="headId" th:if="${headDtoList != null}">
+					<option th:each="headDto : ${headDtoList}"
+							th:text="${headDto.title}"
+							th:value="${headDto.headId}"></option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="horizon-divider"></div>
+		<div class="footer">
+			<button type="button" class="footer-btn" th:onclick="createDetail_check()">생성</button>
+			<button type="reset" class="footer-btn">초기화</button>
+		</div>
+	</form>
 </div>
 
 </body>
