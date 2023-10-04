@@ -20,7 +20,7 @@
 	<script src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js'></script>
 	<script src="../js/login.js"></script>
 	<script>
-		const loremIpsum = documentEntity.getElementById("lorem-ipsum")
+		const loremIpsum = document.getElementById("lorem-ipsum")
 		fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
 				.then(response => response.text())
 				.then(result => loremIpsum.innerHTML = result)

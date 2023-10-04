@@ -1,82 +1,90 @@
 <!DOCTYPE html>
-<html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- 목표 리스트 창 -->
 
 <head>
-	<title>Border Project Manager</title>
-	<link rel="stylesheet" type="text/css" href="/css/goal.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/goal.css">
 	<link rel="stylesheet" href="/css/sidebar.css">
-	<script src="/js/goal.js"></script>
+	<link rel="stylesheet" href="/css/sideNavbar.css">
+	<title>BPM</title>
 </head>
-<!-- 목표창 제목과 하단 세부사항들을 구분짓는 hr 태그들을 통일필요-->
+
 <body>
-<!-- Side menu bar -->
-<div class="sidebar">
+<header>
+	<nav>
+		<div class="nav-left">
+			<a th:href="@{/project/projectManagerList}"><button id="exitButton">나가기</button></a>
+		</div>
+		<div class="nav-center">
+			<h1 id="projectName" th:text="${currentProject.getTitle()}"></h1>
+		</div>
+		<div class="nav-right">
+			<p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
+		</div>
+	</nav>
+</header>
+<aside class="sidebar">
 	<ul>
-		<li><a href="/project/projectAllList">나가기</a></li>
-		<li><a href="/project/main">홈</a></li>
-		<li class="active"><a href="/project/goals">목표</a></li>
-		<li><a href="/project/works">작업</a></li>
-		<li><a href="/project/documentEntity">문서</a></li>
-		<li><a href="/project/calender">달력</a></li>
-		<li><a href="/recvMessageList">메세지</a></li>
-		<li><a href="/user/search">멤버 초대</a></li>
+		<div class="menu">
+			<ul>
+				<li><a href="#">홈</a></li>
+				<li><a th:href="@{/project/goals}">작업</a></li>
+				<li><a href="#">수신함</a></li>
+			</ul>
+		</div>
 	</ul>
-</div>
-<div class="top-bar">
-	<h1>목표</h1>
-	<div>
-		<a href="/project/head/create">
-			<button th:if="${auth == 1}" class="add-high-goal-btn">상위 목표 추가</button>
-		</a>
-		<a href="/project/detail/create">
-			<button th:if="${auth == 1}" class="add-goal-btn">하위 목표 추가</button>
-		</a>
+	<ul>
+		<div class="user-list">
+			<h2>프로젝트 멤버</h2>
+			<ul th:each="member : ${joinUsers}">
+				<li th:text="${member.getName()}"></li>
+			</ul>
+		</div>
+		<div>
+			<button id="inviteButton">Invite Members</button>
+		</div>
+	</ul>
+</aside>
+<div class="main-text">작업</div>
+
+<div class="main">
+	<div class="main-nav">
+		<ul>
+			<li><a href="#">목표</a></li>
+			<li><a href="#">할 일</a></li>
+			<li><a href="#">문서</a></li>
+			<li><a href="#">일정</a></li>
+		</ul>
 	</div>
 </div>
 
-<div class="content-container">
-	<div class="content">
-		<div class="goal-container">
-			<div class="board">
-				<div class="column">
-					<h2>목표 리스트</h2>
-					<div id="backlog" class="sortable">
-						<a th:each="headDto : ${headDtoList}"
-						   th:href="@{/project/goal/headView/{id}(id=${headDto.headId})}">
-							<div class="user-story">
-								<div class="inline-content">
-									<h2 style="margin-left: 15px;" th:text="${headDto.title}"/>
-									<p class="status" style="color: rgb(80, 150, 220)"
-									   th:if="${headDto.getCompletion() ==1 }">완료 </p>
-									<p class="status" style="color: rgb(220, 80, 80);"
-									   th:if=" ${headDto.getCompletion()==0 }">진행중 </p>
-								</div>
-								<div class="column" style="justify-self: center;">
-									<h3>하위 목표</h3>
-									<div class="sortable">
-										<a th:each="detailDto : ${detailDtoList}"
-										   th:if="${headDto.headId} == ${detailDto.headIdToDetail.headId}"
-										   th:href="@{/project/goal/detailView/{id}(id=${detailDto.detailId})}">
-											<div class="user-story">
-												<div class="inline-content">
-													<h3 th:text="${detailDto.title}"/>
-													<p class="status" style="color: rgb(80, 150, 220)"
-													   th:if="${detailDto.getCompletion() ==1 }">완료 </p>
-													<p class="status" style="color: rgb(220, 80, 80);"
-													   th:if="${detailDto.getCompletion() ==0 }">진행중 </p>
-												</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
+<div class="content">
+	<div class="work">
+		<table>
+			<div class="table-head-list">
+				<h2 class="table-h2">목표 리스트</h2>
+				<div class="button-section">
+					<a th:href="@{/project/head/create}"><button th:if="${auth == 1}" class="createbutton">새로 만들기</button></a>
 				</div>
-			
 			</div>
-		</div>
+			<thead>
+			<tr>
+				<th class="table-name">목표 이름</th>
+				<th>마감 기한</th>
+				<th>상태</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="head : ${headDtoList}">
+				<td><a th:href="@{/project/goal/headView/{id}(id=${head.getHeadId()})}" th:text="${head.getTitle()}"></a></td>
+				<td th:text="${#dates.format(head.getEndDay(), 'yyyy-MM-dd')}"></td>
+				<td th:if="${head.getCompletion() == 1}">완료</td>
+				<td th:if="${head.getCompletion() == 0}">진행중</td>
+			</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 </body>
