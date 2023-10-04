@@ -1,53 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Compose Message</title>
 	<link rel="stylesheet" href="/css/messageList.css">
 	<link rel="stylesheet" href="/css/sidebar.css">
-	<title>Border Project Manager</title>
+	<link rel="stylesheet" href="/css/sideNavbar.css">
 </head>
 
 <body>
-<div class="sidebar">
-	<ul>
-		<li><a href="/project/projectAllList">나가기</a></li>
-		<li><a href="/project/main">홈</a></li>
-		<li><a href="/project/goals">목표</a></li>
-		<li><a href="/project/works">작업</a></li>
-		<li><a href="/project/documentEntity">문서</a></li>
-		<li><a href="/project/calender">달력</a></li>
-		<li class="active"><a href="/recvMessageList">메세지</a></li>
-		<li><a href="/user/search">멤버 초대</a></li>
-	</ul>
-</div>
-<div class="top-bar">
-	<h1>메세지함</h1>
-</div>
-<hr>
-<nav>
-	<ul class="nav-list">
-		<li class="nav-item" id="received-msgs"><a href="/recvMessageList">받은 메세지</a></li>
-		<li class="nav-item active" id="sent-msgs"><a href="/sendMessageList">보낸 메세지</a></li>
-		<li class="nav-item send-msg-btn"><a href="/messageForm">메세지 보내기</a></li>
-	</ul>
-</nav>
-
-<div id="message-list">
-	<div class="message-item" th:if="${List != null}" th:each="message : ${List}">
-		<a class="message-title" th:href="@{/message/{id}(id=${message.messageId})}"
-		   th:text="'제목 : &nbsp&nbsp' + ${message.title}">
-		</a>
-		<div class="message-info">
-			<div class="message-sender"
-			   th:text="'받는 사람 &nbsp: &nbsp&nbsp' + ${message.getUserIdToMessageRecv().getName()}"></div>
-			<div class="message-date"
-			   th:text="'보낸 날짜 &nbsp: &nbsp&nbsp' + ${#dates.format(message.date, 'yyyy-MM-dd')}"></div>
+<header>
+	<nav>
+		<div class="nav-left">
+			<button id="exitButton">나가기</button>
 		</div>
+		<div class="nav-center">
+			<h1 id="projectName">Project Name</h1>
+		</div>
+		<div class="nav-right">
+			<p id="loggedInUser">사용자 이름</p>
+		</div>
+	</nav>
+</header>
+<aside class="sidebar">
+	<ul>
+		<div class="menu">
+			<ul>
+				<li><a href="#">홈</a></li>
+				<li class="menu-select"><a href="#">작업</a></li>
+				<li><a href="#">수신함</a></li>
+			</ul>
+		</div>
+	</ul>
+	<ul>
+		<div class="user-list">
+			<h2>프로젝트 멤버</h2>
+			<ul>
+				<li>User 1</li>
+				<li>User 2</li>
+				<li>User 3</li>
+			</ul>
+		</div>
+		<div>
+			<button id="inviteButton">Invite Members</button>
+		</div>
+	</ul>
+</aside>
+<div class="main">
+	<div class="sub-nav">
+		<ul class="sub-navbar">
+			<li class="sub-nav-item-active"><a href="#">수신함</a></li>
+			<li class="sub-nav-item"><a class="active" href="#">발신함</a></li>
+			</li>
+		</ul>
 	</div>
 </div>
+<div class="content-container">
+	<button class="button-section">메세지 보내기</button>
+	
+	<ul class="message-list">
+		<li class="incoming-message">
+			<div class="message-header">
+				<div class="message-title">메세지 제목</div>
+				<div class="message-people">받은 사람 : 000</div>
+				<div class="message-time">보낸 날짜 : 0000-00-00</div>
+				<div>
+					<button class="createbutton">삭제</button>
+				</div>
+			</div>
+			<div class="message-content">메세지 내용</div>
+		</li>
+	</ul>
+</div>
+
 
 </body>
 

@@ -15,7 +15,9 @@
 <header>
 	<nav>
 		<div class="nav-left">
-			<a th:href="@{/project/projectManagerList}"><button id="exitButton">나가기</button></a>
+			<a th:href="@{/project/projectManagerList}">
+				<button id="exitButton">나가기</button>
+			</a>
 		</div>
 		<div class="nav-center">
 			<h1 id="projectName" th:text="${currentProject.getTitle()}"></h1>
@@ -50,12 +52,13 @@
 <div class="main-text">작업</div>
 
 <div class="main">
-	<div class="main-nav">
-		<ul>
-			<li><a href="/project/goals">목표</a></li>
-			<li><a href="/project/works">작업</a></li>
-			<li><a href="/project/document">문서</a></li>
-			<li><a href="#">일정</a></li>
+	<div class="sub-nav">
+		<ul class="sub-navbar">
+			<li class="sub-nav-item-active"><a class="active" href="/project/goals">목표</a></li>
+			<li class="sub-nav-item"><a href="/project/works">작업</a></li>
+			<li class="sub-nav-item"><a href="/project/document">문서</a></li>
+			<li class="sub-nav-item"><a href="#">달력</a></li>
+			</li>
 		</ul>
 	</div>
 </div>
@@ -66,12 +69,15 @@
 			<div class="table-head-list">
 				<h2 class="table-h2">목표 리스트</h2>
 				<div class="button-section">
-					<a th:href="@{/project/head/create}"><button th:if="${auth == 1}" class="createbutton">새로 만들기</button></a>
+					<a th:href="@{/project/head/create}">
+						<button th:if="${auth == 1}" class="createbutton">새로 만들기</button>
+					</a>
 				</div>
 			</div>
 			<tbody>
 			<tr th:each="head : ${headDtoList}">
-				<td class="table-name"><a th:href="@{/project/goal/headView/{id}(id=${head.getHeadId()})}" th:text="${head.getTitle()}"></a></td>
+				<td class="table-name"><a th:href="@{/project/goal/headView/{id}(id=${head.getHeadId()})}"
+										  th:text="${head.getTitle()}"></a></td>
 				<td th:text="${#dates.format(head.getEndDay(), 'yyyy-MM-dd')}"></td>
 				<td th:if="${head.getCompletion() == 1}">완료</td>
 				<td th:if="${head.getCompletion() == 0}">진행중</td>
