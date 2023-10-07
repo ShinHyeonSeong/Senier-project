@@ -3,18 +3,27 @@
 
 <head>
 	<title>Border Project Manager</title>
-	<link rel="stylesheet" href="/css/sidebar.css">
 	<link rel="stylesheet" type="text/css" href="/css/onlyReadPage.css">
+	<link rel="stylesheet" href="/css/sidebar.css">
+	<link rel="stylesheet" href="/css/sideNavbar.css">
 	<script src="/js/onlyReadPage.js"></script>
 </head>
 
 <body>
-<div class="sidebar">
-	<ul>
-		<li class="active"><a href="/project/main">홈</a></li>
-		<li><a href="/project/projectAllList">나가기</a></li>
-	</ul>
-</div>
+<header>
+	<nav>
+		<div class="nav-left">
+			<button id="exitButton">나가기</button>
+		</div>
+		<div class="nav-center">
+			<h1 id="projectName">Project Name</h1>
+		</div>
+		<div class="nav-right">
+			<p id="loggedInUser">사용자 이름</p>
+		</div>
+	</nav>
+</header>
+
 <div class="centered-content">
 	<div class="project-name" th:text="${projectDto.title}"></div>
 	<div class="centered-top">
@@ -81,7 +90,7 @@
 	</div>
 	
 	<div class="my-work">
-		<div class="div-h" style="margin-left: 5%;" >문서 목록</div>
+		<div class="div-h" style="margin-left: 5%;">문서 목록</div>
 		<br>
 		<table>
 			<thead>
@@ -92,7 +101,8 @@
 			</thead>
 			<tbody>
 			<tr th:each="documentDto : ${documentDtoList}">
-				<td class="job-name"><a th:href="@{/documentEntity/view(id=${documentDto.documentId})}" th:text="${documentDto.title}"></a></td>
+				<td class="job-name"><a th:href="@{/documentEntity/view(id=${documentDto.documentId})}"
+										th:text="${documentDto.title}"></a></td>
 				<td class="job-deadline" th:text="${documentDto.dateDocument}"></td>
 			</tr>
 			</tbody>
