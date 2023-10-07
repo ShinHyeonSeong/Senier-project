@@ -7,7 +7,7 @@ image {
 }
 
 body {
-    background-color: #222;
+    background-color: #fff;
 }
 
 .container {
@@ -46,7 +46,7 @@ body {
 .project-select{
     display: flex;
     flex-direction: row;
-    color: white;
+    color: #000;
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -88,7 +88,7 @@ body {
 }
 
 #write-button:hover {
-    background-color: #444;
+    background-color: gray;
     color: white;
 }
 
@@ -107,14 +107,15 @@ th {
 }
 
 thead {
+    font-size: 20px;
     font-weight: bold;
-    color: #fff;
+    color: #000;
 }
 
 td {
     padding: 1.25em 1.5em;
     vertical-align: middle;
-    color: #fff;
+    color: #000;
     border-top: 1px #333 solid;
     transition: 0.5s;
 }
@@ -146,7 +147,7 @@ td a {
     padding: 0.5rem 1.5rem;
     margin-left: auto;
     margin-right: 1rem;
-    border: 1.5px solid #333;
+    border: 1.5px solid rgb(80, 150, 220);
     border-radius: 30px;
     transition: all 0.4s;
     color: white;
@@ -161,7 +162,7 @@ td a {
 .refuse-btn {
     padding: 0.5rem 1.5rem;
     margin-right: 1rem;
-    border: 1.5px solid #333;
+    border: 1.5px solid rgb(220, 80, 80);
     border-radius: 30px;
     transition: all 0.4s;
     color: white;

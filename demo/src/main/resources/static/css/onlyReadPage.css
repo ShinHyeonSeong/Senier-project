@@ -1,25 +1,6 @@
-/* Global styles */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background-color: #222;
-    color: #fff;
-}
-
-a {
-    text-decoration-line: none;
-    color: white;
-}
-
-/* Style container */
-.container {
-    display: flex;
-}
-
 .centered-content {
-    margin-left: 250px;
-    padding: 20px;
+    max-width: 80%;
+    margin: auto;
 }
 
 .project-name {
@@ -54,7 +35,7 @@ a {
 .project-intro {
     min-width: 450px;
     flex: 1;
-    background-color: #333;
+    background-color: #5161CE;
     color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -65,7 +46,7 @@ a {
 .team-members {
     min-width: 500px;
     flex: 1;
-    background-color: #333;
+    background-color: #5161CE;
     color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -84,7 +65,7 @@ a {
 
 .my-work {
     min-width: 1050px;
-    background-color: #333;
+    background-color: #5161CE;
     color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -93,18 +74,19 @@ a {
 
 .goals {
     min-width: 800px;
-    background-color: #333;
+    background-color: #5161CE;
     color: #fff;
     padding: 20px;
     border-radius: 10px;
     margin: 10px;
 }
 
-.goals hr{
+.goals hr {
     background: #ffffff;
     height: 1px;
     border: 0;
 }
+
 .work {
     margin-bottom: 100px;
 }
@@ -117,8 +99,8 @@ a {
 
 
 table {
-    border-top: 1px #333 solid;
-    border-bottom: 1px #333 solid;
+    border-top: 2px #fff solid;
+    border-bottom: 2px #fff solid;
     font-size: .9em;
     width: 100%;
     border-collapse: collapse;
@@ -141,12 +123,12 @@ td {
     font-size: 17px;
     padding: 1em 1.5em;
     vertical-align: middle;
-    border-top: 1px #333 solid;
+    border-top: 1px #5161CE solid;
     transition: 0.5s;
 }
 
 td:hover {
-    background-color: #555;
+    background-color: #949DD7;
 }
 
 td a {
@@ -159,7 +141,8 @@ td a {
     width: 40rem;
     column-span: 2;
 }
-.job-deadline{
+
+.job-deadline {
     width: 80rem;
     column-span: 2;
 }
