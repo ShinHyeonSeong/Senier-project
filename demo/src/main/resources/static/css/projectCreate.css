@@ -1,11 +1,11 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #333;
+    background-color: #fff;
     color: white;
 }
 
 h1 {
-    color: white;
+    color: #000;
     font-size: 48px;
 }
 
@@ -19,6 +19,7 @@ label {
 }
 
 .head-container {
+    max-width: 200;
     margin-left: -5%;
     display: flex;
     flex-direction: row;
@@ -27,9 +28,9 @@ label {
 }
 
 .back-button {
-    background-color: #333;
-    color: #fff;
-    border: none;
+    background-color: #fff;
+    color: #5161CE;
+    border: 1px solid #5161CE;
     cursor: pointer;
     display: inline-block;
     padding: 10px 15px;
@@ -41,25 +42,38 @@ label {
 }
 
 .back-button:hover {
-    background-color: #444;
+    background-color: #5161CE;
+    color: #fff;
 }
 
 input[type="text"],
 textarea,
 select {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    background-color: #fff;
     box-sizing: border-box;
-    border: 2px solid #555;
+    border: 2px solid #5161CE;
     border-radius: 4px;
-    background-color: #555;
-    color: white;
+    background-color: #fff;
+    color: #000;
+    padding: 0 12px;
 }
 
-input[type="submit"],
+input[type="text"],
+textarea,
+select:focus {
+    border: 2px solid #5161CE;
+    outline: none;
+}
+
+i input[type="submit"],
 button {
-    background-color: #555;
+    background-color: #5161CE;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -69,7 +83,7 @@ button {
 
 input[type="submit"]:hover,
 button:hover {
-    background-color: #777;
+    background-color: #949DD7;
 }
 
 .section {

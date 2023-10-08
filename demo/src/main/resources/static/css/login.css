@@ -39,7 +39,7 @@
     justify-content: center;
     align-items: center;
     color: white;
-    background-image: linear-gradient(222deg, #b1c2e8 0%, #3788d8 30%, #0747A6FF 100%);
+    background-image: linear-gradient(222deg, #b1c2e8 0%, #949DD7 30%, #5161CE 100%);
 }
 
 .top-logo-wrap img {
@@ -68,7 +68,7 @@
 
 .login-form-right-side h1 {
     font-size: 50px;
-    color: #0747A6FF;
+    color: #5161CE;
 }
 
 .login-input-container {
@@ -81,7 +81,7 @@
     height: 60px;
     margin-top: 20px;
     border-radius: 2px;
-    border-bottom: solid 2px #0747A6FF;
+    border-bottom: solid 2px #5161CE;
 }
 
 .login-input-container .login-input-wrap input {
@@ -109,7 +109,7 @@
     color: white;
     border: 0;
     border-radius: 4px;
-    background-color: #0747A6FF;
+    background-color: #5161CE;
 }
 
 .login-btn-wrap2{

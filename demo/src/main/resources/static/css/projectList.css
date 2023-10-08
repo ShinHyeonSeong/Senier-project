@@ -46,7 +46,7 @@ body {
 .project-select {
     display: flex;
     flex-direction: row;
-    color: #0747A6FF;
+    color: #5161CE;
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -55,19 +55,19 @@ body {
 }
 
 .project-select:hover {
-    color: #6685b2;
+    color: #1F254F;
 }
 
 .project-select-active {
     display: flex;
     flex-direction: row;
-    color: #0747A6FF;
+    color: #373A4F;
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 2px;
     margin-right: 4rem;
     transition: all 0.5s;
-    border-bottom: 3px solid #0747A6FF;
+    border-bottom: 3px solid #373A4F;
 }
 
 
@@ -89,8 +89,8 @@ body {
     font-weight: bold;
     padding: 1px 16px;
     background-color: white;
-    color: black;
-    border: 1.5px solid #333;
+    color: #5161CE;
+    border: 1.5px solid #5161CE;
     border-radius: 30px;
     text-transform: uppercase;
     transition: all 0.4s;
@@ -102,14 +102,14 @@ body {
 
 #write-button:hover {
     border: #fff;
-    background-color: #0747A6FF;
+    background-color: #5161CE;
     color: white;
 }
 
 .post {
     background: #fff;
     text-decoration: none;
-    color: #0747A6FF;
+    color: #1F254F;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
     display: flex;
     min-height: 100%;
@@ -123,7 +123,7 @@ body {
 .post h1 {
     font-size: 20px;
     margin: 0;
-    color: #0747A6FF;
+    color: #5161CE;
     font-weight: bold;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -131,7 +131,7 @@ body {
 
 .post p {
     font-size: 12px;
-    color: #0747A6FF;
+    color: #5161CE;
 }
 
 .post span {
@@ -153,7 +153,7 @@ body {
     padding-bottom: 45%;
     background-size: cover;
     background-position: center center;
-    background: #6685b2;
+    background: #949DD7;
 }
 
 article {
@@ -188,7 +188,7 @@ article p {
 }
 
 .post-detail h1 {
-    color: #0747A6FF;
+    color: #5161CE;
 }
 
 @media screen and (min-width: 1280px) {

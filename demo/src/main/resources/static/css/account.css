@@ -1,7 +1,7 @@
 .page-container {
     width: 100vw;
     height: auto;
-    background-color: #222;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,7 +23,7 @@
 }
 
 .top-wrap h1 {
-    color: white;
+    color: #000;
     font-weight: bold;
     margin-bottom: 2.5rem;
 }
@@ -36,25 +36,26 @@
 .toolbar-btn {
     margin-right: 2.5rem;
     border: none;
-    background-color: #222;
-    color: white;
+    background-color: #fff;
+    color: #000;
 }
 
 .account-btn {
-    color: white;
+    color: #000;
     font-weight: bold;
     border-bottom: solid 2px #444;
 }
 
 .toolbar-btn:hover {
-    color: white;
+    color: #000;
     font-weight: bold;
 }
 
 .profile-wrap {
-    background-color: #333;
+    background-color: #949DD7;
     display: flex;
     height: 180px;
+    border-radius: 5px;
     align-items: center;
     margin-bottom: 2rem;
 }
@@ -72,7 +73,7 @@
 }
 
 .profile-username {
-    color: white;
+    color: #000;
     font-size: 20px;
     font-weight: bold;
 }
@@ -86,20 +87,22 @@
 }
 
 .logout-btn {
-    color: white;
-    font-size: 20px;
+    color: #fff;
+    font-size: 16px;
     font-weight: bold;
     padding: 9px 18px;
-    border: none;
-    background-color: #444;
+    border: 1px solid #5161CE;
+    border-radius: 5px;
+    background-color: #5161CE;
 }
 
 .logout-btn:hover {
-    background-color: #555;
+    background-color: #3D499C;
 }
 
 .withdraw-wrap {
-    background-color: #333;
+    border-radius: 5px;
+    background-color: #949DD7;
     display: flex;
     height: 180px;
     align-items: center;
@@ -113,13 +116,13 @@
 
 .withdraw-discription h1 {
     color: white;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
 }
 
 .withdraw-discription .withdraw-detail {
-    font-size: 16px;
-    color: grey;
+    font-size: 14px;
+    color: #000;
 }
 
 .withdraw-btn-a {
@@ -127,9 +130,10 @@
 }
 
 .withdraw-btn {
-    color: white;
-    font-size: 20px;
+    color: #fff;
+    font-size: 16px;
     font-weight: bold;
+    border-radius: 5px;
     padding: 9px 25px;
     border: none;
     background-color: rgb(221, 47, 47);

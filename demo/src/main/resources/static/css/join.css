@@ -1,11 +1,11 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     text-decoration: none;
 }
 
-.page-container{
+.page-container {
     width: 100vw;
     height: 100vh;
     background: #fff;
@@ -15,57 +15,56 @@
 
 }
 
-.shadow{
-    -webkit-box-shadow: 27px 43px 43px -26px rgba(89,89,89,0.39);
-    -moz-box-shadow: 27px 43px 43px -26px rgba(89,89,89,0.39);
-    box-shadow: 27px 43px 43px -26px rgba(89,89,89,0.39);
+.shadow {
+    -webkit-box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
+    -moz-box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
+    box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
 }
 
-.join-form-container{
-    background:#fff ;
+.join-form-container {
+    background: #fff;
     width: 560px;
     height: 640px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /*box-shadow: 10px black;*/
-    border: 2px solid #0747A6FF;
+    border: 2px solid #5161CE;
     border-radius: 10px;
 }
 
 .join-form-container h1 {
     font-size: 50px;
-    color: #0747A6FF;
+    color: #5161CE;
     margin-bottom: 15px;
 }
 
-.join-input-container{
-    width:55%;
+.join-input-container {
+    width: 55%;
 }
 
-.join-input-container .join-input-wrap{
-    width:100%;
+.join-input-container .join-input-wrap {
+    width: 100%;
     height: 45px;
     margin-top: 20px;
     border-radius: 2px;
-    border-bottom: solid 2px #0747A6FF;
+    border-bottom: solid 2px #5161CE;
 
 }
 
-.join-input-container .join-input-wrap input{
+.join-input-container .join-input-wrap input {
     background: none;
     border: none;
     line-height: 45px;
-    padding-left:10px;
-    width:267px;
+    padding-left: 10px;
+    width: 267px;
 }
 
-.join-input-container .join-input-wrap input:focus{
+.join-input-container .join-input-wrap input:focus {
     outline: none;
 }
 
-.join-btn-wrap{
+.join-btn-wrap {
     margin-top: 40px;
     width: 55%;
     display: flex;
@@ -74,20 +73,12 @@
     justify-content: space-between;
 }
 
-.join-btn-wrap .join-btn{
+.join-btn-wrap .join-btn {
     width: 8rem;
     height: 35px;
     padding: 5px 20px;
-    color:#fff;
+    color: #fff;
     border: 0;
     border-radius: 4px;
-    background-color: #0747A6FF;
+    background-color: #5161CE;
 }
-
-/*.join-btn-wrap a{*/
-/*    margin-top: 20px;*/
-/*    text-decoration: none;*/
-/*    font-size: 11px;*/
-/*    color: gray;*/
-
-/*}*/
