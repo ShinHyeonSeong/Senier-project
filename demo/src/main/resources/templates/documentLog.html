@@ -31,7 +31,7 @@
     <div class="middle-box">
         <table class="board_list">
             <tbody>
-            <tr th:each="logEntity : ${logEntityList}">
+            <tr th:each="logEntity : ${logList}">
                 <td class="project-name" th:text="${logEntity.dateLog}">히스토리 저장 일자</td>
                 <td th:utext="${logEntity.logType}">히스토리 저장 타입</td>
                 <td>

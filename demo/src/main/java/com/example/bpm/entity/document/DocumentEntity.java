@@ -15,10 +15,11 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "document")
 public class DocumentEntity implements Serializable {
 
     @Id
-    @Column(name = "documentId")
+    @Column(name = "document_id")
     private String documentId;
 
     @Column(name = "title")

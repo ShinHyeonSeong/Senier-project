@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -78,8 +79,10 @@ public class DocumentService {
         documentDto.setUuid(userUuid);
 
         documentDto.setUserName(userName);
+        log.info(documentDto.getDocumentId() + documentDto.getTitle() + documentDto.getUuid() + documentDto.getUserName() + documentDto.getDateDocument());
+        DocumentEntity documentEntity = documentDto.toEntity();
 
-        documentRepository.save(documentDto.toEntity());
+        documentRepository.save(documentEntity);
 
         return documentDto.getDocumentId();
     }
@@ -164,21 +167,27 @@ public class DocumentService {
     // document delate
     //////////////////////////////////////////////////////////////////
 
+    @Transactional
     public void deleteDocument(String documentId){
         List<BlockEntity> deleteBlockListEntity = blockRepository.findByDocumentId(documentId);
         List<LogEntity> deleteLogListEntity = logRepository.findByDocumentId(documentId);
 
         workDocumentRepository.deleteAllByDocumentIdToWorkDocument_DocumentId(documentId);
+        log.info("workDocument 삭제 완료");
 
         for (BlockEntity blockEntity : deleteBlockListEntity) {
             blockRepository.delete(blockEntity);
         }
+        log.info("block 삭제 완료");
 
         for (LogEntity logEntity : deleteLogListEntity) {
             logRepository.delete(logEntity);
         }
+        log.info("log 삭제 완료");
 
-        documentRepository.deleteById(documentId);
+        log.info("DocumentId = " + documentId);
+        DocumentEntity documentEntity = documentRepository.findById(documentId).orElse(null);
+        documentRepository.deleteByDocumentId(documentEntity.getDocumentId());
     }
 
     /* check user auth */
@@ -189,15 +198,15 @@ public class DocumentService {
 
         WorkDocumentEntity workDocumentEntity = workDocumentRepository.findByDocumentIdToWorkDocument_DocumentId(DocumentId);
 
-        if (auth == 0){
+        if (auth == 2){
             return false;
         }
         for (UserWorkEntity userWorkEntity: userWorkEntityList) {
             if (userWorkEntity.getWorkIdToUserWork().getWorkId().equals(workDocumentEntity.getWorkIdToWorkDocument().getWorkId()))
-                return false;
+                return true;
         }
 
-        return true;
+        return false;
 
     }
 

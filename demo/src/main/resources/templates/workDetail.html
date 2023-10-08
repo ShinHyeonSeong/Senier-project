@@ -113,8 +113,7 @@
 			</ul>
 		</div>
 		<div class="buttons">
-			<a th:href="@{document/addDocument}"><button class="edit-button">문서 작성</button> </a>
-			<input th:hidden="true" th:name="workId" th:value="${workDto.getWorkId()}"/>
+			<a th:href="@{/document/addDocument(workId=${workDto.getWorkId()})}"><button class="edit-button">문서 작성</button> </a>
 			<button class="edit-button">작업 수정</button>
 			<button class="delete-button">작업 삭제</button>
 			<a th:href="@{/project/work/completion/change/{id}(id=${workDto.workId})}">

@@ -19,8 +19,8 @@
 <div class="main-content">
     <div class="write">
         <div class="detail">
-            <input type="text" class="title" placeholder="이곳에 제목을 입력하세요" th:value="${documentEntity.title}">
-            <div type="hidden" class="documentId" th:value="${documentEntity.documentId}"></div>
+            <input type="text" class="title" placeholder="이곳에 제목을 입력하세요" th:value="${document.title}">
+            <div type="hidden" class="documentId" th:value="${document.documentId}"></div>
             <hr>
             <div class="toolbar">
                 <button type="button" class="font-btn" onclick="createBlockH1()">H1</button>
@@ -32,16 +32,16 @@
                 <button type="button" class="font-btn" id="video-btn">mp4</button>
                 <div class="horizon-line"></div>
                 <a th:href="${back}"><button class="font-btn"><img src="/img/back_document.png" class="icon-img"></button></a>
-                <a th:href="@{/documentEntity/history(id=${documentEntity.documentId})}"><button class="font-btn"><img src="/img/history_document.png" class="icon-img"></button></a>
+                <a th:href="@{/documentEntity/history(id=${document.documentId})}"><button class="font-btn"><img src="/img/history_document.png" class="icon-img"></button></a>
                 <button class="font-btn" onclick="ajaxPost()"><img src="/img/download_document.png" class="icon-img"></button>
                 <form action="/documentEntity/delete" method="post" >
                     <button class="font-btn" type="submit"><img src="/img/delete_document.png" class="icon-img"></button>
-                    <input th:name="id" type="hidden" th:value="${documentEntity.documentId}">
+                    <input th:name="id" type="hidden" th:value="${document.documentId}">
                 </form>
             </div>
             <div class="content">
                 <div class="sortable">
-                    <div class="move_block" th:each="blockEntity : ${blockEntityList}">
+                    <div class="move_block" th:each="blockEntity : ${blockList}">
                         <div class="move">+</div>
 
                         <div th:id="${blockEntity.category}"
@@ -71,12 +71,12 @@
     <div class="footer">
         <!-- 요건 리스트로 돌아가기 -->
         <a th:href="${back}"><button class="footer-btn">나가기</button></a>
-        <a th:href="@{/documentEntity/history(id=${documentEntity.documentId})}"><button class="footer-btn">기록</button></a>
+        <a th:href="@{/documentEntity/history(id=${document.documentId})}"><button class="footer-btn">기록</button></a>
         <!-- 요건 리스트로 넘김 -->
         <button class="footer-btn" onclick="ajaxPost()">저장</button>
         <form action="/documentEntity/delete" method="post" >
             <button class="footer-btn" type="submit">삭제</button>
-            <input th:name="id" type="hidden" th:value="${documentEntity.documentId}">
+            <input th:name="id" type="hidden" th:value="${document.documentId}">
         </form>
     </div>
 </div>

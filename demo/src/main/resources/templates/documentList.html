@@ -112,8 +112,8 @@
             <div class="document-list-content">
                 <ul id="accord1" class="accordian">
                     <!-- 문서 항목 1 -->
-                    <li  th:each="documentList : ${documentList}">
-                        <header th:text="documentList.documentDto.title">
+                    <li  th:each="document : ${documentList}">
+                        <header th:text="${document.getDocumentDto().getTitle()}">
                             문서명
                             <button class="document-view-btn">보기</button>
                         </header>
@@ -121,21 +121,25 @@
                             <div class="document-detail">
                                 <div class="document-detail-info">
                                     <div class="detail-item">
-                                        <h4>상위 목표</h4> <a href="" th:text="documentList.headDto.title">상위목표명</a>
+                                        <h4>상위 목표</h4> <a href="" th:text="${document.getHeadDto().getTitle()}">상위목표명</a>
                                     </div>
                                     <div class="detail-item">
-                                        <h4>연결된 작업</h4> <a href="" th:text="documentList.workDto.title">작업명</a>
+                                        <h4>연결된 작업</h4> <a href="" th:text="${document.getWorkDto().getTitle()}">작업명</a>
                                     </div>
                                     <div class="detail-item">
-                                        <h4>작성자</h4> <a href="" th:text="documentList.documentDto.userName">작성자명</a>
+                                        <h4>작성자</h4> <a href="" th:text="${document.getDocumentDto().getUserName()}">작성자명</a>
                                     </div>
                                     <div class="detail-item">
-                                        <h4>작성일자</h4> <a href="" th:text="documentList.documentDto.dateDocument">2023.01.01</a>
+                                        <h4>작성일자</h4> <a href=""
+                                                         th:text="${document.getDocumentDto().getDateDocument()}"></a>
                                     </div>
                                 </div>
-                                <div class="document-detail-btn">
-                                    <button class="document-edit-btn">편집</button>
-                                    <button class="document-delete-btn">삭제</button>
+                                <div class= "document-detail-btn">
+                                    <a th:href="@{/document/write(id=${document.getDocumentDto().getDocumentId()})}"><button class="document-edit-btn">편집</button></a>
+                                    <form action="/document/delete" method="post">
+                                        <button class="document-delete-btn" type="submit">삭제</button>
+                                        <input type="text" th:name="id" th:value="${document.getDocumentDto().getDocumentId()}" th:hidden="true">
+                                    </form>
                                 </div>
                             </div>
                         </section>
