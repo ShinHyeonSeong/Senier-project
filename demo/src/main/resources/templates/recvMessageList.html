@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
+<!-- 목표 리스트 창 -->
 
 <head>
 	<meta charset="UTF-8">
@@ -29,8 +29,11 @@
 	<ul>
 		<div class="menu">
 			<ul>
-				<li><a href="#">홈</a></li>
-				<li class="menu-select"><a href="#">작업</a></li>
+				<li class="menu-select"><a href="#">홈</a></li>
+				<li><a href="#">목표</a></li>
+				<li><a href="#">작업</a></li>
+				<li><a href="#">문서</a></li>
+				<li><a href="#">일정</a></li>
 				<li><a href="#">수신함</a></li>
 			</ul>
 		</div>
@@ -49,6 +52,7 @@
 		</div>
 	</ul>
 </aside>
+
 <div class="main">
 	<div class="sub-nav">
 		<ul class="sub-navbar">
@@ -67,7 +71,7 @@
 				<div class="message-title">메세지 제목</div>
 				<div class="message-people">보낸 사람 : 000</div>
 				<div class="message-time">받은 날짜 : 0000-00-00</div>
-				<div> <button class="createbutton">삭제</button>
+				<div> <button class="deletebutton">삭제</button>
 				</div>
 			</div>
 			<div class="message-content">메세지 내용</div>

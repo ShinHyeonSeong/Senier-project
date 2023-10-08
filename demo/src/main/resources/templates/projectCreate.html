@@ -10,9 +10,11 @@
 <div class="container">
 	<input type="hidden" th:name="nowUser" th:value="${nowUser.getUuid()}">
 	<div class="head-container">
-		<a href="/project/projectAllList" class="back-button"> < </a>
+		<a href="/project/projectAllList" class="back-button">
+			< </a>
 		<h1>프로젝트 생성</h1>
 	</div>
+	
 	<div class="section">
 		<form name="projectForm" action="/project/createPage" method="post">
 			<label for="project-title">프로젝트 제목:</label><br>
@@ -22,23 +24,18 @@
 			<textarea placeholder="소개를 적으시오." id="project-description" name="subtitle"></textarea><br>
 			
 			<label>시작 날짜 : </label><br>
-			<input name="startDay" class="input-box" id="startDay" type="text"
-				   placeholder="0000-00-00(연 월 일)">
+			<input name="startDay" class="input-box" id="startDay" type="text" placeholder="0000-00-00(연 월 일)">
 			
 			<label>끝난 날짜 : </label></label><br>
 			<input name="endDay" class="input-box" id="endDay" type="text" placeholder="0000-00-00(연 월 일)">
-			<button style=' width : 100%; padding:20px; margin-top:50px; font-size: 2rem; font-family:Arial, Helvetica, sans-serif;'
+			<button
+					style=' width : 100%; padding:20px; margin-top:50px; font-size: 2rem; font-family:Arial, Helvetica, sans-serif;'
 					type="button" onclick="checkForm()">
 				Start New BPM Template
 			</button>
 		</form>
 	</div>
 	<br>
-	
-	<!-- <button onclick="submitForm()"
-	  style=' width : 50%;padding:20px; font-size: 2rem; font-family:Arial, Helvetica, sans-serif;'>Start New BPM
-	  Template</button>
-	정적 화면을 위한 일시적 비활성화. 재사용 예정-->
 	
 	<script>
 		var title = document.getElementById("project-title");
@@ -71,8 +68,9 @@
 			}
 			document.projectForm.submit();
 		}
-		
+	
 	</script>
 </div>
 </body>
+
 </html>

@@ -21,12 +21,12 @@ body {
 .table-head-list {
     display: flex;
     margin: auto;
-    width: 90%;
+    width: 98%;
 }
 
 .table-h2 {
-    flex: 6;
-    margin-left: 2%;
+    text-align: left;
+    flex: 12;
     width: 80%;
     box-sizing: border-box;
 }
@@ -37,8 +37,7 @@ body {
 }
 
 .createbutton {
-    width: 40%;
-    float: right;
+    width: 70%;
     text-decoration: none;
     color: #fff;
     font-weight: bold;
@@ -47,6 +46,7 @@ body {
     background-color: #949DD7;
     border-radius: 10px;
     border: none;
+    margin-bottom: 15px;
 }
 
 .createbutton:hover {
@@ -61,11 +61,11 @@ table {
 }
 
 th {
-    text-align: center;
     font-size: 15px;
-    text-align: center;
     padding: 1em 1.5em;
     vertical-align: middle;
+    text-align: left;
+
 }
 
 .table-name {
@@ -79,24 +79,17 @@ thead {
 }
 
 td {
-    padding: 1em 1.5em;
+    text-align: left;
+    padding: 1em 2em;
     vertical-align: middle;
     border-top: 1px #d4d4d4 solid;
     border-bottom: 1px #d4d4d4 solid;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 12px;
     transition: 0.5s;
-    color: #5161CE;
-    text-align: center;
-}
-
-td > a {
-    text-decoration: none;
-    color: #5161CE;
 }
 
 td:hover {
-    background-color: #c9c9c9;
+    background-color: #949DD7;
 }
 
 td a {
