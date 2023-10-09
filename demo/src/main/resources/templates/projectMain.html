@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/projectMain.css">
 	<link rel="stylesheet" href="/css/sidebar.css">
+	<link rel="stylesheet" href="/css/sideNavbar.css">
 	<title>Your Project Management Tool</title>
 </head>
+
 
 <body>
 <header>
 	<nav>
 		<div class="nav-left">
-			<a th:href="@{/project/projectManagerList}"><button id="exitButton">나가기</button></a>
+			<button id="exitButton">나가기</button>
 		</div>
 		<div class="nav-center">
-			<h1 id="projectName" th:text="${projectDto.getTitle()}"></h1>
+			<h1 id="projectName">Project Name</h1>
 		</div>
 		<div class="nav-right">
-			<p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
+			<p id="loggedInUser">사용자 이름</p>
 		</div>
 	</nav>
 </header>
@@ -28,8 +29,11 @@
 	<ul>
 		<div class="menu">
 			<ul>
-				<li><a href="#">홈</a></li>
-				<li><a th:href="@{/project/goals}">작업</a></li>
+				<li class="menu-select"><a href="#">홈</a></li>
+				<li><a href="#">목표</a></li>
+				<li><a href="#">작업</a></li>
+				<li><a href="#">문서</a></li>
+				<li><a href="#">일정</a></li>
 				<li><a href="#">수신함</a></li>
 			</ul>
 		</div>
@@ -37,8 +41,10 @@
 	<ul>
 		<div class="user-list">
 			<h2>프로젝트 멤버</h2>
-			<ul th:each="member : ${joinUsers}">
-				<li th:text="${member.getName()}"></li>
+			<ul>
+				<li>User 1</li>
+				<li>User 2</li>
+				<li>User 3</li>
 			</ul>
 		</div>
 		<div>
@@ -46,15 +52,9 @@
 		</div>
 	</ul>
 </aside>
+
 <main>
-	<div class="project-name" th:text="${projectDto.getTitle()}"></div>
-	<!-- <div class="centered-top">
-        <div class="project-intro">
-            <p class="div-h">Project Introduction</p>
-            여기에 프로젝트 설명 데이터 값 넣고 위에 Project Introduction 지우기
-            <p class="div-content"></p>
-        </div>
-    </div> -->
+	<div class="project-name"> Project 1</div>
 	<hr style="background-color: #0056b3; height: 2px;">
 	<!-- 목표 리스트를 띄워줘야하는 부분 -->
 	<div class="board" style="margin-top: 3%;">
@@ -63,9 +63,9 @@
 				<h1> 멤버 </h1>
 				<div class="post-user-child">
 					<div class="post-user-div">프로젝트 참여 인원 : </div> &nbsp;
-					<div class="post-user-div" th:text="${#lists.size(joinUsers)} + '명'"></div>
+					<div class="post-user-div">00 명</div>
 				</div>
-				<button class="post-button" th:onclick="|location.href='@{/user/search}'|">초대하기</button>
+				<button class="post-button">초대하기</button>
 			</article>
 		</a>
 		<a class="post">
@@ -74,15 +74,15 @@
 				<div class="post-user-child1">
 					<div class="post-user-list1">
 						<div>전체 목표 수</div>
-						<div style="text-align: center;" th:text="${#lists.size(headDtoList)}"></div>
+						<div style="text-align: center;">00</div>
 					</div>
 					<div class="post-user-list2">
 						<div>진행 목표 수</div>
-						<div style="text-align: center;" th:text="${progressHead}"></div>
+						<div style="text-align: center;">00</div>
 					</div>
 					<div class="post-user-list3">
 						<div>완료 목표 수</div>
-						<div style="text-align: center;" th:text="${completeHead}"></div>
+						<div style="text-align: center;">00</div>
 					</div>
 				</div>
 				<button class="post-button">바로가기</button>
@@ -94,15 +94,15 @@
 				<div class="post-user-child1">
 					<div class="post-user-list1">
 						<div>전체 작업 수</div>
-						<div style="text-align: center;" th:text="${#lists.size(workDtoList)}"></div>
+						<div style="text-align: center;">00</div>
 					</div>
 					<div class="post-user-list2">
 						<div>진행 작업 수</div>
-						<div style="text-align: center;" th:text="${progressWork}"></div>
+						<div style="text-align: center;">00</div>
 					</div>
 					<div class="post-user-list3">
 						<div>완료 작업 수</div>
-						<div style="text-align: center;" th:text="${completeWork}"></div>
+						<div style="text-align: center;">00</div>
 					</div>
 				</div>
 				<button class="post-button">바로가기</button>
@@ -112,8 +112,8 @@
 			<article class="post-detail">
 				<h1> 문서 </h1>
 				<div class="post-user-child">
-					<div class="post-user-div">마지막 문서 편집 시간 : </div> &nbsp;
-					<div class="post-user-div">00 00 00</div>
+					<div class="post-user-div"> 문서 개수 : </div>&nbsp; &nbsp;
+					<div class="post-user-div"> 00 &nbsp;개 </div>
 				</div>
 				<button class="post-button">바로가기</button>
 			</article>

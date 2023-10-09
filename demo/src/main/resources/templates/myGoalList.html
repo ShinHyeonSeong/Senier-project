@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/css/messageList.css">
+	<link rel="stylesheet" href="/css/goal.css">
 	<link rel="stylesheet" href="/css/sidebar.css">
 	<link rel="stylesheet" href="/css/sideNavbar.css">
 	<title>BPM</title>
@@ -29,8 +29,8 @@
 	<ul>
 		<div class="menu">
 			<ul>
-				<li class="menu-select"><a href="#">홈</a></li>
-				<li><a href="#">목표</a></li>
+				<li><a href="#">홈</a></li>
+				<li class="menu-select"><a href="#">목표</a></li>
 				<li><a href="#">작업</a></li>
 				<li><a href="#">문서</a></li>
 				<li><a href="#">일정</a></li>
@@ -56,30 +56,43 @@
 <div class="main">
 	<div class="sub-nav">
 		<ul class="sub-navbar">
-			<li class="sub-nav-item-active"><a class="active" href="#">수신함</a></li>
-			<li class="sub-nav-item"><a href="#">발신함</a></li>
+			<li class="sub-nav-item"><a href="#">전체 목표</a></li>
+			<li class="sub-nav-item-active"><a class="active" href="#">나의 목표</a></li>
 			</li>
 		</ul>
 	</div>
 </div>
 
-<div class="content-container">
-	<button class="button-section">메세지 보내기</button>
-	<ul class="message-list">
-		<li class="incoming-message">
-			<div class="message-header">
-				<div class="message-title">메세지 제목</div>
-				<div class="message-people">보낸 사람 : 000</div>
-				<div class="message-time">받은 날짜 : 0000-00-00</div>
-				<div> <button class="deletebutton">삭제</button>
-				</div>
+<div class="content">
+	<div class="work">
+		<table>
+			<div class="table-head-list">
+				<h2 class="table-h2">목표 > 나의 목표</h2>
+				<div class="button-section"><button class="createbutton">새로 만들기</button></div>
 			</div>
-			<div class="message-content">메세지 내용</div>
-		</li>
-	</ul>
+			<thead>
+			<th>
+				목표 이름
+			</th>
+			<th>마감 기한</th>
+			<th>진행 상태</th>
+			</thead>
+			<tbody>
+			<tr>
+				<td class="table-name"><a>x</a></td>
+				<td>x</td>
+				<td>완료</td>
+			</tr>
+			
+			<tr>
+				<td><a>x</a></td>
+				<td>x</td>
+				<td>완료</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
-
-
 </body>
 
 </html>

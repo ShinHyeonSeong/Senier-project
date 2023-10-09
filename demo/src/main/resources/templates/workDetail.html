@@ -25,13 +25,15 @@
 		</div>
 	</nav>
 </header>
-
 <aside class="sidebar">
 	<ul>
 		<div class="menu">
 			<ul>
 				<li><a href="#">홈</a></li>
+				<li><a href="#">목표</a></li>
 				<li class="menu-select"><a href="#">작업</a></li>
+				<li><a href="#">문서</a></li>
+				<li><a href="#">일정</a></li>
 				<li><a href="#">수신함</a></li>
 			</ul>
 		</div>
@@ -50,7 +52,6 @@
 		</div>
 	</ul>
 </aside>
-<div class="main-text">작업</div>
 
 <div class="main">
 	<div class="sub-nav">
@@ -59,49 +60,77 @@
 			<li class="sub-nav-item"><a class="active" href="/project/works">작업</a></li>
 			<li class="sub-nav-item"><a href="/project/document">문서</a></li>
 			<li class="sub-nav-item"><a href="#">달력</a></li>
+			<li class="sub-nav-item"><a href="#">리스트로 돌아가기</a></li>
 			</li>
 		</ul>
 	</div>
 </div>
 
-<div class="container">
-	<div class="left-pane">
-		<input th:hidden="true" th:name="workId" th:value="${workDto.getWorkId()}"/>
-		<h1 class="post-title" th:text="${workDto.getTitle()}"></h1>
-		<p class="post-content" th:text="${workDto.getDiscription()}">
-		</p>
-		<div class="horizon-divider"></div>
-		
-		<div class="comment-section">
-			<div class="comment-write-section">
-				<div class="comment-count" th:text="${listNum} + '개의 의견'">댓글</div>
-				<form action="/workDetail/addComment" method="post">
-					<textarea name="comment" class="comment-write" placeholder="의견을 남겨주세요."></textarea>
-					<br>
-					<button type="submit" class="submit-btn">작성</button>
-					<input th:name="workId" th:value="${workDto.workId}" type="hidden">
-				</form>
+<div class="content">
+	<div class="container">
+		<div class="left-pane">
+			<div class="title-section">
+				<h1 class="post-title" th:text="${workDto.getTitle()}">title</h1>
+				<a class="edit-button">Edit</a>
+				<a class="delete-button">Delete</a>
 			</div>
-			<div class="comment-read-section">
-				<div class="comment" th:each="comment:${CommentList}">
-					<div class="comment-content-head">
-						<div class="comment-user-name" th:text="${comment.userIdToComment.getName()} + ' 님'">
+			<div class="horizon-divider"></div>
+			<p class="post-content" th:text="${workDto.getDiscription()}">
+			</p>
+			<div class="horizon-divider"></div>
+			
+			<div class="comment-section">
+				<div class="comment-write-section">
+					<div class="comment-count" th:text="${listNum} + '개의 의견'">댓글</div>
+					<form action="/workDetail/addComment" method="post">
+						<textarea name="comment" class="comment-write" placeholder="의견을 남겨주세요."></textarea>
+						<br>
+						<button type="submit" class="submit-btn">작성</button>
+						<input th:name="workId" th:value="${workDto.workId}" type="hidden">
+					</form>
+				</div>
+				<div class="comment-read-section">
+					<div class="comment" th:each="comment:${CommentList}">
+						<div class="comment-content-head">
+							<div class="comment-user-name" th:text="${comment.userIdToComment.getName()} + ' 님'">
+							</div>
+							<!--                     <button onclick="" class="comment-head-button">수정</button>-->
+							<a th:href="@{/workDetail/commentDelete/{cid}(cid=${comment.getWorkCommentId()})}"
+							   class="comment-head-button">
+								삭제</a>
 						</div>
-						<!--                     <button onclick="" class="comment-head-button">수정</button>-->
-						<a th:href="@{/workDetail/commentDelete/{cid}(cid=${comment.getWorkCommentId()})}"
-						   class="comment-head-button">
-							삭제</a>
+						<div class="comment-content" th:text="${comment.comment}">댓글 내용</div>
+						<div class="horizon-divider"></div>
 					</div>
-					<div class="comment-content" th:text="${comment.comment}">댓글 내용</div>
-					<div class="horizon-divider-semi"></div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="right-pane">
-		<div class="date-info"><p
-				th:text="'시작기한 : ' + ${#dates.format(workDto.getStartDay(), 'yyyy-MM-dd')}"></p>
-			<p th:text="'마감기한 : ' + ${#dates.format(workDto.getEndDay(), 'yyyy-MM-dd')}"></p>
+		<div class="right-pane">
+			<div class="date-info">
+				<p th:text="'시작기한 : ' + ${#dates.format(workDto.getStartDay(), 'yyyy-MM-dd')}"></p>
+				<p th:text="'마감기한 : ' + ${#dates.format(workDto.getEndDay(), 'yyyy-MM-dd')}"></p>
+			
+			</div>
+			<div class="buttons">
+
+				<a th:href="@{/project/work/completion/change/{id}(id=${workDto.workId})}">
+					<button class="right-button" th:if="${auth == 1 && workDto.completion == 0}">완료로 표시</button>
+				</a>
+				<a th:href="@{/project/work/completion/change/{id}(id=${workDto.workId})}">
+					<button class="right-button" th:if="${auth == 1 && workDto.completion == 1}">진행중으로 표시</button>
+				</a>
+			</div>
+			<div class="horizon-divider"></div>
+			<div class="related-tasks">
+				<h2>연결된 문서</h2>
+				<ul class="task-list">
+					<li><a href="#">Task 1</a></li>
+					<li><a href="#">Task 2</a></li>
+					<li><a href="#">Task 3</a></li>
+				</ul>
+			</div>
+			<div class="horizon-divider"></div>
+			<button class="sub-create-button">문서 만들기</button>
 		
 		</div>
 		<div class="related-tasks">

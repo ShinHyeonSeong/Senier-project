@@ -1,31 +1,9 @@
-/* Reset some default styles */
 body,
 h1,
 p,
 ul {
     margin: 0;
     padding: 0;
-}
-
-.user-list {
-    margin-top: 10rem;
-    padding: 10px;
-    color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.user-list h2 {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.user-list ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.user-list li {
-    margin-bottom: 5px;
 }
 
 #inviteButton {
@@ -145,6 +123,7 @@ main {
 
 .post-user-div {
     font-size: 17px;
+    margin-top: 1px;
     text-align: center;
     font-weight: 700;
     color: #fff;
