@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
-
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Compose Message</title>
-	<link rel="stylesheet" href="/css/messageList.css">
-	<link rel="stylesheet" href="/css/sidebar.css">
-	<link rel="stylesheet" href="/css/sideNavbar.css">
+	<link rel="stylesheet" href="css/messageList.css">
+	<link rel="stylesheet" href="css/sidebar.css">
+	<link rel="stylesheet" href="css/sideNavbar.css">
 </head>
 
 <body>
@@ -31,8 +29,11 @@
 		<div class="menu">
 			<ul>
 				<li><a href="#">홈</a></li>
-				<li class="menu-select"><a href="#">작업</a></li>
-				<li><a href="#">수신함</a></li>
+				<li><a href="#">목표</a></li>
+				<li><a href="#">작업</a></li>
+				<li><a href="#">문서</a></li>
+				<li><a href="#">일정</a></li>
+				<li class="menu-select"><a href="#">수신함</a></li>
 			</ul>
 		</div>
 	</ul>
@@ -50,11 +51,12 @@
 		</div>
 	</ul>
 </aside>
+
 <div class="main">
 	<div class="sub-nav">
 		<ul class="sub-navbar">
-			<li class="sub-nav-item-active"><a href="#">수신함</a></li>
-			<li class="sub-nav-item"><a class="active" href="#">발신함</a></li>
+			<li class="sub-nav-"><a href="#">수신함</a></li>
+			<li class="sub-nav-item-active"><a class="active" href="#">발신함</a></li>
 			</li>
 		</ul>
 	</div>
@@ -66,10 +68,9 @@
 		<li class="incoming-message">
 			<div class="message-header">
 				<div class="message-title">메세지 제목</div>
-				<div class="message-people">받은 사람 : 000</div>
+				<div class="message-people">받는 사람 : 000</div>
 				<div class="message-time">보낸 날짜 : 0000-00-00</div>
-				<div>
-					<button class="createbutton">삭제</button>
+				<div> <button class="deletebutton   ">삭제</button>
 				</div>
 			</div>
 			<div class="message-content">메세지 내용</div>

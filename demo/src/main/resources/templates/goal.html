@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <!-- 목표 리스트 창 -->
 
 <head>
@@ -15,15 +15,13 @@
 <header>
 	<nav>
 		<div class="nav-left">
-			<a th:href="@{/project/projectManagerList}">
-				<button id="exitButton">나가기</button>
-			</a>
+			<button id="exitButton">나가기</button>
 		</div>
 		<div class="nav-center">
-			<h1 id="projectName" th:text="${currentProject.getTitle()}"></h1>
+			<h1 id="projectName">Project Name</h1>
 		</div>
 		<div class="nav-right">
-			<p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
+			<p id="loggedInUser">사용자 이름</p>
 		</div>
 	</nav>
 </header>
@@ -31,8 +29,11 @@
 	<ul>
 		<div class="menu">
 			<ul>
-				<li><a th:href="@{/project/main}">홈</a></li>
-				<li><a th:href="@{/project/goals}">작업</a></li>
+				<li><a href="#">홈</a></li>
+				<li class="menu-select"><a href="#">목표</a></li>
+				<li><a href="#">작업</a></li>
+				<li><a href="#">문서</a></li>
+				<li><a href="#">일정</a></li>
 				<li><a href="#">수신함</a></li>
 			</ul>
 		</div>
@@ -40,8 +41,10 @@
 	<ul>
 		<div class="user-list">
 			<h2>프로젝트 멤버</h2>
-			<ul th:each="member : ${joinUsers}">
-				<li th:text="${member.getName()}"></li>
+			<ul>
+				<li>User 1</li>
+				<li>User 2</li>
+				<li>User 3</li>
 			</ul>
 		</div>
 		<div>
@@ -49,13 +52,14 @@
 		</div>
 	</ul>
 </aside>
+
+
 <div class="main">
 	<div class="sub-nav">
 		<ul class="sub-navbar">
-			<li class="sub-nav-item-active"><a class="active" href="/project/goals">목표</a></li>
-			<li class="sub-nav-item"><a href="/project/works">작업</a></li>
-			<li class="sub-nav-item"><a href="/project/document">문서</a></li>
-			<li class="sub-nav-item"><a href="#">달력</a></li>
+			<li class="sub-nav-item-active"><a class="active" href="#">전체 목표</a></li>
+			<li class="sub-nav-item"><a href="#">나의 목표</a></li>
+
 			</li>
 		</ul>
 	</div>
@@ -65,20 +69,27 @@
 	<div class="work">
 		<table>
 			<div class="table-head-list">
-				<h2 class="table-h2">목표 리스트</h2>
-				<div class="button-section">
-					<a th:href="@{/project/head/create}">
-						<button th:if="${auth == 1}" class="createbutton">새로 만들기</button>
-					</a>
-				</div>
+				<h2 class="table-h2">목표 > 전체 목표</h2>
+				<div class="button-section"><button class="createbutton">새로 만들기</button></div>
 			</div>
+			<thead>
+			<th>
+				목표 이름
+			</th>
+			<th>마감 기한</th>
+			<th>진행 상태</th>
+			</thead>
 			<tbody>
-			<tr th:each="head : ${headDtoList}">
-				<td class="table-name"><a th:href="@{/project/goal/headView/{id}(id=${head.getHeadId()})}"
-										  th:text="${head.getTitle()}"></a></td>
-				<td th:text="${#dates.format(head.getEndDay(), 'yyyy-MM-dd')}"></td>
-				<td th:if="${head.getCompletion() == 1}">완료</td>
-				<td th:if="${head.getCompletion() == 0}">진행중</td>
+			<tr>
+				<td class="table-name"><a>x</a></td>
+				<td>x</td>
+				<td>완료</td>
+			</tr>
+			
+			<tr>
+				<td><a>x</a></td>
+				<td>x</td>
+				<td>완료</td>
 			</tr>
 			</tbody>
 		</table>
