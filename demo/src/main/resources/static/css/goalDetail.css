@@ -8,12 +8,22 @@ ul {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 a {
     text-decoration: none;
 =======
 .content {
     margin-left: 240px;
 >>>>>>> upstream/master
+=======
+
+a {
+    text-decoration: none;
+
+.content {
+    margin-left: 240px;
+
+>>>>>>> origin/master
 }
 
 .container {
