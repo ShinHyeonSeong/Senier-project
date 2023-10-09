@@ -5,21 +5,22 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "log")
 public class LogEntity {
 
     @Id
-    @Column(name = "logId")
+    @Column(name = "log_id")
     private String logId;
 
-    @Column(name = "documentId")
+    @Column(name = "document_id")
     private String documentId;
 
-    @Column(name = "logContent")
+    @Column(name = "log_content")
     private String log;
 
-    @Column(name = "dateLog")
+    @Column(name = "date_log")
     private String dateLog;
 
-    @Column(name = "logType")
+    @Column(name = "log_type")
     private  String logType;
 }

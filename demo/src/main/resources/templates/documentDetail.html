@@ -19,14 +19,14 @@
 	<div class="content-container">
 		
 		<div class="documentEntity-section">
-			<h1 class="documentEntity-title" th:text="${documentEntity.title}">Title</h1>
+			<h1 class="documentEntity-title" th:text="${document.getTitle()}">Title</h1>
 			<div class="documentEntity-detail">
-				<div class="detail" th:text="${documentEntity.userName}">작성자명</div>
-				<div class="detail" th:text="${documentEntity.dateDocument}">2023 01 01</div>
+				<div class="detail" th:text="${document.getUserName()}">작성자명</div>
+				<div class="detail" th:text="${document.getDateDocument()}">2023 01 01</div>
 			</div>
 			<div class="horizon-divider"></div>
 			<div class="documentEntity-content">
-				<th:blockEntity th:each="blockEntity : ${blockEntityList}">
+				<th:blockEntity th:each="blockEntity : ${blockList}">
 					<div class="move_block">
 						<div th:id="${blockEntity.category}"
 							 th:if="${blockEntity.category == 'blockImage'}"

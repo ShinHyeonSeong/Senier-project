@@ -7,13 +7,14 @@ import java.io.Serializable;
 
 @Entity
 @Data
+@Table(name = "block")
 public class BlockEntity implements Serializable {
 
     @Id
-    @Column(name = "blockId")
+    @Column(name = "block_id")
     private String blockId;
 
-    @Column(name = "documentId")
+    @Column(name = "document_id")
     private String documentId;
 
     @Column(name = "index_num")
