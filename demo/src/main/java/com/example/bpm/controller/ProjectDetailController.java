@@ -110,19 +110,7 @@ public class ProjectDetailController {
         }
         return "head-create";
     }
-//
-//    // 하위 목표 생성 main
-//    @GetMapping("/project/detail/create")
-//    public String goCreateDetail(Model model, @RequestParam(value = "message", required = false) String message) {
-//        ProjectDto currentProject = getSessionProject();
-//        List<HeadDto> headDtoList = projectDetailSerivce.findHeadListByProject(currentProject);
-//        model.addAttribute("headDtoList", headDtoList);
-//        if (message != null) {
-//            model.addAttribute("message", message);
-//        }
-//        return "detail-create";
-//    }
-//
+
     // head 생성 메서드
     @PostMapping("/project/goal/createHead")
     public String createGoal(@RequestParam(value = "title") String title,
@@ -142,35 +130,6 @@ public class ProjectDetailController {
         HeadDto createHeadDto = projectDetailSerivce.createHead(title, startDay, deadline, discription, currentProject);
         return "redirect:/project/goals";
     }
-//
-//    // 디테일 생성 메서드
-//    @PostMapping("/project/goal/createDetail")
-//    public String createGoal(@RequestParam(value = "title") String title,
-//                             @RequestParam(value = "startDay") String startDay,
-//                             @RequestParam(value = "deadline") String deadline,
-//                             @RequestParam(value = "discription") String discription,
-//                             @RequestParam(value = "headId") Long headId,
-//                             RedirectAttributes rttr,
-//                             Model model) {
-//        ProjectDto currentProject = getSessionProject();
-//        log.info("목표 생성 컨트롤러 작동, ");
-//        String message = exceptionService.detailErrorCheck(title, startDay, deadline, headId);
-//        if (message != null) {
-//            log.info("예외 처리 결과 : " + message);
-//            rttr.addFlashAttribute("message", message);
-//            return "redirect:/project/detail/create";
-//        }
-//        if (headId == 0) {
-//            log.info("headDto == null");
-//            HeadDto createHeadDto = projectDetailSerivce.createHead(title, startDay, deadline, discription, currentProject);
-//        } else if (headId != 0) {
-//            HeadDto headDto = projectDetailSerivce.findHeadById(headId);
-//            log.info("headDto.get" + headDto.getHeadId());
-//            DetailDto createDetailDto = projectDetailSerivce.createDetail(title, startDay, deadline, discription, headDto, currentProject);
-//        }
-//        return "redirect:/project/goals";
-//    }
-//
     // head 상세창 이동 메서드
     @RequestMapping("/project/goal/headView/{id}")
     public String goHeadView(@PathVariable("id") Long id, Model model) {
@@ -187,19 +146,35 @@ public class ProjectDetailController {
         return "headView";
     }
 
-    // head 수정창 매핑 메서드
-    @RequestMapping("/project/goal/head/edit/{id}")
-    public String goEditHead(@PathVariable("id") Long headId,
-                             @RequestParam(value = "message", required = false) String message,
-                             Model model) {
-        if (message != null) {
-            model.addAttribute("message", message);
-        }
-        HeadDto headDto = projectDetailSerivce.findHeadById(headId);
-        model.addAttribute("headDto", headDto);
-        return "headEdit";
-    }
-
+//    // head 수정창 매핑 메서드
+//    @RequestMapping("/project/goal/head/edit/{id}")
+//    public String goEditHead(@PathVariable("id") Long headId,
+//                             @RequestParam(value = "message", required = false) String message,
+//                             Model model) {
+//        if (message != null) {
+//            model.addAttribute("message", message);
+//        }
+//        HeadDto headDto = projectDetailSerivce.findHeadById(headId);
+//        model.addAttribute("headDto", headDto);
+//        return "headEdit";
+//    }
+//
+//    // detail 수정창 매핑 메서드
+//    @RequestMapping("/project/goal/detail/edit/{id}")
+//    public String goEditDetail(@PathVariable("id") Long detailId,
+//                               @RequestParam(value = "message", required = false) String message,
+//                               Model model) {
+//
+//        DetailDto detailDto = projectDetailSerivce.findDetailById(detailId);
+//        ProjectDto currentProject = getSessionProject();
+//        List<HeadDto> headDtoList = projectDetailSerivce.findHeadListByProject(currentProject);
+//        if (message != null) {
+//            model.addAttribute("message", message);
+//        }
+//        model.addAttribute("detailDto", detailDto);
+//        model.addAttribute("headDtoList", headDtoList);
+//        return "detailEdit";
+//    }
 //
 //    // work 수정창 매핑 메서드
 //    @RequestMapping("/project/goal/work/edit/{id}")
@@ -240,27 +215,7 @@ public class ProjectDetailController {
 //        HeadDto headDto = projectDetailSerivce.editHead(title, startDay, deadline, discription, headId);
 //        return "redirect:/project/goals";
 //    }
-//
-//    // detail 수정 실행 메서드
-//    @PostMapping("/project/detail/edit")
-//    public String editDetail(@RequestParam(value = "title") String title,
-//                             @RequestParam(value = "startDay") String startDay,
-//                             @RequestParam(value = "deadline") String deadline,
-//                             @RequestParam(value = "discription") String discription,
-//                             @RequestParam(value = "headId") Long headId,
-//                             @RequestParam(value = "detailId") Long detailId,
-//                             RedirectAttributes rttr,
-//                             Model model) {
-//        String message = exceptionService.detailEditErrorCheck(title, startDay, deadline, headId);
-//        if (message != null) {
-//            log.info("예외 처리 결과 : " + message);
-//            rttr.addFlashAttribute("message", message);
-//            return "redirect:/project/goal/detail/edit/" + detailId;
-//        }
-//        DetailDto detailDto = projectDetailSerivce.editDetail(title, startDay, deadline, discription, headId, detailId);
-//        return "redirect:/project/goals";
-//    }
-//
+
 //    // work 수정 실행 메서드
 //    @PostMapping("/project/work/edit")
 //    public String editWork(@RequestParam(value = "title") String title,
@@ -485,19 +440,19 @@ public class ProjectDetailController {
 //
 //        return calendarService.getEventList(projectDto.getProjectId());
 //    }
-//
-//
-//    *//* - - - - - Message Contorller - - - - - - *//*
-//    @GetMapping("/recvMessageList")
-//    public String viewRecvMessage(HttpSession session, Model model) {
-//        UserDto userDto = getSessionUser();
-//        ProjectDto projectDto = getSessionProject();
-//        List<MessageDto> messageDtoList = messageService.recvMessage(userDto, projectDto);
-//
-//        model.addAttribute("List", messageDtoList);
-//        return "recvMessageList";
-//    }
-//
+
+
+    //* - - - - - Message Contorller - - - - - - *//*
+    @GetMapping("/recvMessageList")
+    public String viewRecvMessage(HttpSession session, Model model) {
+        UserDto userDto = getSessionUser();
+        ProjectDto projectDto = getSessionProject();
+        List<MessageDto> messageDtoList = messageService.recvMessage(userDto, projectDto);
+
+        model.addAttribute("List", messageDtoList);
+        return "recvMessageList";
+    }
+
 //    @GetMapping("/sendMessageList")
 //    public String viewSendMessage(HttpSession session, Model model) {
 //        UserDto userDto = getSessionUser();
@@ -508,30 +463,30 @@ public class ProjectDetailController {
 //
 //        return "sendMessageList";
 //    }
-//
-//    @GetMapping("/messageForm")
-//    public String sendMessageForm(Model model) {
-//        List<UserDto> userDtos = userService.findUserListByProjectId(getSessionProject().getProjectId());
-//        model.addAttribute("userList", userDtos);
-//        return "messageForm";
-//    }
-//
-//    @RequestMapping("/message/{id}")
-//    public String selectMessage(@PathVariable("id") Long id, Model model) {
-//        MessageDto messageDto = messageService.findMessage(id);
-//        model.addAttribute("message", messageDto);
-//
-//        return "messageDetail";
-//    }
-//
-//    @PostMapping("/sendMessage")
-//    public String sendMessage(@RequestParam(value = "title") String title,
-//                              @RequestParam(value = "content") String content,
-//                              @RequestParam(value = "recvName") String name,
-//                              HttpSession session) {
-//        log.info(name + "입니다.");
-//        messageService.sendMessage(title, content, getSessionUser(), name, getSessionProject());
-//        return "redirect:/sendMessageList";
-//    }
+
+    @GetMapping("/messageForm")
+    public String sendMessageForm(Model model) {
+        List<UserDto> userDtos = userService.findUserListByProjectId(getSessionProject().getProjectId());
+        model.addAttribute("userList", userDtos);
+        return "messageForm";
+    }
+
+    @RequestMapping("/message/{id}")
+    public String selectMessage(@PathVariable("id") Long id, Model model) {
+        MessageDto messageDto = messageService.findMessage(id);
+        model.addAttribute("message", messageDto);
+
+        return "messageDetail";
+    }
+
+    @PostMapping("/sendMessage")
+    public String sendMessage(@RequestParam(value = "title") String title,
+                              @RequestParam(value = "content") String content,
+                              @RequestParam(value = "recvName") String name,
+                              HttpSession session) {
+        log.info(name + "입니다.");
+        messageService.sendMessage(title, content, getSessionUser(), name, getSessionProject());
+        return "redirect:/sendMessageList";
+    }
 }
 

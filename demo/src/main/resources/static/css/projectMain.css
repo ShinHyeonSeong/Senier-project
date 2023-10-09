@@ -139,6 +139,16 @@ main {
     cursor: pointer;
     width: 100%;
 }
+.post-button:hover{
+    background-color: #384cc0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
 
 .post-user-child1 {
     display: flex;

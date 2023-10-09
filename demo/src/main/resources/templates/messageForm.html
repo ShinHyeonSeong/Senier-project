@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
+<!-- 메세지 생성 창 -->
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Compose Message</title>
 	<link rel="stylesheet" href="/css/sidebar.css">
-	<link rel="stylesheet" href="/css/messageForm.css">
+	<link rel="stylesheet" href="/css/createMessage.css">
 	<link rel="stylesheet" href="/css/sideNavbar.css">
 </head>
 
@@ -30,7 +30,10 @@
 		<div class="menu">
 			<ul>
 				<li><a href="#">홈</a></li>
+				<li><a href="#">목표</a></li>
 				<li><a href="#">작업</a></li>
+				<li><a href="#">문서</a></li>
+				<li><a href="#">일정</a></li>
 				<li class="menu-select"><a href="#">수신함</a></li>
 			</ul>
 		</div>
@@ -60,15 +63,17 @@
 	</div>
 </div>
 <div class="compose-container">
-	<form>
-		<div class="top-section">
-			<h1>메세지 보내기</h1>
-			<button class="send-button">보내기</button>
-		</div>
-		<input type="text" placeholder="제목" class="message-input">
-		<input type="text" placeholder="받는 사람" class="message-input">
-		<textarea placeholder="메세지 내용" class="message-textarea"></textarea>
-	</form>
+	<div class="main-section">
+		<form>
+			<div class="top-section">
+				<h1>메세지 보내기</h1>
+				<button class="send-button">보내기</button>
+			</div>
+			<input type="text" placeholder="제목" class="message-input">
+			<input type="text" placeholder="받는 사람" class="message-input">
+			<textarea placeholder="메세지 내용" class="message-textarea"></textarea>
+		</form>
+	</div>
 </div>
 </body>
 
