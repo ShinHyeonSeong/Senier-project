@@ -102,7 +102,6 @@ public class DocumentController {
     /// 새로운 문서를 만드는 작업<input th:hidden="true" th:name="workId" th:value="${workDto.getWorkId()}"/>
     @GetMapping("document/addDocument")
     public String postAddingDocument(@RequestParam("workId")Long workId , HttpSession session){
-        log.info("문서 추가" + workId);
         UserDto sessionUser = (UserDto) session.getAttribute("userInfo");
 
         String userUuid = sessionUser.getUuid();

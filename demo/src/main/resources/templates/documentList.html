@@ -121,10 +121,12 @@
                             <div class="document-detail">
                                 <div class="document-detail-info">
                                     <div class="detail-item">
-                                        <h4>상위 목표</h4> <a href="" th:text="${document.getHeadDto().getTitle()}">상위목표명</a>
+                                        <h4>상위 목표</h4> <a th:href="@{/project/goal/headView/{id}(id=${document.getHeadDto().getHeadId()})}"
+                                                          th:text="${document.getHeadDto().getTitle()}">상위목표명</a>
                                     </div>
                                     <div class="detail-item">
-                                        <h4>연결된 작업</h4> <a href="" th:text="${document.getWorkDto().getTitle()}">작업명</a>
+                                        <h4>연결된 작업</h4> <a th:href="@{/project/work/detail/{id}(id=${document.getWorkDto().getWorkId()})}"
+                                                           th:text="${document.getWorkDto().getTitle()}">작업명</a>
                                     </div>
                                     <div class="detail-item">
                                         <h4>작성자</h4> <a href="" th:text="${document.getDocumentDto().getUserName()}">작성자명</a>
@@ -135,9 +137,10 @@
                                     </div>
                                 </div>
                                 <div class= "document-detail-btn">
-                                    <a th:href="@{/document/write(id=${document.getDocumentDto().getDocumentId()})}"><button class="document-edit-btn">편집</button></a>
+                                    <a th:if="${auth == 0 || auth == 1}" th:href="@{/document/write(id=${document.getDocumentDto().getDocumentId()})}"><button class="document-edit-btn">편집</button></a>
                                     <form action="/document/delete" method="post">
-                                        <button class="document-delete-btn" type="submit">삭제</button>
+                                        <button th:if="${auth == 1 || sessionUser.getUuid().equals(document.getDocumentDto().getUuid())}"
+                                                class="document-delete-btn" type="submit">삭제</button>
                                         <input type="text" th:name="id" th:value="${document.getDocumentDto().getDocumentId()}" th:hidden="true">
                                     </form>
                                 </div>

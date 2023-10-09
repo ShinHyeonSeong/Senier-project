@@ -173,17 +173,14 @@ public class DocumentService {
         List<LogEntity> deleteLogListEntity = logRepository.findByDocumentId(documentId);
 
         workDocumentRepository.deleteAllByDocumentIdToWorkDocument_DocumentId(documentId);
-        log.info("workDocument 삭제 완료");
 
         for (BlockEntity blockEntity : deleteBlockListEntity) {
             blockRepository.delete(blockEntity);
         }
-        log.info("block 삭제 완료");
 
         for (LogEntity logEntity : deleteLogListEntity) {
             logRepository.delete(logEntity);
         }
-        log.info("log 삭제 완료");
 
         log.info("DocumentId = " + documentId);
         DocumentEntity documentEntity = documentRepository.findById(documentId).orElse(null);

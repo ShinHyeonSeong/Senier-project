@@ -72,7 +72,13 @@
             <p th:text="'마감기한 : ' + ${#dates.format(currentProject.getEndDay(), 'yyyy-MM-dd')}"></p>
         </div>
         <div class="buttons">
-            <button class="edit-button" th:if="${auth == 1}">목표 수정</button>
+            <a th:href="@{/project/head/completion/change/{id}{id}(id=${headDto.headId})}">
+                <button class="edit-button" th:if="${auth == 1 && headDto.completion == 0}">완료로 표시</button>
+            </a>
+            <a th:href="@{/project/head/completion/change/{id}(id=${headDto.headId})}">
+                <button class="edit-button" th:if="${auth == 1 && headDto.completion == 1}">진행중으로 표시</button>
+            </a>
+            <a href="/project/head/edit"><button class="edit-button" th:if="${auth == 1}">목표 수정</button></a>
             <button class="delete-button" th:if="${auth == 1}">목표 삭제</button>
         </div>
         <div class="related-tasks">

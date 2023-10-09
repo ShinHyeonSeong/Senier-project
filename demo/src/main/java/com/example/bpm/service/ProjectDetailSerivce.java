@@ -533,21 +533,37 @@ public class ProjectDetailSerivce {
     //////////////////////////////////////////////////////////////////
     // check Low completion
     //////////////////////////////////////////////////////////////////
-    @Transactional
-    public boolean checkCompletionHead(Long headId) {
-        HeadEntity headEntity = headRepository.findById(headId).get();
-        List<WorkEntity> workEntityList = workRepository.findAllByHeadIdToWork_HeadId(headId);
+    public void updateHeadCompletion(Long headId) {
+        HeadDto headDto = findHeadById(headId);
+        headDto.setCompletion((headDto.getCompletion() == 1) ? 0 : 1);
+        HeadEntity headEntity = headDto.toEntity();
+        headRepository.save(headEntity);
+    }
 
-        for (WorkEntity workEntity: workEntityList) {
-            if (workEntity.getCompletion() == 0){
-                headEntity.setCompletion(0);
-                headRepository.save(headEntity);
+    public void updateWorkCompletion(Long workId) {
+        WorkDto workDto = findWork(workId);
+        workDto.setCompletion((workDto.getCompletion() == 1) ? 0 : 1);
+        WorkEntity workEntity = workDto.toEntity();
+        workRepository.save(workEntity);
+
+        HeadEntity headEntity = workDto.getHeadIdToWork();
+        if (checkAllWorkCompleted(headEntity.getHeadId()) && headEntity.getCompletion() == 0) {
+            updateHeadCompletion(headEntity.getHeadId());
+        } else if (!checkAllWorkCompleted(headEntity.getHeadId()) && headEntity.getCompletion() == 1) {
+            updateHeadCompletion(headEntity.getHeadId());
+        }
+    }
+
+    public boolean checkAllWorkCompleted(Long headId) {
+        HeadDto headDto = findHeadById(headId);
+        List<WorkDto> workDtoList = new ArrayList<>();
+        workDtoList = findWorkListByHead(headDto);
+
+        for (WorkDto workDto : workDtoList) {
+            if (workDto.getCompletion() == 0) {
                 return false;
             }
         }
-
-        headEntity.setCompletion(1);
-        headRepository.save(headEntity);
         return true;
     }
 
