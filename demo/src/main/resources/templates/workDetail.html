@@ -56,11 +56,14 @@
 <div class="main">
 	<div class="sub-nav">
 		<ul class="sub-navbar">
+
 			<li class="sub-nav-item"><a href="#">리스트로 돌아가기</a></li>
+
 			</li>
 		</ul>
 	</div>
 </div>
+
 
 <div class="content">
 	<div class="container">
@@ -69,6 +72,7 @@
 				<h1 class="post-title" th:text="${workDto.getTitle()}">title</h1>
 				<a class="edit-button">Edit</a>
 				<a class="delete-button">Delete</a>
+
 			</div>
 			<div class="horizon-divider"></div>
 			<p class="post-content" th:text="${workDto.getDiscription()}">
@@ -128,6 +132,25 @@
 			<div class="horizon-divider"></div>
 			<button class="sub-create-button">문서 만들기</button>
 		
+		</div>
+		<div class="related-tasks">
+			<h2>작성된 문서</h2>
+			<ul class="task-list" th:each="workDocument : ${workDocumentDtoList}">
+				<li><a th:href="@{/document/work/view/{id}(id=${workDto.getWorkId()})}"
+
+						th:text="${workDocument.getDocumentIdToWorkDocumentEntity().getTitle()}"></a></li>
+			</ul>
+		</div>
+		<div class="buttons">
+			<a th:href="@{/document/addDocument(workId=${workDto.getWorkId()})}"><button class="edit-button">문서 작성</button> </a>
+			<a th:href="@{/project/work/completion/change/{id}(id=${workDto.workId})}">
+				<button class="edit-button" th:if="${auth == 1 && workDto.completion == 0}">완료로 표시</button>
+			</a>
+			<a th:href="@{/project/work/completion/change/{id}(id=${workDto.workId})}">
+				<button class="edit-button" th:if="${auth == 1 && workDto.completion == 1}">진행중으로 표시</button>
+			</a>
+			<button class="edit-button">작업 수정</button>
+			<button class="delete-button">작업 삭제</button>
 		</div>
 	</div>
 </div>

@@ -1,0 +1,253 @@
+/* Reset some default styles */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav {
+    background-color: #5161CE;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 48px;
+    border-bottom: 4px solid #33438F;
+}
+
+.main-nav button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: 2s;
+}
+
+.main-nav button:hover #back-button-hover {
+    opacity: 1;
+}
+
+.main-nav button:hover #back-button {
+    opacity: 0;
+}
+
+.back-button {
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+#back-button {
+    transition: 0.5s;
+}
+
+#back-button-hover {
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.title {
+    margin-left: 2rem;
+}
+
+.subtitle {
+    margin-left: 1rem;
+    margin-top: 0.3rem;
+    vertical-align: text-bottom;
+    color: rgb(150, 150, 150);
+}
+
+.content-container {
+    height: 100%;
+}
+
+/* content slide */
+
+.main-content {
+  margin-top: 80px;
+  margin-bottom: 100px;
+  width: 100%;
+}
+
+.slider {
+  margin: 0 auto;
+  max-width: 60%;
+  height: 900px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.slide_viewer {
+  height: 340px;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide_group {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.slide {
+  display: none;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.slide:first-child {
+  display: block;
+}
+
+.slide_buttons {
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+}
+
+a.slide_btn {
+  color: #474544;
+  font-size: 42px;
+  margin: 0 0.175em;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.slide_btn.active, .slide_btn:hover {
+  color: #428CC6;
+  cursor: pointer;
+}
+
+.directional_nav {
+  width: 100%;
+  height: 340px;
+  margin: 0 auto;
+  max-width: 100%;
+  position: fixed;
+  top: 28%;
+}
+
+.previous_btn {
+  bottom: 0;
+  left: 100px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+}
+
+.next_btn {
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  right: 100px;
+  top: 0;
+}
+
+.previous_btn, .next_btn {
+  cursor: pointer;
+  height: 65px;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  -moz-transition: opacity 0.4s ease-in-out;
+  -ms-transition: opacity 0.4s ease-in-out;
+  -o-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+  width: 65px;
+}
+
+.previous_btn:hover, .next_btn:hover {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 767px) {
+  .previous_btn {
+    left: 50px;
+  }
+  .next_btn {
+    right: 50px;
+  }
+}
+
+/* floating menu */
+.floating-menu {
+    position: fixed;
+    left: 91.5%;
+    top: 85%;
+  }
+  .btn1.is-primary1 {
+    width: 70px;
+    height: 70px;
+    z-index: 2;
+    border: 0;
+    font-size: 20px;
+    color: #FFF;
+    background: #5161CE;
+    opacity: 1;
+  }
+  .btn1.is-primary1:hover {
+      background: #33438F;
+  }
+  
+  .btn1.is-primary1.is-activate {
+    box-shadow: 0 0 0;
+    transform: translateY(3px);
+  }
+  
+  .btn1 span {
+    display: block;
+    width: 20px;
+    height: 20px;
+    transition: all .275s;
+  }
+  
+  .btn1.is-primary1.is-activate span {
+    transform: rotate(1turn);
+  }
+  
+  .is-floating1 {
+    position: absolute;
+    left: 0; top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    color: #949DD7;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: .8;
+    background: #FFF;
+    border-radius: 50%;
+    box-shadow: 0 10px 10px -7px rgba(153,153,153,.35);
+    cursor: pointer;
+    transition: all .275s;
+    border: 1px solid #eee;
+    opacity: 0;
+  }
+  
+  .is-floating1:hover {
+    background: #F2F2F2;
+  }
+  
+  .is-activate ~ .is-floating1 {
+    opacity: 1;
+    transform: translateX(-125%) translateY(100%);
+  }
+  
+  .is-activate ~ .is-floating1:nth-of-type(2) {
+    opacity: 1;
+    transform: translateX(-125%) translateY(-80%);
+  }
+  
+  .is-activate ~ .is-floating1:nth-of-type(3) {
+    opacity: 1;
+    transform: translateX(-125%) translateY(-280%);
+  }
+  

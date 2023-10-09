@@ -55,12 +55,43 @@
 
 <div class="main">
 	<div class="sub-nav">
-		<ul class="sub-navbar">
+
 			<li class="sub-nav-item"><a href="#">리스트로 돌아가기</a></li>
+
 			</li>
 		</ul>
 	</div>
 </div>
+
+
+<div class="container">
+    <div class="left-pane">
+        <h1 class="post-title" th:text="${currentProject.getTitle()}"></h1>
+        <p class="post-content" th:text="${currentProject.getSubtitle()}">
+        </p>
+    </div>
+    <div class="right-pane">
+        <div class="date-info">
+            <p th:text="'시작기한 : ' + ${#dates.format(currentProject.getStartDay(), 'yyyy-MM-dd')}"></p>
+            <p th:text="'마감기한 : ' + ${#dates.format(currentProject.getEndDay(), 'yyyy-MM-dd')}"></p>
+        </div>
+        <div class="buttons">
+            <a th:href="@{/project/head/completion/change/{id}{id}(id=${headDto.headId})}">
+                <button class="edit-button" th:if="${auth == 1 && headDto.completion == 0}">완료로 표시</button>
+            </a>
+            <a th:href="@{/project/head/completion/change/{id}(id=${headDto.headId})}">
+                <button class="edit-button" th:if="${auth == 1 && headDto.completion == 1}">진행중으로 표시</button>
+            </a>
+            <a href="/project/head/edit"><button class="edit-button" th:if="${auth == 1}">목표 수정</button></a>
+            <button class="delete-button" th:if="${auth == 1}">목표 삭제</button>
+        </div>
+        <div class="related-tasks">
+            <h2>Related Tasks</h2>
+            <ul class="task-list" th:each="work : ${workDtoList}">
+                <li><a href="#" th:text="${work.getTitle()}"></a></li>
+            </ul>
+        </div>
+    </div>
 
 <div class="content">
 	<div class="container">
@@ -130,6 +161,7 @@
 		
 		</div>
 	</div>
+
 </div>
 </body>
 

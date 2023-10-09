@@ -15,5 +15,7 @@ public interface DocumentRepository extends JpaRepository<DocumentEntity, String
 
     List<DocumentEntity> findByUuid(String id);
 
+    DocumentEntity deleteByDocumentId(String id);
+
 
 }
