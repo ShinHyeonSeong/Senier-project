@@ -42,9 +42,9 @@ public class MessageService {
     }
 
     /* recv message */
-    public List<MessageDto> recvMessage(UserDto recvUser, ProjectDto projectDto) {
+    public List<MessageDto> recvMessage(UserDto sessionUser, ProjectDto projectDto) {
 
-        List<MessageEntity> recvMessageList = messageRepository.findAllByProjectIdToMessage_ProjectIdAndUserIdToMessageRecv_Uuid(projectDto.getProjectId() ,recvUser.getUuid());
+        List<MessageEntity> recvMessageList = messageRepository.findAllByProjectIdToMessage_ProjectIdAndUserIdToMessageRecv_Uuid(projectDto.getProjectId() ,sessionUser.getUuid());
         List<MessageDto> messageDtoList = new ArrayList<>();
 
         for (MessageEntity messageEntity : recvMessageList) {

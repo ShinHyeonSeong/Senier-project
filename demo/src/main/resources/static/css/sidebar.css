@@ -15,16 +15,17 @@ nav {
     border-bottom: 1px solid #ddd;
 }
 
-nav button {
+#exitButton {
     background-color: transparent;
     border: none;
     color: #fff;
     cursor: pointer;
     padding: 10px 20px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
 }
 
-nav button:hover {
+#exitButton:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -71,7 +72,7 @@ nav button:hover {
 .user-list {
     color: #fff;
     border-top: solid 1px #38438F;
-    height: 300px;
+    max-height: 300px;
 }
 
 .user-list h2 {
