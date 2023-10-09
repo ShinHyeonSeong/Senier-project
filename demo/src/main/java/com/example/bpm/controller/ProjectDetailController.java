@@ -454,16 +454,16 @@ public class ProjectDetailController {
         return "recvMessageList";
     }
 
-    @GetMapping("/sendMessageList")
-    public String viewSendMessage(HttpSession session, Model model) {
-        UserDto userDto = getSessionUser();
-        ProjectDto projectDto = getSessionProject();
-        List<MessageDto> messageDtoList = messageService.selectAllSend(userDto, projectDto);
-
-        model.addAttribute("List", messageDtoList);
-
-        return "sendMessageList";
-    }
+//    @GetMapping("/sendMessageList")
+//    public String viewSendMessage(HttpSession session, Model model) {
+//        UserDto userDto = getSessionUser();
+//        ProjectDto projectDto = getSessionProject();
+//        List<MessageDto> messageDtoList = messageService.selectAllSend(userDto, projectDto);
+//
+//        model.addAttribute("List", messageDtoList);
+//
+//        return "sendMessageList";
+//    }
 
     @GetMapping("/messageForm")
     public String sendMessageForm(Model model) {
