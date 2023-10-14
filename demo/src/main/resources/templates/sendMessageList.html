@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Compose Message</title>
-	<link rel="stylesheet" href="css/messageList.css">
-	<link rel="stylesheet" href="css/sidebar.css">
-	<link rel="stylesheet" href="css/sideNavbar.css">
+	<link rel="stylesheet" href="/css/messageList.css">
+	<link rel="stylesheet" href="/css/sidebar.css">
+	<link rel="stylesheet" href="/css/sideNavbar.css">
 </head>
 
 <body>
 <header>
 	<nav>
 		<div class="nav-left">
-			<button id="exitButton">나가기</button>
+			<a id="exitButton" href="/project/projectAllList">나가기</a>
 		</div>
 		<div class="nav-center">
-			<h1 id="projectName">Project Name</h1>
+			<h1 id="projectName" th:text="${projectDto.getTitle()}"></h1>
 		</div>
 		<div class="nav-right">
-			<p id="loggedInUser">사용자 이름</p>
+			<p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
 		</div>
 	</nav>
 </header>
@@ -28,22 +27,20 @@
 	<ul>
 		<div class="menu">
 			<ul>
-				<li><a href="#">홈</a></li>
-				<li><a href="#">목표</a></li>
-				<li><a href="#">작업</a></li>
-				<li><a href="#">문서</a></li>
-				<li><a href="#">일정</a></li>
-				<li class="menu-select"><a href="#">수신함</a></li>
+				<li><a th:href="@{/project/main}">홈</a></li>
+				<li><a href="/project/goals">목표</a></li>
+				<li><a href="/project/works">작업</a></li>
+				<li><a href="/project/document">문서</a></li>
+				<li><a href="/project/calender">일정</a></li>
+				<li class="menu-select"><a href="/project/recvMessageList">수신함</a></li>
 			</ul>
 		</div>
 	</ul>
 	<ul>
 		<div class="user-list">
 			<h2>프로젝트 멤버</h2>
-			<ul>
-				<li>User 1</li>
-				<li>User 2</li>
-				<li>User 3</li>
+			<ul th:each="users : ${joinUsers}">
+				<li th:text="${users.getName()}"></li>
 			</ul>
 		</div>
 		<div>
@@ -55,29 +52,40 @@
 <div class="main">
 	<div class="sub-nav">
 		<ul class="sub-navbar">
-			<li class="sub-nav-"><a href="#">수신함</a></li>
-			<li class="sub-nav-item-active"><a class="active" href="#">발신함</a></li>
+			<li class="sub-nav-item"><a href="/project/recvMessageList">수신함</a></li>
+			<li class="sub-nav-item-active"><a class="active" href="/project/sendMessageList">발신함</a></li>
 			</li>
 		</ul>
 	</div>
 </div>
 <div class="content-container">
-	<button class="button-section">메세지 보내기</button>
-	
+<div class="content-header">
+	<h2>메세지 > 발신함 </h2>
+	<button onclick="location.href='/project/messageForm'" class="button-section">메세지 보내기</button>
+</div>
 	<ul class="message-list">
-		<li class="incoming-message">
+		<li class="incoming-message" th:each="sendMessage:${List}">
 			<div class="message-header">
-				<div class="message-title">메세지 제목</div>
-				<div class="message-people">받는 사람 : 000</div>
-				<div class="message-time">보낸 날짜 : 0000-00-00</div>
-				<div> <button class="deletebutton   ">삭제</button>
+				<a th:href="@{/project/sendMessageList/{id}(id=${sendMessage.getMessageId()})}"
+				   class="message-title"
+				   th:text="${sendMessage.getTitle()}"></a>
+				<div class="message-people"
+					 th:text="'받는 사람 : ' + ${sendMessage.getUserIdToMessageRecv().getName()}">
+				</div>
+				<div class="message-time"
+					 th:text="'보낸 날짜 : ' + ${#dates.format(sendMessage.getDate(), 'yyyy-MM-dd')}"></div>
+				<div>
+					<a th:href= "@{/project/message/delete/{id}(id=${sendMessage.getMessageId()})}"
+					class="delete-button" style="font-color: #999999">삭제
+					</a>
 				</div>
 			</div>
-			<div class="message-content">메세지 내용</div>
+			<a th:href="@{/project/sendMessageList/{id}(id=${sendMessage.getMessageId()})}" class="message-content"
+			   th:text="${sendMessage.getContent()}">메세지 내용</a>
+			</a>
 		</li>
 	</ul>
 </div>
-
 
 </body>
 

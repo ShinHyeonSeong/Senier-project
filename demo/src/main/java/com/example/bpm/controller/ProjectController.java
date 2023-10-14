@@ -4,9 +4,11 @@ import com.example.bpm.dto.document.DocumentDto;
 import com.example.bpm.dto.project.HeadDto;
 import com.example.bpm.dto.project.ProjectDto;
 import com.example.bpm.dto.project.WorkDto;
+import com.example.bpm.dto.project.relation.ProjectRoleDto;
 import com.example.bpm.dto.project.request.ProjectRequestDto;
 import com.example.bpm.dto.user.UserDto;
 import com.example.bpm.repository.UserRepository;
+import com.example.bpm.service.DocumentService;
 import com.example.bpm.service.ProjectDetailSerivce;
 import com.example.bpm.service.ProjectSerivce;
 //import jakarta.servlet.http.HttpSession;
@@ -19,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,6 +37,8 @@ public class ProjectController {
     private UserRepository userRepository;
     @Autowired
     private ProjectDetailSerivce projectDetailSerivce;
+    @Autowired
+    private DocumentService documentService;
 
     HttpSession session;
 
@@ -67,9 +72,17 @@ public class ProjectController {
         //세션에서 현재 로그인 되어있는 유저의 정보를 가져온다
         UserDto sessionUser = (UserDto) session.getAttribute("userInfo");
         //UUID를 활용하여 권한자 / 비권한자 프로젝트 리스트를 불러온다
-        List<ProjectDto> ManagerToProjectList = projectSerivce.findProjectListRoleManager(sessionUser.getUuid());
+        List<ProjectDto> ManagerToProjectList = projectSerivce.findProjectList(sessionUser.getUuid());
+        List<ProjectRoleDto> projectRoleDtoList = new ArrayList<>();
+
+        if (!(ManagerToProjectList == null)) {
+            for (ProjectDto projectDto : ManagerToProjectList) {
+                projectRoleDtoList.add(projectDetailSerivce.findProjectManager(projectDto.getProjectId()));
+            }
+        }
         model.addAttribute("user", sessionUser);
         model.addAttribute("managerList", ManagerToProjectList);
+        model.addAttribute("projectRoleList", projectRoleDtoList);
 
         List<ProjectRequestDto> requestDtos = projectSerivce.findAllProjectRequestRecv(sessionUser);
         if (requestDtos.isEmpty()) {
@@ -118,8 +131,15 @@ public class ProjectController {
     @GetMapping("/project/projectAllList")
     public String projectAllList(Model model) {
         UserDto sessionUser = (UserDto) session.getAttribute("userInfo");
+
+        List<ProjectDto> AllProjectList = projectSerivce.findProjectListRoleNot(sessionUser.getUuid());
+        List<ProjectRoleDto> projectRoleDtoList = new ArrayList<>();
+        for (ProjectDto projectDto : AllProjectList) {
+            projectRoleDtoList.add(projectDetailSerivce.findProjectManager(projectDto.getProjectId()));
+        }
+
         model.addAttribute("user", sessionUser);
-        List<ProjectDto> AllProjectList = projectSerivce.findAllProjectList();
+        model.addAttribute("projectRoleList", projectRoleDtoList);
         model.addAttribute("projectAllList", AllProjectList);
         List<ProjectRequestDto> requestDtos = projectSerivce.findAllProjectRequestRecv(sessionUser);
         if (requestDtos.isEmpty()) {
@@ -174,14 +194,22 @@ public class ProjectController {
         checkAuth();
         Long auth = getSessionAuth();
 
+        projectDetailSerivce.completionCheckByDate(presentDto);
+        List<DocumentDto> documentDtoList = documentService.findDocumentListByProjectId(id);
+
         // 완료, 미완 헤드 수
         int progressHead = projectDetailSerivce.countProgressHead(headDtoList);
         int completeHead = headDtoList.size() - progressHead;
 
+        // 완료 진척도
+        double percentage = projectDetailSerivce.getProjectProgressPercent(presentDto);
+
+        model.addAttribute("per", percentage);
         model.addAttribute("auth", auth);
         model.addAttribute("projectDto", presentDto);
         model.addAttribute("sessionUser", userDto);
         model.addAttribute("joinUsers", userDtoList);
+        model.addAttribute("documentDtoList", documentDtoList);
         model.addAttribute("headDtoList", headDtoList);
         model.addAttribute("progressHead", progressHead);
         model.addAttribute("completeHead", completeHead);
@@ -195,39 +223,73 @@ public class ProjectController {
             model.addAttribute("progressWork", progressWork);
             model.addAttribute("completeWork", completeWork);
             return "projectMain";
+        } else if (getSessionAuth() == 2) {
+            List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByProject(presentDto);
+            int progressWork = projectDetailSerivce.countProgressWork(workDtoList);
+            int completeWork = workDtoList.size() - progressWork;
+
+            model.addAttribute("workDtoList", workDtoList);
+            model.addAttribute("progressWork", progressWork);
+            model.addAttribute("completeWork", completeWork);
+
+            return "onlyReadPage";
         }
-//        else if (getSessionAuth() == 2) {
-//            List<DetailDto> detailDtoList = projectDetailSerivce.findDetailListByProject(projectSerivce.findProject(id));
-//            List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByProject(presentDto);
-//            List<DocumentDto> documentDtoList = projectDetailSerivce.findDocumentListByWorkList(workDtoList);
-//
-//            model.addAttribute("detailDtoList", detailDtoList);
-//            model.addAttribute("workDtoList", workDtoList);
-//            model.addAttribute("documentDtoList", documentDtoList);
-//
-//            return "onlyReadPage";
-//        }
         //권한이 없습니다 알람창 띄우기
         return null;
     }
 
-//    //전체 프로젝트 리스트에서 프로젝트 선택 시 해당 소개, 목표,
-//    @RequestMapping("/projectAll/{id}")
-//    public String selectAllProject(@PathVariable("id") Long id, HttpSession session, Model model) {
-//        ProjectDto presentDto = projectSerivce.selectProject(id);
-//        List<UserDto> userDtoList = userService.searchUserToProject(id);
-//        List<HeadDto> headDtoList = projectDetailSerivce.selectAllHead(projectSerivce.selectProject(id));
-//        List<DetailDto> detailDtoList = projectDetailSerivce.selectAllDetailForProject(projectSerivce.selectProject(id));
-//        List<WorkDto> workDtoList = projectDetailSerivce.selectAllWorkForProject(presentDto);
-//        List<DocumentDto> documentDtoList = projectDetailSerivce.selectAllDocumentForWorkList(workDtoList);
-//
-//        model.addAttribute("projectIntro", presentDto.getSubtitle());
-//        model.addAttribute("userList", userDtoList);
-//        model.addAttribute("headList", headDtoList);
-//        model.addAttribute("detailList", detailDtoList);
-//
-//        return "onlyReadPage";
-//    }
+    //전체 프로젝트 리스트에서 프로젝트 선택 시 해당 소개, 목표,
+    @RequestMapping("/projectAll/{id}")
+    public String selectAllProject(@PathVariable("id") Long id, HttpSession session, Model model) {
+        UserDto userDto = getSessionUser();
+        ProjectDto presentDto = projectSerivce.findProject(id);
+        List<UserDto> userDtoList = userService.findUserListByProjectId(id);
+        List<HeadDto> headDtoList = projectDetailSerivce.findHeadListByProject(presentDto);
+
+        session.removeAttribute("currentProject");
+        session.setAttribute("currentProject", presentDto);
+        checkAuth();
+        Long auth = getSessionAuth();
+
+        projectDetailSerivce.completionCheckByDate(presentDto);
+        List<DocumentDto> documentDtoList = documentService.findDocumentListByProjectId(id);
+
+        // 완료, 미완 헤드 수
+        int progressHead = projectDetailSerivce.countProgressHead(headDtoList);
+        int completeHead = headDtoList.size() - progressHead;
+
+        model.addAttribute("auth", auth);
+        model.addAttribute("projectDto", presentDto);
+        model.addAttribute("sessionUser", userDto);
+        model.addAttribute("joinUsers", userDtoList);
+        model.addAttribute("documentDtoList", documentDtoList);
+        model.addAttribute("headDtoList", headDtoList);
+        model.addAttribute("progressHead", progressHead);
+        model.addAttribute("completeHead", completeHead);
+
+        if (getSessionAuth() != 2) {
+            List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByProject(presentDto);
+            int progressWork = projectDetailSerivce.countProgressWork(workDtoList);
+            int completeWork = workDtoList.size() - progressWork;
+
+            model.addAttribute("workDtoList", workDtoList);
+            model.addAttribute("progressWork", progressWork);
+            model.addAttribute("completeWork", completeWork);
+            return "projectMain";
+        } else if (getSessionAuth() == 2) {
+            List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByProject(presentDto);
+            int progressWork = projectDetailSerivce.countProgressWork(workDtoList);
+            int completeWork = workDtoList.size() - progressWork;
+
+            model.addAttribute("workDtoList", workDtoList);
+            model.addAttribute("progressWork", progressWork);
+            model.addAttribute("completeWork", completeWork);
+
+            return "onlyReadPage";
+        }
+        return null;
+        //권한이 없습니다 알람창 띄우기
+    }
 
 
     // 프로젝트 초대 확인창
@@ -251,10 +313,8 @@ public class ProjectController {
     @RequestMapping("/project/invite/{id}")
     public String sendInvite(@PathVariable("id") String uuid, HttpSession session, Model model) {
         UserDto sendUser = (UserDto) session.getAttribute("userInfo");
-        UserDto recvUser = new UserDto();
-        recvUser.insertEntity(userRepository.findById(uuid).orElse(null));
         ProjectDto projectDto = (ProjectDto) session.getAttribute("currentProject");
-        projectSerivce.sendInvite(sendUser.getUuid(), recvUser.getUuid(), projectDto.getProjectId());
+        projectSerivce.sendInvite(sendUser.getUuid(), uuid, projectDto.getProjectId());
         return "redirect:/user/search";
     }
 

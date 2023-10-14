@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -14,36 +15,33 @@
 <header>
 	<nav>
 		<div class="nav-left">
-			<button id="exitButton">나가기</button>
+			<a id="exitButton" href="/project/projectAllList">나가기</a>
 		</div>
 		<div class="nav-center">
-			<h1 id="projectName">Project Name</h1>
+			<h1 id="projectName" th:text="${projectDto.getTitle()}"></h1>
 		</div>
 		<div class="nav-right">
-			<p id="loggedInUser">사용자 이름</p>
-		</div>
+			<p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
 	</nav>
 </header>
 <aside class="sidebar">
 	<ul>
 		<div class="menu">
 			<ul>
-				<li><a href="#">홈</a></li>
-				<li><a href="#">목표</a></li>
-				<li><a href="#">작업</a></li>
-				<li><a href="#">문서</a></li>
-				<li><a href="#">일정</a></li>
-				<li class="menu-select"><a href="#">수신함</a></li>
+				<li><a th:href="@{/project/main}">홈</a></li>
+				<li><a href="/project/goals">목표</a></li>
+				<li><a href="/project/works">작업</a></li>
+				<li><a href="/project/document">문서</a></li>
+				<li><a href="/project/calender">일정</a></li>
+				<li class="menu-select"><a href="/project/recvMessageList">수신함</a></li>
 			</ul>
 		</div>
 	</ul>
 	<ul>
 		<div class="user-list">
 			<h2>프로젝트 멤버</h2>
-			<ul>
-				<li>User 1</li>
-				<li>User 2</li>
-				<li>User 3</li>
+			<ul th:each="users : ${joinUsers}">
+				<li th:text="${users.getName()}"></li>
 			</ul>
 		</div>
 		<div>
@@ -54,8 +52,8 @@
 <div class="main">
 	<div class="sub-nav">
 		<ul class="sub-navbar">
-			<li class="sub-nav-item-active"><a class="active" href="#">수신함</a></li>
-			<li class="sub-nav-item"><a href="#">발신함</a></li>
+			<li class="sub-nav-item-active"><a class="active" href="/project/recvMessageList">수신함</a></li>
+			<li class="sub-nav-item"><a href="/project/sendMessageList">발신함</a></li>
 			</li>
 		</ul>
 	</div>
@@ -64,16 +62,16 @@
 <div class="main-container">
 	<div class="message-container">
 		<div class="message-header">
-			<h1>메세지 제목</h1>
+			<h1 th:text="${message.getTitle()}">메세지 제목</h1>
 		</div>
 		<div class="message-content">
 			<div class="message-info">
-				<p class="message-sender">보낸 사람: <span>John Doe</span></p>
-				<p class="message-date">받은 날짜: <span>Date & Time</span></p>
+				<p class="message-sender">보낸 사람:
+					<span th:text="${message.getUserIdToMessageSend().getName()}">John Doe</span></p>
+				<p class="message-date">받은 날짜: <span th:text="${#dates.format(message.getDate(), 'yyyy-MM-dd')}">Date & Time</span></p>
 			</div>
-			<div class="message-text">
-				<p>메세지 내용.메세지 내용.메세지 내용.메세지 내용.메세지 내용.메세지 내용.
-					메세지 내용.메세지 내용.메세지 내용.
+			<div class="message-text" >
+				<p th:text="${message.getContent()}">
 				</p>
 			</div>
 		</div>

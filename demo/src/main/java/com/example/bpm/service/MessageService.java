@@ -11,6 +11,7 @@ import com.example.bpm.repository.ProjectRepository;
 import com.example.bpm.repository.UserRepository;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,10 +42,24 @@ public class MessageService {
         messageRepository.save(messageDto.toEntity());
     }
 
-    /* recv message */
-    public List<MessageDto> recvMessage(UserDto sessionUser, ProjectDto projectDto) {
+    public List<MessageDto> sendMessageList(UserDto sessionUser, ProjectDto projectDto) {
+        List<MessageEntity> sendMessageList = messageRepository.findAllByProjectIdToMessage_ProjectIdAndUserIdToMessageSend_Uuid(projectDto.getProjectId(), sessionUser.getUuid());
+        List<MessageDto> messageDtoList = new ArrayList<>();
 
-        List<MessageEntity> recvMessageList = messageRepository.findAllByProjectIdToMessage_ProjectIdAndUserIdToMessageRecv_Uuid(projectDto.getProjectId() ,sessionUser.getUuid());
+        for (MessageEntity messageEntity : sendMessageList) {
+            MessageDto messageDto = new MessageDto();
+            messageDto.insertEntity(messageEntity);
+            messageDtoList.add(messageDto);
+        }
+
+        return messageDtoList;
+
+    }
+
+    /* recv message */
+    public List<MessageDto> recvMessageList(UserDto sessionUser, ProjectDto projectDto) {
+
+        List<MessageEntity> recvMessageList = messageRepository.findAllByProjectIdToMessage_ProjectIdAndUserIdToMessageRecv_Uuid(projectDto.getProjectId(), sessionUser.getUuid());
         List<MessageDto> messageDtoList = new ArrayList<>();
 
         for (MessageEntity messageEntity : recvMessageList) {
@@ -67,9 +82,11 @@ public class MessageService {
         return messageDto;
     }
 
-    public void deleteMessage(Long id){
 
-        MessageEntity messageEntity = messageRepository.findById(id).get();
+    /*delete message*/
+    public void deleteMessage(Long messageId) {
+
+        MessageEntity messageEntity = messageRepository.findById(messageId).get();
 
         messageRepository.delete(messageEntity);
     }

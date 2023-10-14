@@ -28,4 +28,7 @@ public interface ProjectRoleRepository extends JpaRepository<ProjectRoleEntity, 
 
     @Transactional
     public void deleteAllByProjectIdInRole_ProjectId(Long projectId);
+
+    @Transactional
+    public void deleteAllByProjectIdInRole_ProjectIdAndUuidInRole_Uuid(Long id, String uuid);
 }

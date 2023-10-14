@@ -23,49 +23,12 @@ body {
     height: 100%;
 }
 
-.main {
+.content {
     margin-left: 180px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.main-nav {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
-    background-color: #fff;
-}
-
-.main-nav ul {
-    list-style-type: none;
-    padding: 0;
-    background-color: white;
-    color: #0747A6FF;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 50px;
-}
-
-.main-nav ul li {
-    margin-right: 80px;
-    border-bottom: 3px solid #0747A6FF;
-}
-
-.main-nav a {
-    text-decoration: none;
-    color: #0747A6FF;
-    /* Change link text color to blue */
-    font-weight: bold;
-    font-size: 18px;
-    /* Increase the text size */
-}
-
-.main-nav ul li :hover {
-    border-bottom: 4px solid #48a1ff;
-    color: #48a1ff;
 }
 
 .document-list {
@@ -79,7 +42,6 @@ body {
     align-items: center;
     width: 100%;
     height: 100px;
-    margin-top: 50px;
 }
 
 .document-list-title {
@@ -90,304 +52,95 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 
-/* select box */
-.brd {
-    border: 1px solid #e2eded;
-    border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
-}
-
-#document-list-select {
+/* Dropdown menu */
+.dropdown {
+    width: 230px;
+    display: inline-block;
+    margin-right: 10px;
     position: relative;
-    width: 200px;
-    height: 42px;
-    z-index: 1;
-    margin-right: 30px;
 }
-
-#select-button {
-    position: relative;
-    height: 16px;
-    padding: 12px 14px;
-    background-color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#options-view-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 3;
-}
-
-#selected-value {
-    font-size: 16px;
-    line-height: 1;
-    margin-right: 26px;
-}
-
-.option i {
-    width: 16px;
-    height: 16px;
-}
-
-.option,
-.label {
-    color: #2d3667;
-    font-size: 16px;
-}
-
-#chevrons {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 12px;
-    padding: 9px 14px;
-}
-
-#chevrons i {
-    display: block;
-    height: 50%;
-    color: #d1dede;
-    font-size: 12px;
-    text-align: right;
-}
-
-#options-view-button:checked+#select-button #chevrons i {
-    color: #2d3667;
-}
-
-.options {
-    position: absolute;
-    left: 0;
-    width: 250px;
-}
-
-#options {
-    position: absolute;
-    top: 42px;
-    right: 0;
-    left: 0;
-    width: 198px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 4px;
-}
-
-#options-view-button:checked~#options {
-    border: 1px solid #e2eded;
-    border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
-}
-
-.option {
-    position: relative;
-    line-height: 1;
-    transition: 0.3s ease all;
-    z-index: 2;
-}
-
-.option i {
-    position: absolute;
-    left: 14px;
-    padding: 0;
+.dropdown.toggle > input {
     display: none;
 }
-
-#options-view-button:checked~#options .option i {
-    display: block;
-    padding: 12px 0;
+.dropdown > a, .dropdown.toggle > label {
+    border-radius: 2px;
+    box-shadow: 0 6px 5px -5px rgba(0,0,0,0.3);
 }
-
-.label {
-    display: none;
-    padding: 0;
-    margin-left: 27px;
-}
-
-#options-view-button:checked~#options .label {
-    display: block;
-    padding: 12px 14px;
-}
-
-.s-c {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 50%;
-}
-
-.s-c.top {
-    top: 0;
-}
-
-.s-c.bottom {
-    bottom: 0;
-}
-
-input[type="radio"] {
-    position: absolute;
-    right: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    margin: 0;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.s-c:hover~i {
-    color: #fff;
-    opacity: 0;
-}
-
-.s-c:hover {
-    height: 100%;
-    z-index: 1;
-}
-
-.s-c.bottom:hover+i {
-    bottom: -25px;
-    animation: moveup 0.3s ease 0.1s forwards;
-}
-
-.s-c.top:hover~i {
-    top: -25px;
-    animation: movedown 0.3s ease 0.1s forwards;
-}
-
-@keyframes moveup {
-    0% {
-        bottom: -25px;
-        opacity: 0;
-    }
-
-    100% {
-        bottom: 0;
-        opacity: 1;
-    }
-}
-
-@keyframes movedown {
-    0% {
-        top: -25px;
-        opacity: 0;
-    }
-
-    100% {
-        top: 0;
-        opacity: 1;
-    }
-}
-
-.label {
-    transition: 0.3s ease all;
-}
-
-.opt-val {
-    position: absolute;
-    left: 14px;
-    width: 217px;
-    height: 21px;
-    opacity: 0;
-    background-color: #fff;
-    transform: scale(0);
-}
-
-.option input[type="radio"]:checked~.opt-val {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.option input[type="radio"]:checked~i {
-    top: 0;
-    bottom: auto;
-    opacity: 1;
-    animation: unset;
-}
-
-.option input[type="radio"]:checked~i,
-.option input[type="radio"]:checked~.label {
-    color: #fff;
-}
-
-.option input[type="radio"]:checked~.label:before {
+.dropdown > a::after, .dropdown.toggle > label::after {
     content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
+    float: right;
+    margin: 15px 15px 0 0;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid #CCC;
 }
-
-#options-view-button:not(:checked)~#options .option input[type="radio"]:checked~.opt-val {
-    top: -30px;
-}
-
-.option:nth-child(1) input[type="radio"]:checked~.label:before {
-    background-color: #1F254F;
-    border-radius: 4px 4px 0 0;
-}
-
-.option:nth-child(1) input[type="radio"]:checked~.opt-val {
-    top: -31px;
-}
-
-.option:nth-child(2) input[type="radio"]:checked~.label:before {
-    background-color: #3D499C;
-}
-
-.option:nth-child(2) input[type="radio"]:checked~.opt-val {
-    top: -71px;
-}
-
-.option .fa-users {
-    color: #1F254F;
-}
-
-.option .fa-user {
-    color: #3D499C;
-}
-
-#option-bg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 40px;
-    transition: 0.3s ease all;
-    z-index: 1;
-    display: none;
-}
-
-#options-view-button:checked~#options #option-bg {
+.dropdown ul {
+    list-style-type: none;
     display: block;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    box-shadow: 0 6px 5px -5px rgba(0,0,0,0.3);
+    overflow: hidden;
 }
-
-.option:hover .label {
-    color: #fff;
+.dropdown a, .dropdown.toggle > label {
+    display: block;
+    padding: 0 0 0 10px;
+    text-decoration: none;
+    line-height: 40px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #999;
+    background-color: #FFF;
 }
-
-.option:nth-child(1):hover~#option-bg {
-    top: 0;
-    background-color: #1F254F;
-    border-radius: 4px 4px 0 0;
+.dropdown li {
+    height: 0;
+    overflow: hidden;
+    transition: all 500ms;
 }
-
-.option:nth-child(2):hover~#option-bg {
-    top: 40px;
-    background-color: #3D499C;
+.dropdown.hover li {
+    transition-delay: 300ms;
+}
+.dropdown li:first-child a {
+    border-radius: 2px 2px 0 0;
+}
+.dropdown li:last-child a {
+    border-radius: 0 0 2px 2px;
+}
+.dropdown li:first-child a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #FFF;
+    margin: -10px 0 0 30px;
+}
+.dropdown a:hover, .dropdown.toggle > label:hover, .dropdown.toggle > input:checked ~ label {
+    background-color: #EEE;
+    color: #666;
+}
+.dropdown > a:hover::after, .dropdown.toggle > label:hover::after, .dropdown.toggle > input:checked ~ label::after {
+    border-top-color: #AAA;
+}
+.dropdown li:first-child a:hover::before {
+    border-bottom-color: #EEE;
+}
+.dropdown.hover:hover li, .dropdown.toggle > input:checked ~ ul li {
+    height: 40px;
+}
+.dropdown.hover:hover li:first-child, .dropdown.toggle > input:checked ~ ul li:first-child {
+    padding-top: 15px;
 }
 
 /* document-list */
@@ -407,16 +160,15 @@ ul {
     list-style: none;
     margin: 0 0 40px;
     padding: 0;
-    border: 1px solid #ddd;
-    border-top: 0;
 }
 
 .accordian header {
     display: block;
     margin: 0;
     padding: 1em;
-    background: #1F254F;
-    border-top: 1px solid #ddd;
+    background: #999999;
+    border: 2px solid #ddd;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
@@ -430,7 +182,8 @@ ul {
     justify-content: space-between;
     padding: 1em;
     background: #fff;
-    border-top: 1px solid #ddd;
+    border-radius: 10px;
+    border: 2px solid #ddd;
 }
 
 .accordian section.active {
@@ -483,10 +236,10 @@ ul {
     font-size: 17px;
     font-weight: bold;
     padding: 1px 16px;
-    background-color: white;
-    color: black;
-    border: 1.5px solid #333;
-    border-radius: 4px;
+    background-color: #5161CE;
+    color: white;
+    border: 1.5px solid #5161CE;
+    border-radius: 10px;
     text-transform: uppercase;
     transition: all 0.4s;
 }
@@ -506,7 +259,7 @@ ul {
     background-color: #51556e;
     color: #fff;
     border: #fff;
-    border-radius: 2px;
+    border-radius: 10px;
     text-transform: uppercase;
     transition: all 0.4s;
     float: right;
@@ -525,7 +278,7 @@ ul {
     background-color: rgb(255, 79, 79);
     color: #fff;
     border: #fff;
-    border-radius: 2px;
+    border-radius: 10px;
     text-transform: uppercase;
     transition: all 0.4s;
 }
@@ -543,7 +296,7 @@ ul {
     background-color: #48a1ff;
     color: #fff;
     border: #fff;
-    border-radius: 2px;
+    border-radius: 10px;
     text-transform: uppercase;
     transition: all 0.4s;
     margin-right: 1rem;
@@ -553,3 +306,42 @@ ul {
     background-color: #1768ff;
 }
 
+.search-container {
+    width: 390px;
+    margin-top: 10.5%;
+    margin-right: 80px;
+}
+
+input#search-bar {
+    margin: 0 auto;
+    width: 100%;
+    height: 38px;
+    padding: 0 20px;
+    font-size: 1rem;
+    border: 1px solid #999999;
+    outline: none;
+    border-radius: 5px;
+}
+input#search-bar:focus {
+    border: 1px solid #999999;
+    transition: 0.35s ease;
+    color: #000000;
+}
+input#search-bar:focus::-webkit-input-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+input#search-bar:focus::-moz-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+
+
+.search-icon {
+    position: relative;
+    float: right;
+    width: 75px;
+    height: 75px;
+    top: -58px;
+    right: -45px;
+}

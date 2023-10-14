@@ -1,3 +1,4 @@
+/* Reset some default styles */
 body,
 h1,
 p,
@@ -6,200 +7,208 @@ ul {
     padding: 0;
 }
 
-#inviteButton {
-    background-color: #5161CE;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-weight: bolder;
-    cursor: pointer;
+a {
+    text-decoration: none;
 }
 
-#inviteButton:hover {
-    background-color: #4755B5;
+/* Global styles */
+body {
+    background-color: #FFFFFF;
+    font-family: Arial, sans-serif;
 }
 
-#inviteButton:hover {
-    background-color: #4755B5;
+.main-content {
+    margin-left: 180px;
 }
 
-main {
-    margin-left: 15%;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
+.centered-content {
+    max-width: 80%;
+    margin: auto;
 }
 
 .project-name {
-    margin: 2%;
-    color: #5161CE;
-    font-size: 60px;
+    margin: 50px;
+    font-size: 50px;
+    font-weight: bold;
     text-align: center;
+    color: #000000;
 }
 
 .centered-top {
     display: flex;
+
 }
 
+.team-members,
+.project-intro {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
 
 .div-h {
     font-size: 30px;
     font-weight: bolder;
 }
 
+.div-c {
+    max-height: 150px;
+    overflow: auto;
+}
+
 .div-content {
     font-size: 18px;
 }
 
-
-.sub-name {
-    width: 20%;
-    margin-top: 3%;
-    margin-bottom: 1%;
-    color: #5161CE;
-    font-size: 25px;
-    font-weight: bolder;
-    text-align: center;
-}
-
-.board {
-    max-width: 1280px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-gap: 40px;
-    justify-content: center;
-    text-decoration: none;
-}
-
-.post {
-    text-decoration: none;
-    margin: auto;
-    display: flex;
-    min-height: 100%;
-    flex-direction: column;
-    position: relative;
-    top: 0;
-    width: 500px;
-    height: 230px;
-}
-
-.post-detail {
+.project-intro {
+    min-width: 450px;
+    flex: 1;
+    background-color: #ffff;
+    color: #000000;
+    border: 2px solid #555555;
+    padding: 20px;
     border-radius: 10px;
-    background-color: #5161CE;
+    margin: 10px;
+
+}
+
+.team-members {
+    background-color: #FFFFFF;
+    border: 2px solid #555555;
+    color: #000000;
+    min-width: 500px;
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
 }
 
-.post:hover {
-    top: -10px;
-    transition: 0.3s ease-in;
+.member {
+    margin-top: 3px;
+    max-height: 150px;
+    border-bottom: #555555 1px solid;
 }
 
-.post:not(:hover) {
-    transition: 0.3s ease-out;
+.my-work {
+    min-width: 1050px;
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    border: #555555 solid 2px;
 }
 
-.post-detail h1 {
-    margin-top: 5%;
-    margin-left: 5%;
-    font-size: 25px;
-    color: #fff;
+.goals {
+    min-width: 1000px;
+    background-color: #fff;
+    color: #000000;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    overflow: auto;
+    border: #555555 solid 2px;
 }
 
-.post-user-child {
-    flex: 3;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-align: center;
-    margin-top: 5%;
+.goals hr {
+    background-color: #555555;
+    height: 1px;
+    border: 0;
 }
 
-.post-user-div {
-    font-size: 17px;
-    margin-top: 1px;
-    text-align: center;
-    font-weight: 700;
-    color: #fff;
-}
-
-.post-button {
-    background-color: #5161CE;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    cursor: pointer;
+table {
+    font-size: .9em;
     width: 100%;
-}
-.post-button:hover{
-    background-color: #384cc0;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
+    border-collapse: collapse;
 }
 
-.post-user-child1 {
-    display: flex;
+th {
+    font-weight: bold;
+    color: #000000;
+    height: auto;
+    padding: 0.5rem;
+    vertical-align: middle;
+    font-size: 20px;
+    text-align: left;
+}
+
+tr {
+    padding: 1rem 0rem 1rem 0rem;
+}
+
+td {
+    height: 40px;
+    font-size: 16px;
+    text-align: center;
+    border-top: 1px #555555 solid;
+    transition: 0.5s;
+}
+
+td:hover {
+    background-color: #777777;
+}
+
+td a {
+    display: block;
+    width: 100%;
+    height: 100%
+}
+
+.job-name {
+    width: 70%;
+    column-span: 2;
+}
+
+.job-deadline {
+    width: 20%;
+    column-span: 2;
+}
+
+.horizon-divider {
+    margin: 10px 0px 10px 0px;
+    background-color: #555555;
+    height: 1px;
+}
+
+.horizon-divider-b {
+    margin: 10px 0px 10px 0px;
+    background-color: #555555;
+    height: 1px;
+
+}
+
+.completion-0 {
+    color: #5ea2ec;
+}
+
+.completion-1 {
+    color: #66c43c;
+}
+
+.completion-2 {
+    color: #ff7b26;
+}
+
+.completion-3 {
+    color: #f11414;
+}
+.project-progress{
     margin: auto;
+    width: 80%;
+}
+.progress-container {
+    top: 30px;
     width: 100%;
-    font-size: 15px;
-    font-weight: 700;
-    color: #fff;
+    height: 20px;
+    /* height: 0px; 으로 하면 안 보임 */
+    border-radius: 10px;
+    background-color: #bbb;
 }
 
-.post-user-list1 {
-    text-align: center;
-    flex: 1;
-    width: 30%;
-    box-sizing: border-box;
-}
-
-.post-user-list2 {
-    text-align: center;
-    flex: 1;
-    width: 30%;
-    box-sizing: border-box;
-}
-
-.post-user-list3 {
-    text-align: center;
-    flex: 1;
-    width: 30%;
-    box-sizing: border-box;
-}
-
-@media screen and (min-width: 1280px) {
-    .board {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media screen and (min-width: 920px) {
-    .board {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media screen and (max-width: 920px) {
-    .board {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .board {
-        grid-template-columns: 1fr 1fr;
-    }
+.progress-bar {
+    border-radius: 20px;
+    top: 30px;
+    width: 0%;
+    height: 15px;
+    background: linear-gradient(to right, rgba(130, 60, 180, 1) 0%, rgba(250, 30, 30, 1) 50vw, rgba(250, 180, 70, 1) 100vw);
 }

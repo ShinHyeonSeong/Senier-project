@@ -5,13 +5,15 @@ body {
 }
 
 nav {
-    background-color: #5161CE;
+    position: relative;
+    z-index: 2;
+    background-color: #555555;
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    height: 30px;
+    height: 40px;
     border-bottom: 1px solid #ddd;
 }
 
@@ -30,14 +32,16 @@ nav {
 }
 
 .sidebar {
-    background-color: #5161CE;
+    z-index: 1;
+    background-color: #555555;
     color: #fff;
     width: 180px;
-    height: 93%;
+    height: 100%;
     position: fixed;
+    top: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    padding-top: 52px;
 }
 
 .menu ul {
@@ -52,7 +56,7 @@ nav {
 }
 
 .menu ul li:hover {
-    background-color: #4755B5;
+    background-color: #777777;
     color: #0747A6FF;
     transition: 0.5s;
 }
@@ -64,15 +68,15 @@ nav {
 }
 
 .menu-select {
-    background-color: #4755B5;
-    color: #0747A6FF;
+    background-color: #777777;
+    color: #5161CE;
     transition: 0.5s;
 }
 
 .user-list {
     color: #fff;
-    border-top: solid 1px #38438F;
-    max-height: 300px;
+    border-top: solid 1px #FFFFFF;
+    height: 200px;
 }
 
 .user-list h2 {
@@ -94,20 +98,20 @@ nav {
 }
 
 #inviteButton {
-    background-color: #5161CE;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #555555;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    /*padding: 10px 20px;*/
     font-weight: bold;
     cursor: pointer;
-    width: 100%;
+    width: 180px;
+    height: 40px;
 }
 
 #inviteButton:hover {
-    background-color: #4755B5;
-}
-
-#inviteButton:hover {
-    background-color: #4755B5;
+    background-color: #777777;
 }

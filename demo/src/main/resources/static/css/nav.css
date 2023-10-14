@@ -27,7 +27,7 @@ i {
 }
 
 .navbar-mainbg {
-    background-color: #5161CE;
+    background-color: #313131;
     padding: 0px;
 }
 
@@ -58,7 +58,7 @@ i {
 }
 
 .nav-link:hover {
-    background-color: #3746b6;
+    background-color: #999999;
     border-radius: 5px;
 }
 

@@ -182,9 +182,7 @@ public class DocumentService {
             logRepository.delete(logEntity);
         }
 
-        log.info("DocumentId = " + documentId);
-        DocumentEntity documentEntity = documentRepository.findById(documentId).orElse(null);
-        documentRepository.deleteByDocumentId(documentEntity.getDocumentId());
+        documentRepository.deleteById(documentId);
     }
 
     /* check user auth */
@@ -195,11 +193,34 @@ public class DocumentService {
 
         WorkDocumentEntity workDocumentEntity = workDocumentRepository.findByDocumentIdToWorkDocument_DocumentId(DocumentId);
 
+        if (auth == 1){
+            return false;
+        }
+        if (auth == 2){
+            return true;
+        }
+        for (UserWorkEntity userWorkEntity: userWorkEntityList) {
+            if (userWorkEntity.getWorkIdToUserWork().getWorkId().equals(workDocumentEntity.getWorkIdToWorkDocument().getWorkId()))
+                return false;
+        }
+
+        return true;
+
+    }
+
+    public boolean accreditUserToWork(String uuid, long workId, Long auth){
+
+        List<UserWorkEntity> userWorkEntityList = userWorkRepository.findAllByUserIdToUserWork_Uuid(uuid);
+
+
+        if (auth == 1){
+            return true;
+        }
         if (auth == 2){
             return false;
         }
         for (UserWorkEntity userWorkEntity: userWorkEntityList) {
-            if (userWorkEntity.getWorkIdToUserWork().getWorkId().equals(workDocumentEntity.getWorkIdToWorkDocument().getWorkId()))
+            if (userWorkEntity.getWorkIdToUserWork().getWorkId().equals(workId))
                 return true;
         }
 

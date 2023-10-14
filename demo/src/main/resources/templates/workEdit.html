@@ -7,8 +7,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/css/goal-create.css">
-	<script src="../js/documentEntityList.js"></script>
+	<link rel="stylesheet" href="/css/workEdit.css">
 	
 	<script th:inline="javascript">
 		const message = /*[[${message}]]*/ '';
@@ -20,7 +19,7 @@
 			var title = document.getElementById("title");
 			var discription = document.getElementById("discription");
 			var startDay = document.getElementById("startDay");
-			var endDay = document.getElementById("endDay");
+			var deadline = document.getElementById("deadline");
 			/*yyyy--mm-dd 정규식*/
 			var regDate = new RegExp("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$");
 			
@@ -61,16 +60,17 @@
 <div class="container">
 	<div class="header">
 		<a href="javascript:history.back(-1)" class="back-button"> < </a>
-		<h1>작업 생성</h1>
+		<h1>작업 편집</h1>
 	</div>
-	<form name="createDetail_form" action="/project/work/createWork" method="post">
+	<form name="createDetail_form" action="/project/work/edit" method="post">
 		<div class="create-goal">
 			<div class="label-detail">
 				<label class="label" for="title">작업 이름</label>
 				<div class="essential">*</div>
 			</div>
 			<div class="input-detail">
-				<input name="title" class="input-box" id="title" type="text" placeholder="작업 이름 입력">
+				<input th:value="${workDto.getTitle()}"
+					   name="title" class="input-box" id="title" type="text" placeholder="작업 이름 입력">
 			</div>
 		</div>
 		
@@ -79,7 +79,7 @@
 				<label class="label" for="discription">작업 설명</label>
 			</div>
 			<div class="input-detail">
-                <textarea name="discription" class="detail-input-box"
+                <textarea name="discription" class="detail-input-box" th:text="${workDto.getDiscription()}"
 						  id="discription" cols="20" rows="10" placeholder="설명"></textarea>
 			</div>
 		</div>
@@ -89,7 +89,8 @@
 				<label class="label" for="startDay">시작 일자</label>
 			</div>
 			<div class="input-detail">
-				<input name="startDay" class="input-box" id="startDay" type="text" placeholder="0000-00-00 (연 월 일)">
+				<input name="startDay" class="input-box" id="startDay" type="text" placeholder="0000-00-00 (연 월 일)"
+					   th:value="${#dates.format(workDto.getStartDay(), 'yyyy-MM-dd')}">
 			</div>
 		</div>
 		
@@ -98,7 +99,8 @@
 				<label class="label" for="deadline">마감 일자</label>
 			</div>
 			<div class="input-detail">
-				<input name="deadline" class="input-box" id="deadline" type="text" placeholder="0000-00-00(연 월 일)">
+				<input name="deadline" class="input-box" id="deadline" type="text" placeholder="0000-00-00(연 월 일)"
+					th:value="${#dates.format(workDto.getEndDay(), 'yyyy-MM-dd')}">
 			</div>
 		</div>
 		<div class="create-goal">
@@ -108,7 +110,7 @@
 			<div class="search-input-detail">
 				<ul id="create-goal-input5">
 					<li th:each="userDto : ${userDtoList}" th:object="${userDtoList}">
-						<input type="checkbox" th:id="${userDto.name}" th:name="chargeUsers" th:value="${userDto.uuid}">
+						<input type="checkbox" th:id="${userDto.getName()}" th:name="chargeUsers" th:value="${userDto.getUuid()}">
 						<label th:for="${userDto.name}" th:text="${userDto.name}" class="user-label"></label>
 						<div class="check"></div>
 					</li>
@@ -127,10 +129,11 @@
 				</select>
 			</div>
 		</div>
-		
+
+		<input type="hidden" th:name="workId" th:value="${workDto.getWorkId()}">
 		<div class="horizon-divider"></div>
 		<div class="footer">
-			<button type="button" class="footer-btn" th:onclick="createDetail_check()">생성</button>
+			<button type="button" class="footer-btn" onclick="createDetail_check()">수정</button>
 			<button type="reset" class="footer-btn">초기화</button>
 		</div>
 	</form>

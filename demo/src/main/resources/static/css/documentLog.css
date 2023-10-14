@@ -1,84 +1,107 @@
-/*  마진 순서 : 상우좌하
-    다중 커서 : Alt + 드래그나 클릭
-    코드 정렬 : Alt + Shift + F
-    border 순서 : 픽셀, 스타일, 색깔 
-     */
+body {
+    background-color: #fff;
+}
 
 
+hr {
+    background: #555555;
+}
 
-     body {
-        background-color: #333;
-    }
-    
-    hr {
-        background: white;
-    }
-    
-    .hr {
-            padding-top: 10em;
-            width: 100%;
-        }
+.hr {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10em;
+    width: 100%;
+}
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            width: 70%;
-            justify-content: center;
-            align-items: center;
-        }
+.hr a {
+    text-decoration: none;
+}
 
-        .back-button {
-            background-color: #333;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 40px;
-            margin-right: 2rem;
-            transition: 0.5s;
-        }
+.hr a:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #777777;
+    border: none;
+}
 
-        .title {
-            color: white;
-            display: inline-block;
-            text-align: center;
-        }
-    
-    .middle-box {
-        width: 100%;
-        height: auto;
-        display: flex;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .board_list {
-        width: 100%;
-    }
-    
-    .board_list td {
-        color: white;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        width: 30%;
-        font-size: 20px;
-        text-align: center;
-        border-bottom: solid 2px #444;
-    }
-    
-    .revert-button {
-        display: inline-block;
-        padding: 10px 30px;
-        background-color: #ccc;
-        border: none;
-        color: #000;
-        text-decoration: none;
-        border-radius: 10px;
-        font-size: 16px;
-    }
-    
-    .revert-button:hover {
-        background-color: #aaa;
-    }
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-button {
+    background-color: #fff;
+    color: #000000;
+    border: 1px solid #000000;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 30px;
+    margin-right: 3rem;
+    transition: 0.5s;
+}
+
+.back-button:hover {
+    border: #999999 1px solid;
+    background-color: #999999;
+    color: #fff;
+}
+
+.title {
+    color: #000000;
+    display: inline-block;
+    text-align: center;
+    font-size: 50px;
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+.middle-box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.board_list {
+    width: 100%;
+}
+
+.board_list td {
+    color: #222;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 30%;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: solid 2px #555555;
+}
+
+.revert-button {
+    width: 50%;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #000000;
+    border: 1.5px solid #555555;
+    background-color: #FFFFFF;
+}
+
+.revert-button:hover {
+    color: #FFFFFF;
+    border: 1.5px solid #777777;
+    background-color: #777777;
+}

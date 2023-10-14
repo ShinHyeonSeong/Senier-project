@@ -1,6 +1,8 @@
 package com.example.bpm.service;
 
+import com.example.bpm.dto.project.HeadDto;
 import com.example.bpm.dto.project.ProjectDto;
+import com.example.bpm.dto.project.WorkDto;
 import com.example.bpm.dto.project.request.ProjectRequestDto;
 import com.example.bpm.dto.project.relation.ProjectRoleDto;
 import com.example.bpm.dto.user.UserDto;
@@ -18,7 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +38,8 @@ public class ProjectSerivce {
     final private ProjectRoleRepository projectRoleRepository;
     @Autowired
     final private RoleRepository roleRepository;
+    @Autowired
+    UserRepository userRepository;
 
     DateManager dateManager = new DateManager();
 
@@ -130,6 +136,14 @@ public class ProjectSerivce {
         return ProjectRoleDto.toProjectRoleDto(projectRoleEntity);
     }
 
+    @Transactional
+    public void deleteRole(ProjectDto projectDto, UserDto userDto) {
+        ProjectEntity projectEntity = projectDto.toEntity();
+        UserEntity userEntity = userDto.toEntity();
+
+        projectRoleRepository.deleteAllByProjectIdInRole_ProjectIdAndUuidInRole_Uuid(projectEntity.getProjectId(), userEntity.getUuid());
+    }
+
     //////////////////////////////////////////////////////////////////
     // project create
     //////////////////////////////////////////////////////////////////
@@ -204,6 +218,30 @@ public class ProjectSerivce {
         return projectDtoList;
     }
 
+    public List<ProjectDto> findProjectListRoleNot(String userId) {
+        List<ProjectDto> findAll = findAllProjectList();
+        List<ProjectDto> userAll = findProjectList(userId);
+        List<ProjectDto> removeList = new ArrayList<>();
+
+        if (userAll == null) {
+            return findAll;
+        }
+
+        for (ProjectDto findProjectDto : findAll) {
+            for (ProjectDto userProjectDto : userAll){
+                if (findProjectDto.getProjectId().equals(userProjectDto.getProjectId())){
+                    removeList.add(findProjectDto);
+                }
+            }
+        }
+
+        for (ProjectDto projectDto : removeList){
+            findAll.remove(projectDto);
+        }
+
+        return findAll;
+    }
+
     public List<ProjectDto> findProjectList(String userId){
         List<ProjectRoleEntity> projectRoleEntityList = projectRoleRepository.findProjectRoleByUser(userId);
         List<ProjectDto> projectDtoList = new ArrayList<>();
@@ -226,8 +264,9 @@ public class ProjectSerivce {
     public List<ProjectDto> findAllProjectList(){
         List<ProjectEntity> projectEntityList = projectRepository.findAll();
         List<ProjectDto> projectDtoList = new ArrayList<>();
-        ProjectDto projectDto = new ProjectDto();
+
         for (ProjectEntity projectEntity : projectEntityList) {
+            ProjectDto projectDto = new ProjectDto();
             projectDto.insertEntity(projectEntity);
             projectDtoList.add(projectDto);
         }
@@ -255,4 +294,5 @@ public class ProjectSerivce {
 
         return projectDtoList;
     }
+
 }

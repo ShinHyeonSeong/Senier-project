@@ -12,4 +12,6 @@ public class DocumentInfoDto {
     WorkDto workDto;
 
     HeadDto headDto;
+
+    Boolean isRole;
 }

@@ -1,12 +1,36 @@
+/* Reset some default styles */
+body,
+h1,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Global styles */
+body {
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.main-content {
+    margin-left: 180px;
+}
+
 .centered-content {
     max-width: 80%;
     margin: auto;
 }
 
 .project-name {
-    margin: 2%;
-    font-size: 60px;
+    margin: 50px;
+    font-size: 50px;
     text-align: center;
+    color: #5161CE;
 }
 
 .centered-top {
@@ -15,9 +39,7 @@
 }
 
 .team-members,
-.project-intro,
-.my-work,
-.goals {
+.project-intro {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
@@ -26,6 +48,11 @@
 .div-h {
     font-size: 30px;
     font-weight: bolder;
+}
+
+.div-c {
+    max-height: 150px;
+    overflow: auto;
 }
 
 .div-content {
@@ -44,23 +71,19 @@
 }
 
 .team-members {
-    min-width: 500px;
-    flex: 1;
     background-color: #5161CE;
     color: #fff;
+    min-width: 500px;
+    flex: 1;
     padding: 20px;
     border-radius: 10px;
     margin: 10px;
 }
 
 .member {
-    margin: none;
-}
-
-.member-email {
-    color: #888;
-    font-size: 0.75rem;
-    margin-top: -1rem;
+    margin-top: 3px;
+    max-height: 150px;
+    border-bottom: #fff 1px solid;
 }
 
 .my-work {
@@ -73,12 +96,13 @@
 }
 
 .goals {
-    min-width: 800px;
+    min-width: 1000px;
     background-color: #5161CE;
     color: #fff;
     padding: 20px;
     border-radius: 10px;
     margin: 10px;
+    overflow: auto;
 }
 
 .goals hr {
@@ -87,42 +111,32 @@
     border: 0;
 }
 
-.work {
-    margin-bottom: 100px;
-}
-
-.work-classification {
-    font-size: 25px;
-    font-weight: bolder;
-    padding: 0.5rem 1.5rem;
-}
-
-
 table {
     border-top: 2px #fff solid;
     border-bottom: 2px #fff solid;
     font-size: .9em;
     width: 100%;
     border-collapse: collapse;
-    overflow: hidden;
 }
 
 th {
-    padding: 1em 1.5em;
+    font-weight: bold;
+    color: #fff;
+    height: auto;
+    padding: 0.5rem;
     vertical-align: middle;
     font-size: 20px;
     text-align: left;
 }
 
-thead {
-    font-weight: bold;
-    color: #fff;
+tr {
+    padding: 1rem 0rem 1rem 0rem;
 }
 
 td {
-    font-size: 17px;
-    padding: 1em 1.5em;
-    vertical-align: middle;
+    height: 40px;
+    font-size: 14px;
+    text-align: center;
     border-top: 1px #5161CE solid;
     transition: 0.5s;
 }
@@ -138,11 +152,24 @@ td a {
 }
 
 .job-name {
-    width: 40rem;
+    width: 70%;
     column-span: 2;
 }
 
 .job-deadline {
-    width: 80rem;
+    width: 20%;
     column-span: 2;
+}
+
+.horizon-divider {
+    margin: 10px 0px 10px 0px;
+    background-color: #fff;
+    height: 1px;
+}
+
+.horizon-divider-b {
+    margin: 10px 0px 10px 0px;
+    background-color: #5161CE;
+    height: 1px;
+
 }

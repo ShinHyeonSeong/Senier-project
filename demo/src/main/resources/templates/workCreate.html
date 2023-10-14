@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/css/goal-create.css">
+	<link rel="stylesheet" href="/css/workEdit.css">
 	<script src="../js/documentEntityList.js"></script>
 	
 	<script th:inline="javascript">
@@ -66,8 +66,19 @@
 	<form name="createDetail_form" action="/project/work/createWork" method="post">
 		<div class="create-goal">
 			<div class="label-detail">
+				<label class="label" for="headId">연결할 목표</label>
+			</div>
+			<div class="select">
+				<select style="border: none;" id="headId" name="headId" th:if="${headDtoList != null}">
+					<option th:each="headDto : ${headDtoList}"
+							th:text="${headDto.title}"
+							th:value="${headDto.headId}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="create-goal">
+			<div class="label-detail">
 				<label class="label" for="title">작업 이름</label>
-				<div class="essential">*</div>
 			</div>
 			<div class="input-detail">
 				<input name="title" class="input-box" id="title" type="text" placeholder="작업 이름 입력">
@@ -113,18 +124,6 @@
 						<div class="check"></div>
 					</li>
 				</ul>
-			</div>
-		</div>
-		<div class="create-goal">
-			<div class="label-detail">
-				<label class="label" for="headId">연결할 목표</label>
-			</div>
-			<div class="select">
-				<select style="border: none;" id="headId" name="headId" th:if="${headDtoList != null}">
-					<option th:each="headDto : ${headDtoList}"
-							th:text="${headDto.title}"
-							th:value="${headDto.headId}"></option>
-				</select>
 			</div>
 		</div>
 		

@@ -55,7 +55,8 @@ body {
 
 .message-sender span,
 .message-date span {
-    color: #5161CE;
+    color: #555555;
+    font-weight: bold;
 }
 
 .message-text {
