@@ -4,18 +4,21 @@
 
 .sub-nav {
     display: flex;
-    border-bottom: #5161CE solid 4px;
+    border-bottom: #555555 solid 4px;
     padding-left: 20px;
 }
 
 
 .sub-navbar {
-
     float: right;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: #f1f1f1;
+    background-color: #777777;
+    color: #FFFFFF;
+    border: #777777 solid 3px;
+    border-radius: 10px 10px 0px 0px;
+
 }
 
 .sub-navbar li {
@@ -27,19 +30,18 @@
 
 .sub-navbar li a {
     font-weight: 600;
-    color: #000;
-    padding: 8px 16px;
+    color: #FFFFFF;
     text-decoration: none;
     display: block;
     padding: 8px;
-    border: #dddddd solid 3px;
+    border: #777777 solid 3px;
     border-radius: 10px 10px 0px 0px;
 }
 
 .sub-navbar li a.active {
-    border: #5161CE solid 3px;
+    border: #777777 solid 3px;
     border-radius: 10px 10px 0px 0px;
-    background-color: #5161CE;
+    background-color: #555555;
     color: white;
 }
 
@@ -49,7 +51,7 @@
 }
 
 .horizon-divider {
-    background-color: #5161CE;
+    background-color: #46494F;
     height: 1px;
     margin: 10px 0 30px 0;
 }

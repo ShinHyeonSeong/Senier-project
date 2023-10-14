@@ -69,7 +69,7 @@ body {
     outline: none;
 }
 
-#write-button {
+.write-button {
     width: 10rem;
     height: 38px;
     font-size: 17px;
@@ -83,11 +83,11 @@ body {
     transition: all 0.4s;
 }
 
-#write-button:focus {
+.write-button:focus {
     outline: none;
 }
 
-#write-button:hover {
+.write-button:hover {
     background-color: gray;
     color: white;
 }
@@ -174,3 +174,11 @@ td a {
     background-color: rgb(150, 60, 60);
 }
 
+.right {
+    display: flex;
+}
+
+.invite {
+    display: flex;
+    padding-right: 1em;
+}

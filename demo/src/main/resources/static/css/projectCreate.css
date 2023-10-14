@@ -4,9 +4,15 @@ body {
     color: white;
 }
 
-h1 {
+a {
+    text-decoration: none
+}
+
+h3 {
     color: #000;
     font-size: 48px;
+    margin-top: 16px;
+    font-weight: 600;
 }
 
 label {
@@ -19,43 +25,46 @@ label {
 }
 
 .head-container {
-    max-width: 200;
-    margin-left: -5%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
+}
+
+.fa-solid {
+    font-size: 24px;
+    margin-left: 10px;
+    margin-top: 3px;
 }
 
 .back-button {
     background-color: #fff;
-    color: #5161CE;
-    border: 1px solid #5161CE;
+    color: #000000;
+    border: 1px solid #000000;
     cursor: pointer;
     display: inline-block;
-    padding: 10px 15px;
+    padding: 5px 10px;
     text-decoration: none;
     border-radius: 5px;
     font-size: 16px;
-    margin-right: 2rem;
+    margin-right: 3rem;
     transition: 0.5s;
 }
 
 .back-button:hover {
-    background-color: #5161CE;
+    border: #999999 1px solid;
+    background-color: #999999;
     color: #fff;
 }
 
-input[type="text"],
-select {
-    width: 100%;
-    padding-bottom: 6px;
+input {
+    width: 70%;
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
-    background-color: #fff;
     box-sizing: border-box;
-    border: 2px solid #5161CE;
+    border: 2px solid #000000;
     border-radius: 4px;
     background-color: #fff;
     color: #000;
@@ -63,52 +72,51 @@ select {
     height: 50px;
 }
 
-input[type="text"],
-select:focus {
-    border: 2px solid #5161CE;
+input:focus {
+    border: 2px solid #999999;
     outline: none;
 }
 
 textarea {
     width: 100%;
-    padding-bottom: 6px;
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
-    background-color: #fff;
     box-sizing: border-box;
-    border: 2px solid #5161CE;
+    border: 2px solid #000000;
     border-radius: 4px;
     background-color: #fff;
     color: #000;
-    padding: 0 12px;
+    padding: 10px 12px;
     height: 100px;
 }
 
-textarea:hover {
-    border: 2px solid #5161CE;
+textarea:focus {
+    border: 2px solid #999999;
     outline: none;
 }
 
 i input[type="submit"],
 button {
-    background-color: #5161CE;
-    color: white;
+    border: #999999 2px solid;
+    background-color: #999999;
+    color: #FFFFFF;
     padding: 12px 20px;
-    border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
 input[type="submit"]:hover,
 button:hover {
-    background-color: #949DD7;
+    border: #000000 2px solid;
+    background-color: #FFFFFF;
+    color: #000000;
 }
 
 .section {
     margin: 30px;
     display: inline-block;
-    width: 35%;
+    width: 100%;
     vertical-align: top;
 }
 
@@ -128,4 +136,26 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.description {
+    max-width: 70%;
+    overflow: auto;
+    min-height: 200px;
+}
+
+form input {
+    margin-bottom: 30px; /* 원하는 간격 크기로 조정 가능 */
+}
+
+form textarea {
+    margin-bottom: 30px;
+}
+
+.startBtn {
+    width : 50%;
+    padding: 20px;
+
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
 }

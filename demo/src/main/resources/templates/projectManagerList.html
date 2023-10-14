@@ -48,17 +48,20 @@
 </nav>
 
 <div class="container">
-	<div class="top-button"><div class="left">
-		<a class="project-select" href="/project/projectAllList">전체 프로젝트</a>
-		<a class="project-select" href="/project/projectManagerList">내 프로젝트</a>
-		<a class="project-select" href="/project/projectMemberList">참여 프로젝트</a>
-	</div>
-		<a class="project-select" href="/project/inviteList" style="padding-left: 10%">프로젝트 초대
-			<div class="head-img" th:if="${request == true}"><img src="/img/warning.png" alt=""></div>
-		</a>
-		<a href="/project/create">
-			<button type="button" name="write" id="write-button">새 프로젝트</button>
-		</a>
+	<div class="top-button">
+		<div class="left">
+			<a class="project-select" href="/project/projectAllList">다른 프로젝트</a>
+			<a class="project-select project-select-here" href="/project/projectManagerList">내 프로젝트</a>
+		</div>
+		<div class="right">
+			<a href="/project/inviteList" class="invite">
+				<button type="button" name="write" class="write-button">프로젝트 초대</button>
+				<div class="head-img" th:if="${request == true}"><img src="/img/warning.png" alt=""></div>
+			</a>
+			<a href="/project/create">
+				<button type="button" name="write" class="write-button">새 프로젝트</button>
+			</a>
+		</div>
 	</div>
 	
 	
@@ -73,8 +76,17 @@
 					<h1 th:text="${project.title}"></h1>
 					<span th:text="${project.subtitle}"></span>
 					<div class="post-user" style="padding-top: 30px;">
-						<p>만든 날짜 : </p>
-						<div th:text="${#dates.format(project.startDay, 'yyyy-MM-dd')}"></div>
+						<div class="post-user-detail">
+							<p>생성 일자 : </p>
+							<div th:text="${#dates.format(project.startDay, 'yyyy-MM-dd')}"></div>
+						</div>
+						<div class="post-user-detail">
+							<p>생성자 : </p>
+							<div th:each="projectRole : ${projectRoleList}">
+								<div th:if="${(project.getProjectId() == projectRole.getProjectIdToRole().getProjectId()) &&
+								(projectRole.getRole().getId() == 1)}" th:text="${projectRole.getUuid().getName()}"></div>
+							</div>
+						</div>
 					</div>
 				</article>
 			</a>

@@ -7,6 +7,10 @@ ul {
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* Global styles */
 body {
     background-color: #fff;
@@ -39,61 +43,81 @@ body {
 .createbutton {
     width: 70%;
     text-decoration: none;
-    color: #fff;
     font-weight: bold;
     height: 50px;
-    margin: auto;
-    background-color: #949DD7;
+    font-size: 16px;
     border-radius: 10px;
-    border: none;
-    margin-bottom: 15px;
+    margin-bottom: 15px;    color: #000000;
+    border: 1.5px solid #555555;
+    background-color: #FFFFFF;
 }
 
 .createbutton:hover {
-    background-color: #727fcf;
+    color: #FFFFFF;
+    border: 1.5px solid #777777;
+    background-color: #777777;
 }
 
 table {
-    border-top: 2px #d4d4d4 solid;
+    border-top: 2px #555555 solid;
     width: 95%;
     border-collapse: collapse;
     overflow: hidden;
 }
 
 th {
-    font-size: 15px;
+    font-size: 18px;
     padding: 1em 1.5em;
     vertical-align: middle;
     text-align: left;
+    font-weight: bold;
+    color: #000;
 
 }
 
 .table-name {
-    width: 80%;
-}
-
-
-thead {
-    font-weight: bold;
-    color: #000;
+    width: 40%;
 }
 
 td {
     text-align: left;
     padding: 1em 2em;
     vertical-align: middle;
-    border-top: 1px #d4d4d4 solid;
-    border-bottom: 1px #d4d4d4 solid;
-    font-size: 12px;
+    border-top: 2px #555555 solid;
+    border-bottom: 2px #555555 solid;
+    font-size: 16px;
     transition: 0.5s;
 }
 
 td:hover {
-    background-color: #949DD7;
+    color: #fff;
+    background-color: #777777;
 }
 
 td a {
+    color: #000;
     display: block;
     width: 100%;
+    font-size: 16px;
     height: 100%
+}
+
+td a:hover {
+    color: #fff;
+}
+
+.completion-0 {
+    color: #5ea2ec;
+}
+
+.completion-1 {
+    color: #66c43c;
+}
+
+.completion-2 {
+    color: #ff7b26;
+}
+
+.completion-3 {
+    color: #f11414;
 }

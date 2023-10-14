@@ -6,6 +6,7 @@ ul {
     padding: 0;
 }
 
+
 body {
     background-color: #fff;
     font-family: Arial, sans-serif;
@@ -16,36 +17,34 @@ body {
     max-width: 800px;
 }
 
-.button-section {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 20%;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    height: 40px;
-    background-color: #949DD7;
-    border-radius: 10px;
-    border: none;
+.content-header {
+    display: flex;
+    margin: auto;
 }
 
-.button-section:hover {
-    background-color: #5161CE;
-}
-
-.message-list {
-    list-style: none;
-    padding: 0;
+.content-header h2 {
+    text-align: left;
+    flex: 12;
+    box-sizing: border-box;
 }
 
 .incoming-message {
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0.5px;
     padding: 10px;
+}
+
+.incoming-message:first-child {
+    border-top: 1px solid #ccc;
 }
 
 .message-header {
     display: flex;
+}
+
+.message-header a {
+    text-decoration: none;
+    color: black;
 }
 
 .message-title {
@@ -64,24 +63,47 @@ body {
     color: #888;
 }
 
-.deletebutton {
+.message-content {
+    text-decoration: none;
+    color: black;
+}
+
+.button-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 20%;
+    text-decoration: none;
+    font-weight: bold;
+    height: 40px;
+    border-radius: 10px;
+    color: #000000;
+    border: 1.5px solid #555555;
+    background-color: #FFFFFF;
+}
+
+.button-section:hover {
+    color: #FFFFFF;
+    border: 1.5px solid #777777;
+    background-color: #777777;
+}
+
+.message-list {
+    list-style: none;
+    padding: 0;
+}
+
+.delete-button {
+
     flex: 4;
     width: 100%;
     text-decoration: none;
-    color: #fff;
     font-weight: bold;
     margin: auto;
-    background-color: red;
     border-radius: 5px;
-    border: none;
 }
 
-.deletebutton:hover {
-    background-color: rgb(202, 45, 45);
-}
-
-.incoming-message {
-    background-color: #f5f5f5;
+.delete-button:hover {
+    color: red;
 }
 
 .message-content {

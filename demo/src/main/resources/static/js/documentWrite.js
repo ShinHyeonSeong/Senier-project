@@ -216,7 +216,6 @@ function addMenuEvent(target){
     });
 }
 
-
 // 이벤트 등록
 function addContextMenuEvent(){
     $(function(){

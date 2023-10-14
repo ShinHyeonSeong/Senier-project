@@ -205,7 +205,6 @@ public class UserController {
 
     @PostMapping("/user/returnSearch")
     public String search(@RequestParam("searchKeyword") String searchKeyword, Model model) {
-        log.info("검색 키워드 : " + searchKeyword);
         List<UserDto> dtoList = userService.findUserByEmailContaining(searchKeyword);
 
         if (dtoList.isEmpty()) {

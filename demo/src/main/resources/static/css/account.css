@@ -52,7 +52,7 @@
 }
 
 .profile-wrap {
-    background-color: #949DD7;
+    background-color: #999999;
     display: flex;
     height: 180px;
     border-radius: 5px;
@@ -91,9 +91,9 @@
     font-size: 16px;
     font-weight: bold;
     padding: 9px 18px;
-    border: 1px solid #5161CE;
+    border: 1px solid #999999;
     border-radius: 5px;
-    background-color: #5161CE;
+    background-color: #999999;
 }
 
 .logout-btn:hover {

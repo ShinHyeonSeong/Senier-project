@@ -1,36 +1,66 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-	<title>Border Project Manager</title>
 	<meta charset='utf-8'/>
-	<link href='/lib/main.css' rel='stylesheet'/>
+	<link href="/lib/main.css" rel='stylesheet'/>
 	<script src="/lib/main.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+	<script src="/js/calender.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<link rel="stylesheet" href="/css/calender.css">
 	<link rel="stylesheet" href="/css/sidebar.css">
+	<link rel="stylesheet" href="/css/sideNavbar.css">
+</head>
+
+
 <body>
-<div class="sidebar">
+<header>
+	<nav>
+		<div class="nav-left">
+			<a id="exitButton" href="/project/projectAllList">나가기</a>
+		</div>
+		<div class="nav-center">
+			<h1 id="projectName" th:text="${projectDto.getTitle()}"></h1>
+		</div>
+		<div class="nav-right">
+			<p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
+		</div>
+	</nav>
+</header>
+<aside class="sidebar">
 	<ul>
-		<li><a href="/project/projectAllList">나가기</a></li>
-		<li><a href="/project/main">홈</a></li>
-		<li><a href="/project/goals">목표</a></li>
-		<li><a href="/project/works">작업</a></li>
-		<li><a href="/project/documentEntity">문서</a></li>
-		<li class="active"><a href="/project/calender">달력</a></li>
-		<li><a href="/recvMessageList">메세지</a></li>
-		<li><a href="/user/search">멤버 초대</a></li>
+		<div class="menu">
+			<ul>
+				<li><a th:href="@{/project/main}">홈</a></li>
+				<li><a href="/project/goals">목표</a></li>
+				<li><a href="/project/works">작업</a></li>
+				<li><a href="/project/document">문서</a></li>
+				<li class="menu-select"><a href="/project/calender">일정</a></li>
+				<li><a href="/project/recvMessageList">수신함</a></li>
+			</ul>
+		</div>
 	</ul>
-</div>
+	<ul>
+		<div class="user-list">
+			<h2>프로젝트 멤버</h2>
+			<ul th:each="users : ${joinUsers}">
+				<li th:text="${users.getName()}"></li>
+			</ul>
+		</div>
+		<div>
+			<a href="/user/search"><button id="inviteButton">Invite Members</button></a>
+		</div>
+	</ul>
+</aside>
 <div class="content">
 	<div class="centered-content">
-		<div id="calendarBox">
-			<div id='calendar'></div>
-		</div>
+		<div id='calendar'></div>
 	</div>
 </div>
+</body>
+
 <script>
-	var calendarEl = documentEntity.getElementById('calendar');
+	var calendarEl = document.getElementById('calendar');
 	var request = $.ajax({
 				url: "/calendar/event",
 				method: "GET"
@@ -44,6 +74,5 @@
 		calendar.render();
 	});
 </script>
-</body>
-</head>
+
 </html>

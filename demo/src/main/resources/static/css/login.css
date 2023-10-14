@@ -7,7 +7,7 @@
 .page-container {
     width: 100vw;
     height: 100vh;
-    background: #fff;
+    background: #46494F;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +26,7 @@
     height: 540px;
     display: flex;
     flex-direction: row;
-    box-shadow: black;
+    box-shadow: #fff;
     border-radius: 10px;
 }
 
@@ -39,7 +39,7 @@
     justify-content: center;
     align-items: center;
     color: white;
-    background-image: linear-gradient(222deg, #b1c2e8 0%, #949DD7 30%, #5161CE 100%);
+    background-image: linear-gradient(222deg, #6e6e6e 0%, #444444 30%, #222222 100%);
 }
 
 .top-logo-wrap img {
@@ -48,7 +48,7 @@
 }
 
 .login-form-left-side h1 {
-    color: white;
+    color: #FFFFFF;
     width: 100%;
     text-align: center;
     opacity: 0.9;
@@ -68,7 +68,7 @@
 
 .login-form-right-side h1 {
     font-size: 50px;
-    color: #5161CE;
+    color: #8c8c8c;
 }
 
 .login-input-container {
@@ -81,7 +81,7 @@
     height: 60px;
     margin-top: 20px;
     border-radius: 2px;
-    border-bottom: solid 2px #5161CE;
+    border-bottom: solid 2px #000000;
 }
 
 .login-input-container .login-input-wrap input {
@@ -109,18 +109,29 @@
     color: white;
     border: 0;
     border-radius: 4px;
-    background-color: #5161CE;
+    background-color: #666666;
 }
 
-.login-btn-wrap2{
+.login-btn :hover {
+    width: 95px;
+    height: 35px;
+    color: white;
+    border: 0;
+    border-radius: 4px;
+    background-color: #46494F;
+}
+
+
+.login-btn-wrap2 {
     display: flex;
     flex-direction: row;
 }
+
 .login-btn-wrap2 a {
     margin-top: 10px;
     text-decoration: none;
     font-size: 11px;
-    color: gray;
+    color: #666666;
 
 }
 
