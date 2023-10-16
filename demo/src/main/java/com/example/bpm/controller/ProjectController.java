@@ -74,11 +74,8 @@ public class ProjectController {
         //UUID를 활용하여 권한자 / 비권한자 프로젝트 리스트를 불러온다
         List<ProjectDto> ManagerToProjectList = projectSerivce.findProjectList(sessionUser.getUuid());
         List<ProjectRoleDto> projectRoleDtoList = new ArrayList<>();
-
-        if (!(ManagerToProjectList == null)) {
-            for (ProjectDto projectDto : ManagerToProjectList) {
-                projectRoleDtoList.add(projectDetailSerivce.findProjectManager(projectDto.getProjectId()));
-            }
+        for (ProjectDto projectDto : ManagerToProjectList) {
+            projectRoleDtoList.add(projectDetailSerivce.findProjectManager(projectDto.getProjectId()));
         }
         model.addAttribute("user", sessionUser);
         model.addAttribute("managerList", ManagerToProjectList);
@@ -201,10 +198,6 @@ public class ProjectController {
         int progressHead = projectDetailSerivce.countProgressHead(headDtoList);
         int completeHead = headDtoList.size() - progressHead;
 
-        // 완료 진척도
-        double percentage = projectDetailSerivce.getProjectProgressPercent(presentDto);
-
-        model.addAttribute("per", percentage);
         model.addAttribute("auth", auth);
         model.addAttribute("projectDto", presentDto);
         model.addAttribute("sessionUser", userDto);
@@ -313,8 +306,10 @@ public class ProjectController {
     @RequestMapping("/project/invite/{id}")
     public String sendInvite(@PathVariable("id") String uuid, HttpSession session, Model model) {
         UserDto sendUser = (UserDto) session.getAttribute("userInfo");
+        UserDto recvUser = new UserDto();
+        recvUser.insertEntity(userRepository.findById(uuid).orElse(null));
         ProjectDto projectDto = (ProjectDto) session.getAttribute("currentProject");
-        projectSerivce.sendInvite(sendUser.getUuid(), uuid, projectDto.getProjectId());
+        projectSerivce.sendInvite(sendUser.getUuid(), recvUser.getUuid(), projectDto.getProjectId());
         return "redirect:/user/search";
     }
 

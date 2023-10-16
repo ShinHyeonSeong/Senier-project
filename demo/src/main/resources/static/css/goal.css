@@ -47,7 +47,8 @@ body {
     height: 50px;
     font-size: 16px;
     border-radius: 10px;
-    margin-bottom: 15px;    color: #000000;
+    margin-bottom: 15px;
+    color: #000000;
     border: 1.5px solid #555555;
     background-color: #FFFFFF;
 }
@@ -79,6 +80,15 @@ th {
     width: 40%;
 }
 
+tr {
+    color: #000;
+}
+
+tr:hover {
+    color: #fff;
+    background-color: #c9c9c9;
+}
+
 td {
     text-align: left;
     padding: 1em 2em;
@@ -89,15 +99,11 @@ td {
     transition: 0.5s;
 }
 
-td:hover {
-    color: #fff;
-    background-color: #777777;
-}
 
 td a {
-    color: #000;
     display: block;
     width: 100%;
+    color: #000000;
     font-size: 16px;
     height: 100%
 }

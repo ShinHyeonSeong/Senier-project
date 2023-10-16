@@ -11,7 +11,6 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "project_requst")
 @IdClass(ProjectRequestPKEntity.class)
@@ -27,7 +26,6 @@ public class ProjectRequestEntity {
     @JoinColumn(name = "recv_uuid")
     private UserEntity recvUUID;
 
-    @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id")
     private ProjectEntity projectIdToRequest;

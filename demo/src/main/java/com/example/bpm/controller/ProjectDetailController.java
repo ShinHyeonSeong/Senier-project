@@ -517,6 +517,19 @@ public class ProjectDetailController {
         return calendarService.getEventList(projectDto.getProjectId());
     }
 
+    @GetMapping("/project/calendarEx")
+    public String viewReadCalendar(Model model) {
+        ProjectDto currentProject = getSessionProject();
+        UserDto sessionUser = getSessionUser();
+        List<UserDto> userDtoList = userService.findUserListByProjectId(currentProject.getProjectId());
+        model.addAttribute("sessionUser", sessionUser);
+        model.addAttribute("projectDto", currentProject);
+        model.addAttribute("joinUsers", userDtoList);
+
+        return "calenderEx";
+
+    }
+
 
     //* - - - - - Message Contorller - - - - - - *//*
     @GetMapping("/project/recvMessageList")

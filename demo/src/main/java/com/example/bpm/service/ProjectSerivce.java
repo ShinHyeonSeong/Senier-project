@@ -38,8 +38,6 @@ public class ProjectSerivce {
     final private ProjectRoleRepository projectRoleRepository;
     @Autowired
     final private RoleRepository roleRepository;
-    @Autowired
-    UserRepository userRepository;
 
     DateManager dateManager = new DateManager();
 
@@ -221,11 +219,8 @@ public class ProjectSerivce {
     public List<ProjectDto> findProjectListRoleNot(String userId) {
         List<ProjectDto> findAll = findAllProjectList();
         List<ProjectDto> userAll = findProjectList(userId);
-        List<ProjectDto> removeList = new ArrayList<>();
 
-        if (userAll == null) {
-            return findAll;
-        }
+        List<ProjectDto> removeList = new ArrayList<>();
 
         for (ProjectDto findProjectDto : findAll) {
             for (ProjectDto userProjectDto : userAll){

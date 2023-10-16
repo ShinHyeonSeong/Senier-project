@@ -32,24 +32,11 @@
 		<div class="menu">
 			<ul>
 				<li><a th:href="@{/project/main}">홈</a></li>
-				<li><a href="/project/goals">목표</a></li>
-				<li><a href="/project/works">작업</a></li>
-				<li><a href="/project/document">문서</a></li>
-				<li class="menu-select"><a href="/project/calender">일정</a></li>
-				<li><a href="/project/recvMessageList">수신함</a></li>
+				<li><a href="/project/calendarEx">일정</a></li>
 			</ul>
 		</div>
 	</ul>
 	<ul>
-		<div class="user-list">
-			<h2>프로젝트 멤버</h2>
-			<ul th:each="users : ${joinUsers}">
-				<li th:text="${users.getName()}"></li>
-			</ul>
-		</div>
-		<div>
-			<a href="/user/search"><button id="inviteButton">Invite Members</button></a>
-		</div>
 	</ul>
 </aside>
 <div class="content">
