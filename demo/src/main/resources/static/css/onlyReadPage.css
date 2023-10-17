@@ -13,7 +13,7 @@ a {
 
 /* Global styles */
 body {
-    background-color: #FFFFFF;
+    background-color: #fff;
     font-family: Arial, sans-serif;
 }
 
@@ -29,9 +29,8 @@ body {
 .project-name {
     margin: 50px;
     font-size: 50px;
-    font-weight: bold;
     text-align: center;
-    color: #000000;
+    color: #5161CE;
 }
 
 .centered-top {
@@ -63,9 +62,8 @@ body {
 .project-intro {
     min-width: 450px;
     flex: 1;
-    background-color: #ffff;
-    color: #000000;
-    border: 2px solid #555555;
+    background-color: #5161CE;
+    color: #fff;
     padding: 20px;
     border-radius: 10px;
     margin: 10px;
@@ -73,9 +71,8 @@ body {
 }
 
 .team-members {
-    background-color: #FFFFFF;
-    border: 2px solid #555555;
-    color: #000000;
+    background-color: #5161CE;
+    color: #fff;
     min-width: 500px;
     flex: 1;
     padding: 20px;
@@ -86,37 +83,37 @@ body {
 .member {
     margin-top: 3px;
     max-height: 150px;
-    border-bottom: #555555 1px solid;
+    border-bottom: #fff 1px solid;
 }
 
 .my-work {
     min-width: 1050px;
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: #5161CE;
+    color: #fff;
     padding: 20px;
     border-radius: 10px;
     margin: 10px;
-    border: #555555 solid 2px;
 }
 
 .goals {
     min-width: 1000px;
-    background-color: #fff;
-    color: #000000;
+    background-color: #5161CE;
+    color: #fff;
     padding: 20px;
     border-radius: 10px;
     margin: 10px;
     overflow: auto;
-    border: #555555 solid 2px;
 }
 
 .goals hr {
-    background-color: #555555;
+    background: #ffffff;
     height: 1px;
     border: 0;
 }
 
 table {
+    border-top: 2px #fff solid;
+    border-bottom: 2px #fff solid;
     font-size: .9em;
     width: 100%;
     border-collapse: collapse;
@@ -124,24 +121,28 @@ table {
 
 th {
     font-weight: bold;
-    color: #000000;
+    color: #fff;
     height: auto;
-    text-align: center;
     padding: 0.5rem;
     vertical-align: middle;
     font-size: 20px;
+    text-align: left;
 }
 
-tr:hover{
-    color: #FFFFFF;
-    background-color: #c9c9c9;
+tr {
+    padding: 1rem 0rem 1rem 0rem;
 }
+
 td {
     height: 40px;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
-    border-top: 1px #555555 solid;
+    border-top: 1px #5161CE solid;
     transition: 0.5s;
+}
+
+td:hover {
+    background-color: #949DD7;
 }
 
 td a {
@@ -152,46 +153,23 @@ td a {
 
 .job-name {
     width: 70%;
-    text-align: center;
     column-span: 2;
 }
 
 .job-deadline {
     width: 20%;
-    text-align: center;
     column-span: 2;
-}
-
-.job-third {
-    text-align: center;
-    width: 20%;
 }
 
 .horizon-divider {
     margin: 10px 0px 10px 0px;
-    background-color: #555555;
+    background-color: #fff;
     height: 1px;
 }
 
 .horizon-divider-b {
     margin: 10px 0px 10px 0px;
-    background-color: #555555;
+    background-color: #5161CE;
     height: 1px;
 
-}
-
-.completion-0 {
-    color: #5ea2ec;
-}
-
-.completion-1 {
-    color: #66c43c;
-}
-
-.completion-2 {
-    color: #ff7b26;
-}
-
-.completion-3 {
-    color: #f11414;
 }

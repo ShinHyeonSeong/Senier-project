@@ -24,6 +24,7 @@ import com.example.bpm.repository.*;
 import com.example.bpm.service.Logic.dateLogic.DateManager;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,7 +72,7 @@ public class ProjectDetailSerivce {
     //////////////////////////////////////////////////////////////////
 
     // Head create
-    public HeadDto createHead(String title, String startDate, String deadline, String discription, ProjectDto projectDto){
+    public HeadDto createHead(String title, String startDate, String deadline, String discription, ProjectDto projectDto) {
         HeadDto headDto = new HeadDto();
 
         headDto.setTitle(title);
@@ -83,10 +84,10 @@ public class ProjectDetailSerivce {
 
         headRepository.save(headDto.toEntity());
 
-        return  headDto;
+        return headDto;
     }
 
-    public HeadDto createHead(HeadDto headDto){
+    public HeadDto createHead(HeadDto headDto) {
 
         headRepository.save(headDto.toEntity());
 
@@ -111,7 +112,7 @@ public class ProjectDetailSerivce {
         return workDto;
     }
 
-    public WorkDto createWork(WorkDto workDto){
+    public WorkDto createWork(WorkDto workDto) {
 
         workRepository.save(workDto.toEntity());
 
@@ -119,7 +120,7 @@ public class ProjectDetailSerivce {
     }
 
     // work comment create
-    public void createWorkComment (WorkCommentDto workCommentDto) {
+    public void createWorkComment(WorkCommentDto workCommentDto) {
 
         workCommentRepository.save(workCommentDto.toEntity());
 
@@ -141,11 +142,11 @@ public class ProjectDetailSerivce {
 
     /* - - - - OverLap check - - - - */
 
-    public boolean checkOverlapHead(String title){
+    public boolean checkOverlapHead(String title) {
         return headRepository.findByTitle(title).isPresent();
     }
 
-    public boolean checkOverlapWork(String title){
+    public boolean checkOverlapWork(String title) {
         return workRepository.findByTitle(title).isPresent();
     }
 
@@ -193,8 +194,8 @@ public class ProjectDetailSerivce {
         return workDto;
     }
 
-    public WorkDto findWorkByDocument(DocumentDto documentDto){
-        WorkDocumentEntity workDocumentEntity= workDocumentRepository.findByDocumentIdToWorkDocument_DocumentId(documentDto.getDocumentId());
+    public WorkDto findWorkByDocument(DocumentDto documentDto) {
+        WorkDocumentEntity workDocumentEntity = workDocumentRepository.findByDocumentIdToWorkDocument_DocumentId(documentDto.getDocumentId());
         WorkEntity workEntity = workDocumentEntity.getWorkIdToWorkDocument();
         WorkDto workDto = new WorkDto();
         workDto.insertEntity(workEntity);
@@ -250,11 +251,11 @@ public class ProjectDetailSerivce {
 
     /* User UserDto */
 
-    public List<UserDto> findUserListByWork(WorkDto workDto){
+    public List<UserDto> findUserListByWork(WorkDto workDto) {
         List<UserDto> userDtoList = new ArrayList<>();
         List<UserWorkEntity> userWorkEntityList = userWorkRepository.findAllByWorkIdToUserWork_WorkId(workDto.getWorkId());
 
-        for (UserWorkEntity userWorkEntity: userWorkEntityList) {
+        for (UserWorkEntity userWorkEntity : userWorkEntityList) {
             UserDto userDto = new UserDto();
             userDto.insertEntity(userWorkEntity.getUserIdToUserWork());
             userDtoList.add(userDto);
@@ -280,7 +281,7 @@ public class ProjectDetailSerivce {
         List<UserWorkEntity> userWorkEntityList = userWorkRepository.findAllByWorkIdToUserWork_WorkId(workDto.getWorkId());
         List<UserWorkDto> userWorkDtoList = new ArrayList<>();
 
-        for (UserWorkEntity userWorkEntity : userWorkEntityList){
+        for (UserWorkEntity userWorkEntity : userWorkEntityList) {
             UserWorkDto userWorkDto = new UserWorkDto();
             userWorkDto.insertEntity(userWorkEntity);
             userWorkDtoList.add(userWorkDto);
@@ -327,11 +328,11 @@ public class ProjectDetailSerivce {
         return documentDtoList;
     }
 
-    public List<DocumentDto> findDocumentListByWork(WorkDto workDto){
+    public List<DocumentDto> findDocumentListByWork(WorkDto workDto) {
         List<DocumentDto> documentDtoList = new ArrayList<>();
         List<WorkDocumentEntity> workDocumentEntityList = workDocumentRepository.findAllByWorkIdToWorkDocument_WorkId(workDto.getWorkId());
 
-        for (WorkDocumentEntity workDocumentEntity: workDocumentEntityList) {
+        for (WorkDocumentEntity workDocumentEntity : workDocumentEntityList) {
             DocumentDto documentDto = new DocumentDto();
             documentDto.insertEntity(workDocumentEntity.getDocumentIdToWorkDocument());
             documentDtoList.add(documentDto);
@@ -423,7 +424,7 @@ public class ProjectDetailSerivce {
 
         List<HeadEntity> headEntityList = headRepository.findAllByProjectIdToHead_ProjectId(projectEntity.getProjectId());
 
-        for (HeadEntity headEntity: headEntityList) {
+        for (HeadEntity headEntity : headEntityList) {
             deleteHead(headEntity);
         }
 
@@ -465,12 +466,12 @@ public class ProjectDetailSerivce {
     /* - - - - Head - - - - */
 
     @Transactional
-    public void deleteHead(HeadDto headDto){
+    public void deleteHead(HeadDto headDto) {
         HeadEntity headEntity = headDto.toEntity();
 
         List<WorkEntity> workEntityList = workRepository.findAllByHeadIdToWork_HeadId(headEntity.getHeadId());
 
-        for (WorkEntity workEntity: workEntityList) {
+        for (WorkEntity workEntity : workEntityList) {
             deleteWork(workEntity);
         }
 
@@ -478,10 +479,10 @@ public class ProjectDetailSerivce {
     }
 
     @Transactional
-    public void deleteHead(HeadEntity headEntity){
+    public void deleteHead(HeadEntity headEntity) {
         List<WorkEntity> workEntityList = workRepository.findAllByHeadIdToWork_HeadId(headEntity.getHeadId());
 
-        for (WorkEntity workEntity: workEntityList) {
+        for (WorkEntity workEntity : workEntityList) {
             deleteWork(workEntity);
         }
 
@@ -536,10 +537,10 @@ public class ProjectDetailSerivce {
     }
 
     @Transactional
-    public void deleteDocument(WorkEntity workEntity){
+    public void deleteDocument(WorkEntity workEntity) {
         List<WorkDocumentEntity> workDocumentEntityList = workDocumentRepository.findAllByWorkIdToWorkDocument_WorkId(workEntity.getWorkId());
 
-        for (WorkDocumentEntity workDocumentEntity :  workDocumentEntityList) {
+        for (WorkDocumentEntity workDocumentEntity : workDocumentEntityList) {
             List<BlockEntity> deleteBlockListEntity = blockRepository.findByDocumentId(workDocumentEntity.getDocumentIdToWorkDocument().getDocumentId());
             List<LogEntity> deleteLogListEntity = logRepository.findByDocumentId(workDocumentEntity.getDocumentIdToWorkDocument().getDocumentId());
 
@@ -599,40 +600,64 @@ public class ProjectDetailSerivce {
         Date date = new Date();
         log.info(date.toString());
         for (HeadDto headDto : headDtoList) {
+            if (headDto.getStartDay().compareTo(date) == 1) {
+                continue;
+            }
             if (headDto.getStartDay().compareTo(date) > 0) {
                 headDto.setCompletion(2);
-                // 계획중 처리
                 updateHead(headDto.getHeadId(), headDto);
             } else if (headDto.getEndDay().compareTo(date) < 0) {
                 headDto.setCompletion(3);
-                // 미완료 처리
                 updateHead(headDto.getHeadId(), headDto);
             }
         }
 
         for (WorkDto workDto : workDtoList) {
-            if (workDto.getStartDay().compareTo(date)  > 0) {
+            if (workDto.getStartDay().compareTo(date) == 1) {
+                continue;
+            }
+            if (workDto.getStartDay().compareTo(date) > 0) {
                 workDto.setCompletion(2);
-                // 계획중 처리
                 updateWork(workDto.getWorkId(), workDto);
             } else if (workDto.getEndDay().compareTo(date) < 0) {
                 workDto.setCompletion(3);
-                // 미완료 처리
                 updateWork(workDto.getWorkId(), workDto);
             }
         }
     }
 
-    public boolean isRoleWork(String uuid, long workid){
-        List<UserWorkEntity> userWorkEntityList =  userWorkRepository.findAllByUserIdToUserWork_Uuid(uuid);
+    public boolean isRoleWork(String uuid, long workid) {
+        List<UserWorkEntity> userWorkEntityList = userWorkRepository.findAllByUserIdToUserWork_Uuid(uuid);
 
-        for (UserWorkEntity userWork: userWorkEntityList) {
-            if (userWork.getWorkIdToUserWork().getWorkId() == workid){
+        for (UserWorkEntity userWork : userWorkEntityList) {
+            if (userWork.getWorkIdToUserWork().getWorkId() == workid) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    public double getProjectProgressPercent(ProjectDto projectDto) {
+        double progress = 0;
+        double completeWork = 0;
+        List<WorkDto> workDtoList = findWorkListByProject(projectDto);
+
+        for (WorkDto workDto : workDtoList) {
+            if (workDto.getCompletion() == 1) {
+                completeWork++;
+            }
+        }
+        log.info("완료된 작업 수 " + completeWork);
+        double count = workDtoList.size();
+        double percentage = (100 / count);
+        log.info("전체 수 " + workDtoList.size());
+        log.info("완료된 작업율 " + percentage);
+
+        progress = completeWork * percentage;
+
+        log.info("전체율 " + progress);
+        return progress;
     }
 
 }

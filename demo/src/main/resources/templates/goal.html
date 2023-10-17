@@ -46,9 +46,7 @@
 			</ul>
 		</div>
 		<div>
-			<a href="/user/search">
-				<button id="inviteButton">Invite Members</button>
-			</a>
+			<a href="/user/search"><button id="inviteButton">Invite Members</button></a>
 		</div>
 	</ul>
 </aside>
@@ -67,9 +65,7 @@
 		<table>
 			<div class="table-head-list">
 				<h2 class="table-h2">목표 > 전체 목표</h2>
-				<div class="button-section"><a href="/project/head/create">
-					<button class="createbutton">새로 만들기</button>
-				</a></div>
+				<div class="button-section"><a href="/project/head/create"> <button class="createbutton">새로 만들기</button></a></div>
 			</div>
 			<thead>
 			<th>
@@ -80,8 +76,7 @@
 			</thead>
 			<tbody th:each="headDto : ${headDtoList}">
 			<tr>
-				<td class="table-name"><a th:href="@{/project/goal/headView/{id}(id=${headDto.getHeadId()})}"
-										  th:text="${headDto.getTitle()}"></a></td>
+				<td class="table-name"><a th:href="@{/project/goal/headView/{id}(id=${headDto.getHeadId()})}" th:text="${headDto.getTitle()}"></a></td>
 				<td th:text="${#dates.format(headDto.getEndDay(), 'yyyy-MM-dd')}"></td>
 				<td style="color: #5ea2ec;" th:if="${headDto.getCompletion() == 0}">진행중</td>
 				<td style="color: #66c43c;" class="completion-1" th:if="${headDto.getCompletion() == 1}">완료</td>

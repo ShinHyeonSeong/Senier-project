@@ -55,7 +55,7 @@ body {
 .project-select {
     display: flex;
     flex-direction: row;
-    color: #999999;
+    color: #000000;
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -70,13 +70,13 @@ body {
 .project-select-active {
     display: flex;
     flex-direction: row;
-    color: #000000;
+    color: #999999;
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 2px;
     margin-right: 4rem;
     transition: all 0.5s;
-    border-bottom: 3px solid #555555;
+    border-bottom: 3px solid #373A4F;
 }
 
 
@@ -202,7 +202,6 @@ article p {
 
 .project-select-here {
     color: #1F254F;
-    border-bottom: solid 1px #555555;
 }
 
 .post-user-detail {

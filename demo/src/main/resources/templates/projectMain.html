@@ -3,130 +3,139 @@
 <!-- 목표 리스트 창 -->
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/css/projectMain.css">
-	<link rel="stylesheet" href="/css/sidebar.css">
-	<title>BPM</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/projectMain.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <title>BPM</title>
 </head>
 
 
 <body>
 <header>
-	<nav>
-		<div class="nav-left">
-			<a id="exitButton" href="/project/projectAllList">나가기</a>
-		</div>
-		<div class="nav-center">
-			<h1 id="projectName" th:text="${projectDto.getTitle()}"></h1>
-		</div>
-		<div class="nav-right">
-			<p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
-		</div>
-	</nav>
+    <nav>
+        <div class="nav-left">
+            <a id="exitButton" href="/project/projectAllList">나가기</a>
+        </div>
+        <div class="nav-center">
+            <h1 id="projectName" th:text="${projectDto.getTitle()}"></h1>
+        </div>
+        <div class="nav-right">
+            <p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
+        </div>
+    </nav>
 </header>
 <aside class="sidebar">
-	<ul>
-		<div class="menu">
-			<ul>
-				<li class="menu-select"><a th:href="@{/project/main}">홈</a></li>
-				<li><a href="/project/goals">목표</a></li>
-				<li><a href="/project/works">작업</a></li>
-				<li><a href="/project/document">문서</a></li>
-				<li><a href="/project/calender">일정</a></li>
-				<li><a href="/project/recvMessageList">수신함</a></li>
-			</ul>
-		</div>
-	</ul>
-	<ul>
-		<div class="user-list">
-			<h2>프로젝트 멤버</h2>
-			<ul th:each="users : ${joinUsers}">
-				<li th:text="${users.getName()}"></li>
-			</ul>
-		</div>
-		<div>
-			<a href="/user/search">
-				<a href="/user/search">
-					<button id="inviteButton">Invite Members</button>
-				</a>
-			</a>
-		</div>
-	</ul>
+    <ul>
+        <div class="menu">
+            <ul>
+                <li class="menu-select"><a th:href="@{/project/main}">홈</a></li>
+                <li><a href="/project/goals">목표</a></li>
+                <li><a href="/project/works">작업</a></li>
+                <li><a href="/project/document">문서</a></li>
+                <li><a href="/project/calender">일정</a></li>
+                <li><a href="/project/recvMessageList">수신함</a></li>
+            </ul>
+        </div>
+    </ul>
+    <ul>
+        <div class="user-list">
+            <h2>프로젝트 멤버</h2>
+            <ul th:each="users : ${joinUsers}">
+                <li th:text="${users.getName()}"></li>
+            </ul>
+        </div>
+        <div>
+            <a href="/user/search">
+                <button id="inviteButton">Invite Members</button>
+            </a>
+        </div>
+    </ul>
 </aside>
 <div class="main-content">
-	<div class="centered-content">
-		<div class="project-name" th:text="${projectDto.title}"></div>
-		<div class="horizon-divider-b"></div>
-		<div class="centered-top">
-			<div class="project-intro">
-				<div class="div-h">프로젝트 소개</div>
-				<div class="horizon-divider"></div>
-				<div class="div-c">
-					<p class="div-content" th:text="${projectDto.subtitle}">asdasdasdad</p>
-				</div>
-			</div>
-			<div class="team-members">
-				<div class="div-h">프로젝트 멤버</div>
-				<div class="horizon-divider"></div>
-				<div class="div-c">
-					<div class="member" th:each="member : ${joinUsers}">
-						<h3 th:text="${member.name}">ssss</h3>
-						<div class="member-role" th:text="${member.email}">ssss</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="goals">
-			<div class="div-h" style="margin-left: 5%;">목표 목록</div>
-			<br>
-			<table>
-				<th class="job-name" style="text-align: center;">목표 이름</th>
-				<th class="job-deadline" style="text-align: center;">마감 기한</th>
-				<th class="job-third" style="text-align: center;">상태</th>
-			</table>
-			<div style="height: 150px; overflow: auto;">
-				<table th:each="headDto : ${headDtoList}">
-					<tr>
-						<td class="job-name" th:text="${headDto.title}"></td>
-						<td class="job-deadline" th:text="${#dates.format(headDto.endDay, 'yyyy-MM-dd')}"></td>
-						<td th:if="${headDto.getCompletion() == 0}">진행중</td>
-						<td class="completion-1" th:if="${headDto.getCompletion() == 1}">완료</td>
-						<td class="completion-2" th:if="${headDto.getCompletion() == 2}">계획중
-						</td>
-						<td class="completion-3" th:if="${headDto.getCompletion() == 3}">미완성
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-		
-		<div class="goals">
-			<div class="div-h" style="margin-left: 5%;">작업 목록</div>
-			<br>
-			<table>
-				<th class="job-name">작업 이름</th>
-				<th class="job-deadline">마감 기한</th>
-				<th class="job-third">상태</th>
-			</table>
-			<div style="min-height: 150px; overflow: auto;">
-				<table th:each="workDto : ${workDtoList}">
-					<tr>
-						<td class="job-name" th:text="${workDto.title}"></td>
-						<td class="job-deadline" th:text="${#dates.format(workDto.endDay, 'yyyy-MM-dd')}"></td>
-						<td style="color: #5ea2ec;" th:if="${workDto.getCompletion() == 0}">진행중</td>
-						<td style="color: #66c43c;" class="completion-1" th:if="${workDto.getCompletion() == 1}">완료</td>
-						<td style="color: #ff7b26;" class="completion-2" th:if="${workDto.getCompletion() == 2}">계획중
-						</td>
-						<td style="color: #f11414;" class="completion-3" th:if="${workDto.getCompletion() == 3}">미완성
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
+    <div class="centered-content">
+        <div class="project-name" th:text="${projectDto.title}"></div>
+        <div class="project-progress">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressbar">
+                    <span class="percent"></span>
+                </div>
+            </div>
+        </div>
+        <div class="horizon-divider-b"></div>
+        <div class="centered-top">
+            <div class="project-intro">
+                <div class="div-h">프로젝트 소개</div>
+                <div class="horizon-divider"></div>
+                <div class="div-c">
+                    <p class="div-content" th:text="${projectDto.subtitle}">asdasdasdad</p>
+                </div>
+            </div>
+            <div class="team-members">
+                <div class="div-h">프로젝트 멤버</div>
+                <div class="horizon-divider"></div>
+                <div class="div-c">
+                    <div class="member" th:each="member : ${joinUsers}">
+                        <h3 th:text="${member.name}">ssss</h3>
+                        <div class="member-role" th:text="${member.email}">ssss</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="goals">
+            <div class="div-h" style="margin-left: 5%;">목표 목록</div>
+            <br>
+            <table>
+                <th class="job-name" style="text-align: center;">목표 이름</th>
+                <th class="job-deadline">마감 기한</th>
+                <th>상태</th>
+            </table>
+            <div style="height: 150px; overflow: auto;">
+                <table th:each="headDto : ${headDtoList}">
+                    <tr>
+                        <td class="job-name" th:text="${headDto.title}"></td>
+                        <td class="job-deadline" th:text="${#dates.format(headDto.endDay, 'yyyy-MM-dd')}"></td>
+                        <td style="color: #5ea2ec;" th:if="${headDto.getCompletion() == 0}">진행중</td>
+                        <td style="color: #66c43c;" class="completion-1" th:if="${headDto.getCompletion() == 1}">완료</td>
+                        <td style="color: #ff7b26;" class="completion-2" th:if="${headDto.getCompletion() == 2}">계획중
+                        </td>
+                        <td style="color: #f11414;" class="completion-3" th:if="${headDto.getCompletion() == 3}">미완성
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="goals">
+            <div class="div-h" style="margin-left: 5%;">작업 목록</div>
+            <br>
+            <table>
+                <th class="job-name" style="text-align: center;">작업 이름</th>
+                <th class="job-deadline">마감 기한</th>
+                <th>상태</th>
+            </table>
+            <div style="min-height: 150px; overflow: auto;">
+                <table th:each="workDto : ${workDtoList}">
+                    <tr>
+                        <td class="job-name" th:text="${workDto.title}"></td>
+                        <td class="job-deadline" th:text="${#dates.format(workDto.endDay, 'yyyy-MM-dd')}"></td>
+                        <td style="color: #5ea2ec;" th:if="${workDto.getCompletion() == 0}">진행중</td>
+                        <td style="color: #66c43c;" class="completion-1" th:if="${workDto.getCompletion() == 1}">완료</td>
+                        <td style="color: #ff7b26;" class="completion-2" th:if="${workDto.getCompletion() == 2}">계획중
+                        </td>
+                        <td style="color: #f11414;" class="completion-3" th:if="${workDto.getCompletion() == 3}">미완성
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+<script th:inline="javascript">
+	const per = /*[[${per}]]*/ '';
+	document.getElementById("progressbar").style.width = per + "%"
+</script>
 </body>
 
 </html>

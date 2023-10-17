@@ -126,22 +126,26 @@ th {
     font-weight: bold;
     color: #000000;
     height: auto;
-    text-align: center;
     padding: 0.5rem;
     vertical-align: middle;
     font-size: 20px;
+    text-align: left;
 }
 
-tr:hover{
-    color: #FFFFFF;
-    background-color: #c9c9c9;
+tr {
+    padding: 1rem 0rem 1rem 0rem;
 }
+
 td {
     height: 40px;
     font-size: 16px;
     text-align: center;
     border-top: 1px #555555 solid;
     transition: 0.5s;
+}
+
+td:hover {
+    background-color: #777777;
 }
 
 td a {
@@ -152,19 +156,12 @@ td a {
 
 .job-name {
     width: 70%;
-    text-align: center;
     column-span: 2;
 }
 
 .job-deadline {
     width: 20%;
-    text-align: center;
     column-span: 2;
-}
-
-.job-third {
-    text-align: center;
-    width: 20%;
 }
 
 .horizon-divider {
@@ -194,4 +191,24 @@ td a {
 
 .completion-3 {
     color: #f11414;
+}
+.project-progress{
+    margin: auto;
+    width: 80%;
+}
+.progress-container {
+    top: 30px;
+    width: 100%;
+    height: 20px;
+    /* height: 0px; 으로 하면 안 보임 */
+    border-radius: 10px;
+    background-color: #bbb;
+}
+
+.progress-bar {
+    border-radius: 20px;
+    top: 30px;
+    width: 0%;
+    height: 20px;
+    background: linear-gradient(to right, rgba(130, 60, 180, 1) 0%, rgba(250, 30, 30, 1) 50vw, rgba(250, 180, 70, 1) 100vw);
 }

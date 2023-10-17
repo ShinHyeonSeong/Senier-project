@@ -5,12 +5,12 @@ inviteMemberbody {
 }
 
 h1 {
-    color: #000000;
+    color: #555555;
     font-size: 48px;
 }
 
 h2 {
-    color: #000000;
+    color: #555555;
     font-size: 25px;
 }
 
@@ -23,23 +23,23 @@ h2 {
 }
 
 .back-button {
+    background-color: #fff;
+    color: #555555;
+    border: 1px solid #555555;
     cursor: pointer;
     display: inline-block;
     padding: 10px 15px;
     text-decoration: none;
+    border-radius: 5px;
     font-size: 16px;
     margin-right: 2rem;
     transition: 0.5s;
-    color: #000000;
-    border: 1.5px solid #555555;
-    background-color: #FFFFFF;
-    border-radius: 10px;
 }
 
 .back-button:hover {
-    color: #FFFFFF;
-    border: 1.5px solid #777777;
+    border: none;
     background-color: #777777;
+    color: #fff;
 }
 
 input[type="text"],
@@ -48,7 +48,7 @@ select {
     width: 100%;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 1.5px solid #555555;
+    border: 2px solid #555555;
     border-radius: 4px;
     background-color: #fff;
     color: #000;
@@ -56,25 +56,23 @@ select {
 
 input[type="submit"],
 button {
+    background-color: #555555;
+    color: white;
     padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
     transition: 0.5s;
-    color: #000000;
-    border: 1.5px solid #555555;
-    background-color: #FFFFFF;
-    border-radius: 10px;
 }
 
-input[type="submit"]:hover,
+input[type="submit"]:focus,
 button:hover {
-    color: #FFFFFF;
-    border: 1.5px solid #777777;
     background-color: #777777;
-
+    border: 1px solid #777777;
 }
 
 input:focus {
-    outline: #777777;
+    outline: #333;
 }
 
 .search-section {
@@ -124,6 +122,6 @@ input:focus {
 
 .horizon-divider {
     background-color: #555555;
-    height: 0.5px;
+    height: 0.2px;
     margin: 10px 0 30px 0;
 }
