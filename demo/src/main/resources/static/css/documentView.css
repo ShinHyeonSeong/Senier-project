@@ -422,17 +422,20 @@ hr {
     transition: 0.5s;
 }
 
+.documentWrite-main-nav h1 {
+    font-size: 24px;
+}
+
 .documentWrite-title {
-    margin-left: 2rem;
+    margin-left: 1rem;
 }
 
 .documentWrite-subtitle {
     margin-left: 1rem;
-    margin-top: 0.3rem;
-    vertical-align: text-bottom;
 }
 
 .documentWrite-mid {
+    font-size: 20px;
     margin-left: 1rem;
     color: #D4D4D4;
 }

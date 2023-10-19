@@ -638,7 +638,7 @@ public class ProjectDetailSerivce {
         return false;
     }
 
-    public double getProjectProgressPercent(ProjectDto projectDto) {
+    public int getProjectProgressPercent(ProjectDto projectDto) {
         double progress = 0;
         double completeWork = 0;
         List<WorkDto> workDtoList = findWorkListByProject(projectDto);
@@ -648,16 +648,12 @@ public class ProjectDetailSerivce {
                 completeWork++;
             }
         }
-        log.info("완료된 작업 수 " + completeWork);
         double count = workDtoList.size();
         double percentage = (100 / count);
-        log.info("전체 수 " + workDtoList.size());
-        log.info("완료된 작업율 " + percentage);
 
         progress = completeWork * percentage;
-
-        log.info("전체율 " + progress);
-        return progress;
+        int result = (int) Math.floor(progress);
+        return result;
     }
 
 }

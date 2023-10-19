@@ -88,7 +88,6 @@ hr {
 
 .horizon-line {
     width: 1.5px;
-    margin: 0, 12px;
     height: 20px;
     background-color: #222;
 }
@@ -104,7 +103,6 @@ hr {
     font-size: 18px;
     background-color: #fff;
     border: none;
-    color: 5161ce;
     padding-left: 15px;
 }
 
@@ -390,6 +388,7 @@ hr {
 }
 
 .documentWrite-main-nav button {
+    margin: 10px 10px;
     background-color: transparent;
     border: none;
     color: #fff;
@@ -406,34 +405,25 @@ hr {
     opacity: 0;
 }
 
-.documentWrite-back-button {
-    width: 38px;
-    height: 38px;
-    position: absolute;
-    top: 15px;
-    left: 15px;
-}
-
-#documentWrite-back-button {
-    transition: 0.5s;
-}
-
 #documentWrite-back-button-hover {
     opacity: 0;
     transition: 0.5s;
 }
 
+.documentWrite-main-nav h1 {
+    font-size: 24px;
+}
+
 .documentWrite-title {
-    margin-left: 2rem;
+    margin-left: 1rem;
 }
 
 .documentWrite-subtitle {
     margin-left: 1rem;
-    margin-top: 0.3rem;
-    vertical-align: text-bottom;
 }
 
 .documentWrite-mid {
+    font-size: 20px;
     margin-left: 1rem;
     color: #D4D4D4;
 }

@@ -27,7 +27,8 @@ body {
 }
 
 .project-name {
-    margin: 50px;
+    margin-top: 50px;
+    margin-bottom: 30px;
     font-size: 50px;
     font-weight: bold;
     text-align: center;
@@ -192,23 +193,40 @@ td a {
 .completion-3 {
     color: #f11414;
 }
-.project-progress{
-    margin: auto;
-    width: 80%;
-}
+
 .progress-container {
+    margin: auto;
     top: 30px;
-    width: 100%;
-    height: 20px;
+    width: 80%;
+    height: 15px;
     /* height: 0px; 으로 하면 안 보임 */
     border-radius: 10px;
     background-color: #bbb;
 }
 
 .progress-bar {
-    border-radius: 20px;
+    border-radius: 10px;
     top: 30px;
-    width: 0%;
-    height: 20px;
-    background: linear-gradient(to right, rgba(130, 60, 180, 1) 0%, rgba(250, 30, 30, 1) 50vw, rgba(250, 180, 70, 1) 100vw);
+    height: 15px;
+    background: linear-gradient(to right, rgb(117, 125, 183) 0%, rgb(87, 104, 187) 50vw, rgb(87, 95, 187) 100vw);
+}
+
+.project-top-line {
+    display: flex;
+    justify-content: space-between;
+}
+
+.percent-1 {
+    margin-bottom: 30px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.percent-2 {
+    margin-bottom: 30px;
+    vertical-align: bottom;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bolder;
 }

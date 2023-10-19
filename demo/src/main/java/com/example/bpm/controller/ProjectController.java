@@ -202,7 +202,7 @@ public class ProjectController {
         int completeHead = headDtoList.size() - progressHead;
 
         // 완료 진척도
-        double percentage = projectDetailSerivce.getProjectProgressPercent(presentDto);
+        int percentage = projectDetailSerivce.getProjectProgressPercent(presentDto);
 
         model.addAttribute("per", percentage);
         model.addAttribute("auth", auth);
