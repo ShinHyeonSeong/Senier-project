@@ -573,7 +573,7 @@ public class ProjectDetailSerivce {
         workRepository.save(workEntity);
 
         HeadEntity headEntity = workDto.getHeadIdToWork();
-        if (checkAllWorkCompleted(headEntity.getHeadId()) && headEntity.getCompletion() == 0) {
+        if (checkAllWorkCompleted(headEntity.getHeadId()) && headEntity.getCompletion() != 1) {
             updateHeadCompletion(headEntity.getHeadId());
         } else if (!checkAllWorkCompleted(headEntity.getHeadId()) && headEntity.getCompletion() == 1) {
             updateHeadCompletion(headEntity.getHeadId());
@@ -600,7 +600,7 @@ public class ProjectDetailSerivce {
         Date date = new Date();
         log.info(date.toString());
         for (HeadDto headDto : headDtoList) {
-            if (headDto.getStartDay().compareTo(date) == 1) {
+            if (headDto.getCompletion() == 1) {
                 continue;
             }
             if (headDto.getStartDay().compareTo(date) > 0) {
@@ -613,7 +613,7 @@ public class ProjectDetailSerivce {
         }
 
         for (WorkDto workDto : workDtoList) {
-            if (workDto.getStartDay().compareTo(date) == 1) {
+            if (workDto.getCompletion() == 1) {
                 continue;
             }
             if (workDto.getStartDay().compareTo(date) > 0) {

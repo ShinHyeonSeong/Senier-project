@@ -222,6 +222,34 @@ article {
     flex-direction: row;
 }
 
+.post-user div {
+    color: #000
+}
+
+.post-user p {
+    color: #000;
+}
+
+.post-detail h1 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.project-select-here {
+    color: #1F254F;
+}
+
+/*.post-user-detail {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/
+
+.post-user-detail p {
+    margin-right: 5px;
+>>> >>> > origin / master
+}
+
 @media screen and (min-width: 1280px) {
     .board {
         grid-template-columns: 1fr 1fr 1fr;
