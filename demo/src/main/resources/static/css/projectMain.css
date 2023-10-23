@@ -217,6 +217,7 @@ td a {
 }
 
 .percent-1 {
+    color: #555;
     margin-bottom: 30px;
     font-size: 18px;
     text-align: center;
@@ -224,6 +225,7 @@ td a {
 }
 
 .percent-2 {
+    color: #555;
     margin-bottom: 30px;
     vertical-align: bottom;
     font-size: 15px;

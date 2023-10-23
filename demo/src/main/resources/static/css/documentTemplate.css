@@ -5,13 +5,13 @@ body {
 }
 
 .main-nav {
-    background-color: #5161CE;
+    background-color: #555;
     color: #fff;
     display: flex;
     align-items: center;
     padding: 10px;
     height: 48px;
-    border-bottom: 4px solid #33438F;
+    border-bottom: 4px solid #ddd;
 }
 
 .main-nav button {
@@ -66,7 +66,7 @@ body {
 /* content slide */
 
 .main-content {
-    margin-top: 80px;
+    margin-top: 20px;
     margin-bottom: 100px;
     width: 100%;
 }
@@ -75,14 +75,14 @@ body {
     margin: 0 auto;
     max-width: 60%;
     height: 900px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.slide_viewer {
+/* .slide_viewer {
     height: 340px;
     overflow: hidden;
     position: relative;
-}
+} */
 
 .slide_group {
     height: 100%;
@@ -119,7 +119,8 @@ a.slide_btn {
     transition: all 0.4s ease-in-out;
 }
 
-.slide_btn.active, .slide_btn:hover {
+.slide_btn.active,
+.slide_btn:hover {
     color: #428CC6;
     cursor: pointer;
 }
@@ -149,7 +150,8 @@ a.slide_btn {
     top: 0;
 }
 
-.previous_btn, .next_btn {
+.previous_btn,
+.next_btn {
     cursor: pointer;
     height: 65px;
     opacity: 0.5;
@@ -161,7 +163,8 @@ a.slide_btn {
     width: 65px;
 }
 
-.previous_btn:hover, .next_btn:hover {
+.previous_btn:hover,
+.next_btn:hover {
     opacity: 1;
 }
 
@@ -169,6 +172,7 @@ a.slide_btn {
     .previous_btn {
         left: 50px;
     }
+
     .next_btn {
         right: 50px;
     }
@@ -180,6 +184,7 @@ a.slide_btn {
     left: 91.5%;
     top: 85%;
 }
+
 .btn1.is-primary1 {
     width: 70px;
     height: 70px;
@@ -187,11 +192,12 @@ a.slide_btn {
     border: 0;
     font-size: 20px;
     color: #FFF;
-    background: #5161CE;
+    background: #555555;
     opacity: 1;
 }
+
 .btn1.is-primary1:hover {
-    background: #33438F;
+    background: #222222;
 }
 
 .btn1.is-primary1.is-activate {
@@ -212,20 +218,21 @@ a.slide_btn {
 
 .is-floating1 {
     position: absolute;
-    left: 0; top: 0;
+    left: 0;
+    top: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    width: 40px;
-    height: 40px;
-    color: #949DD7;
+    width: 60px;
+    height: 60px;
+    color: #555555;
     text-decoration: none;
     font-weight: bold;
     line-height: .8;
     background: #FFF;
     border-radius: 50%;
-    box-shadow: 0 10px 10px -7px rgba(153,153,153,.35);
+    box-shadow: 0 10px 10px -7px rgba(153, 153, 153, .35);
     cursor: pointer;
     transition: all .275s;
     border: 1px solid #eee;
@@ -236,18 +243,337 @@ a.slide_btn {
     background: #F2F2F2;
 }
 
-.is-activate ~ .is-floating1 {
+.is-activate~.is-floating1 {
     opacity: 1;
-    transform: translateX(-125%) translateY(100%);
+    transform: translateX(-125%) translateY(-210%);
 }
 
-.is-activate ~ .is-floating1:nth-of-type(2) {
+.is-activate~.is-floating1:nth-of-type(2) {
     opacity: 1;
-    transform: translateX(-125%) translateY(-80%);
+    transform: translateX(-125%) translateY(-100%);
 }
 
-.is-activate ~ .is-floating1:nth-of-type(3) {
+.is-activate~.is-floating1:nth-of-type(3) {
     opacity: 1;
-    transform: translateX(-125%) translateY(-280%);
+    transform: translateX(-125%) translateY(10%);
 }
-  
+
+
+
+/* Content Template CSS */
+
+.template {
+    padding: 10px 10px;
+}
+
+.template h1 {
+    font-size: 45px;
+    text-align: center;
+}
+
+.template h2 {
+    margin-left: 10%;
+    font-size: 30px;
+    color: #555;
+}
+
+.template h3 {
+    font-size: 24px;
+    color: #555;
+}
+
+.hr-divider {
+    width: 90%;
+    margin: auto;
+    border-radius: 10px;
+    height: 9px;
+    background-color: #5161CE;
+}
+
+/* project-First */
+
+.template-first-projectName {
+    font-size: 50px;
+    font-weight: 600;
+    padding-right: 50px;
+    margin-top: 100px;
+    color: #000;
+    text-align: right;
+}
+
+.template-first-main-content {
+    margin-top: 20px;
+    display: flex;
+}
+
+.template-first-main-content-1 {
+    flex: 2;
+}
+
+.template-first-main-content-2 {
+    flex: 10;
+    height: 9px;
+    background-color: #5161CE;
+    border: solid 1px #5161CE;
+    border-radius: 10px;
+}
+
+.template-first-img {
+    margin-top: 50px;
+    margin-left: 150px;
+}
+
+
+.template-first-projectMember {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    padding-right: 50px;
+    color: #555;
+    text-align: right;
+}
+
+.template-first-divider {
+    border: 3px solid #5161CE;
+    border-radius: 10px;
+    width: 80%;
+    float: right;
+    margin: 10px;
+}
+
+.template-first-projectDate {
+    margin-top: 50px;
+    font-size: 35px;
+    font-weight: 800;
+    padding-right: 50px;
+    color: #000;
+    text-align: right;
+}
+
+/* another content */
+.template-bullet-point {
+    width: 80%;
+    margin: auto;
+    border: #5161CE solid 2px;
+    border-radius: 10px;
+    list-style: none;
+
+}
+
+.first-bullet-ul {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+.second-bullet-ul {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.document-list-content {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    box-sizing: border-box;
+}
+
+
+.accordian {
+    list-style: none;
+    margin: 0 0 40px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.accordian header {
+    display: block;
+    margin: 0;
+    padding: 1em;
+    background: #999999;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    align-items: center;
+}
+
+
+.accordian section {
+    display: none;
+    justify-content: space-between;
+    padding: 1em;
+    background: #fff;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+}
+
+.accordian section.active {
+    display: flex;
+}
+
+.document-detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+.document-detail-info {
+    display: flex;
+    flex-direction: row;
+    height: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: row;
+    margin-right: 100px;
+    align-items: center;
+}
+
+.document-detail-info a {
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 12px;
+    color: #000;
+}
+
+.document-detail-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizon-divider {
+    background-color: #333;
+    width: 100%;
+    height: 2px;
+}
+
+.intro-project {
+    width: 80%;
+    margin-left: 10%;
+    padding-bottom: 10px;
+    border-bottom: #5161CE solid 2px;
+
+}
+
+.intro-project h2 {
+    margin-left: 0;
+}
+
+.intro-member {
+    width: 80%;
+    border-bottom: #5161CE solid 2px;
+    margin-left: 10%;
+    padding-bottom: 10px;
+}
+
+.intro-date {
+    width: 80%;
+    border-bottom: #5161CE solid 2px;
+    margin-left: 10%;
+    padding-bottom: 10px;
+}
+
+.div-c {
+    max-height: 150px;
+    overflow: hidden;
+}
+
+.intro-member-detail {
+    margin-left: 10px;
+    display: flex;
+    max-height: 150px;
+}
+
+.intro-member-name {
+    flex: 2;
+    text-align: left;
+}
+
+.intro-member-role {
+    text-align: left;
+    flex: 10;
+}
+
+/* Button css */
+.document-create-btn {
+    width: 10rem;
+    height: 39px;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 1px 16px;
+    background-color: #5161CE;
+    color: white;
+    border: 1.5px solid #5161CE;
+    border-radius: 10px;
+    text-transform: uppercase;
+    transition: all 0.4s;
+}
+
+.document-create-btn:hover {
+    border: #fff;
+    background-color: #1F254F;
+    color: white;
+}
+
+.document-view-btn {
+    width: 70px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 1px 16px;
+    background-color: #51556e;
+    color: #fff;
+    border: #fff;
+    border-radius: 10px;
+    text-transform: uppercase;
+    transition: all 0.4s;
+    float: right;
+}
+
+.document-view-btn:hover {
+    background-color: #373A4F;
+}
+
+.document-delete-btn {
+    width: 70px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 1px 16px;
+    background-color: rgb(255, 79, 79);
+    color: #fff;
+    border: #fff;
+    border-radius: 10px;
+    text-transform: uppercase;
+    transition: all 0.4s;
+}
+
+.document-delete-btn:hover {
+    background-color: rgb(255, 11, 11);
+}
+
+.document-edit-btn {
+    width: 70px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 1px 16px;
+    background-color: #48a1ff;
+    color: #fff;
+    border: #fff;
+    border-radius: 10px;
+    text-transform: uppercase;
+    transition: all 0.4s;
+    margin-right: 1rem;
+}
+
+.document-edit-btn:hover {
+    background-color: #1768ff;
+}
