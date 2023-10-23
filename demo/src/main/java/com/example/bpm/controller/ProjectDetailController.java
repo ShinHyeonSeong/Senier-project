@@ -603,5 +603,43 @@ public class ProjectDetailController {
         messageService.deleteMessage(messageId);
         return "redirect:/project/recvMessageList";
     }
+
+    @GetMapping("/project/template")
+    public String goProjectTemplate(Model model) {
+        UserDto userDto = getSessionUser();
+        ProjectDto presentDto = getSessionProject();
+        List<UserDto> userDtoList = userService.findUserListByProjectId(presentDto.getProjectId());
+        List<HeadDto> headDtoList = projectDetailSerivce.findHeadListByProject(presentDto);
+        Long auth = getSessionAuth();
+
+        projectDetailSerivce.completionCheckByDate(presentDto);
+        List<DocumentDto> documentDtoList = documentService.findDocumentListByProjectId(presentDto.getProjectId());
+
+        // 완료, 미완 헤드 수
+        int progressHead = projectDetailSerivce.countProgressHead(headDtoList);
+        int completeHead = headDtoList.size() - progressHead;
+
+        // 완료 진척도
+        int percentage = projectDetailSerivce.getProjectProgressPercent(presentDto);
+
+        model.addAttribute("per", percentage);
+        model.addAttribute("auth", auth);
+        model.addAttribute("projectDto", presentDto);
+        model.addAttribute("sessionUser", userDto);
+        model.addAttribute("joinUsers", userDtoList);
+        model.addAttribute("documentDtoList", documentDtoList);
+        model.addAttribute("headDtoList", headDtoList);
+        model.addAttribute("progressHead", progressHead);
+        model.addAttribute("completeHead", completeHead);
+
+        List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByProject(presentDto);
+        int progressWork = projectDetailSerivce.countProgressWork(workDtoList);
+        int completeWork = workDtoList.size() - progressWork;
+
+        model.addAttribute("workDtoList", workDtoList);
+        model.addAttribute("progressWork", progressWork);
+        model.addAttribute("completeWork", completeWork);
+        return "documentTemplate";
+    }
 }
 

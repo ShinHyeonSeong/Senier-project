@@ -214,6 +214,7 @@ td a {
 .project-top-line {
     display: flex;
     justify-content: space-between;
+    width: 80%;
 }
 
 .percent-1 {

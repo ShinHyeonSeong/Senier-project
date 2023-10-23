@@ -135,6 +135,7 @@ td a {
 }
 
 .btn-wrap {
+    float: right;
     display: flex;
     flex-direction: row;
 }
