@@ -72,8 +72,10 @@
 				<div class="thumbnail">
 				</div>
 				<article class="post-detail">
-					<div class="post-detail-top-h1" th:text="${project.title}"></div>
-					<!--						<a class="project-delete" href="">삭제</a>-->
+					<div class="post-detail-top">
+						<div class="post-detail-top-h1" th:text="${project.title}"></div>
+						<a class="project-delete" href="">삭제</a>
+					</div>
 					<span th:text="${project.subtitle}"></span>
 					<div class="post-user" style="padding-top: 30px;">
 						<div class="post-user-detail">
@@ -89,10 +91,11 @@
 							</div>
 						</div>
 					</div>
-				</article>
-			</a>
 		</div>
+		</article>
+		</a>
 	</div>
+</div>
 </div>
 </body>
 
