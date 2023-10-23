@@ -159,7 +159,7 @@ body {
     background: #46494F;
 }
 
-.thumbnail-m{
+.thumbnail-m {
     padding-bottom: 45%;
     background-size: cover;
 }
@@ -176,8 +176,12 @@ article {
     justify-content: space-between;
 }
 
-.post-detail-top > h1 {
-    font-size: 20px;
+.post-user-detail p {
+    margin-right: 5px;
+}
+
+.post-detail-top-h1 {
+    font-size: 10px;
     margin: 0;
     color: #000000;
     font-weight: bold;
@@ -213,29 +217,9 @@ article {
     text-align: center;
 }
 
-.post-user div {
-    color: #000
-}
-
-.post-user p {
-    color: #000;
-}
-
-.post-detail h1 {
-    color: #000000;
-}
-
-.project-select-here {
-    color: #1F254F;
-}
-
-/*.post-user-detail {*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*}*/
-
-.post-user-detail p {
-    margin-right: 5px;
+.post-user-detail {
+    display: flex;
+    flex-direction: row;
 }
 
 @media screen and (min-width: 1280px) {
