@@ -79,6 +79,9 @@ body {
     border-bottom: 3px solid #373A4F;
 }
 
+.project-select-active:hover {
+    color: #999999;
+}
 
 .head-img img {
     width: 20px;
@@ -129,15 +132,6 @@ body {
     top: 0;
 }
 
-.post h1 {
-    font-size: 20px;
-    margin: 0;
-    color: #000000;
-    font-weight: bold;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
 .post p {
     font-size: 12px;
     color: #000000;
@@ -165,21 +159,52 @@ body {
     background: #46494F;
 }
 
+.thumbnail-m{
+    padding-bottom: 45%;
+    background-size: cover;
+}
+
 article {
     flex: 1;
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     padding: 15px;
 }
 
-article p {
-    flex: 1;
+.post-detail-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.post-detail-top > h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #000000;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.project-delete {
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: white;
+    color: #000000;
+    border: 1.5px solid #555555;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: all 0.4s;
+}
+
+.project-delete:hover {
+    border: #777777;
+    background-color: #777777;
+    color: white;
 }
 
 .post-user {
     color: #000;
-    flex: 1;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -204,10 +229,10 @@ article p {
     color: #1F254F;
 }
 
-.post-user-detail {
-    display: flex;
-    flex-direction: row;
-}
+/*.post-user-detail {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/
 
 .post-user-detail p {
     margin-right: 5px;

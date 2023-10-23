@@ -50,8 +50,8 @@
 <div class="container">
 	<div class="top-button">
 		<div class="left">
-			<a class="project-select project-select-here" href="/project/projectAllList">다른 프로젝트</a>
 			<a class="project-select" href="/project/projectManagerList">내 프로젝트</a>
+			<a class="project-select-active" href="/project/projectAllList">다른 프로젝트</a>
 		</div>
 		<div class="right">
 			<a href="/project/inviteList" class="invite">
@@ -73,7 +73,10 @@
 				<div class="thumbnail">
 				</div>
 				<article class="post-detail">
-					<h1 th:text="${project.title}"></h1>
+					<div class="post-detail-top">
+						<h1 th:text="${project.title}"></h1>
+						<a class="project-delete" href="">삭제</a>
+					</div>
 					<span th:text="${project.subtitle}"></span>
 					<div class="post-user" style="padding-top: 30px;">
 						<div class="post-user-detail">
@@ -84,7 +87,8 @@
 							<p>생성자 : </p>
 							<div th:each="projectRole : ${projectRoleList}">
 								<div th:if="${(project.getProjectId() == projectRole.getProjectIdToRole().getProjectId()) &&
-								(projectRole.getRole().getId() == 1)}" th:text="${projectRole.getUuid().getName()}"></div>
+								(projectRole.getRole().getId() == 1)}"
+									 th:text="${projectRole.getUuid().getName()}"></div>
 							</div>
 						</div>
 					</div>

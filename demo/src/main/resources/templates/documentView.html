@@ -3,61 +3,77 @@
 <!-- document 를 생성하고 편집할 수 있는 창 -->
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Border Project Manager</title>
-    <link rel="stylesheet" href="/css/documentView.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Border Project Manager</title>
+	<link rel="stylesheet" href="/css/documentView.css">
 </head>
 
 <body>
 
 <div class="documentWrite-main-nav">
-    <a th:href="${back}"><button class="nav-left">나가기</button></a>
-    <div class="documentWrite-title">
-        <h1 id="documentWrite-projectName" th:text="${work.headIdToWork.title}">Head Title</h1>
-    </div>
-    <div class="documentWrite-mid">
-        <h2>
-            >
-        </h2>
-    </div>
-    <div class="documentWrite-subtitle">
-        <h1 th:text="${work.title}" >Work Title</h1>
-    </div>
+	<a th:href="${back}">
+		<button class="nav-left">나가기</button>
+	</a>
+	
+	<div class="documentWrite-title">
+		<h1 th:text="${work.getProjectIdToWork().getTitle()}">project Title</h1>
+	</div>
+	<div class="documentWrite-mid">
+		<h2>
+			>
+		</h2>
+	</div>
+	<div class="documentWrite-title">
+		<h1 th:text="${work.headIdToWork.title}">Head Title</h1>
+	</div>
+	<div class="documentWrite-mid">
+		<h2>
+			>
+		</h2>
+	</div>
+	<div class="documentWrite-subtitle">
+		<h1 th:text="${work.title}">Work Title</h1>
+	</div>
 </div>
 
 <div class="main-content">
-    <div class="write">
-        <div class="detail">
-            <p type="text" class="title" th:text="${document.title}">제목</p>
-            <hr>
-            <div class="content">
-                <div class="sortable">
-                    <div class="move_block" th:each="block : ${blockList}">
-                        <div th:id="${block.category}"
-                             th:if="${block.category == 'blockImage'}"
-                             th:content="${block.content}"
-                             class ="block"><img class = "block_image" th:src="${block.content}" ondragstart="return false"></div>
-
-                        <div th:id="${block.category}"
-                             th:if="${block.category == 'blockVideo'}"
-                             th:content="${block.content}"
-                             class ="block"><video class = "block_video" th:src="${block.content}" controls ondragstart="return false"></video></div>
-
-                        <div th:id="${block.category}"
-                             th:if="${block.category != 'blockImage' and block.category != 'blockVideo'}"
-                             class ="block"
-                             placeholder="빈 블럭"
-                             th:utext="${block.content}"
-                             spellcheck="false">block content</div>
-                    </div>
-                </div>
-            </div>
-            <input type="file" id="imageInput" style="display:none;" accept="image/*">
-            <input type="file" id="videoInput" style="display:none;" accept="video/*">
-        </div>
-    </div>
+	<div class="write">
+		<div class="detail">
+			<p type="text" class="title" th:text="${document.title}">제목</p>
+			<hr>
+			<div class="content">
+				<div class="sortable">
+					<div class="move_block" th:each="block : ${blockList}">
+						<div th:id="${block.category}"
+							 th:if="${block.category == 'blockImage'}"
+							 th:content="${block.content}"
+							 class="block"><img class="block_image" th:src="${block.content}"
+												ondragstart="return false"></div>
+						
+						<div th:id="${block.category}"
+							 th:if="${block.category == 'blockVideo'}"
+							 th:content="${block.content}"
+							 class="block">
+							<video class="block_video" th:src="${block.content}" controls
+								   ondragstart="return false"></video>
+						</div>
+						
+						<div th:id="${block.category}"
+							 th:if="${block.category != 'blockImage' and block.category != 'blockVideo'}"
+							 class="block"
+							 placeholder="빈 블럭"
+							 th:utext="${block.content}"
+							 spellcheck="false">block content
+						</div>
+					</div>
+				</div>
+			</div>
+			<input type="file" id="imageInput" style="display:none;" accept="image/*">
+			<input type="file" id="videoInput" style="display:none;" accept="video/*">
+		</div>
+	</div>
 </div>
 </body>
 </html>

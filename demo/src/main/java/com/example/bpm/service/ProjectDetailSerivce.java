@@ -600,25 +600,27 @@ public class ProjectDetailSerivce {
         Date date = new Date();
         log.info(date.toString());
         for (HeadDto headDto : headDtoList) {
+            if (headDto.getStartDay().compareTo(date) == 1) {
+                continue;
+            }
             if (headDto.getStartDay().compareTo(date) > 0) {
                 headDto.setCompletion(2);
-                // 계획중 처리
                 updateHead(headDto.getHeadId(), headDto);
             } else if (headDto.getEndDay().compareTo(date) < 0) {
                 headDto.setCompletion(3);
-                // 미완료 처리
                 updateHead(headDto.getHeadId(), headDto);
             }
         }
 
         for (WorkDto workDto : workDtoList) {
+            if (workDto.getStartDay().compareTo(date) == 1) {
+                continue;
+            }
             if (workDto.getStartDay().compareTo(date) > 0) {
                 workDto.setCompletion(2);
-                // 계획중 처리
                 updateWork(workDto.getWorkId(), workDto);
             } else if (workDto.getEndDay().compareTo(date) < 0) {
                 workDto.setCompletion(3);
-                // 미완료 처리
                 updateWork(workDto.getWorkId(), workDto);
             }
         }
@@ -636,7 +638,7 @@ public class ProjectDetailSerivce {
         return false;
     }
 
-    public double getProjectProgressPercent(ProjectDto projectDto) {
+    public int getProjectProgressPercent(ProjectDto projectDto) {
         double progress = 0;
         double completeWork = 0;
         List<WorkDto> workDtoList = findWorkListByProject(projectDto);
@@ -646,16 +648,12 @@ public class ProjectDetailSerivce {
                 completeWork++;
             }
         }
-        log.info("완료된 작업 수 " + completeWork);
         double count = workDtoList.size();
         double percentage = (100 / count);
-        log.info("전체 수 " + workDtoList.size());
-        log.info("완료된 작업율 " + percentage);
 
         progress = completeWork * percentage;
-
-        log.info("전체율 " + progress);
-        return progress;
+        int result = (int) Math.floor(progress);
+        return result;
     }
 
 }
