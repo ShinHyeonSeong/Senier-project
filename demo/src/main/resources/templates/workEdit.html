@@ -65,6 +65,20 @@
 	<form name="createDetail_form" action="/project/work/edit" method="post">
 		<div class="create-goal">
 			<div class="label-detail">
+				<label class="label" for="headId">연결할 목표</label>
+			</div>
+			<div class="select">
+				<select style="border: none;" id="headId" name="headId" th:if="${headDtoList != null}">
+					<option th:each="headDto : ${headDtoList}"
+							th:text="${headDto.title} + ' (' + ${#dates.format(headDto.getStartDay(), 'yyyy-MM-dd')}
+							 + ' ~ ' + ${#dates.format(headDto.getEndDay(), 'yyyy-MM-dd')} + ')'"
+							th:value="${headDto.headId}"></option>
+				</select>
+			</div>
+		</div>
+
+		<div class="create-goal">
+			<div class="label-detail">
 				<label class="label" for="title">작업 이름</label>
 				<div class="essential">*</div>
 			</div>
@@ -115,18 +129,6 @@
 						<div class="check"></div>
 					</li>
 				</ul>
-			</div>
-		</div>
-		<div class="create-goal">
-			<div class="label-detail">
-				<label class="label" for="headId">연결할 목표</label>
-			</div>
-			<div class="select">
-				<select style="border: none;" id="headId" name="headId" th:if="${headDtoList != null}">
-					<option th:each="headDto : ${headDtoList}"
-							th:text="${headDto.title}"
-							th:value="${headDto.headId}"></option>
-				</select>
 			</div>
 		</div>
 

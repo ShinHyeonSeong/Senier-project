@@ -11,6 +11,10 @@ import com.example.bpm.dto.user.UserDto;
 import com.example.bpm.dto.user.relation.UserWorkDto;
 import com.example.bpm.service.*;
 import com.example.bpm.service.Logic.dateLogic.DateManager;
+import com.google.api.client.json.Json;
+import com.google.cloud.storage.Acl;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -316,11 +321,12 @@ public class ProjectDetailController {
         ProjectDto currentProject = getSessionProject();
         Long auth = getSessionAuth();
         List<UserWorkDto> userWorkDtoList = projectDetailSerivce.findUserWorkListByUser(sessionUser);
+        List<UserWorkDto> projectUserWorkDtoList = projectDetailSerivce.findUserWorkListByProject(userWorkDtoList, currentProject);
         List<UserDto> userDtoList = userService.findUserListByProjectId(currentProject.getProjectId());
         model.addAttribute("sessionUser", sessionUser);
         model.addAttribute("projectDto", currentProject);
         model.addAttribute("auth", auth);
-        model.addAttribute("userWorkDtoList", userWorkDtoList);
+        model.addAttribute("userWorkDtoList", projectUserWorkDtoList);
         model.addAttribute("joinUsers", userDtoList);
         return "myWork";
     }
@@ -402,13 +408,13 @@ public class ProjectDetailController {
     //    *//* - - - - 작업 관련 메서드 끝 - - - -*//*
 //
 //    *//* - - - - 삭제 메서드 - - - - *//*
-//    @RequestMapping("/project/delete/{id}")
-//    public String deleteProject(@PathVariable("id")Long projectId) {
-//        ProjectDto projectDto = projectSerivce.findProject(projectId);
-//        projectDetailSerivce.deleteProjectEntity(projectDto);
-//        return "redirect:/project/projectManagerList";
-//    }
-//
+    @GetMapping("project/delete/{id}")
+    public String deleteProject(@PathVariable("id")Long projectId) {
+        ProjectDto projectDto = projectSerivce.findProject(projectId);
+        projectDetailSerivce.deleteProject(projectDto);
+        return "redirect:/project/projectManagerList";
+    }
+
     @RequestMapping("/project/goal/head/delete/{id}")
     public String deleteHead(@PathVariable("id") Long headId) {
         projectDetailSerivce.deleteHead(projectDetailSerivce.findHeadById(headId));
@@ -602,6 +608,82 @@ public class ProjectDetailController {
     public String deleteMessage(@PathVariable("id") Long messageId) {
         messageService.deleteMessage(messageId);
         return "redirect:/project/recvMessageList";
+    }
+
+    @GetMapping("/project/template")
+    public String goProjectTemplate(Model model) {
+        UserDto userDto = getSessionUser();
+        ProjectDto presentDto = getSessionProject();
+        List<UserDto> userDtoList = userService.findUserListByProjectId(presentDto.getProjectId());
+        List<HeadDto> headDtoList = projectDetailSerivce.findHeadListByProject(presentDto);
+        Long auth = getSessionAuth();
+
+        projectDetailSerivce.completionCheckByDate(presentDto);
+        List<DocumentDto> documentDtoList = documentService.findDocumentListByProjectId(presentDto.getProjectId());
+
+        // 완료, 미완 헤드 수
+        int progressHead = projectDetailSerivce.countProgressHead(headDtoList);
+        int completeHead = headDtoList.size() - progressHead;
+
+        // 완료 진척도
+        int percentage = projectDetailSerivce.getProjectProgressPercent(presentDto);
+
+        model.addAttribute("per", percentage);
+        model.addAttribute("auth", auth);
+        model.addAttribute("projectDto", presentDto);
+        model.addAttribute("sessionUser", userDto);
+        model.addAttribute("joinUsers", userDtoList);
+        model.addAttribute("documentDtoList", documentDtoList);
+        model.addAttribute("headDtoList", headDtoList);
+        model.addAttribute("progressHead", progressHead);
+        model.addAttribute("completeHead", completeHead);
+
+        List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByProject(presentDto);
+        int progressWork = projectDetailSerivce.countProgressWork(workDtoList);
+        int completeWork = workDtoList.size() - progressWork;
+
+        model.addAttribute("workDtoList", workDtoList);
+        model.addAttribute("progressWork", progressWork);
+        model.addAttribute("completeWork", completeWork);
+        return "documentTemplate";
+    }
+
+    @GetMapping("/test/gantt")
+    public String ganttChartTest(Model model) {
+        ProjectDto projectDto = getSessionProject();
+        List<UserDto> userDtoList = userService.findUserListByProjectId(projectDto.getProjectId());
+        model.addAttribute("sessionUser", getSessionUser());
+        model.addAttribute("projectDto", projectDto);
+        model.addAttribute("joinUsers", userDtoList);
+        return "gantt";
+    }
+
+    @RequestMapping(value = "/gantt/event", method = {RequestMethod.GET})
+    public @ResponseBody List<Map<String, Object>> getGanttEvent() {
+        List<Map<String, Object>> workList = new ArrayList<>();
+        HashMap<String, Object> work;
+        List<HeadDto> headDtoList = projectDetailSerivce.findHeadListByProject(getSessionProject());
+        for (HeadDto headDto : headDtoList) {
+            work = new HashMap<String, Object>();
+            work.put("id", headDto.getTitle());
+            work.put("name", headDto.getTitle());
+            work.put("startDay", headDto.getStartDay());
+            work.put("deadline", headDto.getEndDay());
+            work.put("connectedObject", null);
+            workList.add(work);
+        }
+
+        List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByProject(getSessionProject());
+        for (WorkDto workDto : workDtoList) {
+            work = new HashMap<String, Object>();
+            work.put("id", workDto.getTitle());
+            work.put("name", workDto.getTitle());
+            work.put("startDay", workDto.getStartDay());
+            work.put("deadline", workDto.getEndDay());
+            work.put("connectedObject", workDto.getHeadIdToWork().getTitle());
+            workList.add(work);
+        }
+        return workList;
     }
 }
 
