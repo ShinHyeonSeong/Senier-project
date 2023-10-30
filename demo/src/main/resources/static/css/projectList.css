@@ -170,6 +170,12 @@ article {
     padding: 15px;
 }
 
+.post-detail span {
+    max-height: 30px;
+    overflow: hidden;
+    position: relative;
+}
+
 .post-detail-top {
     display: flex;
     flex-direction: row;
@@ -177,30 +183,10 @@ article {
 }
 
 .post-detail-top-h1 {
-    font-size: 10px;
+    font-size: 22px;
     margin: 0;
     color: #000000;
     font-weight: bold;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.project-delete {
-    text-decoration: none;
-    font-size: 10px;
-    font-weight: bold;
-    background-color: white;
-    color: #000000;
-    border: 1.5px solid #555555;
-    border-radius: 30px;
-    text-transform: uppercase;
-    transition: all 0.4s;
-}
-
-.project-delete:hover {
-    border: #777777;
-    background-color: #777777;
-    color: white;
 }
 
 .post-user {
@@ -211,11 +197,6 @@ article {
     font-size: 12px;
     font-weight: bold;
     text-align: center;
-}
-
-.post-user-detail {
-    display: flex;
-    flex-direction: row;
 }
 
 .post-user-detail {
