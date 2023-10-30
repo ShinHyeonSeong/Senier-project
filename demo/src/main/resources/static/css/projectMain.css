@@ -55,6 +55,7 @@ body {
 .div-c {
     max-height: 150px;
     overflow: auto;
+    position: relative;
 }
 
 .div-content {
