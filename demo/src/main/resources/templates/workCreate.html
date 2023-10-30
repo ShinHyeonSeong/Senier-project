@@ -72,7 +72,7 @@
 				<select style="border: none;" id="headId" name="headId" th:if="${headDtoList != null}">
 					<option th:each="headDto : ${headDtoList}"
 							th:text="${headDto.title} + ' (' + ${#dates.format(headDto.getStartDay(), 'yyyy-MM-dd')}
-							 + ' ~ ' + ${#dates.format(headDto.getStartDay(), 'yyyy-MM-dd')} + ')'"
+							 + ' ~ ' + ${#dates.format(headDto.getEndDay(), 'yyyy-MM-dd')} + ')'"
 							th:value="${headDto.headId}"></option>
 				</select>
 			</div>

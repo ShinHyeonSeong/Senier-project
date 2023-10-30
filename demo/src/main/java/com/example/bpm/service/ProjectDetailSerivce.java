@@ -22,6 +22,7 @@ import com.example.bpm.entity.user.UserEntity;
 import com.example.bpm.entity.user.relation.UserWorkEntity;
 import com.example.bpm.repository.*;
 import com.example.bpm.service.Logic.dateLogic.DateManager;
+import com.google.cloud.storage.Acl;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.jdbc.Work;
@@ -277,8 +278,8 @@ public class ProjectDetailSerivce {
         return userWorkDtoList;
     }
 
-    public List<UserWorkDto> findUserWorkListByWork(WorkDto workDto) {
-        List<UserWorkEntity> userWorkEntityList = userWorkRepository.findAllByWorkIdToUserWork_WorkId(workDto.getWorkId());
+    public List<UserWorkDto> findUserWorkListByUser(UserDto userDto) {
+        List<UserWorkEntity> userWorkEntityList = userWorkRepository.findAllByUserIdToUserWork_Uuid(userDto.getUuid());
         List<UserWorkDto> userWorkDtoList = new ArrayList<>();
 
         for (UserWorkEntity userWorkEntity : userWorkEntityList) {
@@ -289,16 +290,19 @@ public class ProjectDetailSerivce {
         return userWorkDtoList;
     }
 
-    public List<UserWorkDto> findUserWorkListByUser(UserDto userDto) {
-        List<UserWorkEntity> userWorkEntityList = userWorkRepository.findAllByUserIdToUserWork_Uuid(userDto.getUuid());
-        List<UserWorkDto> userWorkDtoList = new ArrayList<>();
-        UserWorkDto userWorkDto = new UserWorkDto();
-
-        for (UserWorkEntity userWorkEntity : userWorkEntityList) {
-            userWorkDto.insertEntity(userWorkEntity);
-            userWorkDtoList.add(userWorkDto);
+    public List<UserWorkDto> findUserWorkListByProject(List<UserWorkDto> userWorkDtoList, ProjectDto projectDto) {
+        log.info("프로젝트 id = " + projectDto.getProjectId());
+        List<UserWorkDto> projectUserWorkDtoList = new ArrayList<>();
+        for (UserWorkDto userWorkDto : userWorkDtoList) {
+            log.info(userWorkDto.getUserIdToUserWork().getName());
+            log.info(userWorkDto.getWorkIdToUserWork().getTitle());
+            log.info("userWorkDto projectId = " + userWorkDto.getWorkIdToUserWork().getProjectIdToWork().getProjectId());
+            if (userWorkDto.getWorkIdToUserWork().getProjectIdToWork().getProjectId() == projectDto.getProjectId()) {
+                log.info("userWorkDto " + userWorkDto.getWorkIdToUserWork().getProjectIdToWork().getProjectId());
+                projectUserWorkDtoList.add(userWorkDto);
+            }
         }
-        return userWorkDtoList;
+        return projectUserWorkDtoList;
     }
 
     /* WorkDocument WorkDocumentDto */
