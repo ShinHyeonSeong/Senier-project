@@ -563,24 +563,25 @@ public class ProjectDetailSerivce {
     //////////////////////////////////////////////////////////////////
     // check Low completion
     //////////////////////////////////////////////////////////////////
-    public void updateHeadCompletion(Long headId) {
+
+    public void updateHeadCompletion(Long headId, int state) {
         HeadDto headDto = findHeadById(headId);
-        headDto.setCompletion((headDto.getCompletion() == 1) ? 0 : 1);
+        headDto.setCompletion(state);
         HeadEntity headEntity = headDto.toEntity();
         headRepository.save(headEntity);
     }
 
-    public void updateWorkCompletion(Long workId) {
+    public void updateWorkCompletion(Long workId, int state) {
         WorkDto workDto = findWork(workId);
-        workDto.setCompletion((workDto.getCompletion() == 1) ? 0 : 1);
+        workDto.setCompletion(state);
         WorkEntity workEntity = workDto.toEntity();
         workRepository.save(workEntity);
 
         HeadEntity headEntity = workDto.getHeadIdToWork();
         if (checkAllWorkCompleted(headEntity.getHeadId()) && headEntity.getCompletion() != 1) {
-            updateHeadCompletion(headEntity.getHeadId());
+            updateHeadCompletion(headEntity.getHeadId(), 0);
         } else if (!checkAllWorkCompleted(headEntity.getHeadId()) && headEntity.getCompletion() == 1) {
-            updateHeadCompletion(headEntity.getHeadId());
+            updateHeadCompletion(headEntity.getHeadId(), 1);
         }
     }
 
@@ -597,6 +598,8 @@ public class ProjectDetailSerivce {
         return true;
     }
 
+
+
     public void completionCheckByDate(ProjectDto projectDto) {
         log.info("date 체크 진입");
         List<HeadDto> headDtoList = findHeadListByProject(projectDto);
@@ -606,6 +609,13 @@ public class ProjectDetailSerivce {
         for (HeadDto headDto : headDtoList) {
             if (headDto.getCompletion() == 1) {
                 continue;
+            }
+            if (headDto.getCompletion() == 0) {
+                if (headDto.getEndDay().compareTo(date) < 0) {
+                    headDto.setCompletion(3);
+                    updateHead(headDto.getHeadId(), headDto);
+                    continue;
+                }
             }
             if (headDto.getStartDay().compareTo(date) > 0) {
                 headDto.setCompletion(2);
@@ -617,7 +627,7 @@ public class ProjectDetailSerivce {
         }
 
         for (WorkDto workDto : workDtoList) {
-            if (workDto.getCompletion() == 1) {
+            if (workDto.getCompletion() == 1 || workDto.getCompletion() == 0) {
                 continue;
             }
             if (workDto.getStartDay().compareTo(date) > 0) {

@@ -114,10 +114,10 @@
 			</div>
 			<div class="horizon-divider"></div>
 			<div class="buttons">
-				<a th:href="@{/project/work/completion/change/{id}(id=${workDto.workId})}">
+				<a th:href="@{/project/work/completion/change(id=${workDto.workId}, state=1)}">
 					<button class="right-button" th:if="${auth == 1 && !(workDto.completion == 1)}">완료로 표시</button>
 				</a>
-				<a th:href="@{/project/work/completion/change/{id}(id=${workDto.workId})}">
+				<a th:href="@{/project/work/completion/change(id=${workDto.workId}, state=0)}">
 					<button class="right-button" th:if="${auth == 1 && !(workDto.completion == 0)}">진행중으로 표시</button>
 				</a>
 			</div>
