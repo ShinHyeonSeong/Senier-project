@@ -648,7 +648,7 @@ public class ProjectDetailController {
         return "documentTemplate";
     }
 
-    @GetMapping("/test/gantt")
+    @GetMapping("/project/gantt")
     public String ganttChartTest(Model model) {
         ProjectDto projectDto = getSessionProject();
         List<UserDto> userDtoList = userService.findUserListByProjectId(projectDto.getProjectId());

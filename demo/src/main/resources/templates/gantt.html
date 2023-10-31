@@ -11,6 +11,7 @@
     <script src="/lib/main.js"></script>
     <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/gantt.css">
+	<link rel="stylesheet" href="/css/sideNavbar.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" th:inline="javascript">
         var workNode;
@@ -110,8 +111,18 @@
         </div>
     </ul>
 </aside>
+
+<div class="main">
+	<div class="sub-nav">
+		<ul class="sub-navbar">
+			<li class="sub-nav-item"><a href="/project/calender">캘린더</a></li>
+			<li class="sub-nav-item-active"><a class="active" href="/project/gantt">일정 차트</a></li>
+			</li>
+		</ul>
+	</div>
+</div>
 <div class="content">
-    <h1 class="title">간트 차트</h1>
+    <h2 class="title">일정 차트</h2>
     <div class="gantt">
         <div id="chart_div"></div>
     </div>

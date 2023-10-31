@@ -5,7 +5,7 @@
 	<meta charset='utf-8'/>
 	<link href="/lib/main.css" rel='stylesheet'/>
 	<script src="/lib/main.js"></script>
-	<script src="/js/calender.js"></script>
+	<script src="/lib/locales-all.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<link rel="stylesheet" href="/css/calender.css">
 	<link rel="stylesheet" href="/css/sidebar.css">
@@ -48,16 +48,29 @@
 			</ul>
 		</div>
 		<div>
-			<a href="/user/search"><button id="inviteButton">Invite Members</button></a>
+			<a href="/user/search">
+				<button id="inviteButton">Invite Members</button>
+			</a>
 		</div>
 	</ul>
 </aside>
+
+<div class="main">
+	<div class="sub-nav">
+		<ul class="sub-navbar">
+			<li class="sub-nav-item-active"><a class="active" href="/project/calender">캘린더</a></li>
+			<li class="sub-nav-item"><a href="/project/gantt">일정 차트</a></li>
+			</li>
+		</ul>
+	</div>
+</div>
 <div class="content">
 	<div class="centered-content">
 		<div id='calendar'></div>
 	</div>
 </div>
 </body>
+
 
 <script>
 	var calendarEl = document.getElementById('calendar');
@@ -69,7 +82,8 @@
 	request.done(function (data) {
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			initialView: 'dayGridMonth',
-			events: data
+			events: data,
+			locale: "ko"
 		});
 		calendar.render();
 	});
