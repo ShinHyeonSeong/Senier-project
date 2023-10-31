@@ -285,7 +285,7 @@ hr {
 .custom-context-menu li {
     padding: 3px 5px;
     cursor: pointer;
-    color: #222;
+    color: #fff;
     list-style: none;
 }
 
