@@ -254,8 +254,10 @@ public class ProjectDetailController {
         afterHead.setEndDay(dateManager.formatter(deadline));
         projectDetailSerivce.updateHead(headId, afterHead);
 
-        for (Long workId : deleteWorkList) {
-            projectDetailSerivce.deleteWork(projectDetailSerivce.findWork(workId));
+        if (deleteWorkList != null) {
+            for (Long workId : deleteWorkList) {
+                projectDetailSerivce.deleteWork(projectDetailSerivce.findWork(workId));
+            }
         }
         projectDetailSerivce.completionCheckByDate(currentProject);
         return "redirect:/project/goals";
@@ -489,15 +491,15 @@ public class ProjectDetailController {
     //    *//* - - - - 댓글 관련 메서드 끝 - - - -*//*
 //
 //    *//* 상태 완료 처리 메서드 *//*
-    @RequestMapping("/project/head/completion/change/{id}")
-    public String headCompletionChange(@PathVariable("id") Long headId) {
-        projectDetailSerivce.updateHeadCompletion(headId);
+    @RequestMapping("/project/head/completion/change")
+    public String headCompletionChange(Long headId, int state) {
+        projectDetailSerivce.updateHeadCompletion(headId, state);
         return "redirect:/project/goals";
     }
 
-    @RequestMapping("/project/work/completion/change/{id}")
-    public String workCompletionChange(@PathVariable("id") Long workId) {
-        projectDetailSerivce.updateWorkCompletion(workId);
+    @RequestMapping("/project/work/completion/change")
+    public String workCompletionChange(Long id, int state) {
+        projectDetailSerivce.updateWorkCompletion(id, state);
         return "redirect:/project/works";
     }
 

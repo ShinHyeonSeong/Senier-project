@@ -45,6 +45,7 @@ a {
     border: none;
     font-size: 32pt;
     font-weight: bold;
+    width: 100%;
 }
 
 .title:focus {
