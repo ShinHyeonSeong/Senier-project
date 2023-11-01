@@ -579,9 +579,9 @@ public class ProjectDetailSerivce {
 
         HeadEntity headEntity = workDto.getHeadIdToWork();
         if (checkAllWorkCompleted(headEntity.getHeadId()) && headEntity.getCompletion() != 1) {
-            updateHeadCompletion(headEntity.getHeadId(), 0);
-        } else if (!checkAllWorkCompleted(headEntity.getHeadId()) && headEntity.getCompletion() == 1) {
             updateHeadCompletion(headEntity.getHeadId(), 1);
+        } else if (!checkAllWorkCompleted(headEntity.getHeadId()) && headEntity.getCompletion() == 1) {
+            updateHeadCompletion(headEntity.getHeadId(), 0);
         }
     }
 
