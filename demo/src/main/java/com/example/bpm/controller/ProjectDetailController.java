@@ -492,8 +492,8 @@ public class ProjectDetailController {
 //
 //    *//* 상태 완료 처리 메서드 *//*
     @RequestMapping("/project/head/completion/change")
-    public String headCompletionChange(Long headId, int state) {
-        projectDetailSerivce.updateHeadCompletion(headId, state);
+    public String headCompletionChange(Long id, int state) {
+        projectDetailSerivce.updateHeadCompletion(id, state);
         return "redirect:/project/goals";
     }
 

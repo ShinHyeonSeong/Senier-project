@@ -627,8 +627,15 @@ public class ProjectDetailSerivce {
         }
 
         for (WorkDto workDto : workDtoList) {
-            if (workDto.getCompletion() == 1 || workDto.getCompletion() == 0) {
+            if (workDto.getCompletion() == 1) {
                 continue;
+            }
+            if (workDto.getCompletion() == 0) {
+                if (workDto.getEndDay().compareTo(date) < 0) {
+                    workDto.setCompletion(3);
+                    updateWork(workDto.getWorkId(), workDto);
+                    continue;
+                }
             }
             if (workDto.getStartDay().compareTo(date) > 0) {
                 workDto.setCompletion(2);
