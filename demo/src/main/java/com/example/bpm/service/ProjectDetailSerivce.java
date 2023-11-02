@@ -83,8 +83,9 @@ public class ProjectDetailSerivce {
         headDto.setCompletion(0);
         headDto.setProjectIdToHead(projectRepository.findById(projectDto.getProjectId()).orElse(null));
 
-        headRepository.save(headDto.toEntity());
+        HeadEntity headEntity = headRepository.save(headDto.toEntity());
 
+        headDto.insertEntity(headEntity);
         return headDto;
     }
 

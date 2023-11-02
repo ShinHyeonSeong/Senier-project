@@ -1,0 +1,379 @@
+/*custom font*/
+
+/*basic reset*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    background: #fff;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #6441A5, #2a0845);
+    /* Chrome 10-25, Safari 5.1-6 */
+}
+
+body {
+    font-family: montserrat, arial, verdana;
+    background: transparent;
+}
+
+/*form styles*/
+
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 30px;
+}
+
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+
+    /*stacking fieldsets above each other*/
+    position: relative;
+}
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+/*inputs*/
+#msform input,
+#msform textarea {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 13px;
+}
+
+#msform input:focus,
+#msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1.5px solid #5161ce;
+    outline-width: 0;
+    transition: All 0.5s ease-in;
+    -webkit-transition: All 0.5s ease-in;
+    -moz-transition: All 0.5s ease-in;
+    -o-transition: All 0.5s ease-in;
+}
+
+.document-section .document {
+    width: 50%;
+
+}
+
+/* background: rgb(220, 50, 20); */
+/*buttons*/
+#msform .action-button-delete {
+    width: 215px;
+    background: #7070d9;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button-delete:hover,
+#msform .action-button-delete:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #7070d9;
+}
+
+#msform .action-button {
+    width: 100px;
+    background: #5161ce;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #5161ce;
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #C5C5F1;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
+}
+
+/*headings*/
+.fs-title {
+    font-size: 22px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.fs-subtitle {
+    font-weight: normal;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/*progressbar*/
+#progressbar {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+}
+
+#progressbar li {
+    list-style-type: none;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 14px;
+    width: 25%;
+    float: left;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 24px;
+    height: 24px;
+    line-height: 26px;
+    display: block;
+    font-size: 12px;
+    color: #333;
+    background: #ccc;
+    border-radius: 25px;
+    margin: 0 auto 10px auto;
+}
+
+/*progressbar connectors*/
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #ccc;
+    position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1;
+    /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #5161ce;
+    color: white;
+}
+
+
+/* Not relevant to this form */
+.dme_link {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.dme_link a {
+    background: #FFF;
+    font-weight: bold;
+    color: #5161ce;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 5px 25px;
+    font-size: 12px;
+}
+
+.dme_link a:hover,
+.dme_link a:focus {
+    background: #C5C5F1;
+    text-decoration: none;
+}
+
+.title {
+    font-size: 88px;
+    color: #5161ce;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+.discription {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* ul style */
+.tree {
+    width: 400px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+}
+
+/* list styles */
+
+ol {
+    list-style: none;
+    color: #ccc;
+}
+
+ol li {
+    font: bold 24pt helvetica, arial, sans-serif;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+li p {
+    font: 12pt helvetica, arial, sans-serif;
+    color: #555;
+    font-size: 18px;
+}
+
+span {
+    position: absolute;
+    left: 0;
+    line-height: 25px;
+    color: #777;
+}
+
+.work-discription {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*  */
+
+#connectedWork {
+    color: #5161ce;
+    font-weight: bold;
+}
+
+.document-detail {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+
+}
+
+.detail {
+    line-height: 20px;
+}
+
+#tasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 2rem;
+
+    & #tasksList {
+        list-style-type: none;
+        padding-left: 0;
+
+        & li {
+            transition: all 0.30s ease-in-out;
+            box-shadow: 0 5px 5px 0 rgba(1, 1, 1, 0.07);
+            border-radius: .75rem;
+            color: #0d0d0d;
+            padding: 1.25rem;
+            width: 400px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: .03rem;
+            animation:fadeIn .5s linear;
+            background-color: #fff;
+            margin-bottom: 5px;
+            position: relative;
+            border-right: 0px solid lightgray;
+            letter-spacing: -.015rem;
+            will-change: transform;
+
+            & input {
+                border: none;
+                font-size: 14px;
+                font-weight: bold;
+                height: 20px;
+                margin-bottom: 0;
+            }
+
+            &:hover {
+                border-right: 55px solid red;
+                transition: all 0.30s ease-in-out;
+                transform: scale(1.05);
+                z-index: 20;
+                box-shadow: 0 5px 5px 0 rgba(1, 1, 1, 0.2);
+
+                & .delete {
+                    font-size: 14px;
+                    top: 40%;
+                    right: -40px;
+                    color: white;
+                }
+            }
+
+            & .delete {
+                transition: all 0.30s ease-in-out;
+                position: absolute;
+                color: transparent;
+                background: none;
+                border: none;
+                outline: 0;
+                line-height: .85rem;
+                font-size: 1rem;
+
+                &:hover {
+                    opacity: .75;
+                }
+            }
+        }
+    }
+}
