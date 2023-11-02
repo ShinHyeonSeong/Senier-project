@@ -166,19 +166,51 @@ public class ProjectController {
                                 @RequestParam(value = "subtitle") String subtitle,
                                 @RequestParam(value = "startDay") String startDay,
                                 @RequestParam(value = "endDay") String endDay,
+                                Model model,
                                 HttpSession session) {
         if (title.equals(null) || startDay.equals(null) || endDay.equals(null)) {
-            log.info("값을 다 입력하지 못했음 (컨트롤러 작동)");
             return "projectCreate";
         } else {
             ProjectDto projectDto = projectSerivce.createProject(title, subtitle, startDay, endDay);
             UserDto sessionUser = getSessionUser();
             session.setAttribute("currentProject", projectDto);
+            checkAuth();
+            Long auth = getSessionAuth();
             projectSerivce.addRoleManager(projectDto, sessionUser);
-            log.info("프로젝트 생성 정상 작동(컨트롤러 작동)");
-            return "redirect:/project/projectManagerList";
+
+            model.addAttribute("projectDto", projectDto);
+            return "projectExample";
         }
     }
+
+    @PostMapping("/project/example")
+    public String newProjectExample(Model model,
+                                    HttpSession session,
+                                    @RequestParam(value = "headTitle") String headTitle,
+                                    @RequestParam(value = "headDiscription") String headDiscription,
+                                    @RequestParam(value = "headStartDay") String headStartDay,
+                                    @RequestParam(value = "headDeadline") String headDeadline,
+
+                                    @RequestParam(value = "workTitle") String workTitle,
+                                    @RequestParam(value = "workDiscription") String workDiscription,
+                                    @RequestParam(value = "workStartDay") String workStartDay,
+                                    @RequestParam(value = "workDeadline") String workDeadline,
+
+                                    @RequestParam(value = "documentTitle") List<String> documentTitle) {
+        ProjectDto sessionProject = getSessionProject();
+        HeadDto createHeadDto = projectDetailSerivce.createHead(headTitle, headStartDay, headDeadline, headDiscription, sessionProject);
+
+        WorkDto createWorkDto = projectDetailSerivce.createWork(workTitle, workDiscription, workStartDay, workDeadline,
+                createHeadDto, sessionProject);
+        List<String> chargeUsers = new ArrayList<>();
+        chargeUsers.add(getSessionUser().getUuid());
+        projectDetailSerivce.addUserWork(createWorkDto, chargeUsers);
+
+        documentService.createDocumentByTitle(getSessionUser().getUuid(), getSessionUser().getName(), documentTitle, createWorkDto);
+
+        return "redirect:/project/" + sessionProject.getProjectId();
+    }
+
 
     // 프로젝트 선택 시 그 프로젝트 정보를 가져오며 프로젝트 창으로 넘어가는 메서드
     // 권한 검색 및 부여 후, 권한에 따라 페이지 리턴.

@@ -1,0 +1,92 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/js/append.js"></script>
+    <link rel="stylesheet" href="/css/projectExample.css">
+</head>
+
+<body>
+<!-- MultiStep Form -->
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form id="msform" action="/project/example" method="post">
+            <!-- progressbar -->
+            <ul id="progressbar">
+                <li class="active">소개</li>
+                <li>목표 생성</li>
+                <li>하위 작업 생성</li>
+                <li>문서 생성</li>
+            </ul>
+            <!-- fieldsets -->
+            <fieldset>
+                <div>
+                    <h1 class="title">환영합니다!</h1>
+                    <div class="discription">프로젝트는 다음과 같은 구성으로 이루어집니다.</div>
+                </div>
+                <div class="tree">
+                    <ol>
+                        <li><span>01</span><p>프로젝트의 목표 설정</p></li>
+
+                        <li><span>02</span><p>설정된 목표의 하위 작업</p></li>
+
+                        <li><span>03</span><p>작업 부가 설명 문서</p></li>
+
+                    </ol>
+                </div>
+                <a th:href="@{/project/{id}(id=${projectDto.getProjectId()})}"><input type="button" name="previous" class="previous action-button-previous" value="건너뛰기" /></a>
+                <input type="button" name="next" class="next action-button" value="다음" />
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">먼저 프로젝트 완성을 위해 완수해야할 목표를 설정합니다.</h2>
+                <h3 class="fs-subtitle">프로젝트 핵심 목표 설정</h3>
+                <input type="text" name="headTitle" id="headTitle" placeholder="목표 이름" />
+                <input type="text" name="headDiscription" placeholder="목표 설명" />
+                <input type="text" name="headStartDay" placeholder="시작일자" />
+                <input type="text" name="headDeadline" placeholder="마감기한" />
+                <input type="button" name="previous" class="previous action-button-previous" value="이전" />
+                <input type="button" name="next" class="next action-button" value="다음" />
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">좋습니다! 이제 해당 목표 달성을 위한 세부 작업을 생성합니다.</h2>
+                <div class="work-discription">
+                    <h3 class="fs-subtitle" id="connectedHead" style="color: #5161ce; font-weight: bold;"></h3>
+                    <div class="fs-subtitle"> &nbsp; 목표의 하위 작업</div>
+                </div>
+                <input type="text" name="workTitle" id="workTitle" placeholder="작업 이름" />
+                <input type="text" name="workDiscription" placeholder="작업 설명" />
+                <input type="text" name="workStartDay" placeholder="시작일자" />
+                <input type="text" name="workDeadline" placeholder="마감기한" />
+                <input type="button" name="previous" class="previous action-button-previous" value="이전" />
+                <input type="button" name="next" class="next action-button" value="다음" />
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">문서</h2>
+                <h3 class="fs-subtitle">프로젝트 소속 팀원과 공유되는 문서 작성 기능</h3>
+                <div class="document-section">
+                    <div id="tasks">
+                        <div class="document-detail">
+                            <div id="connectedWork"></div>
+                            <div class="detail"> &nbsp; 작업의 문서 리스트</div>
+                        </div>
+                        <ul id="tasksList">
+                        </ul>
+                    </div>
+                    <input type="button" id="appendBtn" name="previous" class="action-button-delete" value="문서 추가" />
+                </div>
+                <input type="button" name="previous" class="previous action-button-previous" value="이전" />
+                <button type="submit" class="action-button" value="완료">완료</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<!-- /.MultiStep Form -->
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+<script src="/js/projectExample.js"></script>
+</body>
+
+</html>

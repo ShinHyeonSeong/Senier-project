@@ -4,6 +4,7 @@ import com.example.bpm.dto.document.BlockDto;
 import com.example.bpm.dto.document.DocumentDto;
 import com.example.bpm.dto.document.LogDto;
 import com.example.bpm.dto.document.json.JsonDocumentDto;
+import com.example.bpm.dto.project.WorkDto;
 import com.example.bpm.dto.project.relation.ProjectDocumentListDto;
 import com.example.bpm.entity.document.BlockEntity;
 import com.example.bpm.entity.document.DocumentEntity;
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.swing.text.Document;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.InputStream;
@@ -85,6 +87,31 @@ public class DocumentService {
         documentRepository.save(documentEntity);
 
         return documentDto.getDocumentId();
+    }
+
+    public void createDocumentByTitle(String userUuid, String userName, List<String> documentTitle, WorkDto workDto){
+        for (String title : documentTitle) {
+            DocumentDto documentDto = new DocumentDto();
+
+            UUID uuid = UUID.randomUUID();
+
+            documentDto.setDocumentId(uuid.toString());
+            if (title == null) {
+                documentDto.setTitle("제목 없음");
+            } else {
+                documentDto.setTitle(title);
+            }
+            documentDto.setDateDocument(dateManager.DocumentTime());
+
+            documentDto.setUuid(userUuid);
+
+            documentDto.setUserName(userName);
+            DocumentEntity documentEntity = documentDto.toEntity();
+
+            DocumentEntity createDocumentEntity = documentRepository.save(documentEntity);
+
+            workDocumentAdd(workDto.getWorkId(), createDocumentEntity.getDocumentId());
+        }
     }
 
     public void workDocumentAdd(Long workId, String documentId){

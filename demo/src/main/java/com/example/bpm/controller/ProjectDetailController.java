@@ -370,6 +370,7 @@ public class ProjectDetailController {
                 connnectHead, currentProject);
         ProjectDetailController.log.info("작업 생성 메서드 완료, id = " + createWorkDto.getWorkId());
         projectDetailSerivce.addUserWork(createWorkDto, chargeUsers);
+        projectDetailSerivce.completionCheckByDate(currentProject);
         return "redirect:/project/works";
     }
 
