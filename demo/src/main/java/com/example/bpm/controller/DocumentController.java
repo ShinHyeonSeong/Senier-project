@@ -211,7 +211,7 @@ public class DocumentController {
 
         String referer = request.getHeader("Referer");
 
-        if (!referer.contains("document/history")) {
+        if (!referer.contains("document/history") && !referer.contains("document/changeLogData")) {
             session.setAttribute("back", referer);
         }
 
