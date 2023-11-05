@@ -30,6 +30,12 @@ public class MessageEntity {
     @Column(name = "date")
     private Date date;
 
+    @Column(name = "request_id")
+    private Long requestId;
+
+    @Column(name = "state")
+    private int state;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "send_uuid")
     private UserEntity userIdToMessageSend;

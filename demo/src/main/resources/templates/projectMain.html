@@ -34,7 +34,7 @@
 				<li><a href="/project/works">작업</a></li>
 				<li><a href="/project/document">문서</a></li>
 				<li><a href="/project/calender">일정</a></li>
-				<li><a href="/project/recvMessageList">수신함</a></li>
+				<li><a href="/project/recvMessageList">수신함</a><div th:if="${readState}">안읽은 메세지 있음</div></li>
 			</ul>
 		</div>
 	</ul>

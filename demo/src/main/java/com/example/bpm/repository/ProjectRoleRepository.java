@@ -24,6 +24,8 @@ public interface ProjectRoleRepository extends JpaRepository<ProjectRoleEntity, 
 
     ProjectRoleEntity findByProjectIdInRole_ProjectIdAndUuidInRole_Uuid(Long id, String uuid);
 
+    ProjectRoleEntity findByProjectIdInRole_ProjectIdAndRole(Long id, Long role);
+
     public List<ProjectRoleEntity> findAllByProjectIdInRole_ProjectId(Long projectId);
 
     @Transactional

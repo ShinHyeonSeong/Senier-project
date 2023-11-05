@@ -120,6 +120,9 @@
 				<a th:href="@{/project/work/completion/change(id=${workDto.workId}, state=0)}">
 					<button class="right-button" th:if="${auth == 1 && !(workDto.completion == 0)}">진행중으로 표시</button>
 				</a>
+				<a th:href="@{/project/sendRequest/{id}(id=${workDto.getWorkId()})}">
+					<button class="right-button" th:if="${auth == 0 && workDto.getCompletion() != 1}">작업 완료 요청</button>
+				</a>
 			</div>
 			<div class="horizon-divider"></div>
 			<div class="related-tasks">

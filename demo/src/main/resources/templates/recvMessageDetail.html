@@ -73,6 +73,9 @@
 			<div class="message-text" >
 				<p th:text="${message.getContent()}">
 				</p>
+				<a th:if="${message.getRequestId() != 0 && auth == 1}" th:href="@{/project/requestConfirm(requestId=${message.getRequestId()})}">
+					<button>완료</button>
+				</a>
 			</div>
 		</div>
 	</div>
