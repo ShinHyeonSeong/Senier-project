@@ -10,12 +10,30 @@ a {
     text-decoration: none;
 }
 
+body {
+    background-color: #f3f6fd;
+    font-family: Arial, sans-serif;
+}
+
 .content {
-    margin-left: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 150px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.centered-content {
+    border-radius: 20px;
+    background-color: #fff;
+    margin: auto;
+    width: 95%;
+    overflow: hidden;
 }
 
 .title {
+    padding-left: 30px;
     text-align: left;
+    flex: 12;
     width: 80%;
     box-sizing: border-box;
 

@@ -9,154 +9,141 @@
 	<link rel="stylesheet" href="/css/sidebar.css">
 	<link rel="stylesheet" href="/css/sideNavbar.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css"
-		  integrity="sha512-6c4nX2tn5KbzeBJo9Ywpa0Gkt+mzCzJBrE1RB6fmpcsoN+b/w/euwIMuQKNyUoU/nToKN3a8SgNOtPrbW12fug=="
-		  crossorigin="anonymous"/>
+		integrity="sha512-6c4nX2tn5KbzeBJo9Ywpa0Gkt+mzCzJBrE1RB6fmpcsoN+b/w/euwIMuQKNyUoU/nToKN3a8SgNOtPrbW12fug=="
+		crossorigin="anonymous" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<title>Your Project Management Tool</title>
 
 </head>
 
 <body>
-<header>
-	<nav>
-		<div class="nav-left">
-			<a id="exitButton" href="/project/projectManagerList">나가기</a>
-		</div>
-		<div class="nav-center">
-			<h1 id="projectName" th:text="${projectDto.getTitle()}"></h1>
-		</div>
-		<div class="nav-right">
-			<p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
-		</div>
-	</nav>
-</header>
-<aside class="sidebar">
-	<ul>
+	<header>
+		<nav>
+			<div class="nav-left">
+				<a id="exitButton" href="/project/projectManagerList">나가기</a>
+			</div>
+			<div class="nav-center">
+				<h1 id="projectName" th:text="${projectDto.getTitle()}">프로젝트ㅡㅡㅡ</h1>
+			</div>
+			<div class="nav-right">
+				<p id="loggedInUser" th:text="${sessionUser.getName()}">ssss</p>
+			</div>
+		</nav>
+	</header>
+	<aside class="sidebar">
 		<div class="menu">
 			<ul>
-				<li><a th:href="@{/project/main}">홈</a></li>
-				<li><a href="/project/goals">목표</a></li>
-				<li><a href="/project/works">작업</a></li>
-				<li class="menu-select"><a href="/project/document">문서</a></li>
-				<li><a href="/project/calender">일정</a></li>
-				<li><a href="/project/recvMessageList">수신함</a></li>
+				<li><a th:href="@{/project/main}"><img src="/img/house-solid.svg" alt="">홈</a></li>
+				<li><a href="/project/goals"><img src="/img/lightbulb-solid.svg" alt="">목표</a></li>
+				<li><a href="/project/works"><img src="/img/layer-group-solid.svg" alt="">작업</a></li>
+				<li class="menu-select">
+					<a href="/project/document"><img src="/img/file-invoice-solid.svg" alt="">문서</a>
+				</li>
+				<li><a href="/project/calender"><img src="/img/calendar-solid.svg" alt="">일정</a></li>
+				<li><a href="/project/recvMessageList"><img src="/img/email.png" alt="">수신함</a></li>
+				<li><a href="/user/search"><img src="/img/add-user.png" alt="">초대</a></li>
 			</ul>
 		</div>
-	</ul>
-	<ul>
-		<div class="user-list">
-			<h2>프로젝트 멤버</h2>
-			<ul th:each="users : ${joinUsers}">
-				<li th:text="${users.getName()}"></li>
+	</aside>
+	<div class="main">
+		<div class="sub-nav">
+			<ul class="sub-navbar">
+				<li class="sub-nav-item-active"><a class="active" href="#">전체 문서</a></li>
+				<li class="sub-nav-item"><a href="#">문서 템플릿</a></li>
 			</ul>
 		</div>
-		<div>
-			<button id="inviteButton">Invite Members</button>
-		</div>
-	</ul>
-</aside>
-<div class="main">
-	<div class="sub-nav">
-		<ul class="sub-navbar">
-			<li class="sub-nav-item-active"><a class="active" href="#">전체 문서</a></li>
-			<li class="sub-nav-item"><a href="#">문서 템플릿</a></li>
-		</ul>
 	</div>
-</div>
 
-<div class="content">
-	<div class="document-list">
-		<div class="document-list-header">
-			<h1 class="document-list-title" th:if="${(searchKeyword == null) && (targetWorkDto == null)}">문서 > 전체
-				문서</h1>
-			<h1 class="document-list-title" th:if="${searchKeyword != null}"
-				th:text="${'문서 > 검색 : ' + searchKeyword}"></h1>
-			<h1 class="document-list-title" th:if="${targetWorkDto != null}"
-				th:text="${'문서 > ' + targetWorkDto.getTitle()}"></h1>
-			
-			<div class="document-list-header-right">
-				<form action="/document/search" method="post" class="search-container">
-					<input type="text" id="search-bar" name="searchKeyword" placeholder="문서명으로 검색">
-					<a onclick="onsubmit()" href="#"><img class="search-icon"
-														  src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
-				</form>
-				
-				<div class="dropdown toggle">
-					<input id="t1" type="checkbox">
-					<label for="t1">작업 분류별 선택</label>
-					<ul>
-						<li th:each="work : ${workDtoList}">
-							<a th:text="${work.getTitle()}" th:href="@{/document/{id}(id=${work.getWorkId()})}"></a>
+	<div class="content">
+		<div class="document-list">
+			<div class="document-list-header">
+				<h1 class="document-list-title" th:if="${(searchKeyword == null) && (targetWorkDto == null)}">문서 > 전체
+					문서</h1>
+				<h1 class="document-list-title" th:if="${searchKeyword != null}"
+					th:text="${'문서 > 검색 : ' + searchKeyword}"></h1>
+				<h1 class="document-list-title" th:if="${targetWorkDto != null}"
+					th:text="${'문서 > ' + targetWorkDto.getTitle()}"></h1>
+
+				<div class="document-list-header-right">
+					<form action="/document/search" method="post" class="search-container">
+						<input type="text" id="search-bar" name="searchKeyword" placeholder="문서명으로 검색">
+						<a onclick="onsubmit()" href="#"><img class="search-icon"
+								src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
+					</form>
+
+					<div class="dropdown toggle">
+						<input id="t1" type="checkbox">
+						<label for="t1">작업 분류별 선택</label>
+						<ul>
+							<li th:each="work : ${workDtoList}">
+								<a th:text="${work.getTitle()}" th:href="@{/document/{id}(id=${work.getWorkId()})}"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="wrop-list">
+				<div class="document-list-content">
+					<ul id="accord1" class="accordian">
+						<!-- 문서 항목 1 -->
+						<li th:each="document : ${documentList}">
+							<header th:text="${document.getDocumentDto().getTitle()}">
+								문서명
+								<button class="document-view-btn">보기</button>
+							</header>
+							<section>
+								<div class="document-detail">
+									<div class="document-detail-info">
+										<div class="detail-item">
+											<h4>상위 목표</h4> <a
+												th:href="@{/project/goal/headView/{id}(id=${document.getHeadDto().getHeadId()})}"
+												th:text="${document.getHeadDto().getTitle()}">상위목표명</a>
+										</div>
+										<div class="detail-item">
+											<h4>연결된 작업</h4> <a
+												th:href="@{/project/work/detail/{id}(id=${document.getWorkDto().getWorkId()})}"
+												th:text="${document.getWorkDto().getTitle()}">작업명</a>
+										</div>
+										<div class="detail-item">
+											<h4>작성자</h4> <a href=""
+												th:text="${document.getDocumentDto().getUserName()}">작성자명</a>
+										</div>
+										<div class="detail-item">
+											<h4>작성일자</h4> <a href=""
+												th:text="${document.getDocumentDto().getDateDocument()}"></a>
+										</div>
+									</div>
+									<div class="document-detail-btn">
+										<a th:if="${document.getIsRole()}"
+											th:href="@{/document/write(id=${document.getDocumentDto().getDocumentId()})}">
+											<button class="document-edit-btn">편집
+											</button>
+										</a>
+										<a th:if="${!document.getIsRole()}"
+											th:href="@{/document/write(id=${document.getDocumentDto().getDocumentId()})}">
+											<button class="document-edit-btn">보기
+											</button>
+										</a>
+
+										<a
+											th:href="@{/document/delete(id=${document.getDocumentDto().getDocumentId()})}">
+											<button
+												th:if="${auth == 1 || sessionUser.getUuid().equals(document.getDocumentDto().getUuid())}"
+												class="document-delete-btn" type="submit">삭제
+											</button>
+										</a>
+									</div>
+								</div>
+							</section>
 						</li>
 					</ul>
+
 				</div>
 			</div>
 		</div>
-		
-		<div class="horizon-divider"></div>
-		
-		<div class="document-list-content">
-			<ul id="accord1" class="accordian">
-				<!-- 문서 항목 1 -->
-				<li th:each="document : ${documentList}">
-					<header th:text="${document.getDocumentDto().getTitle()}">
-						문서명
-						<button class="document-view-btn">보기</button>
-					</header>
-					<section>
-						<div class="document-detail">
-							<div class="document-detail-info">
-								<div class="detail-item">
-									<h4>상위 목표</h4> <a
-										th:href="@{/project/goal/headView/{id}(id=${document.getHeadDto().getHeadId()})}"
-										th:text="${document.getHeadDto().getTitle()}">상위목표명</a>
-								</div>
-								<div class="detail-item">
-									<h4>연결된 작업</h4> <a
-										th:href="@{/project/work/detail/{id}(id=${document.getWorkDto().getWorkId()})}"
-										th:text="${document.getWorkDto().getTitle()}">작업명</a>
-								</div>
-								<div class="detail-item">
-									<h4>작성자</h4> <a href=""
-													th:text="${document.getDocumentDto().getUserName()}">작성자명</a>
-								</div>
-								<div class="detail-item">
-									<h4>작성일자</h4> <a href=""
-													 th:text="${document.getDocumentDto().getDateDocument()}"></a>
-								</div>
-							</div>
-							<div class="document-detail-btn">
-								<a th:if="${document.getIsRole()}"
-								   th:href="@{/document/write(id=${document.getDocumentDto().getDocumentId()})}">
-									<button
-											class="document-edit-btn">편집
-									</button>
-								</a>
-								<a th:if="${!document.getIsRole()}"
-								   th:href="@{/document/write(id=${document.getDocumentDto().getDocumentId()})}">
-									<button
-											class="document-edit-btn">보기
-									</button>
-								</a>
-								
-								<a th:href="@{/document/delete(id=${document.getDocumentDto().getDocumentId()})}">
-									<button
-											th:if="${auth == 1 || sessionUser.getUuid().equals(document.getDocumentDto().getUuid())}"
-											class="document-delete-btn" type="submit">삭제
-									</button>
-								</a>
-							</div>
-						</div>
-					</section>
-				</li>
-			</ul>
-		
-		</div>
 	</div>
-</div>
-
-
-<script src="/js/document.js"></script>
+	<script src="/js/document.js"></script>
 </body>
 
 </html>

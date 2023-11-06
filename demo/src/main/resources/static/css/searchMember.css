@@ -1,63 +1,73 @@
-inviteMemberbody {
+body {
     font-family: Arial, sans-serif;
-    background-color: #fff;
-    color: white;
+    background-color: #f3f6fd;
 }
 
 h1 {
-    color: #555555;
-    font-size: 48px;
+    flex: 10;
+    color: #000;
+    font-size: 44px;
+    margin-top: 16px;
+    font-weight: bold;
+    padding-left: 40px;
+    padding-top: 10px;
 }
 
 h2 {
-    color: #555555;
-    font-size: 25px;
+    color: #000;
+    font-size: 30px;
+    padding-bottom: -20px;
 }
 
 .head-container {
     margin-left: -5%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
+    border-bottom: #999 2px solid;
+    margin-bottom: 20px;
 }
 
 .back-button {
-    background-color: #fff;
-    color: #555555;
-    border: 1px solid #555555;
-    cursor: pointer;
-    display: inline-block;
-    padding: 10px 15px;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-right: 2rem;
-    transition: 0.5s;
+    width: 40px;
+    text-align: center;
+    background: #c3cff4;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    border: 0 none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
 }
 
-.back-button:hover {
-    border: none;
-    background-color: #777777;
-    color: #fff;
+.back-button:hover,
+.back-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #c3cff4;
 }
 
-input[type="text"],
-textarea,
-select {
+input[type="text"] {
     width: 100%;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 2px solid #555555;
+    border: 2px solid #999;
     border-radius: 4px;
     background-color: #fff;
     color: #000;
 }
 
-input[type="submit"],
-button {
-    background-color: #555555;
-    color: white;
+
+input[type="text"]:focus {
+    border: 2px solid #000;
+}
+
+.search-button {
+    margin-left: 5px;
+    background-color: #c3cff4;
+    color: #000;
+    font-weight: bold;
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
@@ -65,14 +75,25 @@ button {
     transition: 0.5s;
 }
 
-input[type="submit"]:focus,
-button:hover {
-    background-color: #777777;
-    border: 1px solid #777777;
+.search-button:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
+    ;
 }
 
-input:focus {
-    outline: #333;
+.invite-btn {
+    background-color: #c3cff4;
+    color: #000;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.invite-btn:hover,
+.invite-btn:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
 }
 
 .search-section {
@@ -94,12 +115,8 @@ input:focus {
 .search-area {
     height: 3rem;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-}
-
-.search-area button {
-    width: 6rem;
+    margin-left: 20px;
+    margin-bottom: 15px;
 }
 
 .friend-search-results {
@@ -114,6 +131,12 @@ input:focus {
     align-items: center;
 }
 
+.friend-name {
+    color: #000;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
 .friend-email {
     color: #000;
     font-size: 0.8rem;
@@ -121,7 +144,7 @@ input:focus {
 }
 
 .horizon-divider {
-    background-color: #555555;
-    height: 0.2px;
+    background-color: #999;
+    height: 2px;
     margin: 10px 0 30px 0;
 }

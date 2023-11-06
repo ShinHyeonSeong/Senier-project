@@ -6,13 +6,23 @@ ul {
     padding: 0;
 }
 
+/* Global styles */
+body {
+    background-color: #f3f6fd;
+    font-family: Arial, sans-serif;
+}
+
 .compose-container {
-    margin-left: 200px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px 10px 10px 10px;
+    background-color: #fff;
+    margin-left: 150px;
 }
 
 .main-section {
     margin: auto;
-    max-width: 70%;
+    max-width: 100%;
+    min-height: 700px;
     padding: 50px;
     border-radius: 5px;
     box-sizing: border-box;
@@ -33,20 +43,22 @@ h1 {
 }
 
 .send-button {
-    padding: 10px 20px;
-    cursor: pointer;
-    display: block;
-    margin-top: 10px;
-    color: #000000;
-    border: 1.5px solid #555555;
-    background-color: #FFFFFF;
-    border-radius: 10px;
+    vertical-align: right;
+    width: 10%;
+    text-decoration: none;
+    font-weight: bold;
+    height: 40px;
+    font-size: 16px;
+    margin-top: 15px;
+    color: #fff;
+    border-radius: 20px;
+    border: 1.5px solid #6675e3;
+    background-color: #6675e3;
 }
 
 .send-button:hover {
-    color: #FFFFFF;
-    border: 1.5px solid #777777;
-    background-color: #777777;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #6675e3;
+
 }
 
 
@@ -56,25 +68,28 @@ h1 {
     padding: 10px;
     margin-bottom: 15px;
     font-size: 15px;
-    border: 0;
+    border: 2px solid #999;
     border-radius: 5px;
     outline: none;
     padding-left: 10px;
-    background-color: rgb(233, 233, 233);
+  
 }
 
 .message-textarea {
     height: 200px;
+}
+.message-input:focus,
+.message-textarea:focus{
+    border: 2px solid #000;
 }
 
 
 select {
     outline: none;
     box-shadow: none;
-    flex: 1;
+    width: 100%;
     padding: 0 1em;
-    background-color: rgb(233, 233, 233);
-    border: 2px solid rgb(233, 233, 233);
+    border: 2px solid #999;
     border-radius: 4px;
     cursor: pointer;
 }
@@ -88,10 +103,9 @@ select::-ms-expand {
     position: relative;
     display: flex;
     height: 2em;
-    width: 784px;
-    background-color: rgb(233, 233, 233);
-    border: 2px solid rgb(233, 233, 233);
-    border-radius: 4px;
+    width: 101%;
+    border: 2px solid #999;
+     border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
     margin-bottom: 20px;
@@ -110,7 +124,7 @@ select::-ms-expand {
     pointer-events: none;
 }
 
-.search-input-detail > ul,
+.search-input-detail>ul,
 li {
     list-style: none;
     font-size: 15px;

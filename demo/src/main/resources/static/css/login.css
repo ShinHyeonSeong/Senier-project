@@ -7,7 +7,7 @@
 .page-container {
     width: 100vw;
     height: 100vh;
-    background: #46494F;
+    background: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,9 +15,9 @@
 }
 
 .shadow {
-    -webkit-box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
-    -moz-box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
-    box-shadow: 27px 43px 43px -26px rgba(89, 89, 89, 0.39);
+    -webkit-box-shadow: 27px 43px 43px -26px rgb(93, 94, 96);
+    -moz-box-shadow: 27px 43px 43px -26px rgba(94, 94, 94, 0.39);
+    box-shadow: 27px 43px 43px -26px rgba(94, 94, 94, 0.39);
 }
 
 .login-form-container {
@@ -38,8 +38,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
-    background-image: linear-gradient(222deg, #6e6e6e 0%, #444444 30%, #222222 100%);
+    color: #000000;
+    background-image: linear-gradient(222deg, #6e83bf 0%, #6d86d0 30%, #c3cff4 100%);
 }
 
 .top-logo-wrap img {
@@ -48,7 +48,7 @@
 }
 
 .login-form-left-side h1 {
-    color: #FFFFFF;
+    color: #fff;
     width: 100%;
     text-align: center;
     opacity: 0.9;
@@ -68,7 +68,7 @@
 
 .login-form-right-side h1 {
     font-size: 50px;
-    color: #8c8c8c;
+    color: #000;
 }
 
 .login-input-container {
@@ -78,7 +78,7 @@
 
 .login-input-container .login-input-wrap {
     width: 300px;
-    height: 60px;
+    height: 40px;
     margin-top: 20px;
     border-radius: 2px;
     border-bottom: solid 2px #000000;
@@ -87,7 +87,7 @@
 .login-input-container .login-input-wrap input {
     background: none;
     border: none;
-    line-height: 45px;
+    line-height: 20px;
     padding-left: 10px;
     width: 267px;
 }
@@ -103,24 +103,25 @@
     align-items: center;
 }
 
-.login-btn-wrap .login-btn {
+.login-btn {
     width: 95px;
     height: 35px;
-    color: white;
+    color: #000;
+    font-weight: bold;
     border: 0;
     border-radius: 4px;
-    background-color: #666666;
+    background-color: #c3cff4;
 }
 
 .login-btn :hover {
     width: 95px;
     height: 35px;
-    color: white;
-    border: 0;
-    border-radius: 4px;
-    background-color: #46494F;
+    transition: 0.3s;
+    color: #000;
+    cursor: pointer;
+    border: 1.5px solid #f3f6fd;
+    background-color: #f3f6fd;
 }
-
 
 .login-btn-wrap2 {
     display: flex;
@@ -131,14 +132,11 @@
     margin-top: 10px;
     text-decoration: none;
     font-size: 11px;
-    color: #666666;
-
+    color: #000;
 }
 
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #fff inset;
-    border-bottom: solid 2px #333;
+.login-btn-wrap2 a :hover {
+    font-size: bold;
+    outline: auto;
+    border-bottom: #000 1px solid;
 }
-
-
-

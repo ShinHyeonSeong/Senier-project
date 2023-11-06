@@ -64,7 +64,7 @@ input {
     font-weight: 400;
     line-height: 22px;
     box-sizing: border-box;
-    border: 2px solid #000000;
+    border: 2px solid #999999;
     border-radius: 4px;
     background-color: #fff;
     color: #000;
@@ -73,7 +73,7 @@ input {
 }
 
 input:focus {
-    border: 2px solid #999999;
+    border: 2px solid #000;
     outline: none;
 }
 
@@ -83,7 +83,7 @@ textarea {
     font-weight: 400;
     line-height: 22px;
     box-sizing: border-box;
-    border: 2px solid #000000;
+    border: 2px solid #999;
     border-radius: 4px;
     background-color: #fff;
     color: #000;
@@ -92,7 +92,7 @@ textarea {
 }
 
 textarea:focus {
-    border: 2px solid #999999;
+    border: 2px solid #000;
     outline: none;
 }
 

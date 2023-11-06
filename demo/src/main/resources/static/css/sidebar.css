@@ -7,41 +7,47 @@ body {
 nav {
     position: relative;
     z-index: 2;
-    background-color: #555555;
-    color: #fff;
+    background-color: #f3f6fd;
+    color: #000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     height: 40px;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #fff; */
 }
 
 #exitButton {
     background-color: transparent;
     border: none;
-    color: #fff;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #000;
     cursor: pointer;
+    border-radius: 10px;
     padding: 10px 20px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     text-decoration: none;
 }
 
 #exitButton:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background-color: #f3f6fd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+#loggedInUser {
+    margin-left: -60px;
 }
 
 .sidebar {
-    z-index: 1;
-    background-color: #555555;
-    color: #fff;
-    width: 180px;
+    background-color: #f3f6fd;
+    width: 150px;
     height: 100%;
     position: fixed;
     top: 0;
     display: flex;
     flex-direction: column;
-    padding-top: 52px;
+    padding-top: 60px;
 }
 
 .menu ul {
@@ -52,64 +58,30 @@ nav {
 }
 
 .menu ul li {
+    margin: auto;
     height: 4rem;
 }
 
 .menu ul li:hover {
-    background-color: #777777;
+    background-color: #c3cff4;
     transition: 0.5s;
+}
+
+img {
+    margin-right: 20px;
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
 }
 
 .menu a {
     text-decoration: none;
-    color: #fff;
+    color: #000;
     font-weight: bold;
 }
 
 .menu-select {
-    background-color: #777777;
+    margin: auto;
+    background-color: #fff;
     transition: 0.5s;
-}
-
-.user-list {
-    color: #fff;
-    border-top: solid 1px #FFFFFF;
-    height: 200px;
-}
-
-.user-list h2 {
-    text-indent: 20px;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.user-list ul {
-    list-style-type: none;
-    padding: 0;
-    text-indent: 20px;
-    height: 30px;
-    line-height: 30px;
-}
-
-.user-list li {
-    margin-bottom: 5px;
-}
-
-#inviteButton {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background-color: #555555;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border: none;
-    /*padding: 10px 20px;*/
-    font-weight: bold;
-    cursor: pointer;
-    width: 180px;
-    height: 40px;
-}
-
-#inviteButton:hover {
-    background-color: #777777;
 }
