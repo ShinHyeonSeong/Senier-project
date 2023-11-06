@@ -11,72 +11,66 @@
 </head>
 
 <body>
-<header>
-	<nav>
-		<div class="nav-left">
-			<a id="exitButton" href="/project/projectManagerList">나가기</a>
-		</div>
-		<div class="nav-center">
-			<h1 id="projectName" th:text="${projectDto.getTitle()}"></h1>
-		</div>
-		<div class="nav-right">
-			<p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
-	</nav>
-</header>
-<aside class="sidebar">
-	<ul>
+	<header>
+		<nav>
+			<div class="nav-left">
+				<a id="exitButton" href="/project/projectManagerList">나가기</a>
+			</div>
+			<div class="nav-center">
+				<h1 id="projectName" th:text="${projectDto.getTitle()}">프로젝트ㅡㅡㅡ</h1>
+			</div>
+			<div class="nav-right">
+				<p id="loggedInUser" th:text="${sessionUser.getName()}">ssss</p>
+			</div>
+		</nav>
+	</header>
+	<aside class="sidebar">
 		<div class="menu">
 			<ul>
-				<li><a th:href="@{/project/main}">홈</a></li>
-				<li><a href="/project/goals">목표</a></li>
-				<li><a href="/project/works">작업</a></li>
-				<li><a href="/project/document">문서</a></li>
-				<li><a href="/project/calender">일정</a></li>
-				<li class="menu-select"><a href="/project/recvMessageList">수신함</a></li>
+				<li><a th:href="@{/project/main}"><img src="/img/house-solid.svg" alt="">홈</a></li>
+				<li><a href="/project/goals"><img src="/img/lightbulb-solid.svg" alt="">목표</a></li>
+				<li><a href="/project/works"><img src="/img/layer-group-solid.svg" alt="">작업</a></li>
+				<li>
+					<a href="/project/document"><img src="/img/file-invoice-solid.svg" alt="">문서</a>
+				</li>
+				<li><a href="/project/calender"><img src="/img/calendar-solid.svg" alt="">일정</a></li>
+				<li class="menu-select"><a href="/project/recvMessageList"><img src="/img/email.png" alt="">메세지</a></li>
+				<li><a href="/user/search"><img src="/img/add-user.png" alt="">초대</a></li>
 			</ul>
 		</div>
-	</ul>
-	<ul>
-		<div class="user-list">
-			<h2>프로젝트 멤버</h2>
-			<ul th:each="users : ${joinUsers}">
-				<li th:text="${users.getName()}"></li>
-			</ul>
-		</div>
-		<div>
-			<button id="inviteButton">Invite Members</button>
-		</div>
-	</ul>
-</aside>
-<div class="main">
-	<div class="sub-nav">
-		<ul class="sub-navbar">
-			<li class="sub-nav-item"><a href="/project/recvMessageList">수신함</a></li>
-			<li class="sub-nav-item-active"><a class="active" href="/project/sendMessageList">발신함</a></li>
-			</li>
-		</ul>
-	</div>
-</div>
+	</aside>
 
-<div class="main-container">
-	<div class="message-container">
-		<div class="message-header">
-			<h1 th:text="${message.getTitle()}">메세지 제목</h1>
+	<div class="main">
+		<div class="sub-nav">
+			<ul class="sub-navbar">
+				<li class="sub-nav-item"><a href="/project/recvMessageList">수신함</a></li>
+				<li class="sub-nav-item-active"><a class="active" href="/project/sendMessageList">발신함</a></li>
+				</li>
+			</ul>
 		</div>
-		<div class="message-content">
-			<div class="message-info">
-				<p class="message-sender">받는 사람:
-					<span th:text="${message.getUserIdToMessageRecv().getName()}">John Doe</span></p>
-				<p class="message-date">보낸 날짜: <span th:text="${#dates.format(message.getDate(), 'yyyy-MM-dd')}">Date & Time</span>
-				</p>
+	</div>
+
+	<div class="main-container">
+		<div class="message-container">
+			<div class="message-header">
+				<h1 th:text="${message.getTitle()}">메세지 제목</h1>
 			</div>
-			<div class="message-text">
-				<p th:text="${message.getContent()}">
-				</p>
+			<div class="message-content">
+				<div class="message-info">
+					<p class="message-sender">받는 사람:
+						<span th:text="${message.getUserIdToMessageRecv().getName()}">John Doe</span>
+					</p>
+					<p class="message-date">보낸 날짜: <span
+							th:text="${#dates.format(message.getDate(), 'yyyy-MM-dd')}">Date & Time</span>
+					</p>
+				</div>
+				<div class="message-text">
+					<p th:text="${message.getContent()}">
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </body>
 
 </html>

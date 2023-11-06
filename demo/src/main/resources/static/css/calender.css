@@ -6,14 +6,24 @@ ul {
     padding: 0;
 }
 
+body {
+    background-color: #f3f6fd;
+    font-family: Arial, sans-serif;
+}
+
+
 .content {
-    margin-left: 15%;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 150px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .centered-content {
-    width: 100%;
-    height: auto;
+    background-color: #fff;
+    margin: auto;
+    width: 95%;
+    min-height: 640px;
+    overflow: hidden;
+    border-radius: 20px;
 }

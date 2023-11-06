@@ -7,13 +7,13 @@
 	<title>Border Project Manager</title>
 	<meta charset="UTF-8">
 	<meta name="viewport"
-		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css'>
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css'>
 	<link rel="stylesheet" href="/css/projectList.css">
-	<link rel="stylesheet" href="../css/nav.css">
-	
-	
+	<link rel="stylesheet" href="/css/nav.css">
+
+
 	<!-- partial -->
 	<script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
 	<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>
@@ -22,80 +22,79 @@
 	<script>
 		const loremIpsum = document.getElementById("lorem-ipsum")
 		fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
-				.then(response => response.text())
-				.then(result => loremIpsum.innerHTML = result)
+			.then(response => response.text())
+			.then(result => loremIpsum.innerHTML = result)
 	</script>
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-custom navbar-mainbg">
-	<a class="navbar-brand navbar-logo" href="#"><img class="navbar-logo-image" src="../img/logo.png">BPM</a>
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				<a class="nav-link" th:text="${user.name}">님</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="/user/account">마이페이지</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="/user/logout">로그아웃</a>
-			</li>
-		</ul>
-	</div>
-</nav>
+	<nav class="navbar navbar-expand-custom navbar-mainbg">
+		<a class="navbar-brand navbar-logo" href="#"><img class="navbar-logo-image" src="../img/logo.png">BPM</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" th:text="${user.name}">님</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/user/account">마이페이지</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/user/logout">로그아웃</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
-<div class="container">
-	<div class="top-button">
-		<div class="left">
-			<a class="project-select" href="/project/projectManagerList">내 프로젝트</a>
-			<a class="project-select-active" href="/project/projectAllList">다른 프로젝트</a>
+	<div class="container">
+		<div class="top-button">
+			<div class="left">
+				<a class="project-select" href="/project/projectManagerList">내 프로젝트</a>
+				<a class="project-select-active" href="/project/projectAllList">다른 프로젝트</a>
+			</div>
+			<div class="right">
+				<a href="/project/inviteList" class="invite">
+					<button type="button" name="write" class="write-button">프로젝트 초대</button>
+					<div class="head-img" th:if="${request == true}"><img src="/img/warning.png" alt=""></div>
+				</a>
+				<a href="/project/create">
+					<button type="button" name="write" class="write-button">새 프로젝트</button>
+				</a>
+			</div>
 		</div>
-		<div class="right">
-			<a href="/project/inviteList" class="invite">
-				<button type="button" name="write" class="write-button">프로젝트 초대</button>
-				<div class="head-img" th:if="${request == true}"><img src="/img/warning.png" alt=""></div>
-			</a>
-			<a href="/project/create">
-				<button type="button" name="write" class="write-button">새 프로젝트</button>
-			</a>
-		</div>
-	</div>
-	
-	
-	<!--게시글 컨테이너-->
-	<div class="board">
-		<div class="board-item" th:if="${projectAllList != null}" th:each="project : ${projectAllList}">
-			<a th:href="@{/project/{id}(id=${project.projectId})}" class="post">
-				<div class="thumbnail">
-				</div>
-				<article class="post-detail">
-					<div class="post-detail-top">
-						<div class="post-detail-top-h1" th:text="${project.title}"></div>
-						<a class="project-delete" href="">삭제</a>
-					</div>
-					<div class="post-user" style="padding-top: 30px;">
-						<div class="post-user-detail">
-							<p>생성 일자 : </p>
-							<div th:text="${#dates.format(project.startDay, 'yyyy-MM-dd')}"></div>
+
+
+		<!--게시글 컨테이너-->
+		<div class="board">
+			<div class="board-item" th:if="${projectAllList != null}" th:each="project : ${projectAllList}">
+				<a th:href="@{/project/{id}(id=${project.projectId})}" class="post">
+					<div class="thumbnail"></div>
+					<article class="post-detail">
+						<div class="post-detail-top">
+							<div class="post-detail-top-h1" th:text="${project.title}"></div>
 						</div>
-						<div class="post-user-detail">
-							<p>생성자 : </p>
-							<div th:each="projectRole : ${projectRoleList}">
-								<div th:if="${(project.getProjectId() == projectRole.getProjectIdToRole().getProjectId()) &&
-								(projectRole.getRole().getId() == 1)}"
-									 th:text="${projectRole.getUuid().getName()}"></div>
+						<div class="post-user" style="padding-top: 30px;">
+							<div class="post-user-detail">
+								<p>생성 일자 : </p>
+								<div th:text="${#dates.format(project.startDay, 'yyyy-MM-dd')}"></div>
+							</div>
+							<div class="post-user-detail">
+								<p>생성자 : </p>
+								<div th:each="projectRole : ${projectRoleList}">
+									<div th:if="${(project.getProjectId() == projectRole.getProjectIdToRole().getProjectId()) &&
+								(projectRole.getRole().getId() == 1)}" th:text="${projectRole.getUuid().getName()}"></div>
+								</div>
 							</div>
 						</div>
-					</div>
+					</article>
+				</a>
+			</div>
+			</article>
+			</a>
 		</div>
-		</article>
-		</a>
 	</div>
-</div>
-</div>
+	</div>
 </body>
 
 </html>

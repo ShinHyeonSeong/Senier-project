@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- 목표 리스트 창 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/ManagerPage.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <title>BPM</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a id="exitButton" href="/project/projectManagerList">나가기</a>
+            </div>
+            <div class="nav-center">
+                <h1 id="projectName" th:text="${projectDto.getTitle()}"></h1>
+            </div>
+            <div class="nav-right">
+                <p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
+            </div>
+        </nav>
+    </header>
+    <aside class="sidebar">
+        <ul>
+            <div class="user-list">
+                <h2>프로젝트 멤버</h2>
+                <ul th:each="users : ${joinUsers}">
+                    <li th:text="${users.getName()}"></li>
+                </ul>
+            </div>
+            <div>
+                <a href="/user/search"><button id="inviteButton">Invite Members</button></a>
+            </div>
+        </ul>
+    </aside>
+
+    <div class="content">
+        <div class="top-content">
+            <h2>관리자 페이지
+            </h2>
+            <hr class="content-divider">
+            <h3>멤버 관리</h3>
+            <div class="member-section">
+                
+            </div>
+            <div class="bottom-button">
+                    <a href="">프로젝트 삭제</a>
+                    <a href="">저장하기</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

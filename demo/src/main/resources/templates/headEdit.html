@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link rel="stylesheet" href="/css/goal-create.css">
   <script src="/js/headEdit.js"></script>
   <title>Border Project Manager</title>
@@ -56,82 +56,82 @@
 </head>
 
 <body>
-<div class="container">
-  <div class="header">
-    <a href="/project/goals" class="back-button">
-      < </a>
-    <h1>목표 편집</h1>
-  </div>
-  <form name="editHead_form" action="/project/head/edit" method="post">
-    <div class="create-goal">
-      <div class="label-detail">
-        <label class="label" for="title">목표 이름</label>
-        <div class="essential">*</div>
-      </div>
-      <div class="input-detail">
-        <input name="title" class="input-box" id="title" type="text" th:value="${headDto.title}">
-      </div>
+  <div class="container">
+    <div class="header">
+      <a href="/project/goals" class="back-button">
+        < </a>
+          <h1>목표 편집</h1>
     </div>
-
-    <div class="create-goal">
-      <div class="label-detail">
-        <label class="label" for="discription">목표 설명</label>
-      </div>
-      <div class="input-detail">
-                    <textarea name="discription" class="detail-input-box" id="discription" cols="20" rows="10"
-                              th:text="${headDto.discription}">
-                </textarea>
-      </div>
-    </div>
-
-    <div class="create-goal">
-      <div class="label-detail">
-        <label class="label" for="startDay">시작일자</label>
-      </div>
-      <div class="input-detail">
-        <input name="startDay" class="input-box" id="startDay" type="text"
-               th:value="${#dates.format(headDto.startDay, 'yyyy-MM-dd')}">
-      </div>
-    </div>
-
-    <div class="create-goal">
-      <div class="label-detail">
-        <label class="label" for="deadline">마감 기한</label>
-      </div>
-      <div class="input-detail">
-        <input name="deadline" class="input-box" id="deadline" type="text"
-               th:value="${#dates.format(headDto.endDay, 'yyyy-MM-dd')}">
-      </div>
-    </div>
-
-    <div class="create-goal">
-      <div class="label-detail">
-        <label class="label" for="workEdit">하위 작업 편집</label>
-      </div>
-      <div class="inbox" id="workEdit">
-        <div class="item">
-          <p class="explain">선택시 삭제</p>
+    <form name="editHead_form" action="/project/head/edit" method="post">
+      <div class="create-goal">
+        <div class="label-detail">
+          <label class="label" for="title">목표 이름</label>
+          <div class="essential">*</div>
         </div>
-        <div th:each="workDto : ${workDtoList}">
+        <div class="input-detail">
+          <input name="title" class="input-box" id="title" type="text" th:value="${headDto.title}">
+        </div>
+      </div>
+
+      <div class="create-goal">
+        <div class="label-detail">
+          <label class="label" for="discription">목표 설명</label>
+        </div>
+        <div class="input-detail">
+          <textarea name="discription" class="detail-input-box" id="discription" cols="20" rows="10"
+            th:text="${headDto.discription}">
+                </textarea>
+        </div>
+      </div>
+
+      <div class="create-goal">
+        <div class="label-detail">
+          <label class="label" for="startDay">시작일자</label>
+        </div>
+        <div class="input-detail">
+          <input name="startDay" class="input-box" id="startDay" type="text"
+            th:value="${#dates.format(headDto.startDay, 'yyyy-MM-dd')}">
+        </div>
+      </div>
+
+      <div class="create-goal">
+        <div class="label-detail">
+          <label class="label" for="deadline">마감 기한</label>
+        </div>
+        <div class="input-detail">
+          <input name="deadline" class="input-box" id="deadline" type="text"
+            th:value="${#dates.format(headDto.endDay, 'yyyy-MM-dd')}">
+        </div>
+      </div>
+
+      <div class="create-goal">
+        <div class="label-detail">
+          <label class="label" for="workEdit">하위 작업 편집</label>
+        </div>
+        <div class="inbox" id="workEdit">
           <div class="item">
-            <input type="checkbox" name="deleteWorkList" id="deleteWorkList" th:value="${workDto.getWorkId()}">
-            <p th:text="${workDto.getTitle()}"></p>
+            <p class="explain">선택시 삭제</p>
+          </div>
+          <div th:each="workDto : ${workDtoList}">
+            <div class="item">
+              <input type="checkbox" name="deleteWorkList" id="deleteWorkList" th:value="${workDto.getWorkId()}">
+              <p th:text="${workDto.getTitle()}"></p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
 
-    <input th:name="headId" th:value="${headDto.headId}" type="hidden">
-    <div class="horizon-divider"></div>
-    <div class="footer">
-      <button type="button" class="footer-btn" onclick="editHead_check()">수정</button>
-      <button type="reset" class="footer-btn">초기화</button>
-    </div>
-  </form>
+      <input th:name="headId" th:value="${headDto.headId}" type="hidden">
+      <div class="horizon-divider"></div>
+      <div class="footer">
+        <button type="button" class="footer-btn" onclick="editHead_check()">수정</button>
+        <button type="reset" class="footer-btn2">초기화</button>
+      </div>
+    </form>
 
 
-</div>
+  </div>
 </body>
 
 </html>

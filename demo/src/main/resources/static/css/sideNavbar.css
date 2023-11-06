@@ -1,11 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 .main {
-    margin: 30px 0px 30px 180px;
+    margin: 30px 0px 0px 180px;
+    background-color: #f3f6fd;
 }
 
 .sub-nav {
+    margin-top: -9.5px;
+    width: 95%;
     display: flex;
-    border-bottom: #555555 solid 4px;
-    padding-left: 20px;
+    padding-left: -40px;
 }
 
 
@@ -14,11 +22,10 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: #777777;
-    color: #FFFFFF;
-    border: #777777 solid 3px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    color: #000;
     border-radius: 10px 10px 0px 0px;
-
 }
 
 .sub-navbar li {
@@ -30,28 +37,28 @@
 
 .sub-navbar li a {
     font-weight: 600;
-    color: #FFFFFF;
+    color: #000;
     text-decoration: none;
     display: block;
     padding: 8px;
-    border: #777777 solid 3px;
+    border: #fff solid 3px;
     border-radius: 10px 10px 0px 0px;
 }
 
 .sub-navbar li a.active {
-    border: #777777 solid 3px;
+    border: #fff solid 3px;
     border-radius: 10px 10px 0px 0px;
-    background-color: #555555;
-    color: white;
+    background-color: #c3cff4;
+    color: #000;
 }
 
 .sub-nav-item a:hover:not(.active) {
-    background-color: #999;
-    color: white;
+    background-color: #c3cff4;
+    transition: 0.3s;
+    color: #000;
 }
 
 .horizon-divider {
     background-color: #46494F;
     height: 1px;
-    margin: 10px 0 30px 0;
 }

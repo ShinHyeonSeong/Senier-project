@@ -76,7 +76,7 @@ body {
     letter-spacing: 2px;
     margin-right: 4rem;
     transition: all 0.5s;
-    border-bottom: 3px solid #373A4F;
+    border-bottom: 3px solid #768fd9;
 }
 
 .project-select-active:hover {
@@ -100,10 +100,10 @@ body {
     font-size: 17px;
     font-weight: bold;
     padding: 1px 16px;
-    background-color: white;
-    color: #000000;
-    border: 1.5px solid #555555;
-    border-radius: 30px;
+    background-color: #c3cff4;
+    color: #000;
+    border: 1.5px solid #c3cff4;
+    border-radius: 20px;
     text-transform: uppercase;
     transition: all 0.4s;
 }
@@ -113,9 +113,11 @@ body {
 }
 
 .write-button:hover {
-    border: #777777;
-    background-color: #777777;
-    color: white;
+    transition: 0.3s;
+    color: #000;
+    cursor: pointer;
+    border: 2px solid #c3cff4;
+    background-color: #f3f6fd;
 }
 
 .post {
@@ -156,7 +158,7 @@ body {
     padding-bottom: 45%;
     background-size: cover;
     background-position: center center;
-    background: #46494F;
+    background: #c3cff4;
 }
 
 .thumbnail-m {

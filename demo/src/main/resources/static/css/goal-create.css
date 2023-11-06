@@ -10,8 +10,9 @@ a {
 }
 
 h1 {
-    color: #000000;
+    color: #000;
     font-size: 48px;
+    padding-left: 40px;
 }
 
 .container {
@@ -25,26 +26,28 @@ h1 {
     margin: 1rem 0;
 }
 
-
 .back-button {
-    cursor: pointer;
-    display: inline-block;
-    padding: 10px 15px;
     text-decoration: none;
-    font-size: 16px;
-    margin-right: 2rem;
-    transition: 0.5s;
-    color: #000000;
-    border: 1.5px solid #555555;
-    background-color: #FFFFFF;
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    background: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    color: #6675e3;
+    border: #6675e3 solid 2px;
     border-radius: 10px;
+    cursor: pointer;
+    padding: 10px;
+    line-height: 30px;
+    margin: 10px 5px;
 }
 
-.back-button:hover {
-    color: #FFFFFF;
-    border: 1.5px solid #777777;
-    background-color: #777777;
+.back-button:hover,
+.back-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #6675e3;
 }
+
 
 .create-goal {
     display: flex;
@@ -88,7 +91,7 @@ h1 {
     line-height: 22px;
     background-color: #fff;
     box-sizing: border-box;
-    border: 2px solid #555555;
+    border: 2px solid #999;
     border-radius: 4px;
     background-color: #fff;
     color: #000;
@@ -96,7 +99,7 @@ h1 {
 }
 
 .input-box:focus {
-    border: 2px solid #999999;
+    border: 2px solid #000;
     outline: none;
 }
 
@@ -107,7 +110,7 @@ h1 {
     font-weight: 400;
     line-height: 22px;
     background-color: #fff;
-    border: 2px solid #555555;
+    border: 2px solid #999;
     border-radius: 4px;
     padding: 12px 12px;
     color: #000;
@@ -115,7 +118,7 @@ h1 {
 }
 
 .detail-input-box:focus {
-    border: 2px solid #999999;
+    border: 2px solid #000;
     border-radius: 4px;
     background-color: #fff;
     outline: none;
@@ -162,8 +165,8 @@ h1 {
 }
 
 .horizon-divider {
-    background-color: #333;
-    height: 1px;
+    background-color: #c3cff4;
+    height: 3px;
     margin: 35px 0 25px 0;
 }
 
@@ -173,20 +176,46 @@ h1 {
 }
 
 .footer-btn {
+    text-decoration: none;
     width: 15%;
-    height: 38px;
-    margin-left: 15px;
-    color: #FFFFFF;
-    border: 1.5px solid #555555;
-    background-color: #555555;
+    text-align: center;
+    background: #6675e3;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    border: 0 none;
     border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
 }
 
-.footer-btn:hover {
-    color: #555555;
-    border: 2px solid #555555;
-    background-color: #FFFFFF;
+.footer-btn:hover,
+.footer-btn:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #6675e3;
 }
+
+.footer-btn2 {
+    text-decoration: none;
+    width: 15%;
+    text-align: center;
+    background: #C5C5F1;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    border: 0 none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+.footer-btn2:hover,
+.footer-btn2:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
+
+}
+
 
 
 select {
@@ -235,7 +264,7 @@ select::-ms-expand {
     margin: 10px 0 30px 0;
 }
 
-.search-input-detail > ul,
+.search-input-detail>ul,
 li {
     list-style: none;
     font-size: 15px;
@@ -266,7 +295,7 @@ li {
     margin: 20px;
 }
 
-input:checked + p {
+input:checked+p {
     background: #ff6a6a;
     text-decoration: line-through;
 }
@@ -283,7 +312,7 @@ input[type="checkbox"] {
 p {
     margin: 0;
     padding: 20px;
-    transition: background 0.2s;
+    transition: 0.2s;
     flex: 1;
     font-family: 'helvetica neue';
     font-size: 14px;

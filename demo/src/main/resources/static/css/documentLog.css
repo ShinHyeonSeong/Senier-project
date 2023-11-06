@@ -1,31 +1,6 @@
 body {
+    font-family: Arial, sans-serif;
     background-color: #fff;
-}
-
-
-hr {
-    background: #555555;
-}
-
-.hr {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    padding-top: 10em;
-    width: 100%;
-}
-
-.hr a {
-    text-decoration: none;
-}
-
-.hr a:hover {
-    text-decoration: none;
-    color: #fff;
-    background-color: #777777;
-    border: none;
 }
 
 .container {
@@ -36,72 +11,94 @@ hr {
     align-items: center;
 }
 
-.back-button {
-    background-color: #fff;
-    color: #000000;
-    border: 1px solid #000000;
-    cursor: pointer;
-    display: inline-block;
-    padding: 5px 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 30px;
-    margin-right: 3rem;
-    transition: 0.5s;
+.hr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10em;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-.back-button:hover {
-    border: #999999 1px solid;
-    background-color: #999999;
-    color: #fff;
+.hr a {
+    text-decoration: none;
+}
+
+img {
+    width: 30px;
+    height: 30px;
+}
+
+
+.back-button {
+    text-decoration: none;
+    width: 100px;
+    height: 10px;
+    text-align: center;
+    background: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    color: #6675e3;
+    border: #6675e3 solid 2px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px;
+    line-height: 30px;
+    margin: 10px 5px;
+}
+
+.back-button:hover,
+.back-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #6675e3;
 }
 
 .title {
     color: #000000;
-    display: inline-block;
-    text-align: center;
-    font-size: 50px;
-    margin-left: 10px;
-    margin-top: 3px;
+    font-size: 48px;
+    padding-left: 40px;
 }
 
 .middle-box {
     width: 100%;
     height: auto;
+    border-radius: 10px;
+    background-color: #fff;
     display: flex;
     margin-left: auto;
     margin-right: auto;
 }
 
 .board_list {
+    margin: 20px;
     width: 100%;
+    background-color: #f3f6fd;
 }
 
 .board_list td {
     color: #222;
-    padding-top: 20px;
-    padding-bottom: 20px;
     width: 30%;
     font-size: 20px;
     text-align: center;
-    border-bottom: solid 2px #555555;
 }
 
 .revert-button {
-    width: 50%;
     text-decoration: none;
-    padding: 10px;
-    font-weight: bold;
+    width: 50%;
+    text-align: center;
+    background: #6675e3;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    border: 0 none;
     border-radius: 10px;
-    margin-bottom: 10px;
     cursor: pointer;
-    color: #000000;
-    border: 1.5px solid #555555;
-    background-color: #FFFFFF;
+    padding: 10px 5px;
+    margin: 10px 5px;
 }
 
-.revert-button:hover {
-    color: #FFFFFF;
-    border: 1.5px solid #777777;
-    background-color: #777777;
+.revert-button:hover,
+.revert-button:focus {
+    transition: 0.3s;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #6675e3;
 }

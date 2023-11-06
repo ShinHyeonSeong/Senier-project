@@ -13,61 +13,77 @@ a {
 
 /* Global styles */
 body {
-    background-color: #fff;
+    background-color: #f3f6fd;
     font-family: Arial, sans-serif;
 }
 
 
 .content {
-    margin-left: 200px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0px 10px 10px 10px;
+    background-color: #fff;
+    margin-left: 150px;
+}
+
+.centered-content {
+    background-color: #fff;
+    margin: auto;
+    width: 95%;
+    min-height: 640px;
+    overflow: hidden;
 }
 
 .table-head-list {
     display: flex;
     margin: auto;
-    width: 98%;
+    width: 90%;
 }
 
 .table-h2 {
     text-align: left;
-    flex: 12;
-    width: 80%;
+    flex: 14;
+    width: 100%;
     box-sizing: border-box;
 }
 
 .button-section {
     flex: 2;
+    margin-top: 20px;
     margin: auto;
 }
 
 .createbutton {
-    width: 70%;
+    vertical-align: right;
+    width: 100%;
     text-decoration: none;
     font-weight: bold;
-    height: 50px;
+    height: 40px;
     font-size: 16px;
-    border-radius: 10px;
-    margin-bottom: 15px;    color: #000000;
-    border: 1.5px solid #555555;
-    background-color: #FFFFFF;
+    margin-top: 15px;
+    color: #fff;
+    border-radius: 20px;
+    border: 1.5px solid #6675e3;
+    background-color: #6675e3;
 }
 
 .createbutton:hover {
-    color: #FFFFFF;
-    border: 1.5px solid #777777;
-    background-color: #777777;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #6675e3;
+}
+
+.work {
+    padding-bottom: 30px;
 }
 
 table {
-    border-top: 1.5px #555555 solid;
-    width: 95%;
+    margin: auto;
+    width: 90%;
     border-collapse: collapse;
     overflow: hidden;
 }
 
 th {
     font-size: 18px;
-    padding: 1em 1.5em;
+    padding: 1rem;
     vertical-align: middle;
     text-align: left;
     font-weight: bold;
@@ -83,15 +99,15 @@ td {
     text-align: left;
     padding: 1em 2em;
     vertical-align: middle;
-    border-top: 1.5px #555555 solid;
-    border-bottom: 1.5px #555555 solid;
+    border-top: 1px #555555 solid;
+    border-bottom: 1px #555555 solid;
     font-size: 16px;
     transition: 0.5s;
 }
 
 td:hover {
     color: #fff;
-    background-color: #777777;
+    background-color: #c3cff4;
 }
 
 td a {

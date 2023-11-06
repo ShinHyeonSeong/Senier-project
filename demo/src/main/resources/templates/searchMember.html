@@ -7,35 +7,39 @@
 	<title>Border Project Manager</title>
 	<link rel="stylesheet" href="/css/searchMember.css">
 </head>
+
 <body>
-<div class="search-section">
-	<form class="friend-form" action="/user/returnSearch" method="post">
-		<div class="head-container">
-			<a href="/project/main" class="back-button"> < </a>
-			<h1>멤버 초대</h1>
-		</div>
-		<div class="search-area">
-			<input type="text" id="friend-search" name="searchKeyword" placeholder="유저 이메일 입력"
-				   style="width:80%; display:inline-block;">
-			<button type="submit">검색</button>
-		</div>
-	</form>
-	
-	<div class='friend-search-results'>
-		<h2>검색 결과</h2>
-		
-		<div class="horizon-divider"></div>
-		
-		<div class='friend-result' th:if="${searchUsers != null}" th:each="user:${searchUsers}">
-			<div>
-				<span class="friend-name" th:text="${user.name}"></span>
-				<span class="friend-email" th:text="${user.email}"></span>
+	<div class="search-section">
+		<form class="friend-form" action="/user/returnSearch" method="post">
+			<div class="head-container">
+				<a href="/project/main" class="back-button">
+					< </a>
+						<h1>멤버 초대</h1>
 			</div>
-			<a th:href="@{/project/invite/{id}(id=${user.uuid})}">
-				<button class='invite-btn'>초대</button>
-			</a>
+
+			<div class="search-area">
+				<input type="text" id="friend-search" name="searchKeyword" placeholder="유저 이메일 입력"
+					style="width:80%; display:inline-block;">
+				<button class="search-button" type="submit">검색</button>
+			</div>
+		</form>
+
+		<div class='friend-search-results'>
+			<h2>검색 결과</h2>
+
+			<div class="horizon-divider"></div>
+
+			<div class='friend-result' th:if="${searchUsers != null}" th:each="user:${searchUsers}">
+				<div>
+					<span class="friend-name" th:text="${user.name}">ss</span>
+					<span class="friend-email" th:text="${user.email}">sss</span>
+				</div>
+				<a th:href="@{/project/invite/{id}(id=${user.uuid})}">
+					<button class='invite-btn'>초대</button>
+				</a>
+			</div>
 		</div>
 	</div>
-</div>
 </body>
+
 </html>

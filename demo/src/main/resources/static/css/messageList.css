@@ -8,16 +8,28 @@ ul {
 
 
 body {
-    background-color: #fff;
+    background-color: #f3f6fd;
     font-family: Arial, sans-serif;
 }
 
-.content-container {
-    margin-left: 400px;
-    max-width: 800px;
+.main-container {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px 10px 10px 10px;
+    background-color: #fff;
+    margin-left: 150px;
+}
+
+.message-container {
+    background-color: #fff;
+    margin: auto;
+    width: 95%;
+    min-height: 640px;
+    overflow: hidden;
 }
 
 .content-header {
+    width: 80%;
+    padding-top: 20px;
     display: flex;
     margin: auto;
 }
@@ -88,6 +100,8 @@ body {
 }
 
 .message-list {
+    width: 80%;
+    margin: auto;
     list-style: none;
     padding: 0;
 }
