@@ -2,8 +2,6 @@ body {
     width: 100%;
     height: 100%;
     background-color: #fff;
-    color: #5161ce;
-
     margin: 0;
     padding: 0;
 }
@@ -56,7 +54,7 @@ hr {
     width: 100%;
     height: 6px;
     margin: 20px auto 20px 0;
-    background-color: #222;
+    background-color: #999;
     border: none;
 }
 
@@ -258,7 +256,7 @@ hr {
     opacity: 1;
 }
 
-.move_block:hover > .move {
+.move_block:hover>.move {
     transition: 0.7s ease-out;
     opacity: 1;
 }
@@ -312,12 +310,12 @@ hr {
     border: 0;
     font-size: 20px;
     color: #FFF;
-    background: #555555;
+    background: #c3cff4;
     opacity: 1;
 }
 
 .btn1.is-primary1:hover {
-    background: #222222;
+    background: rgb(159, 181, 229);
 }
 
 .btn1.is-primary1.is-activate {
@@ -346,7 +344,7 @@ hr {
     padding: 0;
     width: 60px;
     height: 60px;
-    color: #555555;
+    color: #000;
     text-decoration: none;
     font-weight: bold;
     line-height: .8;
@@ -363,39 +361,48 @@ hr {
     background: #F2F2F2;
 }
 
-.is-activate ~ .is-floating1 {
+.is-activate~.is-floating1 {
     opacity: 1;
     transform: translateX(-125%) translateY(-210%);
 }
 
-.is-activate ~ .is-floating1:nth-of-type(2) {
+.is-activate~.is-floating1:nth-of-type(2) {
     opacity: 1;
     transform: translateX(-125%) translateY(-100%);
 }
 
-.is-activate ~ .is-floating1:nth-of-type(3) {
+.is-activate~.is-floating1:nth-of-type(3) {
     opacity: 1;
     transform: translateX(-125%) translateY(10%);
 }
 
 .documentWrite-main-nav {
-    background-color: #555555;
-    color: #fff;
+    position: relative;
+    background-color: #f3f6fd;
+    color: #000;
     display: flex;
     align-items: center;
     padding: 10px;
-    height: 40px;
-    border-bottom: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    height: 50px;
 }
 
 .documentWrite-main-nav button {
-    margin: 10px 10px;
     background-color: transparent;
     border: none;
-    color: #fff;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #000;
     cursor: pointer;
+    border-radius: 10px;
     padding: 10px 20px;
-    transition: 2s;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+}
+
+.documentWrite-main-nav button:hover {
+    background-color: #f3f6fd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }
 
 .documentWrite-main-nav button:hover #back-button-hover {
@@ -426,5 +433,5 @@ hr {
 .documentWrite-mid {
     font-size: 20px;
     margin-left: 1rem;
-    color: #D4D4D4;
+    color: #818181;
 }

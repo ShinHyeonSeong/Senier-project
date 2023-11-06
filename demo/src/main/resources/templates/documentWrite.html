@@ -9,7 +9,7 @@
 	<title>Border Project Manager</title>
 	<link rel="stylesheet" href="/css/documentWrite.css">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="/js/documentWrite.js"></script>
@@ -17,100 +17,94 @@
 
 <body>
 
-<div class="documentWrite-main-nav">
-	<a th:href="${back}">
-		<button class="nav-left">나가기</button>
-	</a>
-	
-	<div class="documentWrite-title">
-		<h1 th:text="${work.getProjectIdToWork().getTitle()}">project Title</h1>
+	<div class="documentWrite-main-nav">
+		<a th:href="${back}">
+			<button class="nav-left">나가기</button>
+		</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<div class="documentWrite-title">
+			<h1 th:text="${work.getProjectIdToWork().getTitle()}">project Title</h1>
+		</div>
+		<div class="documentWrite-mid">
+			<h2>
+				>
+			</h2>
+		</div>
+		<div class="documentWrite-title">
+			<h1 th:text="${work.headIdToWork.title}">Head Title</h1>
+		</div>
+		<div class="documentWrite-mid">
+			<h2>
+				>
+			</h2>
+		</div>
+		<div class="documentWrite-subtitle">
+			<h1 th:text="${work.title}">Work Title</h1>
+		</div>
 	</div>
-	<div class="documentWrite-mid">
-		<h2>
-			>
-		</h2>
-	</div>
-	<div class="documentWrite-title">
-		<h1 th:text="${work.headIdToWork.title}">Head Title</h1>
-	</div>
-	<div class="documentWrite-mid">
-		<h2>
-			>
-		</h2>
-	</div>
-	<div class="documentWrite-subtitle">
-		<h1 th:text="${work.title}">Work Title</h1>
-	</div>
-</div>
 
-<div class="main-content">
-	<div class="write">
-		<div class="detail">
-			<input type="text" class="title" placeholder="이곳에 제목을 입력하세요" th:value="${document.title}">
-			<div type="hidden" class="documentId" th:value="${document.documentId}"></div>
-			<hr>
-			<div class="toolbar">
-				<button type="button" class="font-btn" onclick="createBlockH1()">H1</button>
-				<button type="button" class="font-btn" onclick="createBlockH2()">H2</button>
-				<button type="button" class="font-btn" onclick="createBlockH3()">H3</button>
-				<button type="button" class="font-btn" onclick="createBlockP()">P</button>
-				<div class="horizon-line"></div>
-				<button type="button" class="font-btn" id="image-btn">img</button>
-				<button type="button" class="font-btn" id="video-btn">mp4</button>
-			</div>
-			<div class="content">
-				<div class="sortable">
-					<div class="move_block" th:each="block : ${blockList}">
-						<div class="move">+</div>
-						
-						<div th:id="${block.category}"
-							 th:if="${block.category == 'blockImage'}"
-							 th:content="${block.content}"
-							 class="block"><img class="block_image" th:src="${block.content}"
-												ondragstart="return false"></div>
-						
-						<div th:id="${block.category}"
-							 th:if="${block.category == 'blockVideo'}"
-							 th:content="${block.content}"
-							 class="block">
-							<video class="block_video" th:src="${block.content}" controls
-								   ondragstart="return false"></video>
-						</div>
-						
-						<div th:id="${block.category}"
-							 th:if="${block.category != 'blockImage' and block.category != 'blockVideo'}"
-							 class="block"
-							 contenteditable="true"
-							 placeholder="빈 블럭"
-							 th:utext="${block.content}"
-							 spellcheck="false">block content
+	<div class="main-content">
+		<div class="write">
+			<div class="detail">
+				<input type="text" class="title" placeholder="이곳에 제목을 입력하세요" th:value="${document.title}">
+				<div type="hidden" class="documentId" th:value="${document.documentId}"></div>
+				<hr>
+				<div class="toolbar">
+					<button type="button" class="font-btn" onclick="createBlockH1()">H1</button>
+					<button type="button" class="font-btn" onclick="createBlockH2()">H2</button>
+					<button type="button" class="font-btn" onclick="createBlockH3()">H3</button>
+					<button type="button" class="font-btn" onclick="createBlockP()">P</button>
+					<div class="horizon-line"></div>
+					<button type="button" class="font-btn" id="image-btn">img</button>
+					<button type="button" class="font-btn" id="video-btn">mp4</button>
+				</div>
+				<div class="content">
+					<div class="sortable">
+						<div class="move_block" th:each="block : ${blockList}">
+							<div class="move">+</div>
+
+							<div th:id="${block.category}" th:if="${block.category == 'blockImage'}"
+								th:content="${block.content}" class="block"><img class="block_image"
+									th:src="${block.content}" ondragstart="return false"></div>
+
+							<div th:id="${block.category}" th:if="${block.category == 'blockVideo'}"
+								th:content="${block.content}" class="block">
+								<video class="block_video" th:src="${block.content}" controls
+									ondragstart="return false"></video>
+							</div>
+
+							<div th:id="${block.category}"
+								th:if="${block.category != 'blockImage' and block.category != 'blockVideo'}"
+								class="block" contenteditable="true" placeholder="빈 블럭" th:utext="${block.content}"
+								spellcheck="false">block content
+							</div>
 						</div>
 					</div>
 				</div>
+				<input type="file" id="imageInput" style="display:none;" accept="image/*">
+				<input type="file" id="videoInput" style="display:none;" accept="video/*">
 			</div>
-			<input type="file" id="imageInput" style="display:none;" accept="image/*">
-			<input type="file" id="videoInput" style="display:none;" accept="video/*">
+		</div>
+
+		<div class="floating-menu" role="menu">
+			<button id="floating1" aria-controls="floating-items" class="btn1 is-floating1 is-primary1"><span>.
+					.</span></button>
+
+			<a th:href="@{/document/delete(id=${document.documentId})}" class="is-floating1">delete</a>
+			<a th:href="@{/document/history(id=${document.documentId})}" class="is-floating1">history</a>
+			<a class="is-floating1" onclick="ajaxPost()">save</a>
 		</div>
 	</div>
-	
-	<div class="floating-menu" role="menu">
-		<button id="floating1" aria-controls="floating-items" class="btn1 is-floating1 is-primary1"><span>.
-                .</span></button>
-		
-		<a th:href="@{/document/delete(id=${document.documentId})}" class="is-floating1">delete</a>
-		<a th:href="@{/document/history(id=${document.documentId})}" class="is-floating1">history</a>
-		<a class="is-floating1" onclick="ajaxPost()">save</a>
-	</div>
-</div>
 </body>
 
 
 <script src="/js/documentFileUpload.js"></script>
 <script>
 	var floating = document.getElementById('floating1');
-	
+
 	floating.addEventListener('click', function () {
 		this.classList.toggle('is-activate');
 	});
 </script>
+
 </html>

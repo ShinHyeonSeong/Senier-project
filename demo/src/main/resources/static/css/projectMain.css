@@ -13,21 +13,22 @@ a {
 
 /* Global styles */
 body {
-    background-color: #FFFFFF;
     font-family: Arial, sans-serif;
 }
 
 .main-content {
-    margin-left: 180px;
+    background-color: #c3cff4;
 }
 
 .centered-content {
-    max-width: 80%;
-    margin: auto;
+    border-radius: 0px 10px 10px 0px;
+    background-color: #fff;
+    margin-left: 150px;
+    width: 90%;
 }
 
 .project-name {
-    margin-top: 50px;
+    padding-top: 50px;
     margin-bottom: 30px;
     font-size: 50px;
     font-weight: bold;
@@ -36,19 +37,19 @@ body {
 }
 
 .centered-top {
+    margin: auto;
     display: flex;
-
+    margin-top: 10px;
+    width: 89%;
 }
 
 .team-members,
 .project-intro {
-    display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
 }
 
 .div-h {
-    font-size: 30px;
+    font-size: 22px;
     font-weight: bolder;
 }
 
@@ -63,53 +64,60 @@ body {
 }
 
 .project-intro {
-    min-width: 450px;
     flex: 1;
-    background-color: #ffff;
+    background-color: #f3f6fd;
     color: #000000;
-    border: 2px solid #555555;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 30px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     margin: 10px;
-
 }
 
 .team-members {
-    background-color: #FFFFFF;
-    border: 2px solid #555555;
+    background-color: #f3f6fd;
     color: #000000;
-    min-width: 500px;
     flex: 1;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 30px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     margin: 10px;
 }
 
 .member {
     margin-top: 3px;
-    max-height: 150px;
     border-bottom: #555555 1px solid;
 }
 
-.my-work {
-    min-width: 1050px;
-    background-color: #FFFFFF;
-    color: #000000;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 10px;
-    border: #555555 solid 2px;
+.centered-bottom {
+    margin: auto;
+    justify-content: space-between;
+    width: 94%;
 }
 
 .goals {
-    min-width: 1000px;
-    background-color: #fff;
+    width: 90%;
+    background-color: #f3f6fd;
     color: #000000;
     padding: 20px;
-    border-radius: 10px;
-    margin: 10px;
-    overflow: auto;
-    border: #555555 solid 2px;
+    border-radius: 30px;
+    margin: auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.works {
+    width: 90%;
+    background-color: #f3f6fd;
+    color: #000000;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    float: inherit;
+    margin: auto;
+}
+
+.work-wrap {
+    margin-top: 20px;
 }
 
 .goals hr {
@@ -120,7 +128,8 @@ body {
 
 table {
     font-size: .9em;
-    width: 100%;
+    width: 95%;
+    margin: auto;
     border-collapse: collapse;
 }
 
@@ -130,7 +139,7 @@ th {
     height: auto;
     padding: 0.5rem;
     vertical-align: middle;
-    font-size: 20px;
+    font-size: 18px;
     text-align: left;
 }
 
@@ -139,7 +148,7 @@ tr {
 }
 
 td {
-    height: 40px;
+    height: auto;
     font-size: 16px;
     text-align: center;
     border-top: 1px #555555 solid;
@@ -147,7 +156,7 @@ td {
 }
 
 td:hover {
-    background-color: #777777;
+    background-color: #c3cff4;
 }
 
 td a {
@@ -213,6 +222,7 @@ td a {
 }
 
 .project-top-line {
+    margin: auto;
     display: flex;
     justify-content: space-between;
     width: 80%;

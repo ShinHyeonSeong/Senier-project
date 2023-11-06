@@ -1,17 +1,14 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset='utf-8'/>
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link href="/lib/main.css" rel='stylesheet'/>
+    <meta charset='utf-8' />
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link href="/lib/main.css" rel='stylesheet' />
     <script src="/lib/main.js"></script>
     <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/gantt.css">
-	<link rel="stylesheet" href="/css/sideNavbar.css">
+    <link rel="stylesheet" href="/css/sideNavbar.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" th:inline="javascript">
         var workNode;
@@ -19,7 +16,7 @@
             url: "/gantt/event",
             method: "GET",
             success: function (jsonData) {
-                google.charts.load('current', {'packages':['gantt']});
+                google.charts.load('current', { 'packages': ['gantt'] });
                 google.charts.setOnLoadCallback(drawChart);
                 workNode = jsonData;
                 function daysToMilliseconds(days) {
@@ -52,8 +49,8 @@
 
                     var options = {
                         height: 1000,
-                        gantt:{
-                            arrow:{
+                        gantt: {
+                            arrow: {
                                 arrow: 10,
                                 barHeight: 50
                             }
@@ -73,59 +70,52 @@
 
 
 <body>
-<header>
-    <nav>
-        <div class="nav-left">
-            <a id="exitButton" href="/project/projectManagerList">나가기</a>
-        </div>
-        <div class="nav-center">
-            <h1 id="projectName" th:text="${projectDto.getTitle()}"></h1>
-        </div>
-        <div class="nav-right">
-            <p id="loggedInUser" th:text="${sessionUser.getName()}"></p>
-        </div>
-    </nav>
-</header>
-<aside class="sidebar">
-    <ul>
-        <div class="menu">
-            <ul>
-                <li><a th:href="@{/project/main}">홈</a></li>
-                <li><a href="/project/goals">목표</a></li>
-                <li><a href="/project/works">작업</a></li>
-                <li><a href="/project/document">문서</a></li>
-                <li class="menu-select"><a href="/project/calender">일정</a></li>
-                <li><a href="/project/recvMessageList">수신함</a></li>
+	<header>
+		<nav>
+			<div class="nav-left">
+				<a id="exitButton" href="/project/projectManagerList">나가기</a>
+			</div>
+			<div class="nav-center">
+				<h1 id="projectName" th:text="${projectDto.getTitle()}">프로젝트ㅡㅡㅡ</h1>
+			</div>
+			<div class="nav-right">
+				<p id="loggedInUser" th:text="${sessionUser.getName()}">ssss</p>
+			</div>
+		</nav>
+	</header>
+	<aside class="sidebar">
+		<div class="menu">
+			<ul>
+				<li><a th:href="@{/project/main}"><img src="/img/house-solid.svg" alt="">홈</a></li>
+				<li><a href="/project/goals"><img src="/img/lightbulb-solid.svg" alt="">목표</a></li>
+				<li><a href="/project/works"><img src="/img/layer-group-solid.svg" alt="">작업</a></li>
+				<li>
+					<a href="/project/document"><img src="/img/file-invoice-solid.svg" alt="">문서</a>
+				</li>
+				<li class="menu-select"><a href="/project/calender"><img src="/img/calendar-solid.svg" alt="">일정</a></li>
+				<li><a href="/project/recvMessageList"><img src="/img/email.png" alt="">수신함</a></li>
+				<li><a href="/user/search"><img src="/img/add-user.png" alt="">초대</a></li>
+			</ul>
+		</div>
+	</aside>
+    <div class="main">
+        <div class="sub-nav">
+            <ul class="sub-navbar">
+                <li class="sub-nav-item"><a href="/project/calender">캘린더</a></li>
+                <li class="sub-nav-item-active"><a class="active" href="/project/gantt">일정 차트</a></li>
+                </li>
             </ul>
         </div>
-    </ul>
-    <ul>
-        <div class="user-list">
-            <h2>프로젝트 멤버</h2>
-            <ul th:each="users : ${joinUsers}">
-                <li th:text="${users.getName()}"></li>
-            </ul>
-        </div>
-        <div>
-            <a href="/user/search"><button id="inviteButton">Invite Members</button></a>
-        </div>
-    </ul>
-</aside>
-
-<div class="main">
-	<div class="sub-nav">
-		<ul class="sub-navbar">
-			<li class="sub-nav-item"><a href="/project/calender">캘린더</a></li>
-			<li class="sub-nav-item-active"><a class="active" href="/project/gantt">일정 차트</a></li>
-			</li>
-		</ul>
-	</div>
-</div>
-<div class="content">
-    <h2 class="title">일정 차트</h2>
-    <div class="gantt">
-        <div id="chart_div"></div>
     </div>
-</div>
+
+    <div class="content">
+        <div class="centered-content">
+            <h2 class="title">일정 차트</h2>
+            <div class="gantt">
+                <div id="chart_div"></div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

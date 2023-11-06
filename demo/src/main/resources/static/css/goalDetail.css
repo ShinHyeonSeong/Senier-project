@@ -11,17 +11,24 @@ a {
     text-decoration: none;
 }
 
+body {
+    background-color: #f3f6fd;
+    font-family: Arial, sans-serif;
+}
+
 .content {
-    margin-left: 240px;
+    border-radius: 0px 10px 10px 10px;
+    background-color: #fff;
+    margin-left: 150px;
 }
 
 .container {
     display: flex;
-    width: 95%;
+    width: 100%;
     background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     overflow: hidden;
+    height: 700px;
 }
 
 .left-pane {
@@ -109,7 +116,7 @@ a {
     padding: 0;
 }
 
-.task-list > li {
+.task-list>li {
     font-size: 16px;
     margin-bottom: 5px;
     padding: 5px;

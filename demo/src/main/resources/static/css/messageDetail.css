@@ -7,28 +7,28 @@ ul {
 }
 
 body {
-    background-color: #fff;
+    background-color: #f3f6fd;
     font-family: Arial, sans-serif;
 }
 
 .main-container {
-    margin-left: 200px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px 10px 10px 10px;
+    background-color: #fff;
+    margin-left: 150px;
 }
 
 .message-container {
-    margin: auto;
-    width: 100%;
-    max-width: 1100px;
     background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    border-radius: 5px;
-    margin-top: 20px;
-    box-sizing: border-box;
+    margin: auto;
+    width: 95%;
+    min-height: 640px;
+    overflow: hidden;
 }
 
 .message-header {
     text-align: center;
+    margin-top: 40px;
     margin-bottom: 20px;
 }
 
@@ -60,9 +60,11 @@ body {
 }
 
 .message-text {
+    border: #999 solid 1px;
+    border-radius: 10px;
     line-height: 1.5;
+    padding: 15px;
 }
 
 .message-text p {
-    margin: 0;
 }
