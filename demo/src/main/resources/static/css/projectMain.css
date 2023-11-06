@@ -94,6 +94,10 @@ body {
     width: 94%;
 }
 
+.goal-wrap {
+    margin-top: 20px;
+}
+
 .goals {
     width: 90%;
     background-color: #f3f6fd;
@@ -131,6 +135,7 @@ table {
     width: 95%;
     margin: auto;
     border-collapse: collapse;
+    padding: 10px;
 }
 
 th {
@@ -153,6 +158,7 @@ td {
     text-align: center;
     border-top: 1px #555555 solid;
     transition: 0.5s;
+    padding: 0.5rem;
 }
 
 td:hover {
