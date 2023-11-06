@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset='utf-8' />
-	<link href="/lib/main.css" rel='stylesheet' />
+	<meta charset='utf-8'/>
+	<link href="/lib/main.css" rel='stylesheet'/>
 	<script src="/lib/main.js"></script>
 	<script src="/lib/locales-all.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -14,58 +14,60 @@
 
 
 <body>
-	<header>
-		<nav>
-			<div class="nav-left">
-				<a id="exitButton" href="/project/projectManagerList">나가기</a>
-			</div>
-			<div class="nav-center">
-				<h1 id="projectName" th:text="${projectDto.getTitle()}">프로젝트ㅡㅡㅡ</h1>
-			</div>
-			<div class="nav-right">
-				<p id="loggedInUser" th:text="${sessionUser.getName()}">ssss</p>
-			</div>
-		</nav>
-	</header>
-	<aside class="sidebar">
-		<div class="menu">
-			<ul>
-				<li><a th:href="@{/project/main}"><img src="/img/house-solid.svg" alt="">홈</a></li>
-				<li><a href="/project/goals"><img src="/img/lightbulb-solid.svg" alt="">목표</a></li>
-				<li><a href="/project/works"><img src="/img/layer-group-solid.svg" alt="">작업</a></li>
-				<li>
-					<a href="/project/document"><img src="/img/file-invoice-solid.svg" alt="">문서</a>
-				</li>
-				<li class="menu-select"><a href="/project/calender"><img src="/img/calendar-solid.svg" alt="">일정</a></li>
-				<li><a href="/project/recvMessageList"><img src="/img/email.png" alt="">수신함</a></li>
-				<li><a href="/user/search"><img src="/img/add-user.png" alt="">초대</a></li>
-			</ul>
+<header>
+	<nav>
+		<div class="nav-left">
+			<a id="exitButton" href="/project/projectManagerList">나가기</a>
 		</div>
-	</aside>
+		<div class="nav-center">
+			<h1 id="projectName" th:text="${projectDto.getTitle()}">프로젝트ㅡㅡㅡ</h1>
+		</div>
+		<div class="nav-right">
+			<p id="loggedInUser" th:text="${sessionUser.getName()}">ssss</p>
+		</div>
+	</nav>
+</header>
+<aside class="sidebar">
+	<div class="menu">
+		<ul>
+			<li><a th:href="@{/project/main}"><img src="/img/house-solid.svg" alt="">홈</a></li>
+			<li><a href="/project/goals"><img src="/img/lightbulb-solid.svg" alt="">목표</a></li>
+			<li><a href="/project/works"><img src="/img/layer-group-solid.svg" alt="">작업</a></li>
+			<li>
+				<a href="/project/document"><img src="/img/file-invoice-solid.svg" alt="">문서</a>
+			</li>
+			<li class="menu-select"><a href="/project/calender"><img src="/img/calendar-solid.svg" alt="">일정</a></li>
+			<li><a href="/project/recvMessageList"><img src="/img/email.png" alt="">메세지</a></li>
+			<li><a href="/user/search"><img src="/img/add-user.png" alt="">초대</a></li>
+		</ul>
+	</div>
+</aside>
 
-	<div class="main">
-		<div class="sub-nav">
-			<ul class="sub-navbar">
-				<li class="sub-nav-item-active"><a class="active" href="/project/calender">캘린더</a></li>
-				<li class="sub-nav-item"><a href="/project/gantt">일정 차트</a></li>
-				</li>
-			</ul>
-		</div>
+<div class="main">
+	<div class="sub-nav">
+		<ul class="sub-navbar">
+			<li class="sub-nav-item-active"><a class="active" href="/project/calender">캘린더</a></li>
+			<li class="sub-nav-item"><a href="/project/gantt">일정 차트</a></li>
+			</li>
+		</ul>
 	</div>
-	<div class="content">
-		<div class="centered-content">
-			<div id='calendar'></div>
-		</div>
+</div>
+<div class="content">
+	<div class="centered-content">
+		<h2 class="title">캘린더</h2>
+		<hr>
+		<div id='calendar'></div>
 	</div>
+</div>
 </body>
 
 
 <script>
 	var calendarEl = document.getElementById('calendar');
 	var request = $.ajax({
-		url: "/calendar/event",
-		method: "GET"
-	}
+				url: "/calendar/event",
+				method: "GET"
+			}
 	);
 	request.done(function (data) {
 		var calendar = new FullCalendar.Calendar(calendarEl, {

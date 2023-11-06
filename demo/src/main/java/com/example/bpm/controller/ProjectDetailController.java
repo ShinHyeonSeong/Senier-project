@@ -337,11 +337,13 @@ public class ProjectDetailController {
         UserDto sessionUser = getSessionUser();
         ProjectDto currentProject = getSessionProject();
         Long auth = getSessionAuth();
+        List<HeadDto> headDtoList = projectDetailSerivce.findHeadListByProject(currentProject);
         List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByProject(currentProject);
         List<UserDto> userDtoList = userService.findUserListByProjectId(currentProject.getProjectId());
         model.addAttribute("sessionUser", sessionUser);
         model.addAttribute("projectDto", currentProject);
         model.addAttribute("auth", auth);
+        model.addAttribute("headDtoList", headDtoList);
         model.addAttribute("workDtoList", workDtoList);
         model.addAttribute("joinUsers", userDtoList);
         return "work";

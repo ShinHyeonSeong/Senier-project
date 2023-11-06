@@ -20,10 +20,17 @@ body {
 }
 
 .centered-content {
+    border-radius: 20px;
     background-color: #fff;
     margin: auto;
     width: 95%;
-    min-height: 640px;
     overflow: hidden;
-    border-radius: 20px;
+}
+
+.title {
+    padding-left: 30px;
+    text-align: left;
+    flex: 12;
+    width: 80%;
+    box-sizing: border-box;
 }

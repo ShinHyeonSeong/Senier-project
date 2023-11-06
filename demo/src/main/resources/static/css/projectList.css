@@ -76,7 +76,7 @@ body {
     letter-spacing: 2px;
     margin-right: 4rem;
     transition: all 0.5s;
-    border-bottom: 3px solid #768fd9;
+    border-bottom: 3px solid #6675e3;
 }
 
 .project-select-active:hover {
@@ -100,24 +100,36 @@ body {
     font-size: 17px;
     font-weight: bold;
     padding: 1px 16px;
-    background-color: #c3cff4;
-    color: #000;
-    border: 1.5px solid #c3cff4;
+    background-color: #C5C5F1;
+    color: #fff;
+    border: 1.5px solid #C5C5F1;
     border-radius: 20px;
     text-transform: uppercase;
     transition: all 0.4s;
 }
 
-.write-button:focus {
-    outline: none;
+.write-button:focus,
+.write-button:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
 }
 
-.write-button:hover {
-    transition: 0.3s;
-    color: #000;
-    cursor: pointer;
-    border: 2px solid #c3cff4;
-    background-color: #f3f6fd;
+.write-button2 {
+    width: 10rem;
+    height: 38px;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 1px 16px;
+    background-color: #6675e3;
+    color: #fff;
+    border: 1.5px solid #6675e3;
+    border-radius: 20px;
+    text-transform: uppercase;
+    transition: all 0.4s;
+}
+
+.write-button2:focus,
+.write-button2:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #6675e3;
 }
 
 .post {
@@ -158,7 +170,7 @@ body {
     padding-bottom: 45%;
     background-size: cover;
     background-position: center center;
-    background: #c3cff4;
+    background: #6675e3;
 }
 
 .thumbnail-m {
