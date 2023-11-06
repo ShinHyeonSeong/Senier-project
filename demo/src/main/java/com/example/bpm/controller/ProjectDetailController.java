@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -575,11 +576,36 @@ public class ProjectDetailController {
                               @RequestParam(value = "content") String content,
                               @RequestParam(value = "recvName") String name,
                               HttpSession session) {
-        log.info(name + "입니다.");
-        messageService.sendMessage(title, content, getSessionUser(), name, getSessionProject());
+        messageService.sendMessage(title, content, 0L, 1, getSessionUser(), name, getSessionProject());
 
         return "redirect:/project/sendMessageList";
     }
+
+    @GetMapping("/project/sendRequest/{id}")
+    public String sendRequest(@PathVariable("id") Long id,
+                              HttpServletRequest request) {
+        WorkDto workDto = projectDetailSerivce.findWork(id);
+        UserDto projectManager = userService.findManagerUserByProject(getSessionProject().getProjectId());
+        log.info("탐색 완료. 유저 : " + projectManager.getName());
+        String title = (workDto.getTitle() + " 작업 완료 요청");
+        String content = ("완료 요청인 : 담당자 " + getSessionUser().getName());
+        messageService.sendMessage(title, content, id, 1, getSessionUser(), projectManager.getUuid(), getSessionProject());
+
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+    }
+
+    @GetMapping("/project/requestConfirm")
+    public String requestConfirm(Long requestId, HttpServletRequest request) {
+        if (requestId != 0) {
+            WorkDto workDto = projectDetailSerivce.findWork(requestId);
+            workDto.setCompletion(1);
+            projectDetailSerivce.updateWork(requestId, workDto);
+        }
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+    }
+
 
     @GetMapping("/project/sendMessageList/{id}")
     public String selectSendMessage(@PathVariable("id") Long id, Model model) {
@@ -596,14 +622,18 @@ public class ProjectDetailController {
 
     @GetMapping("/project/recvMessageList/{id}")
     public String selectRecvMessage(@PathVariable("id") Long id, Model model) {
-        MessageDto messageDto = messageService.findMessage(id);
-        model.addAttribute("message", messageDto);
+        MessageDto beforeMessage = messageService.findMessage(id);
+        beforeMessage.setState(0);
+        MessageDto afterMessage = messageService.updateMessage(id, beforeMessage);
+        model.addAttribute("message", afterMessage);
         UserDto sessionUser = getSessionUser();
         ProjectDto currentProject = getSessionProject();
         List<UserDto> userDtoList = userService.findUserListByProjectId(currentProject.getProjectId());
+        Long auth = getSessionAuth();
         model.addAttribute("sessionUser", sessionUser);
         model.addAttribute("projectDto", currentProject);
         model.addAttribute("joinUsers", userDtoList);
+        model.addAttribute("auth", auth);
         return "recvMessageDetail";
     }
 

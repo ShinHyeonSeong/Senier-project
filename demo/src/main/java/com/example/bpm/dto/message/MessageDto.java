@@ -23,6 +23,10 @@ public class MessageDto {
 
     private Date date;
 
+    private Long requestId;
+
+    private int state;
+
     private UserEntity userIdToMessageSend;
 
     private UserEntity userIdToMessageRecv;
@@ -36,6 +40,8 @@ public class MessageDto {
         messageEntity.setTitle(title);
         messageEntity.setContent(content);
         messageEntity.setDate(date);
+        messageEntity.setRequestId(requestId);
+        messageEntity.setState(state);
         messageEntity.setUserIdToMessageSend(userIdToMessageSend);
         messageEntity.setUserIdToMessageRecv(userIdToMessageRecv);
         messageEntity.setProjectIdToMessage(projectIdToMessage);
@@ -48,6 +54,8 @@ public class MessageDto {
         this.title = messageEntity.getTitle();
         this.content = messageEntity.getContent();
         this.date = messageEntity.getDate();
+        this.requestId = messageEntity.getRequestId();
+        this.state = messageEntity.getState();
         this.userIdToMessageSend = messageEntity.getUserIdToMessageSend();
         this.userIdToMessageRecv = messageEntity.getUserIdToMessageRecv();
         this.projectIdToMessage = messageEntity.getProjectIdToMessage();

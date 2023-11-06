@@ -8,13 +8,11 @@ import com.example.bpm.dto.project.relation.ProjectRoleDto;
 import com.example.bpm.dto.project.request.ProjectRequestDto;
 import com.example.bpm.dto.user.UserDto;
 import com.example.bpm.repository.UserRepository;
-import com.example.bpm.service.DocumentService;
-import com.example.bpm.service.ProjectDetailSerivce;
-import com.example.bpm.service.ProjectSerivce;
+import com.example.bpm.service.*;
 //import jakarta.servlet.http.HttpSession;
-import com.example.bpm.service.UserService;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +37,8 @@ public class ProjectController {
     private ProjectDetailSerivce projectDetailSerivce;
     @Autowired
     private DocumentService documentService;
+    @Autowired
+    private MessageService messageService;
 
     HttpSession session;
 
@@ -236,6 +236,9 @@ public class ProjectController {
         // 완료 진척도
         int percentage = projectDetailSerivce.getProjectProgressPercent(presentDto);
 
+        // 안읽은 메세지 식별시 return true
+        boolean readState = messageService.checkReadState(getSessionProject().getProjectId(), getSessionUser().getUuid());
+
         model.addAttribute("per", percentage);
         model.addAttribute("auth", auth);
         model.addAttribute("projectDto", presentDto);
@@ -245,6 +248,7 @@ public class ProjectController {
         model.addAttribute("headDtoList", headDtoList);
         model.addAttribute("progressHead", progressHead);
         model.addAttribute("completeHead", completeHead);
+        model.addAttribute("readState", readState);
 
         if (getSessionAuth() != 2) {
             List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByProject(presentDto);

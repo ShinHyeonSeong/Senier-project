@@ -1,12 +1,17 @@
 package com.example.bpm.service;
 
+import com.example.bpm.dto.project.ProjectDto;
 import com.example.bpm.dto.user.UserDto;
+import com.example.bpm.entity.project.data.ProjectEntity;
 import com.example.bpm.entity.project.relation.ProjectRoleEntity;
 import com.example.bpm.entity.user.UserEntity;
+import com.example.bpm.repository.ProjectRepository;
 import com.example.bpm.repository.ProjectRoleRepository;
 import com.example.bpm.repository.UserRepository;
+import com.google.cloud.storage.Acl;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +28,8 @@ public class UserService {
     final private UserRepository userRepository;
     @Autowired
     final private ProjectRoleRepository projectRoleRepository;
-
     @Autowired
-    private ProjectDetailSerivce projectDetailSerivce;
+    private ProjectRepository projectRepository;
 
     /* sign up */
     public UserDto signUp(UserDto userDto) {
@@ -120,6 +124,19 @@ public class UserService {
             userDtoList.add(userDto);
         }
         return userDtoList;
+    }
+
+    public UserDto findManagerUserByProject(Long id) {
+        UserDto userDto = new UserDto();
+        List<ProjectRoleEntity> projectRoleEntityList = projectRoleRepository.findProjectRoleByProject(id);
+        for(ProjectRoleEntity projectRoleEntity : projectRoleEntityList) {
+            log.info(projectRoleEntity.getUuidInRole().getName());
+            if (projectRoleEntity.getRole().getId() == 1L) {
+                userDto.insertEntity(projectRoleEntity.getUuidInRole());
+                log.info("확인 완료, 프로젝트 매니저 : " + projectRoleEntity.getUuidInRole().getName());
+            }
+        }
+        return userDto;
     }
 
     /* check user role */

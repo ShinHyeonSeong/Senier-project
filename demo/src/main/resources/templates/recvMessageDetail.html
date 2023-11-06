@@ -55,6 +55,14 @@
 			<div class="message-header">
 				<h1 th:text="${message.getTitle()}">메세지 제목</h1>
 			</div>
+
+			<div class="message-text" >
+				<p th:text="${message.getContent()}">
+				</p>
+				<a th:if="${message.getRequestId() != 0 && auth == 1}" th:href="@{/project/requestConfirm(requestId=${message.getRequestId()})}">
+					<button>완료</button>
+				</a>
+
 			<div class="message-content">
 				<div class="message-info">
 					<p class="message-sender">보낸 사람:
@@ -68,6 +76,7 @@
 					<p th:text="${message.getContent()}">cnsdofjaslkdfjasl;kjflaskdjf;laskjd;lfkj
 					</p>
 				</div>
+
 			</div>
 		</div>
 	</div>
