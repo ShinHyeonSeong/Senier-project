@@ -34,7 +34,7 @@ public class CalendarService {
             event.put("start", simpleDateFormat.format(headEntity.getStartDay()));
             event.put("title", headEntity.getTitle());
             event.put("end", simpleDateFormat.format(headEntity.getEndDay()));
-            event.put("color","#97C1A9");
+            event.put("color","#6fa8dc");
             event.put("textColor", "#000000");
             eventList.add(event);
         }
@@ -46,7 +46,7 @@ public class CalendarService {
             event.put("start", simpleDateFormat.format(workEntity.getStartDay()));
             event.put("title", workEntity.getTitle());
             event.put("end", simpleDateFormat.format(workEntity.getEndDay()));
-            event.put("color","#8FCACA");
+            event.put("color","#f6b26b");
             event.put("textColor", "#000000");
             eventList.add(event);
         }
