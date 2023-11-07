@@ -7,12 +7,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/goal-create.css">
+	<script src="https://kit.fontawesome.com/16dd1d1568.js" crossorigin="anonymous"></script>
 	<title>BPM</title>
 	<script th:inline="javascript">
 		const message = /*[[${message}]]*/ '';
 		if (message !== null) {
 			alert(message);
 		}
+		
 		function createHead_check() {
 			var title = document.getElementById("title");
 			var discription = document.getElementById("discription");
@@ -25,7 +27,8 @@
 				alert("목표 제목을 입력해주십시오.");
 				title.focus();
 				return false;
-			};
+			}
+			;
 			
 			if (startDay.value == "") {
 				alert("시작기한을 입력해주십시오.");
@@ -46,8 +49,8 @@
 				deadline.focus();
 				return false;
 			}
-
-
+			
+			
 			document.createHead_form.submit();
 		}
 	</script>
@@ -55,11 +58,14 @@
 
 <body>
 <div class="container">
-	<div class="header">
-		<a href="/project/goals" class="back-button"> < </a>
-		<h1>상위 목표 생성</h1>
+	<div class="head-container">
+		<a href="/project/goals" class="back-button">
+			<i class="fa-solid fa-angle-left"></i>
+		</a>
+		<h1>목표 생성</h1>
 	</div>
-	<form name="createHead_form" action="/project/goal/createHead" method="post">
+	<form name="createHead_form" action="/project/goal/createHead" method="post" class="form-section">
+		<div class="horizon-divider"></div>
 		<div class="create-goal">
 			<div class="label-detail">
 				<label class="label" for="title">목표 이름</label>

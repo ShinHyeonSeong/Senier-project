@@ -61,21 +61,37 @@
 				</a></div>
 			</div>
 			<hr>
-			<div class="page-content">
-				<div class="header upcoming">
-<!--					th:text="'목표 이름 : ' + ${headDto.getTitle()}"-->
-					<a class="task" th:each="workDto : ${workDtoList}">
-						<span class="label-text" th:text="'&bull; &nbsp; &nbsp;' + ${workDto.title}"></span>
-						<span class="tag progress" th:if="${workDto.getCompletion() == 0}">진행중</span>
-						<span class="tag approved" th:if="${workDto.getCompletion() == 1}">완료</span>
-						<span class="tag waiting" th:if="${workDto.getCompletion() == 2}">계획중</span>
-						<span class="tag review" th:if="${workDto.getCompletion() == 3}">미완료</span>
+			
+			<div class="page-content"
+				 th:each="headDto : ${headDtoList}">
+				<a class="header upcoming"
+				   th:text="${headDto.getTitle()}">
+				</a>
+				<div class="task-wrap" th:each="workDto : ${workDtoList}">
+					<a class="task" th:if="${headDto.getHeadId()==workDto.getHeadIdToWork().getHeadId()}"
+					   th:href="@{/project/work/detail/{id}(id=${workDto.getWorkId()})}">
+							<span class="label-text"
+								  th:text="'&bull; &nbsp; &nbsp;' + ${workDto.getTitle()}"></span>
+						
+						<div class="page-content">
+							<div class="header upcoming">
+								<!--					th:text="'목표 이름 : ' + ${headDto.getTitle()}"-->
+								<a class="task" th:each="workDto : ${workDtoList}">
+									<span class="label-text" th:text="'&bull; &nbsp; &nbsp;' + ${workDto.title}"></span>
+									>>>>>>> origin/master
+									<span class="tag progress" th:if="${workDto.getCompletion() == 0}">진행중</span>
+									<span class="tag approved" th:if="${workDto.getCompletion() == 1}">완료</span>
+									<span class="tag waiting" th:if="${workDto.getCompletion() == 2}">계획중</span>
+									<span class="tag review" th:if="${workDto.getCompletion() == 3}">미완료</span>
+								</a>
+							
+							</div>
+						</div>
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 </body>
 

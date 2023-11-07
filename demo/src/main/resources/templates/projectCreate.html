@@ -24,87 +24,88 @@
 
 <body>
 
-	<nav class="navbar navbar-expand-custom navbar-mainbg">
-		<a class="navbar-brand navbar-logo" href="#"><img class="navbar-logo-image" src="../img/logo.png">BPM</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-link" th:text="${nowUser.name}">님</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/user/account">마이페이지</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/user/logout">로그아웃</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-	<div class="container">
-		<input type="hidden" th:name="nowUser" th:value="${nowUser.getUuid()}">
-		<div class="head-container">
-			<a href="/project/projectAllList" class="back-button">
-				<i class="fa-solid fa-angle-left"></i>
-			</a>
-			<h3>프로젝트 생성</h3>
-		</div>
-
-		<div class="section">
-			<form name="projectForm" action="/project/createPage" method="post">
-				<!-- <label for="project-title">프로젝트 제목:</label><br> -->
-				<input placeholder="제목을 적으시오." type="text" id="project-title" name="title"><br>
-
-				<!-- <label for="project-description">프로젝트 소개:</label><br> -->
-				<textarea placeholder="소개를 적으시오." id="project-description" name="subtitle"
-					class="description"></textarea><br>
-
-				<!-- <label>시작 날짜 : </label><br> -->
-				<input name="startDay" class="input-box" id="startDay" type="text"
-					placeholder="시작 날짜 : 0000-00-00(연 월 일)">
-
-				<!-- <label>끝난 날짜 : </label></label><br> -->
-				<input name="endDay" class="input-box" id="endDay" type="text" placeholder="끝난 날짜 : 0000-00-00(연 월 일)">
-				<button type="button" onclick="checkForm()" class="startBtn">
-					Start New Template
-				</button>
-			</form>
-		</div>
-		<br>
-
-		<script>
-			var title = document.getElementById("project-title");
-			var description = document.getElementById("project-description");
-			var startDay = document.getElementById("startDay");
-			var endDay = document.getElementById("endDay");
-
-			function checkForm() {
-				if (title.value.length == 0) {
-					alert("제목을 입력하시오.")
-					title.focus();
-					return false;
-				}
-				if (description.value.length == 0) {
-					alert("설명 입력하시오.")
-					title.focus();
-					return false;
-				}
-
-				try {
-					var date = value.split("-");
-					var y = parseInt(date[0], 10),
+<nav class="navbar navbar-expand-custom navbar-mainbg">
+	<a class="navbar-brand navbar-logo" href="#"><img class="navbar-logo-image" src="../img/logo.png">BPM</a>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link" th:text="${nowUser.name}">님</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/user/account">마이페이지</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/user/logout">로그아웃</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<div class="container">
+	<input type="hidden" th:name="nowUser" th:value="${nowUser.getUuid()}">
+	<div class="head-container">
+		<a href="/project/projectAllList" class="back-button">
+			<i class="fa-solid fa-angle-left"></i>
+		</a>
+		<h3 style="text-align: center;">프로젝트 생성</h3>
+	</div>
+	
+	<div class="section">
+		<form name="projectForm" action="/project/createPage" method="post">
+			<!-- <label for="project-title">프로젝트 제목:</label><br> -->
+			<input placeholder="제목을 적으시오." type="text" id="project-title" name="title"><br>
+			
+			<!-- <label for="project-description">프로젝트 소개:</label><br> -->
+			<textarea placeholder="소개를 적으시오." id="project-description" name="subtitle"
+					  class="description"></textarea><br>
+			
+			<!-- <label>시작 날짜 : </label><br> -->
+			<input name="startDay" class="input-box" id="startDay" type="text"
+				   placeholder="시작 날짜 : 0000-00-00(연 월 일)">
+			
+			<!-- <label>끝난 날짜 : </label></label><br> -->
+			<input name="endDay" class="input-box" id="endDay" type="text" placeholder="끝난 날짜 : 0000-00-00(연 월 일)">
+			<button type="button" onclick="checkForm()" class="startBtn">
+				새 프로젝트 생성
+			
+			</button>
+		</form>
+	</div>
+	<br>
+	
+	<script>
+		var title = document.getElementById("project-title");
+		var description = document.getElementById("project-description");
+		var startDay = document.getElementById("startDay");
+		var endDay = document.getElementById("endDay");
+		
+		function checkForm() {
+			if (title.value.length == 0) {
+				alert("제목을 입력하시오.")
+				title.focus();
+				return false;
+			}
+			if (description.value.length == 0) {
+				alert("설명 입력하시오.")
+				title.focus();
+				return false;
+			}
+			
+			try {
+				var date = value.split("-");
+				var y = parseInt(date[0], 10),
 						m = parseInt(date[1], 10),
 						d = parseInt(date[2], 10);
-
-					var dateRegex = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
-					result = dateRegex.test(d + '-' + m + '-' + y);
-				} catch (err) {
-					result = false;
-				}
-				document.projectForm.submit();
+				
+				var dateRegex = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
+				result = dateRegex.test(d + '-' + m + '-' + y);
+			} catch (err) {
+				result = false;
 			}
-
-		</script>
-	</div>
+			document.projectForm.submit();
+		}
+	
+	</script>
+</div>
 </body>
 
 </html>

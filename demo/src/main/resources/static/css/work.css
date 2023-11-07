@@ -1,18 +1,11 @@
-@charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-@import url(http://weloveiconfonts.com/api/?family=entypo);
-/* entypo */
-
-* {
-    box-sizing: border-box;
-}
-
-a {
-    text-decoration: none;
-    color: #000;
-}
-
 /* Reset some default styles */
+body,
+h1,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+}
 
 a {
     text-decoration: none;
@@ -39,23 +32,12 @@ body {
     width: 95%;
     min-height: 640px;
     overflow: hidden;
-
 }
 
-.table-head-list {
-    display: flex;
-    margin: auto;
-
-    margin-left: 10px;
-    margin-right: 16px;
-    margin-top: 30px;
-    width: auto;
-}
 
 hr {
     margin-left: 11px;
     margin-right: 18px;
-
 }
 
 .table-h2 {
@@ -67,7 +49,8 @@ hr {
 
 .button-section {
     flex: 2;
-    margin: auto;
+    margin-top: 20px;
+
 }
 
 .createbutton {
@@ -77,6 +60,7 @@ hr {
     font-weight: bold;
     height: 40px;
     font-size: 16px;
+    margin-top: 15px;
     color: #fff;
     border-radius: 20px;
     border: 1.5px solid #6675e3;
@@ -85,6 +69,10 @@ hr {
 
 .createbutton:hover {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #6675e3;
+}
+
+.work {
+    padding-bottom: 30px;
 }
 
 :root {
@@ -136,6 +124,10 @@ hr {
     label {
         cursor: pointer;
     }
+}
+
+.task a {
+    vertical-align: center;
 }
 
 .label-text {

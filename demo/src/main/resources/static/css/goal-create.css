@@ -1,5 +1,5 @@
 body {
-    background-color: #fff;
+    background-color: #f3f6fd;
     color: #000;
     font-size: 18px;
     font-family: "Noto Sans KR", sans-serif;
@@ -17,37 +17,42 @@ h1 {
 
 .container {
     width: 50%;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
     margin: 0 auto;
 }
 
-.header {
+.head-container {
+    margin-top: 20px;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    margin: 1rem 0;
 }
 
 .back-button {
-    text-decoration: none;
-    width: 40px;
-    height: 30px;
-    text-align: center;
-    background: #fff;
-    font-size: 30px;
-    font-weight: bold;
+    margin-left: 20px;
+    background-color: #FFFFFF;
     color: #6675e3;
-    border: #6675e3 solid 2px;
-    border-radius: 10px;
+    border: 2px solid #6675e3;
     cursor: pointer;
-    padding: 10px;
-    line-height: 30px;
-    margin: 10px 5px;
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 30px;
+    margin-right: 3rem;
+    transition: 0.5s;
 }
 
 .back-button:hover,
 .back-button:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #6675e3;
+    color: #6675e3;
 }
-
+.form-section{
+    padding: 20px;
+}
 
 .create-goal {
     display: flex;
@@ -217,7 +222,6 @@ h1 {
 }
 
 
-
 select {
     outline: none;
     box-shadow: none;
@@ -264,7 +268,7 @@ select::-ms-expand {
     margin: 10px 0 30px 0;
 }
 
-.search-input-detail>ul,
+.search-input-detail > ul,
 li {
     list-style: none;
     font-size: 15px;
@@ -295,7 +299,7 @@ li {
     margin: 20px;
 }
 
-input:checked+p {
+input:checked + p {
     background: #ff6a6a;
     text-decoration: line-through;
 }

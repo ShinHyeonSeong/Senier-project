@@ -48,8 +48,9 @@ label {
     padding: 5px 10px;
     text-decoration: none;
     border-radius: 5px;
-    font-size: 16px;
-    margin-right: 3rem;
+    font-size: 30px;
+    margin-left: -11rem;
+    margin-right: 11rem;
     transition: 0.5s;
 }
 
@@ -98,19 +99,17 @@ textarea:focus {
 
 i input[type="submit"],
 button {
-    border: #000000 2px solid;
-    background-color: #FFFFFF;
-    color: #000000;
+    border: #6675e3 2px solid;
+    background-color: #6675e3;
+    color: #FFFFFF;
     padding: 12px 20px;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
 }
 
 input[type="submit"]:hover,
 button:hover {
-    border: #000000 2px solid;
-    background-color: #FFFFFF;
-    color: #000000;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #6675e3;
 }
 
 .section {
@@ -153,8 +152,7 @@ form textarea {
 }
 
 .startBtn {
-    width: 50%;
+    width: 30%;
     padding: 20px;
     font-size: 2rem;
-    font-family: Arial, Helvetica, sans-serif;
 }
