@@ -63,7 +63,7 @@ i {
 .nav-link:hover {
     background-color: #f3f6fd;
     border-radius: 5px;
-    color: #000000;
+    color: #000;
 }
 
 @media (min-width: 992px) {
