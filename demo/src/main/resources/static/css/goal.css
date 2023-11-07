@@ -45,10 +45,9 @@ body {
 .table-head-list {
     display: flex;
     margin: auto;
-
     margin-left: 10px;
     margin-right: 16px;
-    margin-top: 30px;
+    margin-top: 15px;
     width: auto;
 }
 
@@ -149,19 +148,19 @@ hr {
     top: 0;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1200px) {
     .list .survey-item .stage:not(.active) {
         display: none;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
     .list .survey-item .survey-progress-bg {
         display: none;
     }
 }
 
-@media screen and (max-width: 200px) {
+@media screen and (max-width: 600px) {
     .list .survey-item .pull-right {
         position: static;
         line-height: 20px;
@@ -254,7 +253,7 @@ hr {
     display: inline-block;
     vertical-align: top;
     height: 200px;
-    width: 300px;
+    width: 280px;
     margin: 10px;
     border: #e0d7d7 solid 1px;
     transition: all 1s;
@@ -272,7 +271,7 @@ hr {
 .grid .survey-name {
     display: block;
     max-width: 80%;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 20px;
 }
 
@@ -284,6 +283,7 @@ hr {
 
 .grid .survey-country,
 .grid .survey-end-date {
+    font-size: 16px;
     color: #A1A1A4;
 }
 

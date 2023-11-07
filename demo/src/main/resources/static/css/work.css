@@ -40,6 +40,15 @@ hr {
     margin-right: 18px;
 }
 
+.table-head-list {
+    display: flex;
+    margin: auto;
+    margin-left: 10px;
+    margin-right: 16px;
+    margin-top: 15px;
+    width: auto;
+}
+
 .table-h2 {
     text-align: left;
     flex: 14;
@@ -60,7 +69,6 @@ hr {
     font-weight: bold;
     height: 40px;
     font-size: 16px;
-    margin-top: 15px;
     color: #fff;
     border-radius: 20px;
     border: 1.5px solid #6675e3;
@@ -92,7 +100,7 @@ hr {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 20px 20px 0 20px;
+    padding: 20px 20px 0px 20px;
     border: #ddd 1px solid;
     border-radius: 10px;
     margin-top: 10px;
@@ -103,7 +111,6 @@ hr {
 }
 
 .task-wrap {
-    margin-top: 20px;
 }
 
 .task {
@@ -131,7 +138,7 @@ hr {
 }
 
 .label-text {
-    vertical-align: middle;
+    margin: auto 0 ;
 }
 
 .tag {
@@ -168,7 +175,6 @@ hr {
     color: #000;
     font-weight: bold;
 }
-
 
 
 @media screen and (max-width: 520px) {
