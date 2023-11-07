@@ -107,7 +107,6 @@ body {
     display: flex;
     justify-content: space-between;
     position: relative;
-    margin-bottom: 10px;
     padding-left: 40px;
     color: var(--task-color);
     font-size: 18px;
@@ -120,6 +119,9 @@ body {
     label {
         cursor: pointer;
     }
+}
+.task a{
+    vertical-align: center;
 }
 
 .label-text {

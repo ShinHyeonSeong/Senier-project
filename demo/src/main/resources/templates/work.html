@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/css/goal.css">
+	<link rel="stylesheet" href="/css/work.css">
 	<link rel="stylesheet" href="/css/sidebar.css">
 	<link rel="stylesheet" href="/css/sideNavbar.css">
 	<title>BPM</title>
@@ -65,20 +65,19 @@
 			<hr>
 			<div class="page-content"
 				 th:each="headDto : ${headDtoList}">
-				<div class="header upcoming"
-					 th:text="'목표 이름 : ' + ${headDto.getTitle()}">
-					<div class="task-wrap" th:each="workDto : ${workDtoList}">
-						<a class="task">
-							
-							<!--						   th:if="${headDto.getHeadId()==workDto.getHeadIdToWork().getHeadId()}">-->
+				<a class="header upcoming"
+				   th:text="${headDto.getTitle()}">
+				</a>
+				<div class="task-wrap" th:each="workDto : ${workDtoList}">
+					<a class="task" th:if="${headDto.getHeadId()==workDto.getHeadIdToWork().getHeadId()}"
+					   th:href="@{/project/work/detail/{id}(id=${workDto.getWorkId()})}">
 							<span class="label-text"
 								  th:text="'&bull; &nbsp; &nbsp;' + ${workDto.getTitle()}"></span>
-							<span class="tag progress" th:if="${workDto.getCompletion() == 0}">진행중</span>
-							<span class="tag approved" th:if="${workDto.getCompletion() == 1}">완료</span>
-							<span class="tag waiting" th:if="${workDto.getCompletion() == 2}">계획중</span>
-							<span class="tag review" th:if="${workDto.getCompletion() == 3}">미완료</span>
-						</a>
-					</div>
+						<span class="tag progress" th:if="${workDto.getCompletion() == 0}">진행중</span>
+						<span class="tag approved" th:if="${workDto.getCompletion() == 1}">완료</span>
+						<span class="tag waiting" th:if="${workDto.getCompletion() == 2}">계획중</span>
+						<span class="tag review" th:if="${workDto.getCompletion() == 3}">미완료</span>
+					</a>
 				</div>
 			</div>
 		</div>
