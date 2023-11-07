@@ -12,79 +12,92 @@
 </head>
 
 <body>
-	<header>
-		<nav>
-			<div class="nav-left">
-				<a id="exitButton" href="/project/projectManagerList">나가기</a>
-			</div>
-			<div class="nav-center">
-				<h1 id="project	Name" th:text="${projectDto.getTitle()}">프로젝트ㅡㅡㅡ</h1>
-			</div>
-			<div class="nav-right">
-				<p id="loggedInUser" th:text="${sessionUser.getName()}">ssss</p>
-			</div>
-		</nav>
-	</header>
-	<aside class="sidebar">
-		<div class="menu">
-			<ul>
-				<li><a th:href="@{/project/main}"><img src="/img/house-solid.svg" alt="">홈</a></li>
-				<li class="menu-select"><a href="/project/goals"><img src="/img/lightbulb-solid.svg" alt="">목표</a></li>
-				<li><a href="/project/works"><img src="/img/layer-group-solid.svg" alt="">작업</a></li>
-				<li>
-					<a href="/project/document"><img src="/img/file-invoice-solid.svg" alt="">문서</a>
-				</li>
-				<li><a href="/project/calender"><img src="/img/calendar-solid.svg" alt="">일정</a></li>
-				<li><a href="/project/recvMessageList"><img src="/img/email.png" alt="">메세지</a></li>
-				<li><a href="/user/search"><img src="/img/add-user.png" alt="">초대</a></li>
-			</ul>
+<header>
+	<nav>
+		<div class="nav-left">
+			<a id="exitButton" href="/project/projectManagerList">나가기</a>
 		</div>
-	</aside>
-	<div class="main">
-		<div class="sub-nav">
-			<ul class="sub-navbar">
-				<li class="sub-nav-item-active"><a class="active" href="/project/goals">전체 목표</a></li>
-				<li class="sub-nav-item"><a href="/project/myGoals">나의 목표</a></li>
-				</li>
-			</ul>
+		<div class="nav-center">
+			<h1 id="project	Name" th:text="${projectDto.getTitle()}"></h1>
 		</div>
+		<div class="nav-right">
+			<p id="loggedInUser" th:text="${sessionUser.getName()}">ssss</p>
+		</div>
+	</nav>
+</header>
+<aside class="sidebar">
+	<div class="menu">
+		<ul>
+			<li><a th:href="@{/project/main}"><img src="/img/house-solid.svg" alt="">홈</a></li>
+			<li class="menu-select"><a href="/project/goals"><img src="/img/lightbulb-solid.svg" alt="">목표</a></li>
+			<li><a href="/project/works"><img src="/img/layer-group-solid.svg" alt="">작업</a></li>
+			<li>
+				<a href="/project/document"><img src="/img/file-invoice-solid.svg" alt="">문서</a>
+			</li>
+			<li><a href="/project/calender"><img src="/img/calendar-solid.svg" alt="">일정</a></li>
+			<li><a href="/project/recvMessageList"><img src="/img/email.png" alt="">메세지</a></li>
+			<li><a href="/user/search"><img src="/img/add-user.png" alt="">초대</a></li>
+		</ul>
 	</div>
+</aside>
+<div class="main">
+	<div class="sub-nav">
+		<ul class="sub-navbar">
+			<li class="sub-nav-item-active"><a class="active" href="/project/goals">전체 목표</a></li>
+			<li class="sub-nav-item"><a href="/project/myGoals">나의 목표</a></li>
+			</li>
+		</ul>
+	</div>
+</div>
 
-	<div class="content">
-		<div class="centered-content">
-			<div class="work">
-				<table>
-					<div class="table-head-list">
-						<h2 class="table-h2">목표 > 전체 목표</h2>
-						<div class="button-section"><a href="/project/head/create">
-							<button class="createbutton">새로 만들기</button></a></div>
-					</div>
-					<thead>
-						<th>
-							목표 이름
-						</th>
-						<th>마감 기한</th>
-						<th>진행 상태</th>
-					</thead>
-					<tbody th:each="headDto : ${headDtoList}">
-						<tr>
-							<td class="table-name"><a
-									th:href="@{/project/goal/headView/{id}(id=${headDto.getHeadId()})}"
-									th:text="${headDto.getTitle()}"></a></td>
-							<td th:text="${#dates.format(headDto.getEndDay(), 'yyyy-MM-dd')}"></td>
-							<td style="color: #5ea2ec;" th:if="${headDto.getCompletion() == 0}">진행중</td>
-							<td style="color: #66c43c;" class="completion-1" th:if="${headDto.getCompletion() == 1}">완료
-							</td>
-							<td style="color: #ff7b26;" class="completion-2" th:if="${headDto.getCompletion() == 2}">계획중
-							</td>
-							<td style="color: #f11414;" class="completion-3" th:if="${headDto.getCompletion() == 3}">미완성
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+<div class="content">
+	<div class="centered-content">
+		<div class="table-head-list">
+			<h2 class="table-h2">목표 > 전체 목표</h2>
+			<div class="button-section"><a href="/project/head/create">
+				<button class="createbutton">새로 만들기</button></a></div>
 		</div>
+		<hr>
+		<div class="grid-section">
+			<ul class="surveys grid">
+				<a th:each="headInfoDto : ${headInfoDtoList}" th:href="@{/project/goal/headView/{id}(id=${headInfoDto.headDto.headId})}">
+					<li class="survey-item">
+                        <span class="survey-name" th:text="${headInfoDto.headDto.title}">
+                            UK Beer May 2014
+                        </span>
+						<div class="pull-right">
+                            <span class="survey-progress">
+                                <span class="survey-progress-bg">
+                                    <span class="survey-progress-fg" th:style="${'width:'+ headInfoDto.progress +'%;'}"></span>
+                                </span>
+                                <span class="survey-progress-labels">
+                                    <span class="survey-progress-label" th:text="${headInfoDto.progress + '%'}">
+                                        88%
+                                    </span>
+                                    <span class="survey-completes"
+										  th:text="${headInfoDto.completeWorkNum} + ' / ' + ${headInfoDto.workNum}">
+                                        490 / 500
+                                    </span>
+                                </span>
+                            </span>
+
+							<span class="survey-end-date ended" th:text="${#dates.format(headInfoDto.headDto.getEndDay(), 'yyyy-MM-dd')}">
+                                2014 - May 10
+                            </span>
+							<span class="survey-stage">
+                                <span th:if="${headInfoDto.headDto.getCompletion == 0}" class="stage active"></span>
+                                <span th:if="${headInfoDto.headDto.getCompletion == 1}" class="stage complete"></span>
+                                <span th:if="${headInfoDto.headDto.getCompletion == 2}" class="stage wait"></span>
+                                <span th:if="${headInfoDto.headDto.getCompletion == 3}" class="stage late"></span>
+                            </span>
+						</div>
+					</li>
+				</a>
+			</ul>
+		</div>
+
 	</div>
+</div>
 </body>
 
 </html>

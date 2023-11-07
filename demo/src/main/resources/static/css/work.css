@@ -23,6 +23,7 @@ body {
     border-radius: 0px 10px 10px 10px;
     background-color: #fff;
     margin-left: 150px;
+    width: auto;
 }
 
 .centered-content {
@@ -33,10 +34,10 @@ body {
     overflow: hidden;
 }
 
-.table-head-list {
-    display: flex;
-    margin: auto;
-    width: 100%;
+
+hr {
+    margin-left: 11px;
+    margin-right: 18px;
 }
 
 .table-h2 {
@@ -49,7 +50,7 @@ body {
 .button-section {
     flex: 2;
     margin-top: 20px;
-    margin: auto;
+
 }
 
 .createbutton {
@@ -95,23 +96,27 @@ body {
     border: #ddd 1px solid;
     border-radius: 10px;
     margin-top: 10px;
+
     .header {
         font-size: 20px;
     }
 }
 
-.task-wrap{
+.task-wrap {
     margin-top: 20px;
 }
+
 .task {
     display: flex;
     justify-content: space-between;
     position: relative;
+    margin-bottom: 10px;
     padding-left: 40px;
     color: var(--task-color);
     font-size: 18px;
     font-weight: 500;
     cursor: pointer;
+
     &:hover {
         transform: translatex(10px);
     }
@@ -120,7 +125,8 @@ body {
         cursor: pointer;
     }
 }
-.task a{
+
+.task a {
     vertical-align: center;
 }
 
@@ -133,6 +139,7 @@ body {
     padding: 10px;
     border-radius: 15px;
     width: 50px;
+
     &.approved {
         text-align: center;
         background-color: var(--tag-color-one);

@@ -3,6 +3,7 @@ package com.example.bpm.controller;
 import com.example.bpm.dto.document.DocumentDto;
 import com.example.bpm.dto.message.MessageDto;
 import com.example.bpm.dto.project.HeadDto;
+import com.example.bpm.dto.project.HeadInfoDto;
 import com.example.bpm.dto.project.ProjectDto;
 import com.example.bpm.dto.project.WorkDto;
 import com.example.bpm.dto.project.relation.WorkCommentDto;
@@ -103,11 +104,39 @@ public class ProjectDetailController {
         Long auth = getSessionAuth();
         List<HeadDto> headDtoList = projectDetailSerivce.findHeadListByProject(currentProject);
         List<UserDto> userDtoList = userService.findUserListByProjectId(currentProject.getProjectId());
+
+        List<HeadInfoDto> headInfoDtoList = new ArrayList<>();
+        HeadInfoDto headInfoDto;
+        for (HeadDto headDto : headDtoList) {
+            int workNum;
+            int completeWorkNum;
+            int progress;
+            if (projectDetailSerivce.findWorkListByHead(headDto).size() == 0 || projectDetailSerivce.findWorkListByHead(headDto) == null) {
+                workNum = 0;
+                completeWorkNum = 0;
+                progress = 0;
+            } else {
+                workNum = projectDetailSerivce.findWorkListByHead(headDto).size();
+                completeWorkNum = projectDetailSerivce.getCompleteWorkNumByHead(headDto);
+                progress = projectDetailSerivce.getHeadProgressPercent(headDto, workNum, completeWorkNum);
+                if (workNum == completeWorkNum) {
+                    progress = 100;
+                }
+            }
+            headInfoDto = new HeadInfoDto();
+            headInfoDto.setHeadDto(headDto);
+            headInfoDto.setWorkNum(workNum);
+            headInfoDto.setCompleteWorkNum(completeWorkNum);
+            headInfoDto.setProgress(progress);
+            headInfoDtoList.add(headInfoDto);
+        }
+
         model.addAttribute("sessionUser", sessionUser);
         model.addAttribute("projectDto", currentProject);
         model.addAttribute("auth", auth);
         model.addAttribute("headDtoList", headDtoList);
         model.addAttribute("joinUsers", userDtoList);
+        model.addAttribute("headInfoDtoList", headInfoDtoList);
         return "goal";
     }
 

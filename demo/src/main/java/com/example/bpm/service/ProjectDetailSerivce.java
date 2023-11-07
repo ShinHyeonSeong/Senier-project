@@ -678,5 +678,24 @@ public class ProjectDetailSerivce {
         return result;
     }
 
+    public int getCompleteWorkNumByHead(HeadDto headDto) {
+        int completeNum = 0;
+        List<WorkDto> workDtoList = findWorkListByHead(headDto);
+        for (WorkDto workDto : workDtoList) {
+            if (workDto.getCompletion() == 1) {
+                completeNum++;
+            }
+        }
+        return completeNum;
+    }
+
+    public int getHeadProgressPercent(HeadDto headDto, int Work, int completeWorkNum) {
+        double progress = 0;
+        double percentage = (100 / Work);
+        progress = completeWorkNum * percentage;
+        int result = (int) Math.floor(progress);
+        return result;
+    }
+
 }
 
