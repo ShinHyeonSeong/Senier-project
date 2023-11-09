@@ -47,7 +47,7 @@ body {
 }
 
 .content-detail {
-    font-size: 14px;
+    font-size: 18px;
     margin-bottom: 2px;
 }
 
@@ -200,13 +200,12 @@ body {
     align-items: center;
     list-style: none;
     background-color: rgba(255, 255, 255, 0.05);
-    background-image:
-            linear-gradient(
-                    90deg,
-                    #58c2a9 10px,
-                    #EEE 10px,
-                    #EEE 11px,
-                    transparent 11px);
+    background-image: linear-gradient(
+            90deg,
+            #58c2a9 10px,
+            #EEE 10px,
+            #EEE 11px,
+            transparent 11px);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     margin-bottom: 5px;
     width: 100%;
@@ -222,13 +221,12 @@ body {
     align-items: center;
     list-style: none;
     background-color: rgba(255, 255, 255, 0.05);
-    background-image:
-            linear-gradient(
-                    90deg,
-                    #8972f3 10px,
-                    #EEE 10px,
-                    #EEE 11px,
-                    transparent 11px);
+    background-image: linear-gradient(
+            90deg,
+            #8972f3 10px,
+            #EEE 10px,
+            #EEE 11px,
+            transparent 11px);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     margin-bottom: 5px;
     width: 100%;
@@ -244,13 +242,12 @@ body {
     align-items: center;
     list-style: none;
     background-color: rgba(255, 255, 255, 0.05);
-    background-image:
-            linear-gradient(
-                    90deg,
-                    #a0a6b5 10px,
-                    #EEE 10px,
-                    #EEE 11px,
-                    transparent 11px);
+    background-image: linear-gradient(
+            90deg,
+            #a0a6b5 10px,
+            #EEE 10px,
+            #EEE 11px,
+            transparent 11px);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     margin-bottom: 5px;
     width: 100%;
@@ -266,13 +263,12 @@ body {
     align-items: center;
     list-style: none;
     background-color: rgba(255, 255, 255, 0.05);
-    background-image:
-            linear-gradient(
-                    90deg,
-                    #e77f89 10px,
-                    #EEE 10px,
-                    #EEE 11px,
-                    transparent 11px);
+    background-image: linear-gradient(
+            90deg,
+            #e77f89 10px,
+            #EEE 10px,
+            #EEE 11px,
+            transparent 11px);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     margin-bottom: 5px;
     width: 100%;
@@ -433,12 +429,13 @@ body {
 }
 
 .progress-button {
-    width: 100%;
-    background: #fff;
+    flex: 1;
+    width: 100px;
+    background: #8972f3;
     font-size: 14px;
     font-weight: bold;
-    color: #000;
-    border: 1px solid #0d0d0d;
+    color: #FFFFFF;
+    border: none;
     border-radius: 10px;
     cursor: pointer;
     padding: 10px 5px;
@@ -449,8 +446,16 @@ body {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #8972f3;
 }
 
+.status-section {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: center;
+}
+
 .complete-button {
-    width: 100%;
+    margin-right: 15px;
+    width: 100px;
     background: #58c2a9;
     font-size: 14px;
     font-weight: bold;
@@ -467,7 +472,8 @@ body {
 }
 
 .edit-button {
-    width: 100%;
+    width: 100px;
+
     background: #528fdf;
     font-size: 14px;
     font-weight: bold;
@@ -476,6 +482,7 @@ body {
     border-radius: 10px;
     cursor: pointer;
     padding: 10px 5px;
+    margin-right: 15px;
     margin: 10px 5px 0px 0px;
 }
 
@@ -484,7 +491,7 @@ body {
 }
 
 .delete-button {
-    width: 100%;
+    width: 100px;
     background: rgb(223, 82, 82);
     font-size: 14px;
     font-weight: bold;
