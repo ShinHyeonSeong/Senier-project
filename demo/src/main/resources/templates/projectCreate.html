@@ -43,9 +43,6 @@
 <div class="container">
 	<input type="hidden" th:name="nowUser" th:value="${nowUser.getUuid()}">
 	<div class="head-container">
-		<a href="/project/projectAllList" class="back-button">
-			<i class="fa-solid fa-angle-left"></i>
-		</a>
 		<h3 style="text-align: center;">프로젝트 생성</h3>
 	</div>
 	
@@ -64,10 +61,15 @@
 			
 			<!-- <label>끝난 날짜 : </label></label><br> -->
 			<input name="endDay" class="input-box" id="endDay" type="text" placeholder="끝난 날짜 : 0000-00-00(연 월 일)">
-			<button type="button" onclick="checkForm()" class="startBtn">
-				새 프로젝트 생성
-			
-			</button>
+			<br>
+			<div class="bottom-section">
+				<a href="/project/projectAllList">
+					<button class="write-button">돌아가기</button>
+				</a>
+				<button type="button" onclick="checkForm()" class="write-button2">
+					새로 만들기
+				</button>
+			</div>
 		</form>
 	</div>
 	<br>
