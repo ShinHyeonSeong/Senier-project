@@ -12,90 +12,170 @@
 </head>
 
 <body>
-	<header>
-		<nav>
-			<div class="nav-left">
-				<a id="exitButton" href="/project/projectManagerList">나가기</a>
-			</div>
-			<div class="nav-center">
-				<h1 id="projectName" th:text="${projectDto.getTitle()}">프로젝트ㅡㅡㅡ</h1>
-			</div>
-			<div class="nav-right">
-				<p id="loggedInUser" th:text="${sessionUser.getName()}">ssss</p>
-			</div>
-		</nav>
-	</header>
-	<aside class="sidebar">
-		<div class="menu">
-			<ul>
-				<li><a th:href="@{/project/main}"><img src="/img/house-solid.svg" alt="">홈</a></li>
-				<li class="menu-select"><a href="/project/goals"><img src="/img/lightbulb-solid.svg" alt="">목표</a></li>
-				<li><a href="/project/works"><img src="/img/layer-group-solid.svg" alt="">작업</a></li>
-				<li>
-					<a href="/project/document"><img src="/img/file-invoice-solid.svg" alt="">문서</a>
-				</li>
-				<li><a href="/project/calender"><img src="/img/calendar-solid.svg" alt="">일정</a></li>
-				<li><a href="/project/recvMessageList"><img src="/img/email.png" alt="">수신함</a></li>
-				<li><a href="/user/search"><img src="/img/add-user.png" alt="">초대</a></li>
-			</ul>
+<header>
+	<nav>
+		<div class="nav-left">
+			<a id="exitButton" href="/project/projectManagerList">나가기</a>
 		</div>
-	</aside>
-	<div class="main">
-		<div class="sub-nav">
-			<ul class="sub-navbar">
-				<li class="sub-nav-item-active"><a class="active" href="/project/goals">전체 목표</a></li>
-				<li class="sub-nav-item"><a href="/project/myGoals">나의 목표</a></li>
-				</li>
-			</ul>
+		<div class="nav-center">
+			<h1 id="projectName" th:text="${projectDto.getTitle()}">프로젝트ㅡㅡㅡ</h1>
 		</div>
+		<div class="nav-right">
+			<p id="loggedInUser" th:text="${sessionUser.getName()}">ssss</p>
+		</div>
+	</nav>
+</header>
+<aside class="sidebar">
+	<div class="menu">
+		<ul>
+			<li><a th:href="@{/project/main}"><img src="/img/house-solid.svg" alt="">홈</a></li>
+			<li class="menu-select"><a href="/project/goals"><img src="/img/lightbulb-solid.svg" alt="">목표</a></li>
+			<li><a href="/project/works"><img src="/img/layer-group-solid.svg" alt="">작업</a></li>
+			<li>
+				<a href="/project/document"><img src="/img/file-invoice-solid.svg" alt="">문서</a>
+			</li>
+			<li><a href="/project/calender"><img src="/img/calendar-solid.svg" alt="">일정</a></li>
+			<li><a href="/project/recvMessageList"><img src="/img/email.png" alt="">수신함</a></li>
+			<li><a href="/user/search"><img src="/img/add-user.png" alt="">초대</a></li>
+		</ul>
 	</div>
+</aside>
+<div class="main">
+	<div class="sub-nav">
+		<ul class="sub-navbar">
+			<li class="sub-nav-item-active"><a class="active" href="/project/goals">전체 목표</a></li>
+			<li class="sub-nav-item"><a href="/project/myGoals">나의 목표</a></li>
+		</ul>
+	</div>
+</div>
 
-	<div class="content">
-		<div class="container">
-			<div class="left-pane">
-				<div class="title-section">
-					<h1 class="post-title" th:text="${headDto.getTitle()}">title</h1>
-					<a class="edit-button" th:href="@{/project/goal/head/edit/{id}(id=${headDto.getHeadId()})}">Edit</a>
-					<a class="delete-button"
-						th:href="@{/project/goal/head/delete/{id}(id=${headDto.getHeadId()})}">Delete</a>
-				</div>
-				<div class="horizon-divider"></div>
-				<div class="post-content" th:text="${headDto.getDiscription()}">
-				</div>
-				<div class="horizon-divider"></div>
-				<div class="related-tasks">
-					<h2>연결된 작업</h2>
-					<ul class="task-list" th:each="work : ${workDtoList}">
-						<li><a th:href="@{/project/work/detail/{id}(id=${work.getWorkId()})}"
-								th:text="${work.getTitle()}"></a></li>
-					</ul>
-				</div>
+<div class="content">
+	<div class="container">
+		<div class="left-pane">
+			<div class="title-section">
+				<h1 class="post-title" th:text="${headDto.getTitle()}">title</h1>
+				<span class="survey-stage">
+                        <span th:if="${headDto.getCompletion() == 0}" class="stage active"></span>
+                        <span th:if="${headDto.getCompletion() == 1}" class="stage complete"></span>
+                        <span th:if="${headDto.getCompletion() == 2}" class="stage wait"></span>
+                        <span th:if="${headDto.getCompletion() == 3}" class="stage late"></span>
+                    </span>
 			</div>
-			<div class="right-pane">
-				<h3>담당자 </h3>
-				<div th:each="user : ${chargeUser}">
-					<p th:text="${user}"></p>
+			<div class="date" th:text="${#dates.format(headDto.getStartDay(), 'yyyy.MM.dd')} + ' - ' +
+				${#dates.format(headDto.getEndDay(), 'yyyy.MM.dd')}">2023.01.01 - 2023.12.31</div>
+			<div class="horizon-divider"></div>
+
+			<h3>목표 설명</h3>
+			<div class="post-content" th:text="${headDto.getDiscription()}">
+			</div>
+			<div class="horizon-divider"></div>
+
+			<div class="related-tasks">
+				<h3>연결된 작업</h3>
+				<div class="work-state-section">
+					<div class="work-state">
+						<div class="work-num" th:text="${completeWork}">0</div>
+						<div class="work-detail">
+							<div>완료 작업</div>
+							<span class="work-stage">
+                                    <span class="stage complete"></span>
+                                </span>
+						</div>
+					</div>
+					<div class="work-state">
+						<div class="work-num" th:text="${progressWork}"></div>
+						<div class="work-detail">
+							<div>진행 작업</div>
+							<span class="work-stage">
+                                    <span class="stage active"></span>
+                                </span>
+						</div>
+					</div>
+					<div class="work-state">
+						<div class="work-num" th:text="${waitWork}">0</div>
+						<div class="work-detail">
+							<div>계획 작업</div>
+							<span class="work-stage">
+                                    <span class="stage wait"></span>
+                                </span>
+						</div>
+					</div>
+					<div class="work-state">
+						<div class="work-num" th:text="${lateWork}">0</div>
+						<div class="work-detail">
+							<div>미완성 작업</div>
+							<span class="work-stage">
+                                    <span class="stage late"></span>
+                                </span>
+						</div>
+					</div>
+					<!-- <div class="work-create-btn">작업 추가</div> -->
 				</div>
-				<div class="horizon-divider"></div>
-				<div class="buttons">
-					<a th:href="@{/project/head/completion/change(id=${headDto.getHeadId()}, state=1)}">
-						<button class="right-button" th:if="${auth == 1 && !(headDto.completion == 1)}">완료로 표시
-						</button>
+				<ul class="task-list" th:each="work : ${workDtoList}">
+					<a 	th:if="${work.getCompletion() == 1}"
+						  	th:href="@{/project/work/detail/{id}(id=${work.getWorkId()})}">
+						<li class="complete">
+							<div class="work-title" th:text="${work.getTitle()}"></div>
+						</li>
 					</a>
-					<a th:href="@{/project/head/completion/change(id=${headDto.getHeadId()}, state=0)}">
-						<button class="right-button" th:if="${auth == 1 && !(headDto.completion == 0)}">진행중으로 표시
-						</button>
+					<a th:if="${work.getCompletion() == 0}"
+							th:href="@{/project/work/detail/{id}(id=${work.getWorkId()})}">
+						<li class="progress">
+							<div class="work-title" th:text="${work.getTitle()}">작업명</div>
+						</li>
 					</a>
-					<button class="right-button" onclick="location.href='/project/work/create'">작업 만들기</button>
-				</div>
-				<div class="horizon-divider"></div>
-				<div class="date-info">
-					<p th:text="'시작기한 : ' + ${#dates.format(headDto.getStartDay(), 'yyyy-MM-dd')}"></p>
-					<p th:text="'마감기한 : ' + ${#dates.format(headDto.getEndDay(), 'yyyy-MM-dd')}"></p>
-				</div>
+					<a th:if="${work.getCompletion() == 2}"
+							th:href="@{/project/work/detail/{id}(id=${work.getWorkId()})}">
+						<li class="wait">
+							<div class="work-title" th:text="${work.getTitle()}">작업명</div>
+						</li>
+					</a>
+					<a th:if="${work.getCompletion() == 3}"
+							th:href="@{/project/work/detail/{id}(id=${work.getWorkId()})}">
+						<li class="late">
+							<div class="work-title" th:text="${work.getTitle()}">작업명</div>
+						</li>
+					</a>
+				</ul>
 			</div>
 		</div>
+		<div class="right-pane">
+			<h3>담당자</h3>
+			<div th:each="user : ${chargeUser}">
+				<p class="content-detail" th:text="${user}">담당자명</p>
+			</div>
+			<div class="horizon-divider"></div>
+
+			<div class="buttons">
+				<h3>상태</h3>
+				<div>
+					<p th:if="${headDto.getCompletion() == 0}" class="content-detail" style="color: #8972f3; font-weight: bold;">진행중</p>
+					<p th:if="${headDto.getCompletion() == 1}" class="content-detail" style="color: #58c2a9; font-weight: bold">완료</p>
+					<p th:if="${headDto.getCompletion() == 2}" class="content-detail" style="color: #a0a6b5; font-weight: bold" >계획중</p>
+					<p th:if="${headDto.getCompletion() == 3}" class="content-detail" style="color: #e77f89; font-weight: bold" >미완료</p>
+				</div>
+				<a th:href="@{/project/head/completion/change(id=${headDto.getHeadId()}, state=1)}">
+					<button class="complete-button" th:if="${auth == 1 && !(headDto.completion == 1)}">완료로 표시
+					</button>
+				</a>
+				<a th:href="@{/project/head/completion/change(id=${headDto.getHeadId()}, state=0)}">
+					<button class="progress-button" th:if="${auth == 1 && !(headDto.completion == 0)}">진행중으로 표시
+					</button>
+				</a>
+			</div>
+			<div class="horizon-divider"></div>
+			<h3 th:if="${auth == 1}">변경</h3>
+			<a th:href="@{/project/goal/head/edit/{id}(id=${headDto.getHeadId()})}">
+				<button class="edit-button" th:if="${auth == 1}">목표 편집
+				</button>
+			</a>
+			<a th:href="@{/project/goal/head/delete/{id}(id=${headDto.getHeadId()})}">
+				<button class="delete-button" th:if="${auth == 1}">목표 삭제
+				</button>
+			</a>
+		</div>
 	</div>
+</div>
 </body>
 
 </html>

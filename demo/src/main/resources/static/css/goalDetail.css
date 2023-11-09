@@ -27,13 +27,13 @@ body {
     width: 100%;
     background-color: #fff;
     border-radius: 5px;
-    overflow: auto;
-    min-height: 900px;
+    overflow: hidden;
+    height: auto;
 }
 
 .left-pane {
     flex: 80%;
-    padding: 20px;
+    padding: 40px;
     box-sizing: border-box;
 }
 
@@ -46,52 +46,70 @@ body {
     top: 0;
 }
 
+.content-detail {
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
 .title-section {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .post-title {
-    font-size: 24px;
-    flex: 8;
+    font-size: 38px;
+    /* flex: 8; */
 }
 
-.edit-button {
-    display: block;
+.date {
+    margin-top: 5px;
+    color: #444;
+}
+
+.survey-stage {
+    margin-left: 10px;
     flex: 2;
-    text-align: center;
-    width: 80%;
-    margin-top: 10px;
+}
+
+.survey-stage .stage {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
     height: 20px;
-    color: rgb(101, 101, 252);
-    cursor: pointer;
+    overflow: hidden;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0 2px;
+    background: #f2f2f2;
+    text-indent: -9999px;
+    color: transparent;
+    line-height: 16px;
 }
 
-.edit-button:hover {
-    color: rgb(66, 66, 246);
-    font-weight: bold;
+.survey-stage .stage.active {
+    background: #8972f3;
 }
 
-.delete-button {
-    margin-top: 10px;
-    display: block;
-    text-align: center;
-    flex: 2;
-    width: 80%;
-    color: rgb(250, 108, 108);
-    cursor: pointer;
+.survey-stage .stage.complete {
+    background: #58c2a9;
 }
 
-.delete-button:hover {
-    color: rgb(255, 67, 67);
-    font-weight: bold;
+.survey-stage .stage.wait {
+    background: #a0a6b5;
+}
+
+.survey-stage .stage.late {
+    background: #e77f89;
 }
 
 .post-content {
     padding: 20px;
     border: 3px solid #999999;
     border-radius: 10px;
-    font-size: 18px;
-    min-height: 150px;
+    font-size: 17px;
+    min-height: 50px;
+    margin-bottom: 40px;
 }
 
 .date-info {
@@ -104,41 +122,180 @@ body {
 }
 
 .related-tasks {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
-.related-tasks h2 {
-    font-size: 20px;
+.work-state-section {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.work-state {
+    margin-right: 36px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.work-num {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.work-detail {
+    display: flex;
+    flex-direction: row;
+}
+
+.work-stage .stage {
+    display: inline-block;
+    vertical-align: middle;
+    width: 14px;
+    height: 14px;
+    overflow: hidden;
+    border-radius: 50%;
+    padding: 0;
+    margin: 2px 2px 0px 8px;
+    background: #f2f2f2;
+    text-indent: -9999px;
+    color: transparent;
+    line-height: 16px;
+}
+
+.work-stage .stage.active {
+    background: #8972f3;
+}
+
+.work-stage .stage.complete {
+    background: #58c2a9;
+}
+
+.work-stage .stage.wait {
+    background: #a0a6b5;
+}
+
+.work-stage .stage.late {
+    background: #e77f89;
+}
+
+.work-create-btn {
+
 }
 
 .task-list {
+    display: flex;
     list-style: none;
     padding: 0;
-}
-
-.task-list>li {
-    font-size: 16px;
-    margin-bottom: 5px;
-    padding: 5px;
+    width: 100%;
 }
 
 .task-list a {
     text-decoration: none;
-    font-weight: bold;
-    display: block;
-    color: #000000;
-    border: 2px solid #999999;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    padding: 5px;
-    transition: background-color 0.3s;
+    color: #0d0d0d;
 }
 
-.task-list a:hover {
+.task-list .complete {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    background-color: rgba(255, 255, 255, 0.05);
+    background-image:
+            linear-gradient(
+                    90deg,
+                    #58c2a9 10px,
+                    #EEE 10px,
+                    #EEE 11px,
+                    transparent 11px);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 5px;
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+
+.task-list .progress {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    background-color: rgba(255, 255, 255, 0.05);
+    background-image:
+            linear-gradient(
+                    90deg,
+                    #8972f3 10px,
+                    #EEE 10px,
+                    #EEE 11px,
+                    transparent 11px);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 5px;
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+
+.task-list .wait {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    background-color: rgba(255, 255, 255, 0.05);
+    background-image:
+            linear-gradient(
+                    90deg,
+                    #a0a6b5 10px,
+                    #EEE 10px,
+                    #EEE 11px,
+                    transparent 11px);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 5px;
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+
+.task-list .late {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    background-color: rgba(255, 255, 255, 0.05);
+    background-image:
+            linear-gradient(
+                    90deg,
+                    #e77f89 10px,
+                    #EEE 10px,
+                    #EEE 11px,
+                    transparent 11px);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 5px;
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+
+.task-list a {
+    min-width: 100%;
+}
+
+.task-list li:hover {
     text-decoration: none;
-    color: #000000;
-    border: 1.5px solid #c2c2c2;
-    background-color: #c2c2c2;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.work-title {
+    margin-left: 30px;
+    font-size: 18px;
+    /* font-weight: bolder; */
 }
 
 
@@ -230,9 +387,9 @@ body {
 }
 
 .horizon-divider {
-    background-color: #000000;
+    background-color: #777;
     height: 1px;
-    margin: 10px 0 30px 0;
+    margin: 30px 0 30px 0;
 }
 
 .sub-create-button {
@@ -273,4 +430,72 @@ body {
     color: #555555;
     border: 2px solid #444444;
     background-color: #f5f5f5;
+}
+
+.progress-button {
+    width: 100%;
+    background: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    border: 1px solid #0d0d0d;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 0px 0px;
+}
+
+.progress-button:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #8972f3;
+}
+
+.complete-button {
+    width: 100%;
+    background: #58c2a9;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 0px 0px;
+}
+
+.complete-button:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #58c2a9;
+}
+
+.edit-button {
+    width: 100%;
+    background: #528fdf;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 0px 0px;
+}
+
+.edit-button:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #528fdf;
+}
+
+.delete-button {
+    width: 100%;
+    background: rgb(223, 82, 82);
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 0px 0px;
+}
+
+.delete-button:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px rgb(223, 82, 82);
 }
