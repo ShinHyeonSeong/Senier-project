@@ -203,8 +203,7 @@ public class ProjectDetailController {
         List<UserDto> userDtoList = userService.findUserListByProjectId(getSessionProject().getProjectId());
         List<String> findUser = new ArrayList<>();
 
-        for (WorkDto workDto :
-                workDtoList) {
+        for (WorkDto workDto : workDtoList) {
             List<UserDto> userList1 = projectDetailSerivce.findUserListByWork(workDto);
             for (UserDto userDto : userList1) {
                 if (!findUser.contains(userDto.getName())) {
@@ -213,11 +212,32 @@ public class ProjectDetailController {
             }
         }
 
+        int completeWork = 0;
+        int progressWork = 0;
+        int waitWork = 0;
+        int lateWork = 0;
+        for (WorkDto workDto : workDtoList) {
+            if (workDto.getCompletion() == 0) {
+                progressWork++;
+            } else if (workDto.getCompletion() == 1) {
+                completeWork++;
+            } else if (workDto.getCompletion() == 2) {
+                waitWork++;
+            }
+            else if (workDto.getCompletion() == 3) {
+                lateWork++;
+            }
+        }
+
         model.addAttribute("joinUsers", userDtoList);
         model.addAttribute("sessionUser", getSessionUser());
         model.addAttribute("projectDto", getSessionProject());
         model.addAttribute("headDto", headDto);
         model.addAttribute("workDtoList", workDtoList);
+        model.addAttribute("progressWork", progressWork);
+        model.addAttribute("completeWork", completeWork);
+        model.addAttribute("waitWork", waitWork);
+        model.addAttribute("lateWork", lateWork);
         model.addAttribute("auth", getSessionAuth());
         model.addAttribute("chargeUser", findUser);
         return "headView";
@@ -410,6 +430,7 @@ public class ProjectDetailController {
     @RequestMapping("/project/work/detail/{id}")
     public String goWorkDetail(@PathVariable("id") Long id, Model model) {
         WorkDto workDto = projectDetailSerivce.findWork(id);
+        HeadDto headDto = projectDetailSerivce.findHeadById(workDto.getHeadIdToWork().getHeadId());
         List<UserWorkDto> userWorkDtoList = projectDetailSerivce.findUserWorkListByWorkId(id);
         List<DocumentDto> documentDtoList = documentService.findDocumentByWorkId(id);
         List<WorkCommentDto> commentDtoList = projectDetailSerivce.findWorkCommentListByWork(workDto);
@@ -427,7 +448,19 @@ public class ProjectDetailController {
 
         boolean workAdd = documentService.accreditUserToWork(getSessionUser().getUuid(), id, auth);
 
+        List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByHead(headDto);
+        int workNum;
+        int completeWork;
+        if (workDtoList == null || workDtoList.size() == 0) {
+            completeWork = 0;
+            workNum = 0;
+        } else {
+            completeWork = projectDetailSerivce.getCompleteWorkNumByHead(headDto);
+        }
+        int percent = projectDetailSerivce.getHeadProgressPercent(headDto, workDtoList.size(), completeWork);
         List<UserDto> userDtoList = userService.findUserListByProjectId(getSessionProject().getProjectId());
+        model.addAttribute("headDto", headDto);
+        model.addAttribute("percent", percent);
         model.addAttribute("joinUsers", userDtoList);
         model.addAttribute("sessionUser", getSessionUser());
         model.addAttribute("projectDto", getSessionProject());

@@ -7,139 +7,186 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/sidebar.css">
 	<link rel="stylesheet" href="/css/sideNavbar.css">
-	<link rel="stylesheet" href="/css/goalDetail.css">
+	<link rel="stylesheet" href="/css/workDetail.css">
 	<title>BPM</title>
 </head>
 
 <body>
-	<header>
-		<nav>
-			<div class="nav-left">
-				<a id="exitButton" href="/project/projectManagerList">나가기</a>
-			</div>
-			<div class="nav-center">
-				<h1 id="projectName" th:text="${projectDto.getTitle()}">프로젝트ㅡㅡㅡ</h1>
-			</div>
-			<div class="nav-right">
-				<p id="loggedInUser" th:text="${sessionUser.getName()}">ssss</p>
-			</div>
-		</nav>
-	</header>
-	<aside class="sidebar">
-		<div class="menu">
-			<ul>
-				<li><a th:href="@{/project/main}"><img src="/img/house-solid.svg" alt="">홈</a></li>
-				<li><a href="/project/goals"><img src="/img/lightbulb-solid.svg" alt="">목표</a></li>
-				<li class="menu-select"><a href="/project/works"><img src="/img/layer-group-solid.svg" alt="">작업</a>
-				</li>
-				<li>
-					<a href="/project/document"><img src="/img/file-invoice-solid.svg" alt="">문서</a>
-				</li>
-				<li><a href="/project/calender"><img src="/img/calendar-solid.svg" alt="">일정</a></li>
-				<li><a href="/project/recvMessageList"><img src="/img/email.png" alt="">메세지</a></li>
-				<li><a href="/user/search"><img src="/img/add-user.png" alt="">초대</a></li>
-			</ul>
+<header>
+	<nav>
+		<div class="nav-left">
+			<a id="exitButton" href="/project/projectManagerList">나가기</a>
 		</div>
-	</aside>
-
-
-	<div class="main">
-		<div class="sub-nav">
-			<ul class="sub-navbar">
-				<li class="sub-nav-item"><a href="/project/works">리스트로 돌아가기</a></li>
-				</li>
-			</ul>
+		<div class="nav-center">
+			<h1 id="projectName" th:text="${projectDto.getTitle()}">프로젝트ㅡㅡㅡ</h1>
 		</div>
+		<div class="nav-right">
+			<p id="loggedInUser" th:text="${sessionUser.getName()}">ssss</p>
+		</div>
+	</nav>
+</header>
+<aside class="sidebar">
+	<div class="menu">
+		<ul>
+			<li><a th:href="@{/project/main}"><img src="/img/house-solid.svg" alt="">홈</a></li>
+			<li><a href="/project/goals"><img src="/img/lightbulb-solid.svg" alt="">목표</a></li>
+			<li class="menu-select"><a href="/project/works"><img src="/img/layer-group-solid.svg" alt="">작업</a>
+			</li>
+			<li>
+				<a href="/project/document"><img src="/img/file-invoice-solid.svg" alt="">문서</a>
+			</li>
+			<li><a href="/project/calender"><img src="/img/calendar-solid.svg" alt="">일정</a></li>
+			<li><a href="/project/recvMessageList"><img src="/img/email.png" alt="">메세지</a></li>
+			<li><a href="/user/search"><img src="/img/add-user.png" alt="">초대</a></li>
+		</ul>
 	</div>
+</aside>
 
-	<div class="content">
-		<div class="container">
-			<div class="left-pane">
-				<div class="title-section">
-					<h1 class="post-title" th:text="${workDto.getTitle()}">title</h1>
-					<a class="edit-button" th:href="@{/project/goal/work/edit/{id}(id=${workDto.getWorkId()})}">Edit</a>
-					<a class="delete-button"
-						th:href="@{/project/goal/work/delete/{id}(id=${workDto.getWorkId()})}">Delete</a>
-				</div>
-				<div class="horizon-divider"></div>
-				<p class="post-content" th:text="${workDto.getDiscription()}">
-				</p>
-				<div class="horizon-divider"></div>
 
-				<div class="comment-section">
-					<div class="comment-write-section">
-						<div class="comment-count" th:text="${listNum} + '개의 의견'">댓글</div>
-						<form action="/workDetail/addComment" method="post">
-							<textarea name="comment" class="comment-write" placeholder="의견을 남겨주세요."></textarea>
-							<br>
-							<button type="submit" class="submit-btn">작성</button>
-							<input th:name="workId" th:value="${workDto.workId}" type="hidden">
-						</form>
-					</div>
-					<div class="comment-read-section">
-						<div class="comment" th:each="comment:${CommentList}">
-							<div class="comment-content-head">
-								<div class="comment-user-name" th:text="${comment.userIdToComment.getName()} + ' 님'">
-								</div>
-								<!--                     <button onclick="" class="comment-head-button">수정</button>-->
-								<a th:href="@{/workDetail/commentDelete/{cid}(cid=${comment.getWorkCommentId()})}"
-									class="comment-head-button">
-									삭제</a>
-							</div>
-							<div class="comment-content" th:text="${comment.comment}">댓글 내용</div>
-							<div class="horizon-divider"></div>
-						</div>
-					</div>
-				</div>
+<div class="main">
+	<div class="sub-nav">
+		<ul class="sub-navbar">
+			<li class="sub-nav-item"><a href="/project/works">리스트로 돌아가기</a></li>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="content">
+	<div class="container">
+		<div class="left-pane">
+			<div class="title-section">
+				<h1 class="post-title" th:text="${workDto.getTitle()}">title</h1>
+				<span class="survey-stage">
+                        <span class="stage active" th:if="${workDto.getCompletion() == 0}"></span>
+                        <span class="stage complete" th:if="${workDto.getCompletion() == 1}"></span>
+                        <span class="stage wait" th:if="${workDto.getCompletion() == 2}"></span>
+                        <span class="stage late" th:if="${workDto.getCompletion() == 3}"></span>
+                    </span>
 			</div>
+			<div class="date" style="margin-bottom: 25px;"
+				 th:text="${#dates.format(workDto.getStartDay(), 'yyyy.MM.dd')} + ' - ' +
+				${#dates.format(workDto.getEndDay(), 'yyyy.MM.dd')}">
+				2023.01.01 - 2023.12.31</div>
+			<p class="post-content" th:text="${workDto.getDiscription()}">
+			</p>
+			<div class="horizon-divider"></div>
 
-			<div class="right-pane">
-				<h3>담당자 </h3>
-				<div th:each="user : ${userWorkDtoList}">
-					<p th:text="${user.getUserIdToUserWork().getName()}"></p>
+			<h3>상위 목표</h3>
+			<a th:href="@{/project/goal/headView/{id}(id=${headDto.headId})}">
+				<div class="head">
+					<div class="head-detail">
+						<div class="head-title" th:text="${headDto.getTitle()}">상위목표명</div>
+						<div class="head-deadline" th:text="${#dates.format(headDto.getStartDay(), 'yyyy.MM.dd')}"></div>
+					</div>
+					<span class="survey-progress">
+                        <div class="progress-title">진행도</div>
+                        <span class="survey-progress-bg">
+                            <span class="survey-progress-fg" th:style="${'width:'+ percent +'%;'}"></span>
+                        </span>
+                        <div class="percentage" th:text="${percent} + '%'"></div>
+                    </span>
 				</div>
-				<div class="horizon-divider"></div>
-				<div class="date-info">
-					<p th:text="'시작기한 : ' + ${#dates.format(workDto.getStartDay(), 'yyyy-MM-dd')}"></p>
-					<p th:text="'마감기한 : ' + ${#dates.format(workDto.getEndDay(), 'yyyy-MM-dd')}"></p>
-				</div>
-				<div class="horizon-divider"></div>
-				<div class="buttons">
-					<a th:href="@{/project/work/completion/change(id=${workDto.workId}, state=1)}">
-						<button class="right-button" th:if="${auth == 1 && !(workDto.completion == 1)}">완료로 표시</button>
-					</a>
-					<a th:href="@{/project/work/completion/change(id=${workDto.workId}, state=0)}">
-						<button class="right-button" th:if="${auth == 1 && !(workDto.completion == 0)}">진행중으로
-							표시</button>
-					</a>
-          			<a th:href="@{/project/sendRequest/{id}(id=${workDto.getWorkId()})}">
-					<button class="right-button" th:if="${auth == 0 && workDto.getCompletion() != 1}">작업 완료 요청</button>
-				</a>
-				</div>
-				<div class="horizon-divider"></div>
+			</a>
+			<div class="horizon-divider"></div>
+
+			<div>
 				<div class="related-tasks">
-					<h2>연결된 목표</h2>
-					<ul class="task-list">
-						<li><a th:href="@{/project/goal/headView/{id}(id=${workDto.getHeadIdToWork().getHeadId()})}"
-								th:text="${workDto.getHeadIdToWork().getTitle()}"></a></li>
-					</ul>
-				</div>
-				<div class="horizon-divider"></div>
-				<div class="related-tasks">
-					<h2>연결된 문서</h2>
+					<h3>연결된 문서</h3>
 					<ul class="task-list" th:each="document : ${documentList}">
-						<li><a th:href="@{/document/write?id={id}(id=${document.getDocumentId()})}"
-								th:text="${document.getTitle()}"></a></li>
+						<a th:href="@{/document/write?id={id}(id=${document.getDocumentId()})}">
+							<li class="document">
+								<div class="work-title" th:text="${document.getTitle()}">작업명</div>
+							</li>
+						</a>
 					</ul>
 				</div>
-				<div class="horizon-divider"></div>
-				<form th:if="${check}" action="/document/addDocument" method="post">
-					<button type="submit" class="sub-create-button">문서 만들기</button>
-					<input th:hidden="true" th:name="workId" th:value="${workDto.getWorkId()}">
-				</form>
+			</div>
+
+			<div class="horizon-divider"></div>
+			<div class="comment-section">
+				<div class="comment-write-section">
+					<h3 th:text="${listNum} + '개의 의견'">댓글</h3>
+					<form action="/workDetail/addComment" method="post">
+						<div class="mail-textarea">
+							<input class="comment-input" type="text" placeholder="댓글 추가...">
+							<div class="textarea-icons">
+								<button class="send" type="submit">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+										 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+										 stroke-linecap="round" color="#fff" stroke-linejoin="round"
+										 class="feather feather-send">
+										<path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+									</svg>
+								</button>
+							</div>
+						</div>
+						<input th:name="workId" th:value="${workDto.workId}" type="hidden">
+					</form>
+				</div>
+				<div class="comment-read-section">
+					<div class="comment" th:each="comment:${CommentList}">
+						<div class="comment-content-head">
+							<div class="comment-user-name" th:text="${comment.userIdToComment.getName()} + ' 님'">
+							</div>
+							<!--                     <button onclick="" class="comment-head-button">수정</button>-->
+							<a th:href="@{/workDetail/commentDelete/{cid}(cid=${comment.getWorkCommentId()})}"
+							   class="comment-head-button">
+								삭제</a>
+						</div>
+						<div class="comment-content" th:text="${comment.comment}">댓글 내용</div>
+						<div class="horizon-divider"></div>
+					</div>
+				</div>
 			</div>
 		</div>
+
+		<div class="right-pane">
+			<h3>담당자 </h3>
+			<div th:each="user : ${userWorkDtoList}">
+				<p class="content-detail" th:text="${user.getUserIdToUserWork().getName()}">담당자명</p>
+			</div>
+			<div class="horizon-divider"></div>
+			<div class="buttons">
+				<h3>상태</h3>
+				<div>
+					<p th:if="${workDto.getCompletion() == 0}" class="content-detail" style="color: #8972f3; font-weight: bold;">진행중</p>
+					<p th:if="${workDto.getCompletion() == 1}" class="content-detail" style="color: #58c2a9; font-weight: bold">완료</p>
+					<p th:if="${workDto.getCompletion() == 2}" class="content-detail" style="color: #a0a6b5; font-weight: bold">계획중</p>
+					<p th:if="${workDto.getCompletion() == 3}" class="content-detail" style="color: #e77f89; font-weight: bold">미완료</p>
+				</div>
+				<a th:href="@{/project/work/completion/change(id=${workDto.workId}, state=1)}">
+					<button class="complete-button" th:if="${auth == 1 && !(workDto.completion == 1)}">완료로 표시
+					</button>
+				</a>
+				<a th:href="@{/project/work/completion/change(id=${workDto.workId}, state=0)}">
+					<button class="progress-button" th:if="${auth == 1 && !(workDto.completion == 0)}">진행중으로 표시
+					</button>
+				</a>
+				<!-- <a th:href="@{/project/sendRequest/{id}(id=${workDto.getWorkId()})}">
+                    <button class="right-button" th:if="${auth == 0 && workDto.getCompletion() != 1}">작업 완료
+                        요청</button>
+                </a> -->
+			</div>
+			<div class="horizon-divider"></div>
+			<h3 th:if="${auth == 1}">변경</h3>
+			<a th:href="@{/project/goal/work/edit/{id}(id=${workDto.getWorkId()})}">
+				<button class="edit-button" th:if="${auth == 1}">작업 편집
+				</button>
+			</a>
+			<a th:href="@{/project/goal/work/delete/{id}(id=${workDto.getWorkId()})}">
+				<button class="delete-button" th:if="${auth == 1}">작업 삭제
+				</button>
+			</a>
+
+			<div class="horizon-divider"></div>
+			<form th:if="${check}" action="/document/addDocument" method="post">
+				<button type="submit" class="sub-create-button">문서 만들기</button>
+				<input hidden="true" th:hidden="true" th:name="workId" th:value="${workDto.getWorkId()}">
+			</form>
+		</div>
 	</div>
+</div>
 </body>
 
 </html>
