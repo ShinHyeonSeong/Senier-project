@@ -92,7 +92,13 @@
 
 			<div>
 				<div class="related-tasks">
-					<h3>연결된 문서</h3>
+					<div class="connect-document">
+						<h3>연결된 문서</h3>
+						<form th:if="${check}" action="/document/addDocument" method="post">
+							<button type="submit" class="sub-create-button">문서 만들기</button>
+							<input hidden="true" th:hidden="true" th:name="workId" th:value="${workDto.getWorkId()}">
+						</form>
+					</div>
 					<ul class="task-list" th:each="document : ${documentList}">
 						<a th:href="@{/document/write?id={id}(id=${document.getDocumentId()})}">
 							<li class="document">
@@ -178,12 +184,6 @@
 				<button class="delete-button" th:if="${auth == 1}">작업 삭제
 				</button>
 			</a>
-
-			<div class="horizon-divider"></div>
-			<form th:if="${check}" action="/document/addDocument" method="post">
-				<button type="submit" class="sub-create-button">문서 만들기</button>
-				<input hidden="true" th:hidden="true" th:name="workId" th:value="${workDto.getWorkId()}">
-			</form>
 		</div>
 	</div>
 </div>

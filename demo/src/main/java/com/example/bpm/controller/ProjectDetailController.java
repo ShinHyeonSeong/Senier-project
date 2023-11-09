@@ -449,15 +449,22 @@ public class ProjectDetailController {
         boolean workAdd = documentService.accreditUserToWork(getSessionUser().getUuid(), id, auth);
 
         List<WorkDto> workDtoList = projectDetailSerivce.findWorkListByHead(headDto);
-        int workNum;
+        int workNum = workDtoList.size();
         int completeWork;
-        if (workDtoList == null || workDtoList.size() == 0) {
+        int percent;
+        if (workDtoList == null || workNum == 0) {
             completeWork = 0;
             workNum = 0;
+            percent = 0;
         } else {
             completeWork = projectDetailSerivce.getCompleteWorkNumByHead(headDto);
+            if (workNum == completeWork) {
+                percent = 100;
+            } else {
+                percent = projectDetailSerivce.getHeadProgressPercent(headDto, workDtoList.size(), completeWork);
+            }
         }
-        int percent = projectDetailSerivce.getHeadProgressPercent(headDto, workDtoList.size(), completeWork);
+
         List<UserDto> userDtoList = userService.findUserListByProjectId(getSessionProject().getProjectId());
         model.addAttribute("headDto", headDto);
         model.addAttribute("percent", percent);

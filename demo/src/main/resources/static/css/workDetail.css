@@ -129,6 +129,13 @@ body {
     margin-top: 40px;
 }
 
+.connect-document {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .work-state-section {
     display: flex;
     flex-direction: row;
@@ -329,7 +336,6 @@ body {
 }
 
 .sub-create-button {
-    display: block;
     width: 100%;
     text-decoration: none;
     padding: 10px;
@@ -338,7 +344,6 @@ body {
     border: 1.5px solid #777777;
     background-color: #777777;
     border-radius: 10px;
-    margin-bottom: 10px;
     cursor: pointer;
 }
 
