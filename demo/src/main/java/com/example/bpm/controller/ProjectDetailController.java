@@ -571,9 +571,10 @@ public class ProjectDetailController {
     }
 
     @RequestMapping("/project/work/completion/change")
-    public String workCompletionChange(Long id, int state) {
+    public String workCompletionChange(Long id, int state, HttpServletRequest request) {
         projectDetailSerivce.updateWorkCompletion(id, state);
-        return "redirect:/project/works";
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
     }
 
     //*  - - - - - Calendar Controller - - - - - *//
