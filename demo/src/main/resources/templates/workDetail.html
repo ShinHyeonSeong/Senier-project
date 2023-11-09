@@ -67,17 +67,19 @@
 			<div class="date" style="margin-bottom: 25px;"
 				 th:text="${#dates.format(workDto.getStartDay(), 'yyyy.MM.dd')} + ' - ' +
 				${#dates.format(workDto.getEndDay(), 'yyyy.MM.dd')}">
-				2023.01.01 - 2023.12.31</div>
+				2023.01.01 - 2023.12.31
+			</div>
 			<p class="post-content" th:text="${workDto.getDiscription()}">
 			</p>
 			<div class="horizon-divider"></div>
-
+			
 			<h3>상위 목표</h3>
 			<a th:href="@{/project/goal/headView/{id}(id=${headDto.headId})}">
 				<div class="head">
 					<div class="head-detail">
 						<div class="head-title" th:text="${headDto.getTitle()}">상위목표명</div>
-						<div class="head-deadline" th:text="${#dates.format(headDto.getStartDay(), 'yyyy.MM.dd')}"></div>
+						<div class="head-deadline"
+							 th:text="${#dates.format(headDto.getStartDay(), 'yyyy.MM.dd')}"></div>
 					</div>
 					<span class="survey-progress">
                         <div class="progress-title">진행도</div>
@@ -89,7 +91,7 @@
 				</div>
 			</a>
 			<div class="horizon-divider"></div>
-
+			
 			<div>
 				<div class="related-tasks">
 					<h3>연결된 문서</h3>
@@ -102,7 +104,7 @@
 					</ul>
 				</div>
 			</div>
-
+			
 			<div class="horizon-divider"></div>
 			<div class="comment-section">
 				<div class="comment-write-section">
@@ -116,7 +118,7 @@
 										 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
 										 stroke-linecap="round" color="#fff" stroke-linejoin="round"
 										 class="feather feather-send">
-										<path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+										<path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
 									</svg>
 								</button>
 							</div>
@@ -140,7 +142,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<div class="right-pane">
 			<h3>담당자 </h3>
 			<div th:each="user : ${userWorkDtoList}">
@@ -150,19 +152,25 @@
 			<div class="buttons">
 				<h3>상태</h3>
 				<div>
-					<p th:if="${workDto.getCompletion() == 0}" class="content-detail" style="color: #8972f3; font-weight: bold;">진행중</p>
-					<p th:if="${workDto.getCompletion() == 1}" class="content-detail" style="color: #58c2a9; font-weight: bold">완료</p>
-					<p th:if="${workDto.getCompletion() == 2}" class="content-detail" style="color: #a0a6b5; font-weight: bold">계획중</p>
-					<p th:if="${workDto.getCompletion() == 3}" class="content-detail" style="color: #e77f89; font-weight: bold">미완료</p>
+					<p th:if="${workDto.getCompletion() == 0}" class="content-detail"
+					   style="color: #8972f3; font-weight: bold;">진행중</p>
+					<p th:if="${workDto.getCompletion() == 1}" class="content-detail"
+					   style="color: #58c2a9; font-weight: bold">완료</p>
+					<p th:if="${workDto.getCompletion() == 2}" class="content-detail"
+					   style="color: #a0a6b5; font-weight: bold">계획중</p>
+					<p th:if="${workDto.getCompletion() == 3}" class="content-detail"
+					   style="color: #e77f89; font-weight: bold">미완료</p>
 				</div>
-				<a th:href="@{/project/work/completion/change(id=${workDto.workId}, state=1)}">
-					<button class="complete-button" th:if="${auth == 1 && !(workDto.completion == 1)}">완료로 표시
-					</button>
-				</a>
-				<a th:href="@{/project/work/completion/change(id=${workDto.workId}, state=0)}">
-					<button class="progress-button" th:if="${auth == 1 && !(workDto.completion == 0)}">진행중으로 표시
-					</button>
-				</a>
+				<div class="status-section">
+					<a th:href="@{/project/work/completion/change(id=${workDto.workId}, state=1)}">
+						<button class="complete-button" th:if="${auth == 1 && !(workDto.completion == 1)}">완료
+						</button>
+					</a>
+					<a th:href="@{/project/work/completion/change(id=${workDto.workId}, state=0)}">
+						<button class="progress-button" th:if="${auth == 1 && !(workDto.completion == 0)}">진행중
+						</button>
+					</a>
+				</div>
 				<!-- <a th:href="@{/project/sendRequest/{id}(id=${workDto.getWorkId()})}">
                     <button class="right-button" th:if="${auth == 0 && workDto.getCompletion() != 1}">작업 완료
                         요청</button>
@@ -170,20 +178,16 @@
 			</div>
 			<div class="horizon-divider"></div>
 			<h3 th:if="${auth == 1}">변경</h3>
-			<a th:href="@{/project/goal/work/edit/{id}(id=${workDto.getWorkId()})}">
-				<button class="edit-button" th:if="${auth == 1}">작업 편집
-				</button>
-			</a>
-			<a th:href="@{/project/goal/work/delete/{id}(id=${workDto.getWorkId()})}">
-				<button class="delete-button" th:if="${auth == 1}">작업 삭제
-				</button>
-			</a>
-
-			<div class="horizon-divider"></div>
-			<form th:if="${check}" action="/document/addDocument" method="post">
-				<button type="submit" class="sub-create-button">문서 만들기</button>
-				<input hidden="true" th:hidden="true" th:name="workId" th:value="${workDto.getWorkId()}">
-			</form>
+			<div class="status-section">
+				<a th:href="@{/project/goal/work/edit/{id}(id=${workDto.getWorkId()})}">
+					<button class="edit-button" th:if="${auth == 1}">작업 편집
+					</button>
+				</a>
+				<a th:href="@{/project/goal/work/delete/{id}(id=${workDto.getWorkId()})}">
+					<button class="delete-button" th:if="${auth == 1}">작업 삭제
+					</button>
+				</a>
+			</div>
 		</div>
 	</div>
 </div>

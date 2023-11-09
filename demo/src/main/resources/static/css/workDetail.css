@@ -369,7 +369,8 @@ body {
 }
 
 .progress-button {
-    width: 100%;
+    width: 100px;
+    margin-right: 15px;
     background: #8972f3;
     font-size: 14px;
     font-weight: bold;
@@ -386,7 +387,7 @@ body {
 }
 
 .complete-button {
-    width: 100%;
+    width: 100px;
     background: #58c2a9;
     font-size: 14px;
     font-weight: bold;
@@ -403,7 +404,7 @@ body {
 }
 
 .edit-button {
-    width: 100%;
+    width: 100px;
     background: #528fdf;
     font-size: 14px;
     font-weight: bold;
@@ -413,6 +414,7 @@ body {
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 5px 0px 0px;
+    margin-right: 15px;
 }
 
 .edit-button:hover {
@@ -420,7 +422,7 @@ body {
 }
 
 .delete-button {
-    width: 100%;
+    width: 100px;
     background: rgb(223, 82, 82);
     font-size: 14px;
     font-weight: bold;
@@ -588,4 +590,11 @@ svg {
     margin-top: 8px;
     margin-left: auto;
     font-size: 14px;
+}
+
+.status-section {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: center;
 }
